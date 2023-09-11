@@ -2,7 +2,7 @@
  * jQuery UI Effects 1.8.18
  *
  * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT or GPL Version 2 licenses.
+ * Dual licensed under the MIT or GPL Версия 2.1.0  2 licenses.
  * http://jquery.org/license
  *
  * http://docs.jquery.com/UI/Effects/
@@ -765,7 +765,7 @@ $.extend($.easing,
  * jQuery UI Effects Slide 1.8.18
  *
  * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT or GPL Version 2 licenses.
+ * Dual licensed under the MIT or GPL Версия 2.1.0  2 licenses.
  * http://jquery.org/license
  *
  * http://docs.jquery.com/UI/Effects/Slide

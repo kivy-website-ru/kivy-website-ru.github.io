@@ -220,7 +220,7 @@ code to it::
               upx=True,
               console=False )
     coll = COLLECT(exe, Tree('../kivy/examples/demo/touchtracer/'),
-                   Tree('/Library/Frameworks/SDL2_ttf.framework/Versions/A/Frameworks/FreeType.framework'),
+                   Tree('/Library/Frameworks/SDL2_ttf.framework/Версия 2.1.0 s/A/Frameworks/FreeType.framework'),
                    a.binaries,
                    a.zipfiles,
                    a.datas,

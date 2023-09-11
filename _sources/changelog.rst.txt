@@ -803,7 +803,7 @@ Doc
 - [:repo:`5925`]: Fix Doc 'Input Management'
 - [:repo:`5912`]: OS X to macOS in README
 - [:repo:`5911`]: Maintain separate docs for different releases
-- [:repo:`5910`]: Versioned docs
+- [:repo:`5910`]: Версия 2.1.0 ed docs
 - [:repo:`5908`]: : corrected typo in docs
 - [:repo:`5903`]: Correct iOS docs, add ref links
 - [:repo:`5900`]: : fix typo in window docs
@@ -2637,7 +2637,7 @@ Packaging
 - [:repo:`3015`] fixes #3011 some files always rebuilt at make
 - [:repo:`3041`] Use distutils for cython version comparision.
 - [:repo:`2934`] Add both src and build paths to setup.py for generating setupconfig and co.
-- [:repo:`3101`] handle LooseVersion == str comparisons in py3
+- [:repo:`3101`] handle LooseВерсия 2.1.0  == str comparisons in py3
 - Fixes for Cython 0.21
 - setup: fix python3
 - py3 compatibility fix for osx packaging
@@ -4374,7 +4374,7 @@ Android
 Others
 ------
 
-- [:repo:`50`] Versionning portable-deps for OSX
+- [:repo:`50`] Версия 2.1.0 ning portable-deps for OSX
 - Add unit tests for Point and Ellipse
 - New keybinding module, with only F12 to take screenshot
 
