@@ -401,27 +401,37 @@
   <section id="module-kivy.atlas">
 <span id="atlas"></span><h1>Atlas<a class="headerlink" href="#module-kivy.atlas" title="Permalink to this headline">¶</a></h1>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.1.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.1.0.</span></p>
 </div>
-<p>Atlas manages texture atlases: packing multiple textures into
-one. With it, you reduce the number of images loaded and speedup the
-application loading. This module contains both the Atlas class and command line
-processing for creating an atlas from a set of individual PNG files. The
-command line section requires the Pillow library, or the defunct Python Imaging
-Library (PIL), to be installed.</p>
+<p>Atlas управляет текстурными атласами: упаковывает несколько текстур в одну.
+С его помощью вы снижаете количество загружаемых изображений и ускоряете
+загрузку приложения. Этот модуль содержит как класс Atlas, так и обработку
+командной строки для создания атласа из набора отдельных файлов PNG. Раздел
+командной строки требует библиотеки Pillow или устаревшей библиотеки Python Imaging Library (PIL).</p>
+
 <dl class="simple">
-<dt>An Atlas is composed of 2 or more files:</dt><dd><ul class="simple">
-<li><p>a json file (.atlas) that contains the image file names and texture
-locations of the atlas.</p></li>
-<li><p>one or multiple image files containing textures referenced by the .atlas
-file.</p></li>
+<dt>Атлас состоит из 2 или более файлов:</dt>
+<dd>
+<ul class="simple">
+<li>
+<p>файл json (.atlas), который содержит имена файлов изображений и расположение текстур
+в атласе.</p>
+</li>
+<li>
+<p>один или несколько файлов изображений, содержащих текстуры, на которые ссылается файл .atlas.</p>
+</li>
 </ul>
 </dd>
 </dl>
+
 <section id="definition-of-atlas-files">
-<h2>Definition of .atlas files<a class="headerlink" href="#definition-of-atlas-files" title="Permalink to this headline">¶</a></h2>
-<p>A file with <code class="docutils literal notranslate"><span class="pre">&lt;basename&gt;.atlas</span></code> is a json file formatted like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<h2>Определение файлов .atlas<a class="headerlink" href="#definition-of-atlas-files" title="Ссылка на это заголовок">¶</a></h2>
+<p>Файл с именем <code class="docutils literal notranslate"><span class="pre">&lt;basename&gt;.atlas</span></code> - это json-файл с таким форматом:</p>
+
+<div class="highlight-default notranslate">
+<div class="highlight">
+<pre>
+<span></span><span class="p">{</span>
     <span class="s2">&quot;&lt;basename&gt;-&lt;index&gt;.png&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">&quot;id1&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="o">&lt;</span><span class="n">x</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">y</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">width</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">height</span><span class="o">&gt;</span> <span class="p">],</span>
         <span class="s2">&quot;id2&quot;</span><span class="p">:</span> <span class="p">[</span> <span class="o">&lt;</span><span class="n">x</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">y</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">width</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">height</span><span class="o">&gt;</span> <span class="p">],</span>
@@ -429,100 +439,124 @@ file.</p></li>
     <span class="p">},</span>
     <span class="c1"># ...</span>
 <span class="p">}</span>
-</pre></div>
+</pre>
 </div>
-<p>Example from the Kivy <code class="docutils literal notranslate"><span class="pre">data/images/defaulttheme.atlas</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+</div>
+
+<p>Пример из Kivy <code class="docutils literal notranslate"><span class="pre">data/images/defaulttheme.atlas</span></code>:</p>
+
+<div class="highlight-default notranslate">
+<div class="highlight">
+<pre>
+<span></span><span class="p">{</span>
     <span class="s2">&quot;defaulttheme-0.png&quot;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s2">&quot;progressbar_background&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">431</span><span class="p">,</span> <span class="mi">224</span><span class="p">,</span> <span class="mi">59</span><span class="p">,</span> <span class="mi">24</span><span class="p">],</span>
         <span class="s2">&quot;image-missing&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">253</span><span class="p">,</span> <span class="mi">344</span><span class="p">,</span> <span class="mi">48</span><span class="p">,</span> <span class="mi">48</span><span class="p">],</span>
         <span class="s2">&quot;filechooser_selected&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">207</span><span class="p">,</span> <span class="mi">118</span><span class="p">,</span> <span class="mi">118</span><span class="p">],</span>
         <span class="s2">&quot;bubble_btn&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">83</span><span class="p">,</span> <span class="mi">174</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">],</span>
-        <span class="c1"># ... and more ...</span>
+        <span class="c1"># ... и так далее ...</span>
     <span class="p">}</span>
 <span class="p">}</span>
-</pre></div>
+</pre>
 </div>
-<p>In this example, “defaulttheme-0.png” is a large image, with the pixels in the
-rectangle from (431, 224) to (431 + 59, 224 + 24) usable as
-<code class="docutils literal notranslate"><span class="pre">atlas://data/images/defaulttheme/progressbar_background</span></code> in
-any image parameter.</p>
+</div>
+
+<p>В этом примере "defaulttheme-0.png" - это большое изображение, пиксели в
+прямоугольнике с (431, 224) по (431 + 59, 224 + 24) можно использовать как
+<code class="docutils literal notranslate"><span class="pre">atlas://data/images/defaulttheme/progressbar_background</span></code>
+в любом параметре изображения.</p>
 </section>
+
 <section id="how-to-create-an-atlas">
-<h2>How to create an Atlas<a class="headerlink" href="#how-to-create-an-atlas" title="Permalink to this headline">¶</a></h2>
+<h2>Как создать атлас<a class="headerlink" href="#how-to-create-an-atlas" title="Ссылка на это заголовок">¶</a></h2>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>The atlas creation requires the Pillow library (or the defunct Imaging/PIL
-library). This requirement will be removed in the future when the Kivy core
-Image is able to support loading, blitting, and saving operations.</p>
+<p class="admonition-title">Предупреждение</p>
+<p>Создание атласа требует библиотеки Pillow (или устаревшей библиотеки Imaging/PIL).
+Это требование будет удалено в будущем, когда ядро Kivy сможет поддерживать операции загрузки, битблитинга и сохранения.</p>
 </div>
-<p>You can directly use this module to create atlas files with this command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python -m kivy.atlas &lt;basename&gt; &lt;size&gt; &lt;list of images...&gt;
-</pre></div>
+<p>Вы можете непосредственно использовать этот модуль для создания файлов атласов с помощью этой команды:</p>
+
+<div class="highlight-default notranslate">
+<div class="highlight">
+<pre>
+<span></span>$ python -m kivy.atlas &lt;basename&gt; &lt;size&gt; &lt;list of images...&gt;
+</pre>
 </div>
-<p>Let’s say you have a list of images that you want to put into an Atlas. The
-directory is named <code class="docutils literal notranslate"><span class="pre">images</span></code> with lots of 64x64 png files inside:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ls
+</div>
+
+<p>Допустим, у вас есть список изображений, которые вы хотите поместить в атлас. Каталог называется <code class="docutils literal notranslate"><span class="pre">images</span></code> и содержит множество файлов png размером 64x64 пикселя:</p>
+
+<div class="highlight-default notranslate">
+<div class="highlight">
+<pre>
+<span></span>$ ls
 images
 $ cd images
 $ ls
 bubble.png bubble-red.png button.png button-down.png
-</pre></div>
+</pre>
 </div>
-<p>You can combine all the png’s into one and generate the atlas file with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python -m kivy.atlas myatlas 256x256 *.png
-Atlas created at myatlas.atlas
-1 image has been created
+</div>
+
+<p>Вы можете объединить все файлы png в один и создать файл атласа с помощью следующей команды:</p>
+
+<div class="highlight-default notranslate">
+<div class="highlight">
+<pre>
+<span></span>$ python -m kivy.atlas myatlas 256x256 *.png
+Атлас создан в myatlas.atlas
+Создано 1 изображение
 $ ls
 bubble.png bubble-red.png button.png button-down.png myatlas.atlas
 myatlas-0.png
-</pre></div>
+</pre>
 </div>
-<p>As you can see, we get 2 new files: <code class="docutils literal notranslate"><span class="pre">myatlas.atlas</span></code> and <code class="docutils literal notranslate"><span class="pre">myatlas-0.png</span></code>.
-<code class="docutils literal notranslate"><span class="pre">myatlas-0.png</span></code> is a new 256x256 .png composed of all your images. If the
-size you specify is not large enough to fit all of the source images, more
-atlas images will be created as required e.g. <code class="docutils literal notranslate"><span class="pre">myatlas-1.png</span></code>,
-<code class="docutils literal notranslate"><span class="pre">myatlas-2.png</span></code> etc.</p>
+</div>
+
+<p>Как видите, у нас появились 2 новых файла: <code class="docutils literal notranslate"><span class="pre">myatlas.atlas</span></code> и <code class="docutils literal notranslate"><span class="pre">myatlas-0.png</span></code>.
+<code class="docutils literal notranslate"><span class="pre">myatlas-0.png</span></code> - это новое изображение размером 256x256 пикселей, состоящее из всех ваших изображений. Если указанный вами размер недостаточно большой для размещения всех исходных изображений, будут созданы дополнительные файлы атласа, такие как <code class="docutils literal notranslate"><span class="pre">myatlas-1.png</span></code>, <code class="docutils literal notranslate"><span class="pre">myatlas-2.png</span></code> и т. д.</p>
+
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>When using this script, the ids referenced in the atlas are the base names
-of the images without the extension. So, if you are going to name a file
-<code class="docutils literal notranslate"><span class="pre">../images/button.png</span></code>, the id for this image will be <code class="docutils literal notranslate"><span class="pre">button</span></code>.</p>
-<p>If you need path information included, you should include <code class="docutils literal notranslate"><span class="pre">use_path</span></code> as
-follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ python -m kivy.atlas -- --use_path myatlas 256 *.png
-</pre></div>
+<p class="admonition-title">Примечание</p>
+<p>При использовании этого сценария идентификаторы, на которые ссылаются в атласе, представляют собой имена файлов без расширения. Таким образом, если вы собираетесь назвать файл <code class="docutils literal notranslate"><span class="pre">../images/button.png</span></code>, идентификатор для этого изображения будет <code class="docutils literal notranslate"><span class="pre">button</span></code>.</p>
+<p>Если вам нужна информация о пути, вам следует включить <code class="docutils literal notranslate"><span class="pre">use_path</span></code> следующим образом:</p>
+
+<div class="highlight-default notranslate">
+<div class="highlight">
+<pre>
+<span></span>$ python -m kivy.atlas -- --use_path myatlas 256 *.png
+</pre>
 </div>
-<p>In which case the id for <code class="docutils literal notranslate"><span class="pre">../images/button.png</span></code> will be <code class="docutils literal notranslate"><span class="pre">images_button</span></code></p>
+</div>
+
+<p>В этом случае идентификатор для <code class="docutils literal notranslate"><span class="pre">../images/button.png</span></code> будет <code class="docutils literal notranslate"><span class="pre">images_button</span></code></p>
 </div>
 </section>
+
 <section id="how-to-use-an-atlas">
-<h2>How to use an Atlas<a class="headerlink" href="#how-to-use-an-atlas" title="Permalink to this headline">¶</a></h2>
-<p>Usually, you would specify the images by supplying the path:</p>
+<h2>Как использовать атлас<a class="headerlink" href="#how-to-use-an-atlas" title="Permalink to this headline">¶</a></h2>
+<p>Обычно вы указываете изображения, предоставляя путь:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">background_normal</span><span class="o">=</span><span class="s1">&#39;images/button.png&#39;</span><span class="p">,</span>
            <span class="n">background_down</span><span class="o">=</span><span class="s1">&#39;images/button_down.png&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>In our previous example, we have created the atlas containing both images and
-put them in <code class="docutils literal notranslate"><span class="pre">images/myatlas.atlas</span></code>. You can use url notation to reference
-them:</p>
+</pre></div></div>
+<p>В нашем предыдущем примере мы создали атлас, содержащий оба изображения,
+и поместили их в <code class="docutils literal notranslate"><span class="pre">images/myatlas.atlas</span></code>. Вы можете использовать форму URL для ссылки
+на них:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">background_normal</span><span class="o">=</span><span class="s1">&#39;atlas://images/myatlas/button&#39;</span><span class="p">,</span>
            <span class="n">background_down</span><span class="o">=</span><span class="s1">&#39;atlas://images/myatlas/button_down&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>In other words, the path to the images is replaced by:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">atlas</span><span class="p">:</span><span class="o">//</span><span class="n">path</span><span class="o">/</span><span class="n">to</span><span class="o">/</span><span class="n">myatlas</span><span class="o">/</span><span class="nb">id</span>
-<span class="c1"># will search for the ``path/to/myatlas.atlas`` and get the image ``id``</span>
-</pre></div>
-</div>
+</pre></div></div>
+<p>Другими словами, путь к изображениям заменяется на:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">atlas</span><span class="o">:</span><span class="o">//</span><span class="n">путь</span><span class="o">/</span><span class="n">к</span><span class="o">/</span><span class="n">myatlas</span><span class="o">/</span><span class="nb">id</span>
+<span class="c1"># будет искать файл ``путь/к/myatlas.atlas`` и получит изображение ``id``</span>
+</pre></div></div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>In the atlas url, there is no need to add the <code class="docutils literal notranslate"><span class="pre">.atlas</span></code> extension. It will
-be automatically append to the filename.</p>
+<p class="admonition-title">Примечание</p>
+<p>В URL атласа нет необходимости добавлять расширение <code class="docutils literal notranslate"><span class="pre">.atlas</span></code>. Оно будет
+автоматически добавлено к имени файла.</p>
 </div>
 </section>
 <section id="manual-usage-of-the-atlas">
-<h2>Manual usage of the Atlas<a class="headerlink" href="#manual-usage-of-the-atlas" title="Permalink to this headline">¶</a></h2>
+<h2>Руководство по ручному использованию атласа<a class="headerlink" href="#manual-usage-of-the-atlas" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">kivy.atlas</span> <span class="kn">import</span> <span class="n">Atlas</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">atlas</span> <span class="o">=</span> <span class="n">Atlas</span><span class="p">(</span><span class="s1">&#39;path/to/myatlas.atlas&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">atlas</span><span class="o">.</span><span class="n">textures</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
@@ -534,47 +568,44 @@ be automatically append to the filename.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.atlas.Atlas">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.atlas.</span></span><span class="sig-name descname"><span class="pre">Atlas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/atlas.html#Atlas"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.atlas.Atlas" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.event.html#kivy.event.EventDispatcher" title="kivy.event.EventDispatcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.event.EventDispatcher</span></code></a></p>
-<p>Manage texture atlas. See module documentation for more information.</p>
+<dd><p>Базовый класс: <a class="reference internal" href="api-kivy.event.html#kivy.event.EventDispatcher" title="kivy.event.EventDispatcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.event.EventDispatcher</span></code></a></p>
+<p>Управление текстурным атласом. Дополнительную информацию смотрите в документации по модулю.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.atlas.Atlas.create">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filenames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/atlas.html#Atlas.create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.atlas.Atlas.create" title="Permalink to this definition">¶</a></dt>
-<dd><p>This method can be used to create an atlas manually from a set of
-images.</p>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">outname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filenames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">padding</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">use_path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/atlas.html#Atlas.create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.atlas.Atlas.create" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Этот метод может быть использован для создания атласа вручную из набора
+изображений.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><cite>outname</cite>: str</dt><dd><p>Basename to use for <code class="docutils literal notranslate"><span class="pre">.atlas</span></code> creation and <code class="docutils literal notranslate"><span class="pre">-&lt;idx&gt;.png</span></code>
-associated images.</p>
+<dt><cite>outname</cite>: str</dt><dd><p>Базовое имя для создания <code class="docutils literal notranslate"><span class="pre">.atlas</span></code> и <code class="docutils literal notranslate"><span class="pre">-&lt;idx&gt;.png</span></code>
+для связанных изображений.</p>
 </dd>
-<dt><cite>filenames</cite>: list</dt><dd><p>List of filenames to put in the atlas.</p>
+<dt><cite>filenames</cite>: list</dt><dd><p>Список имен файлов для помещения в атлас.</p>
 </dd>
-<dt><cite>size</cite>: int or list (width, height)</dt><dd><p>Size of the atlas image. If the size is not large enough to
-fit all of the source images, more atlas images will created
-as required.</p>
+<dt><cite>size</cite>: int или list (width, height)</dt><dd><p>Размер изображения атласа. Если размер недостаточно большой, чтобы
+поместить все исходные изображения, будут созданы дополнительные изображения атласа
+по мере необходимости.</p>
 </dd>
-<dt><cite>padding</cite>: int, defaults to 2</dt><dd><p>Padding to put around each image.</p>
-<p>Be careful. If you’re using a padding &lt; 2, you might have
-issues with the borders of the images. Because of the OpenGL
-linearization, it might use the pixels of the adjacent image.</p>
-<p>If you’re using a padding &gt;= 2, we’ll automatically generate a
-“border” of 1px around your image. If you look at
-the result, don’t be scared if the image inside is not
-exactly the same as yours :).</p>
+<dt><cite>padding</cite>: int, по умолчанию 2</dt><dd><p>Отступ вокруг каждого изображения.</p>
+<p>Будьте осторожны. Если вы используете отступ &lt; 2, могут возникнуть
+проблемы с границами изображений. Из-за линеаризации OpenGL он может использовать
+пиксели смежных изображений.</p>
+<p>Если вы используете отступ &gt;= 2, мы автоматически создадим
+"границу" из 1 пикселя вокруг вашего изображения. Если вы посмотрите на
+результат, не пугайтесь, если изображение внутри не совсем
+то же самое, что и ваше :).</p>
 </dd>
-<dt><cite>use_path</cite>: bool, defaults to False</dt><dd><p>If True, the relative path of the source png
-file names will be included in the atlas ids rather
-that just in the file names. Leading dots and slashes will be
-excluded and all other slashes in the path will be replaced
-with underscores. For example, if <cite>use_path</cite> is False
-(the default) and the file name is
-<code class="docutils literal notranslate"><span class="pre">../data/tiles/green_grass.png</span></code>, the id will be
-<code class="docutils literal notranslate"><span class="pre">green_grass</span></code>. If <cite>use_path</cite> is True, it will be
-<code class="docutils literal notranslate"><span class="pre">data_tiles_green_grass</span></code>.</p>
+<dt><cite>use_path</cite>: bool, по умолчанию False</dt><dd><p>Если True, в атласе будут включены относительные пути к исходным
+файлам png вместо простых имен файлов. Ведущие точки и слэши будут
+исключены, а все остальные слэши в пути будут заменены подчеркиваниями.
+Например, если <cite>use_path</cite> равен False (по умолчанию) и имя файла -
+<code class="docutils literal notranslate"><span class="pre">../data/tiles/green_grass.png</span></code>, то идентификатор будет <code class="docutils literal notranslate"><span class="pre">green_grass</span></code>.
+Если <cite>use_path</cite> равен True, то он будет <code class="docutils literal notranslate"><span class="pre">data_tiles_green_grass</span></code>.</p>
 </dd>
 </dl>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.8.0: </span>Parameter use_path added</p>
+<p><span class="versionmodified changed">Изменено в версии 1.8.0: </span>Добавлен параметр use_path</p>
 </div>
 </dd>
 </dl>
@@ -582,29 +613,29 @@ with underscores. For example, if <cite>use_path</cite> is False
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.atlas.Atlas.filename">
-<span class="sig-name descname"><span class="pre">filename</span></span><a class="headerlink" href="#kivy.atlas.Atlas.filename" title="Permalink to this definition">¶</a></dt>
-<dd><p>Filename of the current Atlas.</p>
-<p><a class="reference internal" href="#kivy.atlas.Atlas.filename" title="kivy.atlas.Atlas.filename"><code class="xref py py-attr docutils literal notranslate"><span class="pre">filename</span></code></a> is an <a class="reference internal" href="api-kivy.properties.html#kivy.properties.AliasProperty" title="kivy.properties.AliasProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">AliasProperty</span></code></a> and defaults
-to None.</p>
+<span class="sig-name descname"><span class="pre">filename</span></span><a class="headerlink" href="#kivy.atlas.Atlas.filename" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Имя файла текущего атласа.</p>
+<p><a class="reference internal" href="#kivy.atlas.Atlas.filename" title="kivy.atlas.Atlas.filename"><code class="xref py py-attr docutils literal notranslate"><span class="pre">filename</span></code></a> - это <a class="reference internal" href="api-kivy.properties.html#kivy.properties.AliasProperty" title="kivy.properties.AliasProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">AliasProperty</span></code></a> и по умолчанию
+равен None.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.atlas.Atlas.original_textures">
-<span class="sig-name descname"><span class="pre">original_textures</span></span><a class="headerlink" href="#kivy.atlas.Atlas.original_textures" title="Permalink to this definition">¶</a></dt>
-<dd><p>List of original atlas textures (which contain the <a class="reference internal" href="#kivy.atlas.Atlas.textures" title="kivy.atlas.Atlas.textures"><code class="xref py py-attr docutils literal notranslate"><span class="pre">textures</span></code></a>).</p>
-<p><a class="reference internal" href="#kivy.atlas.Atlas.original_textures" title="kivy.atlas.Atlas.original_textures"><code class="xref py py-attr docutils literal notranslate"><span class="pre">original_textures</span></code></a> is a <a class="reference internal" href="api-kivy.properties.html#kivy.properties.ListProperty" title="kivy.properties.ListProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">ListProperty</span></code></a> and
-defaults to [].</p>
+<span class="sig-name descname"><span class="pre">original_textures</span></span><a class="headerlink" href="#kivy.atlas.Atlas.original_textures" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Список исходных текстур атласа (содержащих <a class="reference internal" href="#kivy.atlas.Atlas.textures" title="kivy.atlas.Atlas.textures"><code class="xref py py-attr docutils literal notranslate"><span class="pre">textures</span></code></a>).</p>
+<p><a class="reference internal" href="#kivy.atlas.Atlas.original_textures" title="kivy.atlas.Atlas.original_textures"><code class="xref py py-attr docutils literal notranslate"><span class="pre">original_textures</span></code></a> - это <a class="reference internal" href="api-kivy.properties.html#kivy.properties.ListProperty" title="kivy.properties.ListProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">ListProperty</span></code></a> и
+по умолчанию пустой список [].</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.9.1.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.9.1.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.atlas.Atlas.textures">
-<span class="sig-name descname"><span class="pre">textures</span></span><a class="headerlink" href="#kivy.atlas.Atlas.textures" title="Permalink to this definition">¶</a></dt>
-<dd><p>List of available textures within the atlas.</p>
-<p><a class="reference internal" href="#kivy.atlas.Atlas.textures" title="kivy.atlas.Atlas.textures"><code class="xref py py-attr docutils literal notranslate"><span class="pre">textures</span></code></a> is a <a class="reference internal" href="api-kivy.properties.html#kivy.properties.DictProperty" title="kivy.properties.DictProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">DictProperty</span></code></a> and defaults
-to {}.</p>
+<span class="sig-name descname"><span class="pre">textures</span></span><a class="headerlink" href="#kivy.atlas.Atlas.textures" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Список доступных текстур в атласе.</p>
+<p><a class="reference internal" href="#kivy.atlas.Atlas.textures" title="kivy.atlas.Atlas.textures"><code class="xref py py-attr docutils literal notranslate"><span class="pre">textures</span></code></a> - это <a class="reference internal" href="api-kivy.properties.html#kivy.properties.DictProperty" title="kivy.properties.DictProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">DictProperty</span></code></a> и по умолчанию
+равен {}.</p>
 </dd></dl>
 
 </dd></dl>
