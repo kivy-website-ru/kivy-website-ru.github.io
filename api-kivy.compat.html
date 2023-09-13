@@ -386,56 +386,54 @@
 </ul>
 </div>
             
-  <section id="module-kivy.compat">
-<span id="compatibility-module-for-python-2-7-and-3-4"></span><h1>Compatibility module for Python 2.7 and &gt;= 3.4<a class="headerlink" href="#module-kivy.compat" title="Permalink to this headline">¶</a></h1>
-<p>This module provides a set of utility types and functions for optimization and
-to aid in writing Python 2/3 compatible code.</p>
+<section id="module-kivy.compat">
+<span id="compatibility-module-for-python-2-7-and-3-4"></span><h1>Модуль совместимости для Python 2.7 и &gt;= 3.4<a class="headerlink" href="#module-kivy.compat" title="Ссылка на этот заголовок">¶</a></h1>
+<p>Этот модуль предоставляет набор утилитных типов и функций для оптимизации и
+для помощи в написании кода, совместимого с Python 2/3.</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="kivy.compat.PY2">
-<span class="sig-prename descclassname"><span class="pre">kivy.compat.</span></span><span class="sig-name descname"><span class="pre">PY2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#kivy.compat.PY2" title="Permalink to this definition">¶</a></dt>
-<dd><p>False, because we don’t support Python 2 anymore.</p>
+<span class="sig-prename descclassname"><span class="pre">kivy.compat.</span></span><span class="sig-name descname"><span class="pre">PY2</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">False</span></em><a class="headerlink" href="#kivy.compat.PY2" title="Ссылка на это определение">¶</a></dt>
+<dd><p>False, потому что мы больше не поддерживаем Python 2.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="kivy.compat.clock">
-<span class="sig-prename descclassname"><span class="pre">kivy.compat.</span></span><span class="sig-name descname"><span class="pre">clock</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#kivy.compat.clock" title="Permalink to this definition">¶</a></dt>
-<dd><p>A clock with the highest available resolution on your current Operating
-System.</p>
+<span class="sig-prename descclassname"><span class="pre">kivy.compat.</span></span><span class="sig-name descname"><span class="pre">clock</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#kivy.compat.clock" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Часы с максимально доступным разрешением на вашей текущей
+операционной системе.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="kivy.compat.isclose">
-<span class="sig-prename descclassname"><span class="pre">kivy.compat.</span></span><span class="sig-name descname"><span class="pre">isclose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rel_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-09</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abs_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.compat.isclose" title="Permalink to this definition">¶</a></dt>
-<dd><p>Determine whether two floating point numbers are close in value.</p>
+<span class="sig-prename descclassname"><span class="pre">kivy.compat.</span></span><span class="sig-name descname"><span class="pre">isclose</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rel_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-09</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">abs_tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.compat.isclose" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Определите, находятся ли два числа с плавающей точкой близко по значению.</p>
 <blockquote>
 <div><dl class="simple">
-<dt>rel_tol</dt><dd><p>maximum difference for being considered “close”, relative to the
-magnitude of the input values</p>
+<dt>rel_tol</dt><dd><p>максимальная разница для считающейся "близкой", относительно
+величины входных значений</p>
 </dd>
-<dt>abs_tol</dt><dd><p>maximum difference for being considered “close”, regardless of the
-magnitude of the input values</p>
+<dt>abs_tol</dt><dd><p>максимальная разница для считающейся "близкой", независимо от
+величины входных значений</p>
 </dd>
 </dl>
 </div></blockquote>
-<p>Return True if a is close in value to b, and False otherwise.</p>
-<p>For the values to be considered close, the difference between them
-must be smaller than at least one of the tolerances.</p>
-<p>-inf, inf and NaN behave similarly to the IEEE 754 Standard.  That
-is, NaN is not close to anything, even itself.  inf and -inf are
-only close to themselves.</p>
+<p>Вернуть True, если a близко по значению к b, и False в противном случае.</p>
+<p>Для считающихся "близкими" значений разница между ними
+должна быть меньше, чем хотя бы одно из допустимых отклонений.</p>
+<p>-inf, inf и NaN ведут себя аналогично стандарту IEEE 754. То
+есть NaN не близок ни к чему, даже самому себе. inf и -inf
+близки только к самим себе.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.compat.string_types">
-<span class="sig-prename descclassname"><span class="pre">kivy.compat.</span></span><span class="sig-name descname"><span class="pre">string_types</span></span><a class="headerlink" href="#kivy.compat.string_types" title="Permalink to this definition">¶</a></dt>
-<dd><p>A utility type for detecting string in a Python 2/3 friendly way. For
-example:</p>
+<span class="sig-prename descclassname"><span class="pre">kivy.compat.</span></span><span class="sig-name descname"><span class="pre">string_types</span></span><a class="headerlink" href="#kivy.compat.string_types" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Утилитарный тип для определения строк в дружественном к Python 2/3 способе. Например:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">string_types</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;It&#39;s a string or unicode type&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Это строка или тип юникода&quot;</span><span class="p">)</span>
 <span class="k">else</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;It&#39;s something else.&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Это что-то другое.&quot;</span><span class="p">)</span>
+</pre></div></div>
 </dd></dl>
 
 <div class="toctree-wrapper compound">

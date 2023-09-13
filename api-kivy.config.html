@@ -398,361 +398,355 @@
 </ul>
 </div>
             
-  <section id="module-kivy.config">
-<span id="configuration-object"></span><h1>Configuration object<a class="headerlink" href="#module-kivy.config" title="Permalink to this headline">¶</a></h1>
-<p>The <a class="reference internal" href="#kivy.config.Config" title="kivy.config.Config"><code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code></a> object is an instance of a modified Python ConfigParser.
-See the <a class="reference external" href="http://docs.python.org/library/configparser.html">ConfigParser documentation</a> for more information.</p>
-<p>Kivy has a configuration file which determines the default settings. In
-order to change these settings, you can alter this file manually or use
-the Config object. Please see the <a class="reference internal" href="guide/config.html#configure-kivy"><span class="std std-ref">Configure Kivy</span></a> section for more
-information.</p>
+<section id="module-kivy.config">
+<span id="configuration-object"></span><h1>Объект конфигурации<a class="headerlink" href="#module-kivy.config" title="Ссылка на этот заголовок">¶</a></h1>
+<p>Объект <a class="reference internal" href="#kivy.config.Config" title="kivy.config.Config"><code class="xref py py-class docutils literal notranslate"><span class="pre">Config</span></code></a> представляет собой экземпляр измененной версии Python ConfigParser.
+Дополнительную информацию см. в <a class="reference external" href="http://docs.python.org/library/configparser.html">документации по ConfigParser</a>.</p>
+<p>У Kivy есть файл конфигурации, который определяет настройки по умолчанию. Для
+изменения этих настроек, вы можете вручную изменить этот файл или использовать
+объект Config. Дополнительную информацию см. в разделе <a class="reference internal" href="guide/config.html#configure-kivy"><span class="std std-ref">Настройка Kivy</span></a>.</p>
 <section id="applying-configurations">
-<h2>Applying configurations<a class="headerlink" href="#applying-configurations" title="Permalink to this headline">¶</a></h2>
-<p>Configuration options control the initialization of the <a class="reference internal" href="api-kivy.app.html#kivy.app.App" title="kivy.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a>.
-In order to avoid situations where the config settings do not work or are not
-applied before window creation (like setting an initial window size),
-<a class="reference internal" href="#kivy.config.ConfigParser.set" title="kivy.config.ConfigParser.set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Config.set</span></code></a> should be used before
-importing any other Kivy modules. Ideally, this means setting them right at
-the start of your main.py script.</p>
-<p>Alternatively, you can save these settings permanently using
-<a class="reference internal" href="#kivy.config.ConfigParser.set" title="kivy.config.ConfigParser.set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Config.set</span></code></a> then
-<a class="reference internal" href="#kivy.config.ConfigParser.write" title="kivy.config.ConfigParser.write"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Config.write</span></code></a>. In this case, you will need to
-restart the app for the changes to take effect. Note that this approach will
-effect all Kivy apps system wide.</p>
-<p>Please note that no underscores (<cite>_</cite>) are allowed in the section name.</p>
+<h2>Применение конфигураций<a class="headerlink" href="#applying-configurations" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Настройки конфигурации управляют инициализацией <a class="reference internal" href="api-kivy.app.html#kivy.app.App" title="kivy.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a>.
+Для предотвращения ситуаций, когда настройки конфигурации не работают или не
+применяются до создания окна (например, установка начального размера окна),
+следует использовать <a class="reference internal" href="#kivy.config.ConfigParser.set" title="kivy.config.ConfigParser.set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Config.set</span></code></a> до
+импорта любых других модулей Kivy. В идеале это означает установку их сразу
+в начале вашего основного сценария main.py.</p>
+<p>Кроме того, вы можете сохранить эти настройки постоянно, используя
+<a class="reference internal" href="#kivy.config.ConfigParser.set" title="kivy.config.ConfigParser.set"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Config.set</span></code></a> и затем
+<a class="reference internal" href="#kivy.config.ConfigParser.write" title="kivy.config.ConfigParser.write"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Config.write</span></code></a>. В этом случае вам потребуется
+перезапустить приложение, чтобы изменения вступили в силу. Обратите внимание,
+что этот подход будет влиять на все приложения Kivy системы.</p>
+<p>Обратите внимание, что в именах секций не допускаются подчеркивания (<cite>_</cite>).</p>
 </section>
 <section id="usage-of-the-config-object">
-<h2>Usage of the Config object<a class="headerlink" href="#usage-of-the-config-object" title="Permalink to this headline">¶</a></h2>
-<p>To read a configuration token from a particular section:</p>
+
+<h2>Использование объекта конфигурации<a class="headerlink" href="#usage-of-the-config-object" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Чтение токена конфигурации из определенной секции:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">kivy.config</span> <span class="kn">import</span> <span class="n">Config</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Config</span><span class="o">.</span><span class="n">getint</span><span class="p">(</span><span class="s1">&#39;kivy&#39;</span><span class="p">,</span> <span class="s1">&#39;show_fps&#39;</span><span class="p">)</span>
 <span class="go">0</span>
-</pre></div>
-</div>
-<p>Change the configuration and save it:</p>
+</pre></div></div>
+<p>Изменение конфигурации и сохранение ее:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Config</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;postproc&#39;</span><span class="p">,</span> <span class="s1">&#39;retain_time&#39;</span><span class="p">,</span> <span class="s1">&#39;50&#39;</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">Config</span><span class="o">.</span><span class="n">write</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>For information on configuring your <a class="reference internal" href="api-kivy.app.html#kivy.app.App" title="kivy.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a>, please see the
-<a class="reference internal" href="api-kivy.app.html#application-configuration"><span class="std std-ref">Application configuration</span></a> section.</p>
+</pre></div></div>
+<p>Для информации о настройке вашего <a class="reference internal" href="api-kivy.app.html#kivy.app.App" title="kivy.app.App"><code class="xref py py-class docutils literal notranslate"><span class="pre">App</span></code></a> см. раздел
+<a class="reference internal" href="api-kivy.app.html#application-configuration"><span class="std std-ref">Настройка приложения</span></a>.</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.7.1: </span>The ConfigParser should work correctly with utf-8 now. The values are
-converted from ascii to unicode only when needed. The method get() returns
-utf-8 strings.</p>
+<p><span class="versionmodified changed">Изменено в версии 1.7.1: </span>ConfigParser должен правильно работать с utf-8 теперь. Значения
+преобразуются из ascii в unicode только при необходимости. Метод get()
+возвращает строки utf-8.</p>
 </div>
 </section>
 <section id="changing-configuration-with-environment-variables">
-<h2>Changing configuration with environment variables<a class="headerlink" href="#changing-configuration-with-environment-variables" title="Permalink to this headline">¶</a></h2>
-<p>Since 1.11.0, it is now possible to change the configuration using
-environment variables. They take precedence on the loaded config.ini.
-The format is:</p>
+<h2>Изменение конфигурации с помощью переменных окружения<a class="headerlink" href="#changing-configuration-with-environment-variables" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Начиная с версии 1.11.0, теперь можно изменять конфигурацию с использованием
+переменных окружения. Они имеют приоритет над загруженным config.ini.
+Формат такой:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">KCFG_</span><span class="o">&lt;</span><span class="n">section</span><span class="o">&gt;</span><span class="n">_</span><span class="o">&lt;</span><span class="n">key</span><span class="o">&gt;</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">value</span><span class="o">&gt;</span>
-</pre></div>
-</div>
-<p>For example:</p>
+</pre></div></div>
+<p>Например:</p>
 <blockquote>
 <div><p>KCFG_GRAPHICS_FULLSCREEN=auto …
 KCFG_KIVY_LOG_LEVEL=warning …</p>
 </div></blockquote>
-<p>Or in your file before any kivy import:</p>
+<p>Или в вашем файле перед импортом kivy:</p>
 <blockquote>
 <div><p>import os
 os.environ[“KCFG_KIVY_LOG_LEVEL”] = “warning”</p>
 </div></blockquote>
-<p>If you don’t want to map any environment variables, you can disable
-the behavior:</p>
+<p>Если вы не хотите связывать никакие переменные окружения, вы можете отключить
+это поведение:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;KIVY_NO_ENV_CONFIG&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;1&quot;</span>
-</pre></div>
-</div>
+</pre></div></div>
 </section>
 <section id="available-configuration-tokens">
-<span id="configuration-tokens"></span><h2>Available configuration tokens<a class="headerlink" href="#available-configuration-tokens" title="Permalink to this headline">¶</a></h2>
+<span id="configuration-tokens"></span><h2>Доступные токены конфигурации<a class="headerlink" href="#available-configuration-tokens" title="Ссылка на этот заголовок">¶</a></h2>
 <dl class="field-list">
 <dt class="field-odd">kivy</dt>
 <dd class="field-odd"><dl>
-<dt><cite>default_font</cite>: list</dt><dd><p>Default fonts used for widgets displaying any text. It defaults to
+<dt><cite>default_font</cite>: list</dt><dd><p>Шрифты по умолчанию, используемые для виджетов, отображающих текст. По умолчанию:
 [‘Roboto’, ‘data/fonts/Roboto-Regular.ttf’,
 ‘data/fonts/Roboto-Italic.ttf’, ‘data/fonts/Roboto-Bold.ttf’,
 ‘data/fonts/Roboto-BoldItalic.ttf’].</p>
 </dd>
-<dt><cite>desktop</cite>: int, 0 or 1</dt><dd><p>This option controls desktop OS specific features, such as enabling
-drag-able scroll-bar in scroll views, disabling of bubbles in
-TextInput etc. 0 is disabled, 1 is enabled.</p>
+<dt><cite>desktop</cite>: int, 0 или 1</dt><dd><p>Этот параметр управляет функциями, специфичными для рабочего стола, такими как
+включение перетаскиваемой полосы прокрутки в прокручиваемых представлениях,
+отключение всплывающих подсказок в TextInput и т. д. 0 - отключено, 1 - включено.</p>
 </dd>
-<dt><cite>exit_on_escape</cite>: int, 0 or 1</dt><dd><p>Enables exiting kivy when escape is pressed.
-0 is disabled, 1 is enabled.</p>
+<dt><cite>exit_on_escape</cite>: int, 0 или 1</dt><dd><p>Включает выход из Kivy при нажатии клавиши Escape.
+0 - отключено, 1 - включено.</p>
 </dd>
-<dt><cite>pause_on_minimize</cite>: int, 0 or 1</dt><dd><p>If set to <cite>1</cite>, the main loop is paused and the <cite>on_pause</cite> event
-is dispatched when the window is minimized. This option is intended
-for desktop use only. Defaults to <cite>0</cite>.</p>
+<dt><cite>pause_on_minimize</cite>: int, 0 или 1</dt><dd><p>Если установлено значение <cite>1</cite>, главный цикл приостанавливается и событие <cite>on_pause</cite>
+отправляется, когда окно сворачивается. Этот параметр предназначен
+только для использования на рабочем столе. По умолчанию <cite>0</cite>.</p>
 </dd>
-<dt><cite>keyboard_layout</cite>: string</dt><dd><p>Identifier of the layout to use.</p>
+<dt><cite>keyboard_layout</cite>: string</dt><dd><p>Идентификатор макета для использования.</p>
 </dd>
-<dt><cite>keyboard_mode</cite>: string</dt><dd><p>Specifies the keyboard mode to use. If can be one of the following:</p>
+<dt><cite>keyboard_mode</cite>: string</dt><dd><p>Задает режим клавиатуры для использования. Может быть одним из следующих:</p>
 <ul class="simple">
-<li><p>‘’ - Let Kivy choose the best option for your current platform.</p></li>
-<li><p>‘system’ - real keyboard.</p></li>
-<li><p>‘dock’ - one virtual keyboard docked to a screen side.</p></li>
-<li><p>‘multi’ - one virtual keyboard for every widget request.</p></li>
-<li><p>‘systemanddock’ - virtual docked keyboard plus input from real
-keyboard.</p></li>
-<li><p>‘systemandmulti’ - analogous.</p></li>
+<li><p>‘’ - Позволяет Kivy выбрать лучший вариант для вашей текущей платформы.</p></li>
+<li><p>‘system’ - реальная клавиатура.</p></li>
+<li><p>‘dock’ - одна виртуальная клавиатура, прикрепленная к одной стороне экрана.</p></li>
+<li><p>‘multi’ - одна виртуальная клавиатура для каждого запроса виджета.</p></li>
+<li><p>‘systemanddock’ - виртуальная прикрепленная клавиатура плюс ввод с реальной
+клавиатуры.</p></li>
+<li><p>‘systemandmulti’ - аналогично.</p></li>
 </ul>
 </dd>
-<dt><cite>kivy_clock</cite>: one of <cite>default</cite>, <cite>interrupt</cite>, <cite>free_all</cite>, <cite>free_only</cite></dt><dd><p>The clock type to use with kivy. See <a class="reference internal" href="api-kivy.clock.html#module-kivy.clock" title="kivy.clock"><code class="xref py py-mod docutils literal notranslate"><span class="pre">kivy.clock</span></code></a>.</p>
+<dt><cite>kivy_clock</cite>: одно из значений <cite>default</cite>, <cite>interrupt</cite>, <cite>free_all</cite>, <cite>free_only</cite></dt><dd><p>Тип часов для использования в Kivy. См. <a class="reference internal" href="api-kivy.clock.html#module-kivy.clock" title="kivy.clock"><code class="xref py py-mod docutils literal notranslate"><span class="pre">kivy.clock</span></code></a>.</p>
 </dd>
-<dt><cite>log_dir</cite>: string</dt><dd><p>Path of log directory.</p>
+<dt><cite>log_dir</cite>: string</dt><dd><p>Путь к директории журнала.</p>
 </dd>
-<dt><cite>log_enable</cite>: int, 0 or 1</dt><dd><p>Activate file logging. 0 is disabled, 1 is enabled.</p>
+<dt><cite>log_enable</cite>: int, 0 или 1</dt><dd><p>Активировать ведение журнала в файле. 0 - отключено, 1 - включено.</p>
 </dd>
-<dt><cite>log_level</cite>: string, one of ‘trace’, ‘debug’, ‘info’, ‘warning’, ‘error’ or ‘critical’</dt><dd><p>Set the minimum log level to use.</p>
+<dt><cite>log_level</cite>: string, одно из ‘trace’, ‘debug’, ‘info’, ‘warning’, ‘error’ или ‘critical’</dt><dd><p>Установите минимальный уровень журнала для использования.</p>
 </dd>
-<dt><cite>log_name</cite>: string</dt><dd><p>Format string to use for the filename of log file.</p>
+<dt><cite>log_name</cite>: string</dt><dd><p>Строка формата для имени файла журнала.</p>
 </dd>
-<dt><cite>log_maxfiles</cite>: int</dt><dd><p>Keep log_maxfiles recent logfiles while purging the log directory. Set
-‘log_maxfiles’ to -1 to disable logfile purging (eg keep all logfiles).</p>
+<dt><cite>log_maxfiles</cite>: int</dt><dd><p>Сохраняйте последние log_maxfiles журналов при очистке директории журнала. Установите
+‘log_maxfiles’ в -1, чтобы отключить очистку журнала (например, сохранять все журналы).</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You end up with ‘log_maxfiles + 1’ logfiles because the logger
-adds a new one after purging.</p>
+<p class="admonition-title">Примечание</p>
+<p>Вы получите ‘log_maxfiles + 1’ журналов, потому что логгер
+добавляет новый после очистки.</p>
 </div>
 </dd>
-<dt><cite>window_icon</cite>: string</dt><dd><p>Path of the window icon. Use this if you want to replace the default
-pygame icon.</p>
+<dt><cite>window_icon</cite>: string</dt><dd><p>Путь к значку окна. Используйте его, если хотите заменить значок Pygame по умолчанию.</p>
 </dd>
 </dl>
+
 </dd>
 <dt class="field-even">postproc</dt>
 <dd class="field-even"><dl>
-<dt><cite>double_tap_distance</cite>: float</dt><dd><p>Maximum distance allowed for a double tap, normalized inside the range
+<dt><cite>double_tap_distance</cite>: float</dt><dd><p>Максимальное допустимое расстояние для двойного касания, нормализованное в пределах диапазона
 0 - 1000.</p>
 </dd>
-<dt><cite>double_tap_time</cite>: int</dt><dd><p>Time allowed for the detection of double tap, in milliseconds.</p>
+<dt><cite>double_tap_time</cite>: int</dt><dd><p>Время, разрешенное для обнаружения двойного касания, в миллисекундах.</p>
 </dd>
-<dt><cite>ignore</cite>: list of tuples</dt><dd><p>List of regions where new touches are ignored.
-This configuration token can be used to resolve hotspot problems
-with DIY hardware. The format of the list must be:</p>
+<dt><cite>ignore</cite>: list of tuples</dt><dd><p>Список областей, в которых новые касания игнорируются.
+Этот токен конфигурации может использоваться для решения проблем с "горячими точками"
+на DIY оборудовании. Формат списка должен быть следующим:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ignore</span> <span class="o">=</span> <span class="p">[(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymax</span><span class="p">),</span> <span class="o">...</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>All the values must be inside the range 0 - 1.</p>
+<p>Все значения должны находиться в диапазоне от 0 до 1.</p>
 </dd>
-<dt><cite>jitter_distance</cite>: int</dt><dd><p>Maximum distance for jitter detection, normalized inside the range 0
-- 1000.</p>
-</dd>
-<dt><cite>jitter_ignore_devices</cite>: string, separated with commas</dt><dd><p>List of devices to ignore from jitter detection.</p>
-</dd>
-<dt><cite>retain_distance</cite>: int</dt><dd><p>If the touch moves more than is indicated by retain_distance, it will
-not be retained. Argument should be an int between 0 and 1000.</p>
-</dd>
-<dt><cite>retain_time</cite>: int</dt><dd><p>Time allowed for a retain touch, in milliseconds.</p>
-</dd>
-<dt><cite>triple_tap_distance</cite>: float</dt><dd><p>Maximum distance allowed for a triple tap, normalized inside the range
+<dt><cite>jitter_distance</cite>: int</dt><dd><p>Максимальное расстояние для обнаружения дрожания, нормализованное в пределах диапазона
 0 - 1000.</p>
 </dd>
-<dt><cite>triple_tap_time</cite>: int</dt><dd><p>Time allowed for the detection of triple tap, in milliseconds.</p>
+<dt><cite>jitter_ignore_devices</cite>: string, separated with commas</dt><dd><p>Список устройств, которые игнорируются при обнаружении дрожания.</p>
+</dd>
+<dt><cite>retain_distance</cite>: int</dt><dd><p>Если касание перемещается на более чем указанное значение retain_distance, оно
+не будет сохранено. Аргумент должен быть целым числом от 0 до 1000.</p>
+</dd>
+<dt><cite>retain_time</cite>: int</dt><dd><p>Время, разрешенное для удержания касания, в миллисекундах.</p>
+</dd>
+<dt><cite>triple_tap_distance</cite>: float</dt><dd><p>Максимальное допустимое расстояние для тройного касания, нормализованное в пределах диапазона
+0 - 1000.</p>
+</dd>
+<dt><cite>triple_tap_time</cite>: int</dt><dd><p>Время, разрешенное для обнаружения тройного касания, в миллисекундах.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-odd">graphics</dt>
 <dd class="field-odd"><dl>
-<dt><cite>borderless</cite>: int, one of 0 or 1</dt><dd><p>If set to <cite>1</cite>, removes the window border/decoration. Window resizing
-must also be disabled to hide the resizing border.</p>
+<dt><cite>borderless</cite>: int, одно из 0 или 1</dt><dd><p>Если установлено в <cite>1</cite>, убирает границу/оформление окна. Изменение размеров окна
+также должно быть отключено, чтобы скрыть границу изменения размера.</p>
 </dd>
-<dt><cite>custom_titlebar</cite>: int, one of 0 or 1</dt><dd><p>If set to <cite>1</cite>, removes the window border and allows user to set a Widget
-as a titlebar
-see <a class="reference internal" href="api-kivy.core.window.html#kivy.core.window.WindowBase.set_custom_titlebar" title="kivy.core.window.WindowBase.set_custom_titlebar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_custom_titlebar()</span></code></a>
-for detailed usage</p>
+<dt><cite>custom_titlebar</cite>: int, одно из 0 или 1</dt><dd><p>Если установлено в <cite>1</cite>, убирает границу окна и позволяет пользователю установить виджет
+как панель заголовка.
+см. <a class="reference internal" href="api-kivy.core.window.html#kivy.core.window.WindowBase.set_custom_titlebar" title="kivy.core.window.WindowBase.set_custom_titlebar"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_custom_titlebar()</span></code></a>
+для подробного использования</p>
 </dd>
-<dt><cite>custom_titlebar_border</cite>: int, defaults to 5</dt><dd><p>sets the how many pixles off the border should be used as the
-rezising frame</p>
+<dt><cite>custom_titlebar_border</cite>: int, по умолчанию 5</dt><dd><p>устанавливает, сколько пикселей от края следует использовать как
+рамка изменения размера</p>
 </dd>
-<dt><cite>window_state</cite>: string , one of ‘visible’, ‘hidden’, ‘maximized’</dt><dd><blockquote>
-<div><p>or ‘minimized’</p>
+<dt><cite>window_state</cite>: string , одно из ‘visible’, ‘hidden’, ‘maximized’</dt><dd><blockquote>
+<div><p>или ‘minimized’</p>
 </div></blockquote>
-<p>Sets the window state, defaults to ‘visible’. This option is available
-only for the SDL2 window provider and it should be used on desktop
-OSes.</p>
+<p>Устанавливает состояние окна, по умолчанию - ‘visible’. Этот параметр доступен
+только для поставщика окон SDL2 и должен использоваться на рабочем
+операционной системе.</p>
 </dd>
-<dt><cite>fbo</cite>: string, one of ‘hardware’, ‘software’ or ‘force-hardware’</dt><dd><p>Selects the FBO backend to use.</p>
+<dt><cite>fbo</cite>: string, одно из ‘hardware’, ‘software’ или ‘force-hardware’</dt><dd><p>Выбирает бэкенд FBO для использования.</p>
 </dd>
-<dt><cite>fullscreen</cite>: int or string, one of 0, 1, ‘fake’ or ‘auto’</dt><dd><p>Activate fullscreen. If set to <cite>1</cite>, a resolution of <cite>width</cite>
-times <cite>height</cite> pixels will be used.
-If set to <cite>auto</cite>, your current display’s resolution will be
-used instead. This is most likely what you want.
-If you want to place the window in another display,
-use <cite>fake</cite>, or set the <cite>borderless</cite> option from the graphics section,
-then adjust <cite>width</cite>, <cite>height</cite>, <cite>top</cite> and <cite>left</cite>.</p>
+<dt><cite>fullscreen</cite>: int или строка, одно из 0, 1, ‘fake’ или ‘auto’</dt><dd><p>Активирует полноэкранный режим. Если установлено в <cite>1</cite>, будет использоваться разрешение <cite>ширина</cite>
+по <cite>высота</cite> пикселей.
+Если установлено в <cite>auto</cite>, будет использовано текущее разрешение вашего экрана.
+Скорее всего, это то, что вам нужно.
+Если вы хотите разместить окно на другом экране,
+используйте <cite>fake</cite> или установите параметр <cite>borderless</cite> из раздела graphics,
+затем настройте <cite>ширина</cite>, <cite>высота</cite>, <cite>верх</cite> и <cite>лево</cite>.</p>
 </dd>
-<dt><cite>height</cite>: int</dt><dd><p>Height of the <code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code>, not used if
-<cite>fullscreen</cite> is set to <cite>auto</cite>.</p>
+<dt><cite>height</cite>: int</dt><dd><p>Высота окна<code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code>, не используется, если
+<cite>fullscreen</cite> установлен в <cite>auto</cite>.</p>
 </dd>
-<dt><cite>left</cite>: int</dt><dd><p>Left position of the <code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code>.</p>
+<dt><cite>left</cite>: int</dt><dd><p>Положение окна<code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code> слева.</p>
 </dd>
-<dt><cite>maxfps</cite>: int, defaults to 60</dt><dd><p>Maximum FPS allowed.</p>
+<dt><cite>maxfps</cite>: int, по умолчанию 60</dt><dd><p>Максимальное разрешенное количество кадров в секунду.</p>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Setting maxfps to 0 will lead to max CPU usage.</p>
+<p class="admonition-title">Предупреждение</p>
+<p>Установка maxfps в 0 приведет к максимальной загрузке ЦП.</p>
 </div>
 </dd>
-<dt>‘multisamples’: int, defaults to 2</dt><dd><p>Sets the <a class="reference external" href="http://en.wikipedia.org/wiki/Multisample_anti-aliasing">MultiSample Anti-Aliasing (MSAA)</a> level.
-Increasing this value results in smoother graphics but at the cost of
-processing time.</p>
+<dt>‘multisamples’: int, по умолчанию 2</dt><dd><p>Устанавливает уровень <a class="reference external" href="http://en.wikipedia.org/wiki/Multisample_anti-aliasing">мультисемплирования антиалиасинга (MSAA)</a>.
+Увеличение этого значения приводит к более плавной графике, но за счет
+времени обработки.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This feature is limited by device hardware support and will have no
-effect on devices which do not support the level of MSAA requested.</p>
+<p class="admonition-title">Примечание</p>
+<p>Эта функция ограничивается поддержкой аппаратного обеспечения устройства и не будет
+влиять на устройства, которые не поддерживают запрошенный уровень MSAA.</p>
 </div>
 </dd>
-<dt><cite>position</cite>: string, one of ‘auto’ or ‘custom’</dt><dd><p>Position of the window on your display. If <cite>auto</cite> is used, you have no
-control of the initial position: <cite>top</cite> and <cite>left</cite> are ignored.</p>
+<dt><cite>position</cite>: string, одно из ‘auto’ или ‘custom’</dt><dd><p>Положение окна на вашем экране. Если используется <cite>auto</cite>, у вас нет
+контроля над начальным положением: <cite>верх</cite> и <cite>лево</cite> игнорируются.</p>
 </dd>
-<dt><cite>show_cursor</cite>: int, one of 0 or 1</dt><dd><p>Set whether or not the cursor is shown on the window.</p>
+<dt><cite>show_cursor</cite>: int, одно из 0 или 1</dt><dd><p>Устанавливает, отображается ли курсор на окне.</p>
 </dd>
-<dt><cite>top</cite>: int</dt><dd><p>Top position of the <code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code>.</p>
+<dt><cite>top</cite>: int</dt><dd><p>Верхнее положение окна<code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code>.</p>
 </dd>
-<dt><cite>resizable</cite>: int, one of 0 or 1</dt><dd><p>If 0, the window will have a fixed size. If 1, the window will be
-resizable.</p>
+<dt><cite>resizable</cite>: int, одно из 0 или 1</dt><dd><p>Если 0, окно будет иметь фиксированный размер. Если 1, окно будет
+разрешено изменять размер.</p>
 </dd>
-<dt><cite>rotation</cite>: int, one of 0, 90, 180 or 270</dt><dd><p>Rotation of the <code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code>.</p>
+<dt><cite>rotation</cite>: int, одно из 0, 90, 180 или 270</dt><dd><p>Поворот окна<code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code>.</p>
 </dd>
-<dt><cite>width</cite>: int</dt><dd><p>Width of the <code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code>, not used if
-<cite>fullscreen</cite> is set to <cite>auto</cite>.</p>
+<dt><cite>width</cite>: int</dt><dd><p>Ширина окна<code class="xref py py-class docutils literal notranslate"><span class="pre">Window</span></code>, не используется, если
+<cite>fullscreen</cite> установлен в <cite>auto</cite>.</p>
 </dd>
-<dt><cite>minimum_width</cite>: int</dt><dd><p>Minimum width to restrict the window to. (sdl2 only)</p>
+<dt><cite>minimum_width</cite>: int</dt><dd><p>Минимальная ширина для ограничения окна. (только для sdl2)</p>
 </dd>
-<dt><cite>minimum_height</cite>: int</dt><dd><p>Minimum height to restrict the window to. (sdl2 only)</p>
+<dt><cite>minimum_height</cite>: int</dt><dd><p>Минимальная высота для ограничения окна. (только для sdl2)</p>
 </dd>
-<dt><cite>min_state_time</cite>: float, defaults to .035</dt><dd><p>Minimum time for widgets to display a given visual state.
-This attrib is currently used by widgets like
-<a class="reference internal" href="api-kivy.uix.dropdown.html#kivy.uix.dropdown.DropDown" title="kivy.uix.dropdown.DropDown"><code class="xref py py-class docutils literal notranslate"><span class="pre">DropDown</span></code></a> &amp;
-<code class="xref py py-class docutils literal notranslate"><span class="pre">ButtonBehavior</span></code> to
-make sure they display their current visual state for the given
-time.</p>
+<dt><cite>min_state_time</cite>: float, по умолчанию 0.035</dt><dd><p>Минимальное время, в течение которого виджеты отображают заданное визуальное состояние.
+Этот атрибут в настоящее время используется виджетами, такими как
+<a class="reference internal" href="api-kivy.uix.dropdown.html#kivy.uix.dropdown.DropDown" title="kivy.uix.dropdown.DropDown"><code class="xref py py-class docutils literal notranslate"><span class="pre">DropDown</span></code></a> и
+<code class="xref py py-class docutils literal notranslate"><span class="pre">ButtonBehavior</span></code>, чтобы
+убедиться, что они отображают свое текущее визуальное состояние в течение заданного
+времени.</p>
 </dd>
-<dt><cite>allow_screensaver</cite>: int, one of 0 or 1, defaults to 1</dt><dd><p>Allow the device to show a screen saver, or to go to sleep
-on mobile devices. Only works for the sdl2 window provider.</p>
+<dt><cite>allow_screensaver</cite>: int, одно из 0 или 1, по умолчанию 1</dt><dd><p>Разрешить устройству показывать заставку или переходить в режим сна
+на мобильных устройствах. Работает только для поставщика окон sdl2.</p>
 </dd>
-<dt><cite>vsync</cite>: <cite>none</cite>, empty value, or integers</dt><dd><p>Whether vsync is enabled, currently only used with sdl2 window.
-Possible values are <cite>none</cite> or empty value – leaves it unchanged,
-<code class="docutils literal notranslate"><span class="pre">0</span></code> – disables vsync, <code class="docutils literal notranslate"><span class="pre">1</span></code> or larger – sets vsync interval,
-<code class="docutils literal notranslate"><span class="pre">-1</span></code> sets adaptive vsync. It falls back to 1 if setting to <code class="docutils literal notranslate"><span class="pre">2+</span></code>
-or <code class="docutils literal notranslate"><span class="pre">-1</span></code> failed. See <code class="docutils literal notranslate"><span class="pre">SDL_GL_SetSwapInterval</span></code>.</p>
+<dt><cite>vsync</cite>: <cite>none</cite>, пустое значение или целые числа</dt><dd><p>Включена ли вертикальная синхронизация, в настоящее время используется только с окном sdl2.
+Возможные значения: <cite>none</cite> или пустое значение - оставляют его без изменений,
+<code class="docutils literal notranslate"><span class="pre">0</span></code> - отключает вертикальную синхронизацию, <code class="docutils literal notranslate"><span class="pre">1</span></code> или больше - устанавливают интервал вертикальной синхронизации,
+<code class="docutils literal notranslate"><span class="pre">-1</span></code> устанавливает адаптивную вертикальную синхронизацию. Она возвращается на 1, если установка на <code class="docutils literal notranslate"><span class="pre">2+</span></code>
+или <code class="docutils literal notranslate"><span class="pre">-1</span></code> не удалась. См. <code class="docutils literal notranslate"><span class="pre">SDL_GL_SetSwapInterval</span></code>.</p>
 </dd>
-<dt><cite>verify_gl_main_thread</cite>: int, 1 or 0, defaults to 1</dt><dd><p>Whether to check if code that changes any gl instructions is
-running outside the main thread and then raise an error.</p>
+<dt><cite>verify_gl_main_thread</cite>: int, 1 или 0, по умолчанию 1</dt><dd><p>Проверять ли, выполняется ли код, изменяющий любые инструкции gl
+вне основного потока, и затем вызывать ошибку.</p>
 </dd>
 </dl>
 </dd>
+
 <dt class="field-even">input</dt>
-<dd class="field-even"><p>You can create new input devices using this syntax:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># example of input provider instance</span>
+<dd class="field-even"><p>Вы можете создать новые устройства ввода, используя следующий синтаксис:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># пример экземпляра поставщика ввода</span>
 <span class="n">yourid</span> <span class="o">=</span> <span class="n">providerid</span><span class="p">,</span><span class="n">parameters</span>
 
-<span class="c1"># example for tuio provider</span>
+<span class="c1"># пример для поставщика tuio</span>
 <span class="n">default</span> <span class="o">=</span> <span class="n">tuio</span><span class="p">,</span><span class="mf">127.0.0.1</span><span class="p">:</span><span class="mi">3333</span>
 <span class="n">mytable</span> <span class="o">=</span> <span class="n">tuio</span><span class="p">,</span><span class="mf">192.168.0.1</span><span class="p">:</span><span class="mi">3334</span>
 </pre></div>
 </div>
 <div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p>Check the providers in <a class="reference internal" href="api-kivy.input.providers.html#module-kivy.input.providers" title="kivy.input.providers"><code class="xref py py-mod docutils literal notranslate"><span class="pre">kivy.input.providers</span></code></a> for the syntax to
-use inside the configuration file.</p>
+<p class="admonition-title">См. также</p>
+<p>Проверьте поставщиков в <a class="reference internal" href="api-kivy.input.providers.html#module-kivy.input.providers" title="kivy.input.providers"><code class="xref py py-mod docutils literal notranslate"><span class="pre">kivy.input.providers</span></code></a> для синтаксиса,
+используемого в файле конфигурации.</p>
 </div>
 </dd>
 <dt class="field-odd">widgets</dt>
 <dd class="field-odd"><dl>
-<dt><cite>scroll_distance</cite>: int</dt><dd><p>Default value of the
+<dt><cite>scroll_distance</cite>: int</dt><dd><p>Значение по умолчанию свойства
 <a class="reference internal" href="api-kivy.uix.scrollview.html#kivy.uix.scrollview.ScrollView.scroll_distance" title="kivy.uix.scrollview.ScrollView.scroll_distance"><code class="xref py py-attr docutils literal notranslate"><span class="pre">scroll_distance</span></code></a>
-property used by the <a class="reference internal" href="api-kivy.uix.scrollview.html#kivy.uix.scrollview.ScrollView" title="kivy.uix.scrollview.ScrollView"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScrollView</span></code></a> widget.
-Check the widget documentation for more information.</p>
+используется виджетом <a class="reference internal" href="api-kivy.uix.scrollview.html#kivy.uix.scrollview.ScrollView" title="kivy.uix.scrollview.ScrollView"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScrollView</span></code></a>.
+Для получения дополнительной информации смотрите документацию виджета.</p>
 </dd>
-<dt><cite>scroll_friction</cite>: float</dt><dd><p>Default value of the
+<dt><cite>scroll_friction</cite>: float</dt><dd><p>Значение по умолчанию свойства
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">scroll_friction</span></code>
-property used by the <a class="reference internal" href="api-kivy.uix.scrollview.html#kivy.uix.scrollview.ScrollView" title="kivy.uix.scrollview.ScrollView"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScrollView</span></code></a> widget.
-Check the widget documentation for more information.</p>
+используется виджетом <a class="reference internal" href="api-kivy.uix.scrollview.html#kivy.uix.scrollview.ScrollView" title="kivy.uix.scrollview.ScrollView"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScrollView</span></code></a>.
+Для получения дополнительной информации смотрите документацию виджета.</p>
 <div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.7.0: </span>Please use
-<a class="reference internal" href="api-kivy.uix.scrollview.html#kivy.uix.scrollview.ScrollView.effect_cls" title="kivy.uix.scrollview.ScrollView.effect_cls"><code class="xref py py-class docutils literal notranslate"><span class="pre">effect_cls</span></code></a> instead.</p>
+<p><span class="versionmodified deprecated">Устарело начиная с версии 1.7.0: </span>Пожалуйста, используйте
+<a class="reference internal" href="api-kivy.uix.scrollview.html#kivy.uix.scrollview.ScrollView.effect_cls" title="kivy.uix.scrollview.ScrollView.effect_cls"><code class="xref py py-class docutils literal notranslate"><span class="pre">effect_cls</span></code></a> вместо этого.</p>
 </div>
 </dd>
-<dt><cite>scroll_timeout</cite>: int</dt><dd><p>Default value of the
+<dt><cite>scroll_timeout</cite>: int</dt><dd><p>Значение по умолчанию свойства
 <a class="reference internal" href="api-kivy.uix.scrollview.html#kivy.uix.scrollview.ScrollView.scroll_timeout" title="kivy.uix.scrollview.ScrollView.scroll_timeout"><code class="xref py py-attr docutils literal notranslate"><span class="pre">scroll_timeout</span></code></a>
-property used by the  <a class="reference internal" href="api-kivy.uix.scrollview.html#kivy.uix.scrollview.ScrollView" title="kivy.uix.scrollview.ScrollView"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScrollView</span></code></a> widget.
-Check the widget documentation for more information.</p>
+используется виджетом <a class="reference internal" href="api-kivy.uix.scrollview.html#kivy.uix.scrollview.ScrollView" title="kivy.uix.scrollview.ScrollView"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScrollView</span></code></a>.
+Для получения дополнительной информации смотрите документацию виджета.</p>
 </dd>
-<dt><cite>scroll_stoptime</cite>: int</dt><dd><p>Default value of the
+<dt><cite>scroll_stoptime</cite>: int</dt><dd><p>Значение по умолчанию свойства
 <code class="xref py py-attr docutils literal notranslate"><span class="pre">scroll_stoptime</span></code>
-property used by the <a class="reference internal" href="api-kivy.uix.scrollview.html#kivy.uix.scrollview.ScrollView" title="kivy.uix.scrollview.ScrollView"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScrollView</span></code></a> widget.
-Check the widget documentation for more information.</p>
+используется виджетом <a class="reference internal" href="api-kivy.uix.scrollview.html#kivy.uix.scrollview.ScrollView" title="kivy.uix.scrollview.ScrollView"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScrollView</span></code></a>.
+Для получения дополнительной информации смотрите документацию виджета.</p>
 <div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.7.0: </span>Please use
-<a class="reference internal" href="api-kivy.uix.scrollview.html#kivy.uix.scrollview.ScrollView.effect_cls" title="kivy.uix.scrollview.ScrollView.effect_cls"><code class="xref py py-class docutils literal notranslate"><span class="pre">effect_cls</span></code></a> instead.</p>
+<p><span class="versionmodified deprecated">Устарело начиная с версии 1.7.0: </span>Пожалуйста, используйте
+<a class="reference internal" href="api-kivy.uix.scrollview.html#kivy.uix.scrollview.ScrollView.effect_cls" title="kivy.uix.scrollview.ScrollView.effect_cls"><code class="xref py py-class docutils literal notranslate"><span class="pre">effect_cls</span></code></a> вместо этого.</p>
 </div>
 </dd>
-<dt><cite>scroll_moves</cite>: int</dt><dd><p>Default value of the
-<code class="xref py py-attr docutils literal notranslate"><span class="pre">scroll_moves</span></code>
-property used by the <a class="reference internal" href="api-kivy.uix.scrollview.html#kivy.uix.scrollview.ScrollView" title="kivy.uix.scrollview.ScrollView"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScrollView</span></code></a> widget.
-Check the widget documentation for more information.</p>
+<dt><cite>scroll_moves</cite>: int</dt><dd><p>Значение по умолчанию свойства
+<code class="xref py py-attr docutils literal notranslate"><span class="pre">scroll_moves</span
+
+></code>
+используется виджетом <a class="reference internal" href="api-kivy.uix.scrollview.html#kivy.uix.scrollview.ScrollView" title="kivy.uix.scrollview.ScrollView"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScrollView</span></code></a>.
+Для получения дополнительной информации смотрите документацию виджета.</p>
 <div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.7.0: </span>Please use
-<a class="reference internal" href="api-kivy.uix.scrollview.html#kivy.uix.scrollview.ScrollView.effect_cls" title="kivy.uix.scrollview.ScrollView.effect_cls"><code class="xref py py-class docutils literal notranslate"><span class="pre">effect_cls</span></code></a> instead.</p>
+<p><span class="versionmodified deprecated">Устарело начиная с версии 1.7.0: </span>Пожалуйста, используйте
+<a class="reference internal" href="api-kivy.uix.scrollview.html#kivy.uix.scrollview.ScrollView.effect_cls" title="kivy.uix.scrollview.ScrollView.effect_cls"><code class="xref py py-class docutils literal notranslate"><span class="pre">effect_cls</span></code></a> вместо этого.</p>
 </div>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">modules</dt>
-<dd class="field-even"><p>You can activate modules with this syntax:</p>
+<dd class="field-even"><p>Вы можете активировать модули с помощью следующего синтаксиса:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">modulename</span> <span class="o">=</span>
 </pre></div>
 </div>
-<p>Anything after the = will be passed to the module as arguments.
-Check the specific module’s documentation for a list of accepted
-arguments.</p>
+<p>Все, что находится после =, будет передано модулю в качестве аргументов.
+Для получения списка принимаемых аргументов смотрите документацию конкретного модуля.</p>
 </dd>
 </dl>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 2.1.0: </span><cite>vsync</cite> has been added to the graphics section.
-<cite>verify_gl_main_thread</cite> has been added to the graphics section.</p>
+<p><span class="versionmodified changed">Изменено в версии 2.1.0: </span>Добавлено <cite>vsync</cite> в разделе <cite>graphics</cite>.
+Добавлено <cite>verify_gl_main_thread</cite> в разделе <cite>graphics</cite>.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.10.0: </span><cite>min_state_time</cite>  and <cite>allow_screensaver</cite> have been added
-to the <cite>graphics</cite> section.
-<cite>kivy_clock</cite> has been added to the kivy section.
-<cite>default_font</cite> has beed added to the kivy section.</p>
+<p><span class="versionmodified changed">Изменено в версии 1.10.0: </span>Добавлены <cite>min_state_time</cite> и <cite>allow_screensaver</cite> в раздел <cite>graphics</cite>.
+Добавлено <cite>kivy_clock</cite> в раздел <cite>kivy</cite>.
+Добавлено <cite>default_font</cite> в раздел <cite>kivy</cite>.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.9.0: </span><cite>borderless</cite> and <cite>window_state</cite> have been added to the graphics section.
-The <cite>fake</cite> setting of the <cite>fullscreen</cite> option has been deprecated,
-use the <cite>borderless</cite> option instead.
-<cite>pause_on_minimize</cite> has been added to the kivy section.</p>
+<p><span class="versionmodified changed">Изменено в версии 1.9.0: </span>Добавлены <cite>borderless</cite> и <cite>window_state</cite> в раздел <cite>graphics</cite>.
+Опция <cite>fake</cite> для <cite>fullscreen</cite> устарела, используйте опцию <cite>borderless</cite> вместо нее.
+Добавлено <cite>pause_on_minimize</cite> в раздел <cite>kivy</cite>.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.8.0: </span><cite>systemanddock</cite> and <cite>systemandmulti</cite> has been added as possible values for
-<cite>keyboard_mode</cite> in the kivy section. <cite>exit_on_escape</cite> has been added
-to the kivy section.</p>
+<p><span class="versionmodified changed">Изменено в версии 1.8.0: </span>Добавлены <cite>systemanddock</cite> и <cite>systemandmulti</cite> как возможные значения для
+<cite>keyboard_mode</cite> в разделе <cite>kivy</cite>. Добавлено <cite>exit_on_escape</cite> в раздел <cite>kivy</cite>.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.2.0: </span><cite>resizable</cite> has been added to graphics section.</p>
+<p><span class="versionmodified changed">Изменено в версии 1.2.0: </span>Добавлено <cite>resizable</cite> в раздел <cite>graphics</cite>.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.1.0: </span>tuio no longer listens by default. Window icons are not copied to
-user directory anymore. You can still set a new window icon by using the
-<code class="docutils literal notranslate"><span class="pre">window_icon</span></code> config setting.</p>
+<p><span class="versionmodified changed">Изменено в версии 1.1.0: </span>tuio больше не слушает по умолчанию. Значки окна больше не копируются в
+каталог пользователя. Вы всё равно можете установить новый значок окна, используя
+настройку конфигурации <code class="docutils literal notranslate"><span class="pre">window_icon</span></code>.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.0.8: </span><cite>scroll_timeout</cite>, <cite>scroll_distance</cite> and <cite>scroll_friction</cite> have been added.
-<cite>list_friction</cite>, <cite>list_trigger_distance</cite> and <cite>list_friction_bound</cite>
-have been removed. <cite>keyboard_type</cite> and <cite>keyboard_layout</cite> have been
-removed from the widget. <cite>keyboard_mode</cite> and <cite>keyboard_layout</cite> have
-been added to the kivy section.</p>
+<p><span class="versionmodified changed">Изменено в версии 1.0.8: </span>Добавлены <cite>scroll_timeout</cite>, <cite>scroll_distance</cite> и <cite>scroll_friction</cite>.
+Удалены <cite>list_friction</cite>, <cite>list_trigger_distance</cite> и <cite>list_friction_bound</cite>.
+Удалены <cite>keyboard_type</cite> и <cite>keyboard_layout</cite> из виджета. Добавлены <cite>keyboard_mode</cite> и <cite>keyboard_layout</cite>
+в раздел <cite>kivy</cite>.</p>
 </div>
 <dl class="py data">
 <dt class="sig sig-object py" id="kivy.config.Config">
-<span class="sig-prename descclassname"><span class="pre">kivy.config.</span></span><span class="sig-name descname"><span class="pre">Config</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#kivy.config.Config" title="Permalink to this definition">¶</a></dt>
-<dd><p>The default Kivy configuration object. This is a <a class="reference internal" href="#kivy.config.ConfigParser" title="kivy.config.ConfigParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigParser</span></code></a>
-instance with the <a class="reference internal" href="#kivy.config.ConfigParser.name" title="kivy.config.ConfigParser.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code></a> set to ‘kivy’.</p>
+<span class="sig-prename descclassname"><span class="pre">kivy.config.</span></span><span class="sig-name descname"><span class="pre">Config</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#kivy.config.Config" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Объект конфигурации Kivy по умолчанию. Это экземпляр <a class="reference internal" href="#kivy.config.ConfigParser" title="kivy.config.ConfigParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigParser</span></code></a>
+с атрибутом <a class="reference internal" href="#kivy.config.ConfigParser.name" title="kivy.config.ConfigParser.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code></a>, установленным в «kivy».</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Config</span> <span class="o">=</span> <span class="n">ConfigParser</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;kivy&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -760,72 +754,72 @@ instance with the <a class="reference internal" href="#kivy.config.ConfigParser.
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.config.ConfigParser">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.config.</span></span><span class="sig-name descname"><span class="pre">ConfigParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">configparser.RawConfigParser</span></code>, <code class="xref py py-class docutils literal notranslate"><span class="pre">builtins.object</span></code></p>
-<p>Enhanced ConfigParser class that supports the addition of default
-sections and default values.</p>
-<p>By default, the kivy ConfigParser instance, <a class="reference internal" href="#kivy.config.Config" title="kivy.config.Config"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Config</span></code></a>,
-is named <cite>‘kivy’</cite> and the ConfigParser instance used by the
-<code class="xref py py-meth docutils literal notranslate"><span class="pre">App.build_settings</span></code> method is named
-<cite>‘app’</cite>.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.config.</span></span><span class="sig-name descname"><span class="pre">ConfigParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser"><span class="viewcode-link"><span class="pre">[источник]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс ConfigParser с поддержкой добавления секций и значений по умолчанию.</p>
+<p>По умолчанию экземпляр ConfigParser Kivy, <a class="reference internal" href="#kivy.config.Config" title="kivy.config.Config"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Config</span></code></a>,
+имеет имя «kivy», а экземпляр ConfigParser, используемый методом
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">App.build_settings</span></code>, имеет имя «app».</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><cite>name</cite>: string</dt><dd><p>The name of the instance. See <a class="reference internal" href="#kivy.config.ConfigParser.name" title="kivy.config.ConfigParser.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code></a>. Defaults to <cite>‘’</cite>.</p>
+<dt><cite>name</cite>: string</dt><dd><p>Имя экземпляра. См. <a class="reference internal" href="#kivy.config.ConfigParser.name" title="kivy.config.ConfigParser.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code></a>. По умолчанию «».</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.9.0: </span>Each ConfigParser can now be <a class="reference internal" href="#kivy.config.ConfigParser.name" title="kivy.config.ConfigParser.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">named</span></code></a>. You can get the
-ConfigParser associated with a name using <a class="reference internal" href="#kivy.config.ConfigParser.get_configparser" title="kivy.config.ConfigParser.get_configparser"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_configparser()</span></code></a>.
-In addition, you can now control the config values with
-<a class="reference internal" href="api-kivy.properties.html#kivy.properties.ConfigParserProperty" title="kivy.properties.ConfigParserProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigParserProperty</span></code></a>.</p>
+<p><span class="versionmodified changed">Изменено в версии 1.9.0: </span>Теперь каждый ConfigParser может иметь <a class="reference internal" href="#kivy.config.ConfigParser.name" title="kivy.config.ConfigParser.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code></a>.
+Вы можете получить ConfigParser, связанный с именем, с помощью <a class="reference internal" href="#kivy.config.ConfigParser.get_configparser" title="kivy.config.ConfigParser.get_configparser"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_configparser()</span></code></a>.
+Кроме того, теперь вы можете управлять значениями конфигурации с помощью
+<a class="reference internal" href="api-kivy.properties.html#kivy.properties.ConfigParserProperty" title="kivy.properties.ConfigParserProperty"><code class="x
+
+ref py py-class docutils literal notranslate"><span class="pre">ConfigParserProperty</span></code></a>.</p>
 </div>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.0.7.</span></p>
+<p><span class="versionmodified added">Добавлено вверсии 1.0.7.</span></p>
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.config.ConfigParser.add_callback">
-<span class="sig-name descname"><span class="pre">add_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.add_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser.add_callback" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a callback to be called when a specific section or key has
-changed. If you don’t specify a section or key, it will call the
-callback for all section/key changes.</p>
-<p>Callbacks will receive 3 arguments: the section, key and value.</p>
+<span class="sig-name descname"><span class="pre">add_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.add_callback"><span class="viewcode-link"><span class="pre">[источник]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser.add_callback" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Добавить обратный вызов, который будет вызываться при изменении определенной секции или ключа.
+Если вы не указываете секцию или ключ, то обратный вызов будет вызываться при изменении всех секций/ключей.</p>
+<p>Обратные вызовы будут получать 3 аргумента: секцию, ключ и значение.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.4.1.</span></p>
+<p><span class="versionmodified added">Добавлено вверсии 1.4.1.</span></p>
 </div>
 </dd></dl>
 
+Вот переведенный на русский текст с сохранением тегов:
+
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.config.ConfigParser.adddefaultsection">
-<span class="sig-name descname"><span class="pre">adddefaultsection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.adddefaultsection"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser.adddefaultsection" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a section if the section is missing.</p>
+<span class="sig-name descname"><span class="pre">adddefaultsection</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.adddefaultsection"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser.adddefaultsection" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Добавить секцию, если она отсутствует.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.config.ConfigParser.get">
-<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">option</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser.get" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get an option value for a given section.</p>
-<p>If <a href="#id1"><span class="problematic" id="id2">`</span></a>vars’ is provided, it must be a dictionary. The option is looked up
-in <a href="#id3"><span class="problematic" id="id4">`</span></a>vars’ (if provided), <a href="#id5"><span class="problematic" id="id6">`</span></a>section’, and in <a href="#id7"><span class="problematic" id="id8">`</span></a>DEFAULTSECT’ in that order.
-If the key is not found and <a href="#id9"><span class="problematic" id="id10">`</span></a>fallback’ is provided, it is used as
-a fallback value. <a href="#id11"><span class="problematic" id="id12">`</span></a>None’ can be provided as a <a href="#id13"><span class="problematic" id="id14">`</span></a>fallback’ value.</p>
-<p>If interpolation is enabled and the optional argument <a href="#id15"><span class="problematic" id="id16">`</span></a>raw’ is False,
-all interpolations are expanded in the return values.</p>
-<p>Arguments <a href="#id17"><span class="problematic" id="id18">`</span></a>raw’, <a href="#id19"><span class="problematic" id="id20">`</span></a>vars’, and <a href="#id21"><span class="problematic" id="id22">`</span></a>fallback’ are keyword only.</p>
-<p>The section DEFAULT is special.</p>
+<span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">option</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.get"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser.get" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получить значение опции для указанной секции.</p>
+<p>Если <a href="#id1"><span class="problematic" id="id2">`</span></a>vars’ предоставляется, он должен быть словарем. Опция ищется
+в <a href="#id3"><span class="problematic" id="id4">`</span></a>vars’ (если предоставлен), <a href="#id5"><span class="problematic" id="id6">`</span></a>section’ и в <a href="#id7"><span class="problematic" id="id8">`</span></a>DEFAULTSECT’ в указанном порядке.
+Если ключ не найден, и <a href="#id9"><span class="problematic" id="id10">`</span></a>fallback’ предоставляется, он используется как
+значение по умолчанию. <a href="#id11"><span class="problematic" id="id12">`</span></a>None’ может быть предоставлено как значение <a href="#id13"><span class="problematic" id="id14">`</span></a>fallback’.</p>
+<p>Если включена интерполяция и опциональный аргумент <a href="#id15"><span class="problematic" id="id16">`</span></a>raw’ равен False,
+все интерполяции раскрываются в возвращаемых значениях.</p>
+<p>Аргументы <a href="#id17"><span class="problematic" id="id18">`</span></a>raw’, <a href="#id19"><span class="problematic" id="id20">`</span></a>vars’ и <a href="#id21"><span class="problematic" id="id22">`</span></a>fallback’ доступны только по ключевым словам.</p>
+<p>Секция DEFAULT является особенной.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.config.ConfigParser.get_configparser">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_configparser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.get_configparser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser.get_configparser" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the <a class="reference internal" href="#kivy.config.ConfigParser" title="kivy.config.ConfigParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigParser</span></code></a> instance whose name is <cite>name</cite>, or
-None if not found.</p>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_configparser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.get_configparser"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser.get_configparser" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает экземпляр <a class="reference internal" href="#kivy.config.ConfigParser" title="kivy.config.ConfigParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigParser</span></code></a> с именем <cite>name</cite> или
+None, если не найден.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><cite>name</cite>: string</dt><dd><p>The name of the <a class="reference internal" href="#kivy.config.ConfigParser" title="kivy.config.ConfigParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigParser</span></code></a> instance to return.</p>
+<dt><cite>name</cite>: string</dt><dd><p>Имя экземпляра <a class="reference internal" href="#kivy.config.ConfigParser" title="kivy.config.ConfigParser"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigParser</span></code></a> для возврата.</p>
 </dd>
 </dl>
 </dd>
@@ -834,99 +828,100 @@ None if not found.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.config.ConfigParser.getdefault">
-<span class="sig-name descname"><span class="pre">getdefault</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">option</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaultvalue</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.getdefault"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser.getdefault" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the value of an option in the specified section. If not found,
-it will return the default value.</p>
+<span class="sig-name descname"><span class="pre">getdefault</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">option</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaultvalue</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.getdefault"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="
+
+headerlink" href="#kivy.config.ConfigParser.getdefault" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получить значение опции в указанной секции. Если не найдено,
+вернется значение по умолчанию.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.config.ConfigParser.getdefaultint">
-<span class="sig-name descname"><span class="pre">getdefaultint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">option</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaultvalue</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.getdefaultint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser.getdefaultint" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the value of an option in the specified section. If not found,
-it will return the default value. The value will always be
-returned as an integer.</p>
+<span class="sig-name descname"><span class="pre">getdefaultint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">option</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">defaultvalue</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.getdefaultint"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser.getdefaultint" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получить значение опции в указанной секции. Если не найдено,
+вернется значение по умолчанию. Значение всегда будет
+возвращено как целое число.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.6.0.</span></p>
+<p><span class="versionmodified added">Добавлено вверсии 1.6.0.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="kivy.config.ConfigParser.name">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#kivy.config.ConfigParser.name" title="Permalink to this definition">¶</a></dt>
-<dd><p>The name associated with this ConfigParser instance, if not <cite>‘’</cite>.
-Defaults to <cite>‘’</cite>. It can be safely changed dynamically or set to <cite>‘’</cite>.</p>
-<p>When a ConfigParser is given a name, that config object can be
-retrieved using <a class="reference internal" href="#kivy.config.ConfigParser.get_configparser" title="kivy.config.ConfigParser.get_configparser"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_configparser()</span></code></a>. In addition, that config
-instance can also be used with a
-<a class="reference internal" href="api-kivy.properties.html#kivy.properties.ConfigParserProperty" title="kivy.properties.ConfigParserProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigParserProperty</span></code></a> instance that set its
-<cite>config</cite> value to this name.</p>
-<p>Setting more than one ConfigParser with the same name will raise a
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><a class="headerlink" href="#kivy.config.ConfigParser.name" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Имя, связанное с этим экземпляром ConfigParser, если не <cite>‘’</cite>.
+По умолчанию <cite>‘’</cite>. Его можно безопасно изменять динамически или установить в <cite>‘’</cite>.</p>
+<p>Когда ConfigParser получает имя, этот объект конфигурации можно получить с помощью <a class="reference internal" href="#kivy.config.ConfigParser.get_configparser" title="kivy.config.ConfigParser.get_configparser"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_configparser()</span></code></a>. Кроме того, этот объект конфигурации также может использоваться с
+<a class="reference internal" href="api-kivy.properties.html#kivy.properties.ConfigParserProperty" title="kivy.properties.ConfigParserProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">ConfigParserProperty</span></code></a>, устанавливающим свое
+значение <cite>config</cite> в это имя.</p>
+<p>Установка более одного ConfigParser с одним и тем же именем вызовет исключение
 <cite>ValueError</cite>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.config.ConfigParser.read">
-<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.read"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser.read" title="Permalink to this definition">¶</a></dt>
-<dd><p>Read only one filename. In contrast to the original ConfigParser of
-Python, this one is able to read only one file at a time. The last
-read file will be used for the <a class="reference internal" href="#kivy.config.ConfigParser.write" title="kivy.config.ConfigParser.write"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write()</span></code></a> method.</p>
+<span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.read"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser.read" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Читает только один файл. В отличие от оригинального ConfigParser в
+Python, этот способен читать только один файл за раз. Последний
+прочитанный файл будет использоваться для метода <a class="reference internal" href="#kivy.config.ConfigParser.write" title="kivy.config.ConfigParser.write"><code class="xref py py-meth docutils literal notranslate"><span class="pre">write()</span></code></a>.</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.9.0: </span><a class="reference internal" href="#kivy.config.ConfigParser.read" title="kivy.config.ConfigParser.read"><code class="xref py py-meth docutils literal notranslate"><span class="pre">read()</span></code></a> now calls the callbacks if read changed any values.</p>
+<p><span class="versionmodified changed">Изменено в версии 1.9.0: </span><a class="reference internal" href="#kivy.config.ConfigParser.read" title="kivy.config.ConfigParser.read"><code class="xref py py-meth docutils literal notranslate"><span class="pre">read()</span></code></a> теперь вызывает обратные вызовы, если чтение изменило какие-либо значения.</p>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.config.ConfigParser.remove_callback">
-<span class="sig-name descname"><span class="pre">remove_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.remove_callback"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser.remove_callback" title="Permalink to this definition">¶</a></dt>
-<dd><p>Removes a callback added with <a class="reference internal" href="#kivy.config.ConfigParser.add_callback" title="kivy.config.ConfigParser.add_callback"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_callback()</span></code></a>.
-<a class="reference internal" href="#kivy.config.ConfigParser.remove_callback" title="kivy.config.ConfigParser.remove_callback"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_callback()</span></code></a> must be called with the same parameters as
+<span class="sig-name descname"><span class="pre">remove_callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">section</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.remove_callback"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser.remove_callback" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Удаляет обратный вызов, добавленный с помощью <a class="reference internal" href="#kivy.config.ConfigParser.add_callback"
+
+ title="kivy.config.ConfigParser.add_callback"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_callback()</span></code></a>.
+<a class="reference internal" href="#kivy.config.ConfigParser.remove_callback" title="kivy.config.ConfigParser.remove_callback"><code class="xref py py-meth docutils literal notranslate"><span class="pre">remove_callback()</span></code></a> должен быть вызван с теми же параметрами, что и
 <a class="reference internal" href="#kivy.config.ConfigParser.add_callback" title="kivy.config.ConfigParser.add_callback"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_callback()</span></code></a>.</p>
-<p>Raises a <cite>ValueError</cite> if not found.</p>
+<p>Вызывает исключение <cite>ValueError</cite>, если не найден.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.9.0.</span></p>
+<p><span class="versionmodified added">Добавлено вверсии 1.9.0.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.config.ConfigParser.set">
-<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">option</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser.set" title="Permalink to this definition">¶</a></dt>
-<dd><p>Functions similarly to PythonConfigParser’s set method, except that
-the value is implicitly converted to a string.</p>
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">option</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.set"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser.set" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Работает аналогично методу set PythonConfigParser, за исключением того, что
+значение неявно преобразуется в строку.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.config.ConfigParser.setall">
-<span class="sig-name descname"><span class="pre">setall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keyvalues</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.setall"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser.setall" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets multiple key-value pairs in a section. keyvalues should be a
-dictionary containing the key-value pairs to be set.</p>
+<span class="sig-name descname"><span class="pre">setall</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keyvalues</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.setall"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser.setall" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Устанавливает несколько пар ключ-значение в секции. keyvalues должен быть
+словарем, содержащим ключевые пары для установки.</p>
 </dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.config.ConfigParser.setdefault">
-<span class="sig-name descname"><span class="pre">setdefault</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">option</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.setdefault"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser.setdefault" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the default value for an option in the specified section.</p>
+<span class="sig-name descname"><span class="pre">setdefault</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">option</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.setdefault"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser.setdefault" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Установить значение по умолчанию для опции в указанной секции.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.config.ConfigParser.setdefaults">
-<span class="sig-name descname"><span class="pre">setdefaults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keyvalues</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.setdefaults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser.setdefaults" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set multiple key-value defaults in a section. keyvalues should be
-a dictionary containing the new key-value defaults.</p>
+<span class="sig-name descname"><span class="pre">setdefaults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">section</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keyvalues</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.setdefaults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser.setdefaults" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Установить несколько пар ключ-значение по умолчанию в секции. keyvalues должен быть
+словарем, содержащим новые ключи и значения по умолчанию.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.config.ConfigParser.update_config">
-<span class="sig-name descname"><span class="pre">update_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.update_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser.update_config" title="Permalink to this definition">¶</a></dt>
-<dd><p>Upgrade the configuration based on a new default config file.
-Overwrite any existing values if overwrite is True.</p>
+<span class="sig-name descname"><span class="pre">update_config</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.update_config"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser.update_config" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Обновить конфигурацию на основе нового файла конфигурации по умолчанию.
+Перезаписать существующие значения, если overwrite равно True.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.config.ConfigParser.write">
-<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser.write" title="Permalink to this definition">¶</a></dt>
-<dd><p>Write the configuration to the last file opened using the
-<a class="reference internal" href="#kivy.config.ConfigParser.read" title="kivy.config.ConfigParser.read"><code class="xref py py-meth docutils literal notranslate"><span class="pre">read()</span></code></a> method.</p>
-<p>Return True if the write finished successfully, False otherwise.</p>
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/config.html#ConfigParser.write"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.config.ConfigParser.write" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Записать конфигурацию в последний открытый файл с использованием метода
+<a class="reference internal" href="#kivy.config.ConfigParser.read" title="kivy.config.ConfigParser.read"><code class="xref py py-meth docutils literal notranslate"><span class="pre">read()</span></code></a>.</p>
+<p>Вернуть True, если запись завершилась успешно, иначе False.</p>
 </dd></dl>
 
 </dd></dl>
