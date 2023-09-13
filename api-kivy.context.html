@@ -386,41 +386,40 @@
 </ul>
 </div>
             
-  <section id="module-kivy.context">
-<span id="context"></span><h1>Context<a class="headerlink" href="#module-kivy.context" title="Permalink to this headline">¶</a></h1>
+<section id="module-kivy.context">
+<span id="context"></span><h1>Контекст<a class="headerlink" href="#module-kivy.context" title="Ссылка на этот заголовок">¶</a></h1>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.8.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.8.0.</span></p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This is experimental and subject to change as long as this warning notice
-is present.</p>
+<p class="admonition-title">Предупреждение</p>
+<p>Это экспериментальный функционал и может измениться, пока это предупреждение присутствует.</p>
 </div>
-<p>Kivy has a few “global” instances that are used directly by many pieces of the
-framework: <cite>Cache</cite>, <cite>Builder</cite>, <cite>Clock</cite>.</p>
-<p>TODO: document this module.</p>
+<p>Kivy имеет несколько "глобальных" экземпляров, которые напрямую используются многими частями
+фреймворка: <cite>Cache</cite>, <cite>Builder</cite>, <cite>Clock</cite>.</p>
+<p>TODO: документировать этот модуль.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.context.Context">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.context.</span></span><span class="sig-name descname"><span class="pre">Context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/context.html#Context"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.context.Context" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">builtins.dict</span></code></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.context.</span></span><span class="sig-name descname"><span class="pre">Context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">init</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/context.html#Context"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="headerlink" href="#kivy.context.Context" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <code class="xref py py-class docutils literal notranslate"><span class="pre">builtins.dict</span></code></p>
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.context.Context.pop">
-<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="optional">]</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">v,</span> <span class="pre">remove</span> <span class="pre">specified</span> <span class="pre">key</span> <span class="pre">and</span> <span class="pre">return</span> <span class="pre">the</span> <span class="pre">corresponding</span> <span class="pre">value.</span></span></span><a class="reference internal" href="_modules/kivy/context.html#Context.pop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.context.Context.pop" title="Permalink to this definition">¶</a></dt>
-<dd><p>If key is not found, default is returned if given, otherwise KeyError is raised</p>
+<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">k</span></span></em><span class="optional">[</span>, <em class="sig-param"><span class="n"><span class="pre">d</span></span></em><span class="optional">]</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">v,</span> <span class="pre">удалить</span> <span class="pre">указанный</span> <span class="pre">ключ</span> <span class="pre">и</span> <span class="pre">вернуть</span> <span class="pre">соответствующее</span> <span class="pre">значение.</span></span></span><a class="reference internal" href="_modules/kivy/context.html#Context.pop"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="headerlink" href="#kivy.context.Context.pop" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Если ключ не найден, возвращается значение по умолчанию, если оно задано, в противном случае вызывается исключение KeyError</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="kivy.context.get_current_context">
-<span class="sig-prename descclassname"><span class="pre">kivy.context.</span></span><span class="sig-name descname"><span class="pre">get_current_context</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/context.html#get_current_context"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.context.get_current_context" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the current context.</p>
+<span class="sig-prename descclassname"><span class="pre">kivy.context.</span></span><span class="sig-name descname"><span class="pre">get_current_context</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/context.html#get_current_context"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="headerlink" href="#kivy.context.get_current_context" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает текущий контекст.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="kivy.context.register_context">
-<span class="sig-prename descclassname"><span class="pre">kivy.context.</span></span><span class="sig-name descname"><span class="pre">register_context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/context.html#register_context"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.context.register_context" title="Permalink to this definition">¶</a></dt>
-<dd><p>Register a new context.</p>
+<span class="sig-prename descclassname"><span class="pre">kivy.context.</span></span><span class="sig-name descname"><span class="pre">register_context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cls</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/context.html#register_context"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="headerlink" href="#kivy.context.register_context" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Зарегистрировать новый контекст.</p>
 </dd></dl>
 
 <div class="toctree-wrapper compound">

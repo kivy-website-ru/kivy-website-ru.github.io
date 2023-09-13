@@ -393,204 +393,202 @@
 </div>
             
   <section id="module-kivy.core.audio">
-<span id="audio"></span><h1>Audio<a class="headerlink" href="#module-kivy.core.audio" title="Permalink to this headline">¶</a></h1>
-<p>Load an audio sound and play it with:</p>
+<span id="audio"></span><h1>Аудио<a class="headerlink" href="#module-kivy.core.audio" title="Ссылка на этот заголовок">¶</a></h1>
+<p>Загрузите звуковой файл и воспроизведите его с помощью:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kivy.core.audio</span> <span class="kn">import</span> <span class="n">SoundLoader</span>
 
 <span class="n">sound</span> <span class="o">=</span> <span class="n">SoundLoader</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;mytest.wav&#39;</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">sound</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sound found at </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">sound</span><span class="o">.</span><span class="n">source</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sound is </span><span class="si">%.3f</span><span class="s2"> seconds&quot;</span> <span class="o">%</span> <span class="n">sound</span><span class="o">.</span><span class="n">length</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Звук найден по адресу </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="n">sound</span><span class="o">.</span><span class="n">source</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Продолжительность звука составляет </span><span class="si">%.3f</span><span class="s2"> секунд&quot;</span> <span class="o">%</span> <span class="n">sound</span><span class="o">.</span><span class="n">length</span><span class="p">)</span>
     <span class="n">sound</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>You should not use the Sound class directly. The class returned by
-<a class="reference internal" href="#kivy.core.audio.SoundLoader.load" title="kivy.core.audio.SoundLoader.load"><code class="xref py py-func docutils literal notranslate"><span class="pre">SoundLoader.load()</span></code></a> will be the best sound provider for that particular
-file type, so it might return different Sound classes depending the file type.</p>
+<p>Вы не должны использовать класс Sound напрямую. Класс, возвращаемый
+<a class="reference internal" href="#kivy.core.audio.SoundLoader.load" title="kivy.core.audio.SoundLoader.load"><code class="xref py py-func docutils literal notranslate"><span class="pre">SoundLoader.load()</span></code></a>, будет лучшим провайдером звука для конкретного
+типа файла, поэтому в зависимости от типа файла он может вернуть разные классы Sound.</p>
 <section id="event-dispatching-and-state-changes">
-<h2>Event dispatching and state changes<a class="headerlink" href="#event-dispatching-and-state-changes" title="Permalink to this headline">¶</a></h2>
-<p>Audio is often processed in parallel to your code. This means you often need to
-enter the Kivy <a class="reference internal" href="api-kivy.base.html#kivy.base.EventLoopBase" title="kivy.base.EventLoopBase"><code class="xref py py-func docutils literal notranslate"><span class="pre">eventloop</span></code></a> in order to allow
-events and state changes to be dispatched correctly.</p>
-<p>You seldom need to worry about this as Kivy apps typically always
-require this event loop for the GUI to remain responsive, but it is good to
-keep this in mind when debugging or running in a
+<h2>Распределение событий и изменение состояния<a class="headerlink" href="#event-dispatching-and-state-changes" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Аудио часто обрабатывается параллельно вашему коду. Это означает, что часто вам нужно
+войти в цикл событий Kivy <a class="reference internal" href="api-kivy.base.html#kivy.base.EventLoopBase" title="kivy.base.EventLoopBase"><code class="xref py py-func docutils literal notranslate"><span class="pre">eventloop</span></code></a> для корректной обработки
+событий и изменения состояния.</p>
+<p>Обычно вам не нужно беспокоиться об этом, так как приложения Kivy обычно всегда
+требуют этот цикл событий для обеспечения отзывчивости интерфейса, но полезно
+иметь это в виду при отладке или выполнении в
 <a class="reference external" href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">REPL</a>
-(Read-eval-print loop).</p>
+(цикл Read-eval-print).</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.10.0: </span>The pygst and gi providers have been removed.</p>
+<p><span class="versionmodified changed">Изменено в версии 1.10.0: </span>Поставщики pygst и gi были удалены.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.8.0: </span>There are now 2 distinct Gstreamer implementations: one using Gi/Gst
-working for both Python 2+3 with Gstreamer 1.0, and one using PyGST
-working only for Python 2 + Gstreamer 0.10.</p>
+<p><span class="versionmodified changed">Изменено в версии 1.8.0: </span>Теперь есть 2 различных реализации Gstreamer: одна с использованием Gi/Gst
+работает как для Python 2+3 с Gstreamer 1.0, так и для Python 2 + Gstreamer 0.10.</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The core audio library does not support recording audio. If you require
-this functionality, please refer to the
-<a class="reference external" href="https://github.com/kivy/audiostream">audiostream</a> extension.</p>
+<p class="admonition-title">Примечание</p>
+<p>Основная библиотека аудио не поддерживает запись аудио. Если вам нужна
+эта функциональность, обратитесь к
+<a class="reference external" href="https://github.com/kivy/audiostream">расширению audiostream</a>.</p>
 </div>
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.core.audio.Sound">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.core.audio.</span></span><span class="sig-name descname"><span class="pre">Sound</span></span><a class="reference internal" href="_modules/kivy/core/audio.html#Sound"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.audio.Sound" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.event.html#kivy.event.EventDispatcher" title="kivy.event.EventDispatcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.event.EventDispatcher</span></code></a></p>
-<p>Represents a sound to play. This class is abstract, and cannot be used
-directly.</p>
-<p>Use SoundLoader to load a sound.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.core.audio.</span></span><span class="sig-name descname"><span class="pre">Sound</span></span><a class="reference internal" href="_modules/kivy/core/audio.html#Sound"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="headerlink" href="#kivy.core.audio.Sound" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="api-kivy.event.html#kivy.event.EventDispatcher" title="kivy.event.EventDispatcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.event.EventDispatcher</span></code></a></p>
+<p>Представляет звук для воспроизведения. Этот класс абстрактный и не может быть использован
+напрямую.</p>
+<p>Используйте SoundLoader для загрузки звука.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Events</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><cite>on_play</cite>: None</dt><dd><p>Fired when the sound is played.</p>
+<dt><cite>on_play</cite>: Нет</dt><dd><p>Срабатывает, когда проигрывается звук.</p>
 </dd>
-<dt><cite>on_stop</cite>: None</dt><dd><p>Fired when the sound is stopped.</p>
+<dt><cite>on_stop</cite>: Нет</dt><dd><p>Срабатывает, когда воспроизведение звука останавливается.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.core.audio.Sound.filename">
-<span class="sig-name descname"><span class="pre">filename</span></span><a class="headerlink" href="#kivy.core.audio.Sound.filename" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">filename</span></span><a class="headerlink" href="#kivy.core.audio.Sound.filename" title="Ссылка на это определение">¶</a></dt>
 <dd><div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.3.0: </span>Use <a class="reference internal" href="#kivy.core.audio.Sound.source" title="kivy.core.audio.Sound.source"><code class="xref py py-attr docutils literal notranslate"><span class="pre">source</span></code></a> instead.</p>
+<p><span class="versionmodified deprecated">Устарело с версии 1.3.0: </span>Используйте <a class="reference internal" href="#kivy.core.audio.Sound.source" title="kivy.core.audio.Sound.source"><code class="xref py py-attr docutils literal notranslate"><span class="pre">source</span></code></a> вместо этого.</p>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.core.audio.Sound.get_pos">
-<span class="sig-name descname"><span class="pre">get_pos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/audio.html#Sound.get_pos"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.audio.Sound.get_pos" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the current position of the audio file.
-Returns 0 if not playing.</p>
+<span class="sig-name descname"><span class="pre">get_pos</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/audio.html#Sound.get_pos"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="headerlink" href="#kivy.core.audio.Sound.get_pos" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает текущую позицию аудиофайла.
+Возвращает 0, если воспроизведение не начато.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.4.1.</span></p>
+<p><span class="versionmodified added">Добавлено в  версии 1.4.1.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="kivy.core.audio.Sound.length">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">length</span></span><a class="headerlink" href="#kivy.core.audio.Sound.length" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get length of the sound (in seconds).</p>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">length</span></span><a class="headerlink" href="#kivy.core.audio.Sound.length" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получите продолжительность звука (в секундах).</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.core.audio.Sound.load">
-<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/audio.html#Sound.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.audio.Sound.load" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load the file into memory.</p>
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/audio.html#Sound.load"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="headerlink" href="#kivy.core.audio.Sound.load" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Загрузите файл в память.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.core.audio.Sound.loop">
-<span class="sig-name descname"><span class="pre">loop</span></span><a class="headerlink" href="#kivy.core.audio.Sound.loop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set to True if the sound should automatically loop when it finishes.</p>
+<span class="sig-name descname"><span class="pre">loop</span></span><a class="headerlink" href="#kivy.core.audio.Sound.loop" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Установите True, если звук должен автоматически повторяться после завершения.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.8.0.</span></p>
+<p><span class="versionmodified added">Добавлено в  версии 1.8.0.</span></p>
 </div>
-<p><a class="reference internal" href="#kivy.core.audio.Sound.loop" title="kivy.core.audio.Sound.loop"><code class="xref py py-attr docutils literal notranslate"><span class="pre">loop</span></code></a> is a <a class="reference internal" href="api-kivy.properties.html#kivy.properties.BooleanProperty" title="kivy.properties.BooleanProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">BooleanProperty</span></code></a> and defaults to
+<p><a class="reference internal" href="#kivy.core.audio.Sound.loop" title="kivy.core.audio.Sound.loop"><code class="xref py py-attr docutils literal notranslate"><span class="pre">loop</span></code></a> - это <a class="reference internal" href="api-kivy.properties.html#kivy.properties.BooleanProperty" title="kivy.properties.BooleanProperty"><code class="xref py py-class docutils literal notранслировать"><span class="pre">BooleanProperty</span></code></a> и по умолчанию
 False.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.core.audio.Sound.pitch">
-<span class="sig-name descname"><span class="pre">pitch</span></span><a class="headerlink" href="#kivy.core.audio.Sound.pitch" title="Permalink to this definition">¶</a></dt>
-<dd><p>Pitch of a sound. 2 is an octave higher, .5 one below. This is only
-implemented for SDL2 audio provider yet.</p>
+<span class="sig-name descname"><span class="pre">pitch</span></span><a class="headerlink" href="#kivy.core.audio.Sound.pitch" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Тональность звука. 2 - это октава выше, 0,5 - ниже. Это реализовано только
+для аудиопровайдера SDL2.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.10.0.</span></p>
+<p><span class="versionmodified added">Добавлено в  версии 1.10.0.</span></p>
 </div>
-<p><a class="reference internal" href="#kivy.core.audio.Sound.pitch" title="kivy.core.audio.Sound.pitch"><code class="xref py py-attr docutils literal notranslate"><span class="pre">pitch</span></code></a> is a <a class="reference internal" href="api-kivy.properties.html#kivy.properties.NumericProperty" title="kivy.properties.NumericProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumericProperty</span></code></a> and defaults
-to 1.</p>
+<p><a class="reference internal" href="#kivy.core.audio.Sound.pitch" title="kivy.core.audio.Sound.pitch"><code class="xref py py-attr docutils literal notranslate"><span class="pre">pitch</span></code></a> - это <a class="reference internal" href="api-kivy.properties.html#kivy.properties.NumericProperty" title="kivy.properties.NumericProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumericProperty</span></code></a> и по умолчанию
+1.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.core.audio.Sound.play">
-<span class="sig-name descname"><span class="pre">play</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/audio.html#Sound.play"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.audio.Sound.play" title="Permalink to this definition">¶</a></dt>
-<dd><p>Play the file.</p>
+<span class="sig-name descname"><span class="pre">play</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/audio.html#Sound.play"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="headerlink" href="#kivy.core.audio.Sound.play" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Проиграть файл.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.core.audio.Sound.seek">
-<span class="sig-name descname"><span class="pre">seek</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/audio.html#Sound.seek"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.audio.Sound.seek" title="Permalink to this definition">¶</a></dt>
-<dd><p>Go to the &lt;position&gt; (in seconds).</p>
+<span class="sig-name descname"><span class="pre">seek</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/audio.html#Sound.seek"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="headerlink" href="#kivy.core.audio.Sound.seek" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Перейдите к &lt;позиции&gt; (в секундах).</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Most sound providers cannot seek when the audio is stopped.
-Play then seek.</p>
+<p class="admonition-title">Замечание</p>
+<p>Большинство аудиопровайдеров не могут выполнять поиск, когда аудио остановлено.
+Сначала воспроизведите, а затем выполняйте поиск.</p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.core.audio.Sound.source">
-<span class="sig-name descname"><span class="pre">source</span></span><a class="headerlink" href="#kivy.core.audio.Sound.source" title="Permalink to this definition">¶</a></dt>
-<dd><p>Filename / source of your audio file.</p>
+<span class="sig-name descname"><span class="pre">source</span></span><a class="headerlink" href="#kivy.core.audio.Sound.source" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Имя файла / источник вашего аудиофайла.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.3.0.</span></p>
+<p><span class="versionmodified added">Добавлено в  версии 1.3.0.</span></p>
 </div>
-<p><a class="reference internal" href="#kivy.core.audio.Sound.source" title="kivy.core.audio.Sound.source"><code class="xref py py-attr docutils literal notranslate"><span class="pre">source</span></code></a> is a <a class="reference internal" href="api-kivy.properties.html#kivy.properties.StringProperty" title="kivy.properties.StringProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">StringProperty</span></code></a> that defaults
-to None and is read-only. Use the <a class="reference internal" href="#kivy.core.audio.SoundLoader.load" title="kivy.core.audio.SoundLoader.load"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SoundLoader.load()</span></code></a> for loading
-audio.</p>
+<p><a class="reference internal" href="#kivy.core.audio.Sound.source" title="kivy.core.audio.Sound.source"><code class="xref py py-attr docutils literal notranslate"><span class="pre">source</span></code></a> - это <a class="reference internal" href="api-kivy.properties.html#kivy.properties.StringProperty" title="kivy.properties.StringProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">StringProperty</span></code></a> по умолчанию
+None и только для чтения. Используйте <a class="reference internal" href="#kivy.core.audio.SoundLoader.load" title="kivy.core.audio.SoundLoader.load"><code class="xref py py-meth docutils literal notranslate"><span class="pre">SoundLoader.load()</span></code></a> для загрузки
+аудио.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.core.audio.Sound.state">
-<span class="sig-name descname"><span class="pre">state</span></span><a class="headerlink" href="#kivy.core.audio.Sound.state" title="Permalink to this definition">¶</a></dt>
-<dd><p>State of the sound, one of ‘stop’ or ‘play’.</p>
+<span class="sig-name descname"><span class="pre">state</span></span><a class="headerlink" href="#kivy.core.audio.Sound.state" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Состояние звука, одно из ‘stop’ или ‘play’.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.3.0.</span></p>
+<p><span class="versionmodified added">Добавлено в  версии 1.3.0.</span></p>
 </div>
-<p><a class="reference internal" href="#kivy.core.audio.Sound.state" title="kivy.core.audio.Sound.state"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state</span></code></a> is a read-only <a class="reference internal" href="api-kivy.properties.html#kivy.properties.OptionProperty" title="kivy.properties.OptionProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">OptionProperty</span></code></a>.</p>
+<p><a class="reference internal" href="#kivy.core.audio.Sound.state" title="kivy.core.audio.Sound.state"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state</span></code></a> - это только для чтения <a class="reference internal" href="api-kivy.properties.html#kivy.properties.OptionProperty" title="kivy.properties.OptionProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">OptionProperty</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.core.audio.Sound.status">
-<span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#kivy.core.audio.Sound.status" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">status</span></span><a class="headerlink" href="#kivy.core.audio.Sound.status" title="Ссылка на это определение">¶</a></dt>
 <dd><div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.3.0: </span>Use <a class="reference internal" href="#kivy.core.audio.Sound.state" title="kivy.core.audio.Sound.state"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state</span></code></a> instead.</p>
+<p><span class="versionmodified deprecated">Устарело с версии 1.3.0: </span>Используйте <a class="reference internal" href="#kivy.core.audio.Sound.state" title="kivy.core.audio.Sound.state"><code class="xref py py-attr docutils literal notranslate"><span class="pre">state</span></code></a> вместо этого.</p>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.core.audio.Sound.stop">
-<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/audio.html#Sound.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.audio.Sound.stop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Stop playback.</p>
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/audio.html#Sound.stop"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="headerlink" href="#kivy.core.audio.Sound.stop" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Остановить воспроизведение.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.core.audio.Sound.unload">
-<span class="sig-name descname"><span class="pre">unload</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/audio.html#Sound.unload"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.audio.Sound.unload" title="Permalink to this definition">¶</a></dt>
-<dd><p>Unload the file from memory.</p>
+<span class="sig-name descname"><span class="pre">unload</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/audio.html#Sound.unload"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="headerlink" href="#kivy.core.audio.Sound.unload" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Выгрузить файл из памяти.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.core.audio.Sound.volume">
-<span class="sig-name descname"><span class="pre">volume</span></span><a class="headerlink" href="#kivy.core.audio.Sound.volume" title="Permalink to this definition">¶</a></dt>
-<dd><p>Volume, in the range 0-1. 1 means full volume, 0 means mute.</p>
+<span class="sig-name descname"><span class="pre">volume</span></span><a class="headerlink" href="#kivy.core.audio.Sound.volume" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Громкость, в диапазоне от 0 до 1. 1 означает максимальную громкость, 0 - без звука.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.3.0.</span></p>
+<p><span class="versionmodified added">Новое в версии 1.3.0.</span></p>
 </div>
-<p><a class="reference internal" href="#kivy.core.audio.Sound.volume" title="kivy.core.audio.Sound.volume"><code class="xref py py-attr docutils literal notranslate"><span class="pre">volume</span></code></a> is a <a class="reference internal" href="api-kivy.properties.html#kivy.properties.NumericProperty" title="kivy.properties.NumericProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumericProperty</span></code></a> and defaults
-to 1.</p>
-</dd></dl>
-
+<p><a class="reference internal" href="#kivy.core.audio.Sound.volume" title="kivy.core.audio.Sound.volume"><code class="xref py py-attr docutils literal notranslate"><span class="pre">volume</span></code></a> - это <a class="reference internal" href="api-kivy.properties.html#kivy.properties.NumericProperty" title="kivy.properties.NumericProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumericProperty</span></code></a> и по умолчанию
+1.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.core.audio.SoundLoader">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.core.audio.</span></span><span class="sig-name descname"><span class="pre">SoundLoader</span></span><a class="reference internal" href="_modules/kivy/core/audio.html#SoundLoader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.audio.SoundLoader" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">builtins.object</span></code></p>
-<p>Load a sound, using the best loader for the given file type.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.core.audio.</span></span><span class="sig-name descname"><span class="pre">SoundLoader</span></span><a class="reference internal" href="_modules/kivy/core/audio.html#SoundLoader"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.audio.SoundLoader" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <code class="xref py py-class docutils literal notranslate"><span class="pre">builtins.object</span></code></p>
+<p>Загружайте звук, используя лучший загрузчик для указанного типа файла.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.core.audio.SoundLoader.load">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/audio.html#SoundLoader.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.audio.SoundLoader.load" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load a sound, and return a Sound() instance.</p>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/audio.html#SoundLoader.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.audio.SoundLoader.load" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Загрузите звук и верните экземпляр Sound().</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.core.audio.SoundLoader.register">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classobj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/audio.html#SoundLoader.register"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.audio.SoundLoader.register" title="Permalink to this definition">¶</a></dt>
-<dd><p>Register a new class to load the sound.</p>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">classobj</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/audio.html#SoundLoader.register"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.audio.SoundLoader.register" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Зарегистрируйте новый класс для загрузки звука.</p>
 </dd></dl>
 
 </dd></dl>
+
 
 </section>
 <div class="toctree-wrapper compound">
