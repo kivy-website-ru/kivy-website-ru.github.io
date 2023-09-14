@@ -387,56 +387,52 @@
 </div>
             
   <section id="module-kivy.core.text.text_layout">
-<span id="text-layout"></span><h1>Text layout<a class="headerlink" href="#module-kivy.core.text.text_layout" title="Permalink to this headline">¶</a></h1>
-<p>An internal module for laying out text according to options and constraints.
-This is not part of the API and may change at any time.</p>
+<span id="text-layout"></span><h1>Text layout<a class="headerlink" href="#module-kivy.core.text.text_layout" title="Ссылка на данный раздел">¶</a></h1>
+<p>Внутренний модуль для размещения текста в соответствии с параметрами и ограничениями.
+Это не является частью API и может измениться в любое время.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.core.text.text_layout.LayoutLine">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.core.text.text_layout.</span></span><span class="sig-name descname"><span class="pre">LayoutLine</span></span><a class="headerlink" href="#kivy.core.text.text_layout.LayoutLine" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">builtins.object</span></code></p>
-<p>Formally describes a line of text. A line of text is composed of many
-<a class="reference internal" href="#kivy.core.text.text_layout.LayoutWord" title="kivy.core.text.text_layout.LayoutWord"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutWord</span></code></a> instances, each with it’s own text, size and options.</p>
-<p>A <a class="reference internal" href="#kivy.core.text.text_layout.LayoutLine" title="kivy.core.text.text_layout.LayoutLine"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutLine</span></code></a> instance does not always imply that the words
-contained in the line ended with a newline. That is only the case if
-<a class="reference internal" href="#kivy.core.text.text_layout.LayoutLine.is_last_line" title="kivy.core.text.text_layout.LayoutLine.is_last_line"><code class="xref py py-attr docutils literal notranslate"><span class="pre">is_last_line</span></code></a> is True. For example a single real line of text can
-be split across multiple <a class="reference internal" href="#kivy.core.text.text_layout.LayoutLine" title="kivy.core.text.text_layout.LayoutLine"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutLine</span></code></a> instances if the whole line
-doesn’t fit in the constrained width.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.core.text.text_layout.</span></span><span class="sig-name descname"><span class="pre">LayoutLine</span></span><a class="headerlink" href="#kivy.core.text.text_layout.LayoutLine" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Описание строки текста. Строка текста состоит из множества
+экземпляров <a class="reference internal" href="#kivy.core.text.text_layout.LayoutWord" title="kivy.core.text.text_layout.LayoutWord"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutWord</span></code></a>, каждый из которых имеет свой текст, размер и параметры.</p>
+<p>Экземпляр <a class="reference internal" href="#kivy.core.text.text_layout.LayoutLine" title="kivy.core.text.text_layout.LayoutLine"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutLine</span></code></a> не всегда означает, что слова,
+содержащиеся в строке, закончились символом новой строки. Это так только в случае, если
+<a class="reference internal" href="#kivy.core.text.text_layout.LayoutLine.is_last_line" title="kivy.core.text.text_layout.LayoutLine.is_last_line"><code class="xref py py-attr docutils literal notranslate"><span class="pre">is_last_line</span></code></a> равно True. Например, одна настоящая строка текста может
+быть разделена на несколько экземпляров <a class="reference internal" href="#kivy.core.text.text_layout.LayoutLine" title="kivy.core.text.text_layout.LayoutLine"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutLine</span></code></a>, если вся строка
+не помещается в ограниченную ширину.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><cite>x</cite>: int</dt><dd><p>the location in a texture from where the left side of this line is
-began drawn.</p>
+<dt><cite>x</cite>: int</dt><dd><p>местоположение в текстуре, с которой начинается левая сторона этой строки.</p>
 </dd>
-<dt><cite>y</cite>: int</dt><dd><p>the location in a texture from where the bottom of this line is
-drawn.</p>
+<dt><cite>y</cite>: int</dt><dd><p>местоположение в текстуре, с которой рисуется нижняя часть этой строки.</p>
 </dd>
-<dt><cite>w</cite>: int</dt><dd><p>the width of the line. This is the sum of the individual widths
-of its <a class="reference internal" href="#kivy.core.text.text_layout.LayoutWord" title="kivy.core.text.text_layout.LayoutWord"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutWord</span></code></a> instances. Does not include any padding.</p>
+<dt><cite>w</cite>: int</dt><dd><p>ширина строки. Это сумма индивидуальных ширин
+экземпляров <a class="reference internal" href="#kivy.core.text.text_layout.LayoutWord" title="kivy.core.text.text_layout.LayoutWord"><code class="xref py py-class docutils literal notранslate"><span class="pre">LayoutWord</span></code></a>. Не включает отступы.</p>
 </dd>
-<dt><cite>h</cite>: int</dt><dd><p>the height of the line. This is the maximum of the individual
-heights of its <a class="reference internal" href="#kivy.core.text.text_layout.LayoutWord" title="kivy.core.text.text_layout.LayoutWord"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutWord</span></code></a> instances multiplied by the
-<cite>line_height</cite> of these instance. So this is larger then the word
-height.</p>
+<dt><cite>h</cite>: int</dt><dd><p>высота строки. Это максимум индивидуальных
+высот его экземпляров, умноженных на
+<cite>line_height</cite> этого экземпляра. Поэтому это больше высоты слова.</p>
 </dd>
-<dt><cite>is_last_line</cite>: bool</dt><dd><p>whether this line was the last line in a paragraph. When True, it
-implies that the line was followed by a newline. Newlines should
-not be included in the text of words, but is implicit by setting
-this to True.</p>
+<dt><cite>is_last_line</cite>: bool</dt><dd><p>является ли эта строка последней в абзаце. Когда True, это
+подразумевает, что за строкой следует символ новой строки. Символы новой строки
+не должны включаться в текст слов, но они подразумеваются при установке
+этого параметра в True.</p>
 </dd>
-<dt><cite>line_wrap</cite>: bool</dt><dd><p>whether this line is continued from a previous line which didn’t
-fit into a constrained width and was therefore split across
-multiple <a class="reference internal" href="#kivy.core.text.text_layout.LayoutLine" title="kivy.core.text.text_layout.LayoutLine"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutLine</span></code></a> instances. <cite>line_wrap</cite> can be True
-or False independently of <cite>is_last_line</cite>.</p>
+<dt><cite>line_wrap</cite>: bool</dt><dd><p>является ли эта строка продолжением предыдущей строки, которая не помещалась
+в ограниченную ширину и, следовательно, была разбита на
+несколько экземпляров <a class="reference internal" href="#kivy.core.text.text_layout.LayoutLine" title="kivy.core.text.text_layout.LayoutLine"><code class="xref py py-class docutils literal notранslate"><span class="pre">LayoutLine</span></code></a>. <cite>line_wrap</cite> может быть True
+или False независимо от <cite>is_last_line</cite>.</p>
 </dd>
-<dt><cite>words</cite>: python list</dt><dd><p>a list that contains only <a class="reference internal" href="#kivy.core.text.text_layout.LayoutWord" title="kivy.core.text.text_layout.LayoutWord"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutWord</span></code></a> instances describing
-the text of the line.</p>
+<dt><cite>words</cite>: list Python</dt><dd><p>список, содержащий только экземпляры <a class="reference internal" href="#kivy.core.text.text_layout.LayoutWord" title="kivy.core.text.text_layout.LayoutWord"><code class="xref py py-class docutils literal notранslate"><span class="pre">LayoutWord</span></code></a>, описывающих
+текст строки.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.core.text.text_layout.LayoutLine.h">
-<span class="sig-name descname"><span class="pre">h</span></span><a class="headerlink" href="#kivy.core.text.text_layout.LayoutLine.h" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">h</span></span><a class="headerlink" href="#kivy.core.text.text_layout.LayoutLine.h" title="Ссылка на это определение">¶</a></dt>
 <dd><p>h: ‘int’</p>
 </dd></dl>
 
@@ -480,130 +476,118 @@ the text of the line.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.core.text.text_layout.LayoutWord">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.core.text.text_layout.</span></span><span class="sig-name descname"><span class="pre">LayoutWord</span></span><a class="headerlink" href="#kivy.core.text.text_layout.LayoutWord" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">builtins.object</span></code></p>
-<p>Formally describes a word contained in a line. The name word simply
-means a chunk of text and can be used to describe any text.</p>
-<p>A word has some width, height and is rendered according to options saved
-in <a class="reference internal" href="#kivy.core.text.text_layout.LayoutWord.options" title="kivy.core.text.text_layout.LayoutWord.options"><code class="xref py py-attr docutils literal notranslate"><span class="pre">options</span></code></a>. See <a class="reference internal" href="#kivy.core.text.text_layout.LayoutLine" title="kivy.core.text.text_layout.LayoutLine"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutLine</span></code></a> for its usage.</p>
+<em class="property"><span class="pre">класс</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.core.text.text_layout.</span></span><span class="sig-name descname"><span class="pre">LayoutWord</span></span><a class="headerlink" href="#kivy.core.text.text_layout.LayoutWord" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <code class="xref py py-class docutils literal notranslate"><span class="pre">builtins.object</span></code></p>
+<p>Формально описывает слово, содержащееся в строке. Название "слово" просто
+означает кусок текста и может использоваться для описания любого текста.</p>
+<p>У слова есть ширина, высота и оно отображается в соответствии с сохраненными опциями
+в <a class="reference internal" href="#kivy.core.text.text_layout.LayoutWord.options" title="kivy.core.text.text_layout.LayoutWord.options"><code class="xref py py-attr docutils literal notranslate"><span class="pre">options</span></code></a>. См. <a class="reference internal" href="#kivy.core.text.text_layout.LayoutLine" title="kivy.core.text.text_layout.LayoutLine"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutLine</span></code></a> для его использования.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><cite>options</cite>: dict</dt><dd><p>the label options dictionary for this word.</p>
+<dt><cite>options</cite>: dict</dt><dd><p>словарь параметров метки для этого слова.</p>
 </dd>
-<dt><cite>lw</cite>: int</dt><dd><p>the width of the text in pixels.</p>
+<dt><cite>lw</cite>: int</dt><dd><p>ширина текста в пикселях.</p>
 </dd>
-<dt><cite>lh</cite>: int</dt><dd><p>the height of the text in pixels.</p>
+<dt><cite>lh</cite>: int</dt><dd><p>высота текста в пикселях.</p>
 </dd>
-<dt><cite>text</cite>: string</dt><dd><p>the text of the word.</p>
+<dt><cite>text</cite>: строка</dt><dd><p>текст слова.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.core.text.text_layout.LayoutWord.lh">
-<span class="sig-name descname"><span class="pre">lh</span></span><a class="headerlink" href="#kivy.core.text.text_layout.LayoutWord.lh" title="Permalink to this definition">¶</a></dt>
-<dd><p>lh: ‘int’</p>
+<span class="sig-name descname"><span class="pre">lh</span></span><a class="headerlink" href="#kivy.core.text.text_layout.LayoutWord.lh" title="Ссылка на это определение">¶</a></dt>
+<dd><p>lh: 'int'</p>
 </dd></dl>
-
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.core.text.text_layout.LayoutWord.lw">
-<span class="sig-name descname"><span class="pre">lw</span></span><a class="headerlink" href="#kivy.core.text.text_layout.LayoutWord.lw" title="Permalink to this definition">¶</a></dt>
-<dd><p>lw: ‘int’</p>
+<span class="sig-name descname"><span class="pre">lw</span></span><a class="headerlink" href="#kivy.core.text.text_layout.LayoutWord.lw" title="Ссылка на это определение">¶</a></dt>
+<dd><p>lw: 'int'</p>
 </dd></dl>
-
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.core.text.text_layout.LayoutWord.options">
-<span class="sig-name descname"><span class="pre">options</span></span><a class="headerlink" href="#kivy.core.text.text_layout.LayoutWord.options" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">options</span></span><a class="headerlink" href="#kivy.core.text.text_layout.LayoutWord.options" title="Ссылка на это определение">¶</a></dt>
 <dd><p>options: dict</p>
 </dd></dl>
-
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.core.text.text_layout.LayoutWord.text">
-<span class="sig-name descname"><span class="pre">text</span></span><a class="headerlink" href="#kivy.core.text.text_layout.LayoutWord.text" title="Permalink to this definition">¶</a></dt>
-<dd><p>text: object</p>
+<span class="sig-name descname"><span class="pre">text</span></span><a class="headerlink" href="#kivy.core.text.text_layout.LayoutWord.text" title="Ссылка на это определение">¶</a></dt>
+<dd><p>text: объект</p>
 </dd></dl>
-
 </dd></dl>
-
 <dl class="py function">
 <dt class="sig sig-object py" id="kivy.core.text.text_layout.layout_text">
-<span class="sig-prename descclassname"><span class="pre">kivy.core.text.text_layout.</span></span><span class="sig-name descname"><span class="pre">layout_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">list</span> <span class="pre">lines</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tuple</span> <span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tuple</span> <span class="pre">text_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dict</span> <span class="pre">options</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_extents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">append_down</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">complete</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.core.text.text_layout.layout_text" title="Permalink to this definition">¶</a></dt>
-<dd><p>Lays out text into a series of <a class="reference internal" href="#kivy.core.text.text_layout.LayoutWord" title="kivy.core.text.text_layout.LayoutWord"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutWord</span></code></a> and
-<a class="reference internal" href="#kivy.core.text.text_layout.LayoutLine" title="kivy.core.text.text_layout.LayoutLine"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutLine</span></code></a> instances according to the options specified.</p>
-<p>The function is designed to be called many times, each time new text is
-appended to the last line (or first line if appending upwards), unless a
-newline is present in the text. Each text appended is described by its own
-options which can change between successive calls. If the text is
-constrained, we stop as soon as the constraint is reached.</p>
+<span class="sig-prename descclassname"><span class="pre">kivy.core.text.text_layout.</span></span><span class="sig-name descname"><span class="pre">layout_text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">список</span> <span class="pre">lines</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">кортеж</span> <span class="pre">size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">кортеж</span> <span class="pre">text_size</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">словарь</span> <span class="pre">options</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">get_extents</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">append_down</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">complete</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.core.text.text_layout.layout_text" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Размещает текст в серию экземпляров <a class="reference internal" href="#kivy.core.text.text_layout.LayoutWord" title="kivy.core.text.text_layout.LayoutWord"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutWord</span></code></a> и
+<a class="reference internal" href="#kivy.core.text.text_layout.LayoutLine" title="kivy.core.text.text_layout.LayoutLine"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutLine</span></code></a> в соответствии с указанными опциями.</p>
+<p>Функция предназначена для многократного вызова, при каждом вызове добавляется новый текст к
+последней строке (или первой строке, если добавление происходит вверх), за исключением случаев,
+когда в тексте есть символ новой строки. Каждый добавленный текст описывается своими собственными
+опциями, которые могут меняться между последовательными вызовами. Если текст ограничен по размеру,
+мы останавливаемся, как только достигнут ограничительный размер.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><cite>text</cite>: string or bytes</dt><dd><p>the text to be broken down into lines. If lines is not empty,
-the text is added to the last line (or first line if <cite>append_down</cite>
-is False) until a newline is reached which creates a new line in
-<cite>lines</cite>. See <a class="reference internal" href="#kivy.core.text.text_layout.LayoutLine" title="kivy.core.text.text_layout.LayoutLine"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutLine</span></code></a>.</p>
+<dt><cite>text</cite>: строка или байты</dt><dd><p>текст, который нужно разбить на строки. Если список <cite>lines</cite> не пуст,
+текст добавляется к последней строке (или первой строке, если <cite>append_down</cite>
+установлен в False), пока не встретится символ новой строки, создавая новую строку в
+<cite>lines</cite>. См. <a class="reference internal" href="#kivy.core.text.text_layout.LayoutLine" title="kivy.core.text.text_layout.LayoutLine"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutLine</span></code></a>.</p>
 </dd>
-<dt><cite>lines</cite>: list</dt><dd><p>a list of <a class="reference internal" href="#kivy.core.text.text_layout.LayoutLine" title="kivy.core.text.text_layout.LayoutLine"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutLine</span></code></a> instances, each describing a line of
-the text. Calls to <a class="reference internal" href="#kivy.core.text.text_layout.layout_text" title="kivy.core.text.text_layout.layout_text"><code class="xref py py-func docutils literal notranslate"><span class="pre">layout_text()</span></code></a> append or create
-new <a class="reference internal" href="#kivy.core.text.text_layout.LayoutLine" title="kivy.core.text.text_layout.LayoutLine"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutLine</span></code></a> instances in <cite>lines</cite>.</p>
+<dt><cite>lines</cite>: list</dt><dd><p>список экземпляров <a class="reference internal" href="#kivy.core.text.text_layout.LayoutLine" title="kivy.core.text.text_layout.LayoutLine"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutLine</span></code></a>, каждый из которых описывает строку
+текста. Вызовы <a class="reference internal" href="#kivy.core.text.text_layout.layout_text" title="kivy.core.text.text_layout.layout_text"><code class="xref py py-func docutils literal notranslate"><span class="pre">layout_text()</span></code></a> добавляют или создают новые
+экземпляры <a class="reference internal" href="#kivy.core.text.text_layout.LayoutLine" title="kivy.core.text.text_layout.LayoutLine"><code class="xref py py-class docutils literal notranslate"><span class="pre">LayoutLine</span></code></a> в <cite>lines</cite>.</p>
 </dd>
-<dt><cite>size</cite>: 2-tuple of ints</dt><dd><p>the size of the laid out text so far. Upon first call it should
-probably be (0, 0), afterwards it should be the (w, h) returned
-by this function in a previous call. When size reaches the
-constraining size, <cite>text_size</cite>, we stop adding lines and return
-True for the clipped parameter. size includes the x and y padding.</p>
+<dt><cite>size</cite>: кортеж из 2 целых чисел</dt><dd><p>размер размещенного текста до настоящего момента. При первом вызове, вероятно,
+должен быть (0, 0), после этого это должно быть (w, h), возвращенное этой функцией при
+предыдущем вызове. Когда размер достигает ограничительного размера, <cite>text_size</cite>, мы
+перестаем добавлять строки и возвращаем True для параметра <cite>clipped</cite>. В размер
+включены отступы по x и y.</p>
 </dd>
-<dt><cite>text_size</cite>: 2-tuple of ints or None.</dt><dd><p>the size constraint on the laid out text. If either element is
-None, the text is not constrained in that dimension. For example,
-(None, 200) will constrain the height, including padding to 200,
-while the width is unconstrained. The first line, and the first
-character of a line is always returned, even if it exceeds the
-constraint. The value be changed between different calls.</p>
+<dt><cite>text_size</cite>: кортеж из 2 целых чисел или None.</dt><dd><p>ограничительный размер размещенного текста. Если хотя бы один из элементов равен
+None, текст не ограничивается в этом измерении. Например, (None, 200) ограничит высоту,
+включая отступы, до 200, а ширина не ограничивается. Первая строка и первый символ строки
+всегда возвращаются, даже если они превышают ограничение. Значение может изменяться между
+разными вызовами.</p>
 </dd>
-<dt><cite>options</cite>: dict</dt><dd><p>the label options of this <cite>text</cite>. The options are saved with each
-word allowing different words to have different options from
-successive calls.</p>
-<p>Note, <cite>options</cite> must include a <cite>space_width</cite> key with a value
-indicating the width of a space for that set of options.</p>
+<dt><cite>options</cite>: dict</dt><dd><p>опции метки этого <cite>text</cite>. Опции сохраняются с каждым словом, что позволяет
+разным словам иметь разные опции при последовательных вызовах.</p>
+<p>Обратите внимание, что в <cite>options</cite> должен включаться ключ <cite>space_width</cite> со значением,
+указывающим ширину пробела для этого набора опций.</p>
 </dd>
-<dt><cite>get_extents</cite>: callable</dt><dd><p>a function called with a string, which returns a tuple containing
-the width, height of the string.</p>
+<dt><cite>get_extents</cite>: callable</dt><dd><p>функция, вызываемая с строкой, которая возвращает кортеж, содержащий
+ширину и высоту строки.</p>
 </dd>
-<dt><cite>append_down</cite>: bool</dt><dd><p>Whether successive calls to the function appends lines before or
-after the existing lines. If True, they are appended to the last
-line and below it. If False, it’s appended at the first line and
-above. For example, if False, everything after the last
-newline in <cite>text</cite> is appended to the first line in lines.
-Everything before the last newline is inserted at the start of
-lines in same order as text; that is we do not invert the line
-order.</p>
-<p>This allows laying out from top to bottom until the constrained is
-reached, or from bottom to top until the constrained is reached.</p>
+<dt><cite>append_down</cite>: bool</dt><dd><p>Определяет, добавляются ли последующие вызовы функции строки перед
+или после существующих строк. Если True, они добавляются к последней
+строке и ниже нее. Если False, текст добавляется к первой строке и
+выше нее. Например, если False, то все, что находится после последнего
+символа новой строки в <cite>text</cite>, добавляется к первой строке в <cite>lines</cite>.
+Все, что находится перед последним символом новой строки, вставляется в начало
+<cite>lines</cite> в том же порядке, что и текст; порядок строк не изменяется.</p>
+<p>Это позволяет размещать текст сверху вниз до достижения ограничения или
+снизу вверх до достижения ограничения.</p>
 </dd>
-<dt><cite>complete</cite>: bool</dt><dd><p>whether this text complete lines. It use is that normally is
-strip in <cite>options</cite> is True, all leading and trailing spaces
-are removed from each line except from the last line (or first
-line if <cite>append_down</cite> is False) which only removes leading spaces.
-That’s because further text can still be appended to the last line
-so we cannot strip them. If <cite>complete</cite> is True, it indicates no
-further text is coming and all lines will be stripped.</p>
-<p>The function can also be called with <cite>text</cite> set to the empty string
-and <cite>complete</cite> set to True in order for the last (first) line to
-be stripped.</p>
+<dt><cite>complete</cite>: bool</dt><dd><p>определяет, завершают ли эти строки текст. Когда в <cite>options</cite> установлено
+значение strip в True, все ведущие и завершающие пробелы удаляются из каждой строки,
+за исключением последней строки (или первой строки, если <cite>append_down</cite> равен False), удаляются только ведущие пробелы.
+Это потому, что к последней строке все равно может быть добавлен дополнительный текст, поэтому мы не можем их удалять. Если <cite>complete</cite> равен True, это указывает, что больше текста не будет добавлено, и все строки будут обрезаны.</p>
+<p>Функцию также можно вызвать с <cite>text</cite>, установленным в пустую строку,
+и <cite>complete</cite>, установленным в True, чтобы обрезать последнюю (первую) строку.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>3-tuple, (w, h, clipped).
-w and h is the width and height of the text in lines so far and
-includes padding. This can be larger than <cite>text_size</cite>, e.g. if not even
-a single fitted, the first line would still be returned.
-<cite>clipped</cite> is True if not all the text has been added to lines because
-w, h reached the constrained size.</p>
+<dd class="field-even"><p>кортеж из 3 элементов: (w, h, clipped).
+w и h - это ширина и высота текста на данный момент и включают отступы.
+Они могут быть больше, чем <cite>text_size</cite>, например, если даже не одно слово
+не поместилось, будет возвращена только первая строка.
+<cite>clipped</cite> равен True, если весь текст не был добавлен в строки, потому что
+w, h достигли ограничивающего размера.</p>
 </dd>
 </dl>
-<p>Following is a simple example with no padding and no stripping:</p>
+<p>Ниже приведен простой пример без отступов и без удаления:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">kivy.core.text</span> <span class="kn">import</span> <span class="n">Label</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">kivy.core.text.text_layout</span> <span class="kn">import</span> <span class="n">layout_text</span>
 

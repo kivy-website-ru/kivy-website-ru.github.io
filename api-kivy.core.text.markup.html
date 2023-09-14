@@ -386,130 +386,110 @@
 </ul>
 </div>
             
-  <section id="module-kivy.core.text.markup">
-<span id="text-markup"></span><h1>Text Markup<a class="headerlink" href="#module-kivy.core.text.markup" title="Permalink to this headline">¶</a></h1>
+<section id="module-kivy.core.text.markup">
+<span id="text-markup"></span>
+<h1>Разметка текста<a class="headerlink" href="#module-kivy.core.text.markup" title="Ссылка на этот заголовок">¶</a></h1>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.1.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.1.0.</span></p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.10.1: </span>Added <cite>font_context</cite>, <cite>font_features</cite> and <cite>text_language</cite> (Pango only)</p>
+<p><span class="versionmodified changed">Изменено в версии 1.10.1: </span>Добавлены <cite>font_context</cite>, <cite>font_features</cite> и <cite>text_language</cite> (только Pango)</p>
 </div>
-<p>We provide a simple text-markup for inline text styling. The syntax look the
-same as the <a class="reference external" href="http://en.wikipedia.org/wiki/BBCode">BBCode</a>.</p>
-<p>A tag is defined as <code class="docutils literal notranslate"><span class="pre">[tag]</span></code>, and should have a corresponding
-<code class="docutils literal notranslate"><span class="pre">[/tag]</span></code> closing tag. For example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="n">Hello</span> <span class="p">[</span><span class="n">color</span><span class="o">=</span><span class="n">ff0000</span><span class="p">]</span><span class="n">world</span><span class="p">[</span><span class="o">/</span><span class="n">color</span><span class="p">][</span><span class="o">/</span><span class="n">b</span><span class="p">]</span>
+<p>Мы предоставляем простую разметку текста для стилизации встроенного текста. Синтаксис схож с <a class="reference external" href="http://en.wikipedia.org/wiki/BBCode">BBCode</a>.</p>
+<p>Тег определяется как <code class="docutils literal notranslate"><span class="pre">[тег]</span></code> и должен иметь соответствующий закрывающий тег <code class="docutils literal notranslate"><span class="pre">[/тег]</span></code>. Например:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">b</span><span class="p">]</span><span class="n">Привет</span> <span class="p">[</span><span class="n">color</span><span class="o">=</span><span class="n">ff0000</span><span class="p">]</span><span class="n">мир</span><span class="p">[</span><span class="o">/</span><span class="n">color</span><span class="p">][</span><span class="o">/</span><span class="n">b</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>The following tags are available:</p>
+<p>Доступны следующие теги:</p>
 <dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">[b][/b]</span></code></dt><dd><p>Activate bold text</p>
+<dt><code class="docutils literal notranslate"><span class="pre">[b][/b]</span></code></dt><dd><p>Активировать жирный текст</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">[i][/i]</span></code></dt><dd><p>Activate italic text</p>
+<dt><code class="docutils literal notranslate"><span class="pre">[i][/i]</span></code></dt><dd><p>Активировать курсивный текст</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">[u][/u]</span></code></dt><dd><p>Underlined text</p>
+<dt><code class="docutils literal notranslate"><span class="pre">[u][/u]</span></code></dt><dd><p>Подчеркнутый текст</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">[s][/s]</span></code></dt><dd><p>Strikethrough text</p>
+<dt><code class="docutils literal notranslate"><span class="pre">[s][/s]</span></code></dt><dd><p>Зачеркнутый текст</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">[font=&lt;str&gt;][/font]</span></code></dt><dd><p>Change the font (note: this refers to a TTF file or registered alias)</p>
+<dt><code class="docutils literal notranslate"><span class="pre">[font=&lt;str&gt;][/font]</span></code></dt><dd><p>Изменить шрифт (примечание: это относится к файлу TTF или зарегистрированному псевдониму)</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">[font_context=&lt;str&gt;][/font_context]</span></code></dt><dd><p>Change context for the font, use string value “none” for isolated context.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">[font_context=&lt;str&gt;][/font_context]</span></code></dt><dd><p>Изменить контекст для шрифта, используйте строковое значение "none" для изолированного контекста.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">[font_family=&lt;str&gt;][/font_family]</span></code></dt><dd><p>Font family to request for drawing. This is only valid when using a
-font context, and takes precedence over <cite>[font]</cite>. See
-<a class="reference internal" href="api-kivy.uix.label.html#kivy.uix.label.Label" title="kivy.uix.label.Label"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.uix.label.Label</span></code></a> for details.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">[font_family=&lt;str&gt;][/font_family]</span></code></dt><dd><p>Семейство шрифтов для запроса при отображении. Это действительно только при использовании контекста шрифта и имеет приоритет перед <cite>[font]</cite>. См. <a class="reference internal" href="api-kivy.uix.label.html#kivy.uix.label.Label" title="kivy.uix.label.Label"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.uix.label.Label</span></code></a> для подробностей.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">[font_features=&lt;str&gt;][/font_features]</span></code></dt><dd><p>OpenType font features, in CSS format, this is passed straight
-through to Pango. The effects of requesting a feature depends on loaded
-fonts, library versions, etc. Pango only, requires v1.38 or later.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">[font_features=&lt;str&gt;][/font_features]</span></code></dt><dd><p>Особенности шрифта OpenType в формате CSS, они передаются напрямую в Pango. Эффекты от запроса функции зависят от загруженных шрифтов, версий библиотек и т. д. Только Pango, требуется версия 1.38 или более поздняя.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">[size=&lt;size&gt;][/size]</span></code></dt><dd><p>Change the font size. &lt;size&gt; should be an integer, optionally with a
-unit (i.e. <code class="docutils literal notranslate"><span class="pre">16sp</span></code>)</p>
+<dt><code class="docutils literal notranslate"><span class="pre">[size=&lt;size&gt;][/size]</span></code></dt><dd><p>Изменить размер шрифта. &lt;size&gt; должен быть целым числом, при необходимости с единицей измерения (например, <code class="docutils literal notranslate"><span class="pre">16sp</span></code>)</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">[color=#&lt;color&gt;][/color]</span></code></dt><dd><p>Change the text color</p>
+<dt><code class="docutils literal notranslate"><span class="pre">[color=#&lt;color&gt;][/color]</span></code></dt><dd><p>Изменить цвет текста</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">[ref=&lt;str&gt;][/ref]</span></code></dt><dd><p>Add an interactive zone. The reference + all the word box inside the
-reference will be available in <a class="reference internal" href="#kivy.core.text.markup.MarkupLabel.refs" title="kivy.core.text.markup.MarkupLabel.refs"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MarkupLabel.refs</span></code></a></p>
+<dt><code class="docutils literal notranslate"><span class="pre">[ref=&lt;str&gt;][/ref]</span></code></dt><dd><p>Добавить интерактивную зону. Ссылка + весь текст внутри ссылки будут доступны в <a class="reference internal" href="#kivy.core.text.markup.MarkupLabel.refs" title="kivy.core.text.markup.MarkupLabel.refs"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MarkupLabel.refs</span></code></a></p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">[anchor=&lt;str&gt;]</span></code></dt><dd><p>Put an anchor in the text. You can get the position of your anchor within
-the text with <a class="reference internal" href="#kivy.core.text.markup.MarkupLabel.anchors" title="kivy.core.text.markup.MarkupLabel.anchors"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MarkupLabel.anchors</span></code></a></p>
+<dt><code class="docutils literal notranslate"><span class="pre">[anchor=&lt;str&gt;]</span></code></dt><dd><p>Установить якорь в тексте. Вы можете получить позицию вашего якоря в тексте с помощью <a class="reference internal" href="#kivy.core.text.markup.MarkupLabel.anchors" title="kivy.core.text.markup.MarkupLabel.anchors"><code class="xref py py-attr docutils literal notranslate"><span class="pre">MarkupLabel.anchors</span></code></a></p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">[sub][/sub]</span></code></dt><dd><p>Display the text at a subscript position relative to the text before it.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">[sub][/sub]</span></code></dt><dd><p>Отобразить текст в нижнем индексе относительно текста перед ним.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">[sup][/sup]</span></code></dt><dd><p>Display the text at a superscript position relative to the text before it.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">[sup][/sup]</span></code></dt><dd><p>Отобразить текст в верхнем индексе относительно текста перед ним.</p>
 </dd>
-<dt><code class="docutils literal notranslate"><span class="pre">[text_language=&lt;str&gt;][/text_language]</span></code></dt><dd><p>Language of the text, this is an RFC-3066 format language tag (as string),
-for example “en_US”, “zh_CN”, “fr” or “ja”. This can impact font selection,
-metrics and rendering. For example, the same bytes of text can look
-different for <cite>ur</cite> and <cite>ar</cite> languages, though both use Arabic script.
-Use the string <cite>‘none’</cite> to revert to locale detection. Pango only.</p>
+<dt><code class="docutils literal notranslate"><span class="pre">[text_language=&lt;str&gt;][/text_language]</span></code></dt><dd><p>Язык текста, это RFC-3066 формат языковой метки (в виде строки), например "en_US", "zh_CN", "fr" или "ja". Это может повлиять на выбор шрифта, метрики и отображение. Например, одни и те же байты текста могут выглядеть по-разному для языков <cite>ur</cite> и <cite>ar</cite>, хотя оба используют арабский алфавит. Используйте строку <cite>'none'</cite> для возврата к определению локали. Только Pango.</p>
 </dd>
 </dl>
-<p>If you need to escape the markup from the current text, use
-<a class="reference internal" href="api-kivy.utils.html#kivy.utils.escape_markup" title="kivy.utils.escape_markup"><code class="xref py py-func docutils literal notranslate"><span class="pre">kivy.utils.escape_markup()</span></code></a>.</p>
+<p>Если вам нужно экранировать разметку в текущем тексте, используйте <a class="reference internal" href="api-kivy.utils.html#kivy.utils.escape_markup" title="kivy.utils.escape_markup"><code class="xref py py-func docutils literal notranslate"><span class="pre">kivy.utils.escape_markup()</span></code></a>.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.core.text.markup.MarkupLabel">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.core.text.markup.</span></span><span class="sig-name descname"><span class="pre">MarkupLabel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">largs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/text/markup.html#MarkupLabel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.text.markup.MarkupLabel" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.core.text.html#kivy.core.text.LabelBase" title="kivy.core.text.LabelBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.core.text.LabelBase</span></code></a></p>
-<p>Markup text label.</p>
-<p>See module documentation for more information.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.core.text.markup.</span></span><span class="sig-name descname"><span class="pre">MarkupLabel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">largs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/text/markup.html#MarkupLabel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.text.markup.MarkupLabel" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="api-kivy.core.text.html#kivy.core.text.LabelBase" title="kivy.core.text.LabelBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.core.text.LabelBase</span></code></a></p>
+<dd><p> Метка разметки текста.</p>
+<p>См. документацию модуля для получения дополнительной информации.</p>
 <dl class="py property">
 <dt class="sig sig-object py" id="kivy.core.text.markup.MarkupLabel.anchors">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">anchors</span></span><a class="headerlink" href="#kivy.core.text.markup.MarkupLabel.anchors" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the position of all the <code class="docutils literal notranslate"><span class="pre">[anchor=...]</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="s1">&#39;anchorA&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="s1">&#39;anchorB&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="o">...</span> <span class="p">}</span>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">anchors</span></span><a class="headerlink" href="#kivy.core.text.markup.MarkupLabel.anchors" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получить позицию всех <code class="docutils literal notranslate"><span class="pre">[anchor=...]</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="s1">'anchorA'</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="s1">'anchorB'</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span> <span class="o">...</span> <span class="p">}</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="kivy.core.text.markup.MarkupLabel.markup">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">markup</span></span><a class="headerlink" href="#kivy.core.text.markup.MarkupLabel.markup" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the text with all the markup split:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">MarkupLabel</span><span class="p">(</span><span class="s1">&#39;[b]Hello world[/b]&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">markup</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="s1">&#39;[b]&#39;</span><span class="p">,</span> <span class="s1">&#39;Hello world&#39;</span><span class="p">,</span> <span class="s1">&#39;[/b]&#39;</span><span class="p">)</span>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">markup</span></span><a class="headerlink" href="#kivy.core.text.markup.MarkupLabel.markup" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Вернуть текст со всей разметкой:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">MarkupLabel</span><span class="p">(</span><span class="s1">&#39;[b]Привет мир[/b]&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">markup</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">(</span><span class="s1">&#39;[b]&#39;</span><span class="p">,</span> <span class="s1">&#39;Привет мир&#39;</span><span class="p">,</span> <span class="s1">&#39;[/b]&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="kivy.core.text.markup.MarkupLabel.refs">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">refs</span></span><a class="headerlink" href="#kivy.core.text.markup.MarkupLabel.refs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the bounding box of all the <code class="docutils literal notranslate"><span class="pre">[ref=...]</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="s1">&#39;refA&#39;</span><span class="p">:</span> <span class="p">((</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">),</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">)),</span> <span class="o">...</span> <span class="p">}</span>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">refs</span></span><a class="headerlink" href="#kivy.core.text.markup.MarkupLabel.refs" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получить ограничивающий прямоугольник всех <code class="docutils literal notranslate"><span class="pre">[ref=...]</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span> <span class="s1">'refA'</span><span class="p">:</span> <span class="p">((</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">),</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">)),</span> <span class="o">...</span> <span class="p">}</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.core.text.markup.MarkupLabel.render">
-<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">real</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/text/markup.html#MarkupLabel.render"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.text.markup.MarkupLabel.render" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a tuple (width, height) to create the image
-with the user constraints. (width, height) includes the padding.</p>
+<span class="sig-name descname"><span class="pre">render</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">real</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/text/markup.html#MarkupLabel.render"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.text.markup.MarkupLabel.render" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Вернуть кортеж (ширина, высота) для создания изображения с учетом ограничений пользователя. (ширина, высота) включает отступы.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.core.text.markup.MarkupLabel.shorten_post">
-<span class="sig-name descname"><span class="pre">shorten_post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lines</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">margin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/text/markup.html#MarkupLabel.shorten_post"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.text.markup.MarkupLabel.shorten_post" title="Permalink to this definition">¶</a></dt>
-<dd><p>Shortens the text to a single line according to the label options.</p>
-<p>This function operates on a text that has already been laid out because
-for markup, parts of text can have different size and options.</p>
-<p>If <code class="xref py py-attr docutils literal notranslate"><span class="pre">text_size</span></code> [0] is None, the lines are returned unchanged.
-Otherwise, the lines are converted to a single line fitting within the
-constrained width, <code class="xref py py-attr docutils literal notranslate"><span class="pre">text_size</span></code> [0].</p>
+<span class="sig-name descname"><span class="pre">shorten_post</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">lines</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">margin</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">2</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/text/markup.html#MarkupLabel.shorten_post"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.text.markup.MarkupLabel.shorten_post" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Укорачивает текст до одной строки в соответствии с параметрами метки.</p>
+<p>Эта функция работает с текстом, который уже был размещен, потому что для разметки части текста могут иметь разный размер и опции.</p>
+<p>Если <code class="xref py py-attr docutils literal notranslate"><span class="pre">text_size</span></code> [0] равно None, строки возвращаются без изменений.
+В противном случае строки преобразуются в одну строку, помещающуюся в ограниченную ширину <code class="xref py py-attr docutils literal notranslate"><span class="pre">text_size</span></code> [0].</p>
 <dl class="field-list simple">
-<dt class="field-odd">Params</dt>
-<dd class="field-odd"><p><cite>lines</cite>: list of <cite>LayoutLine</cite> instances describing the text.
-<cite>w</cite>: int, the width of the text in lines, including padding.
-<cite>h</cite>: int, the height of the text in lines, including padding.
-<cite>margin</cite> int, the additional space left on the sides. This is in
-addition to <code class="xref py py-attr docutils literal notranslate"><span class="pre">padding_x</span></code>.</p>
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><cite>lines</cite>: список экземпляров <cite>LayoutLine</cite>, описывающих текст.
+<cite>w</cite>: int, ширина текста в строках, включая отступы.
+<cite>h</cite>: int, высота текста в строках, включая отступы.
+<cite>margin</cite> int, дополнительное пространство слева и справа. Это в дополнение к <code class="xref py py-attr docutils literal notranslate"><span class="pre">padding_x</span></code>.</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>3-tuple of (xw, h, lines), where w, and h is similar to the input
-and contains the resulting width / height of the text, including
-padding. lines, is a list containing a single <cite>LayoutLine</cite>, which
-contains the words for the line.</p>
+<dd class="field-even"><p>3-кортеж (xw, h, lines), где w и h аналогичны входным данным и содержат итоговую ширину / высоту текста, включая отступы. lines - это список, содержащий одну <cite>LayoutLine</cite>, который содержит слова для строки.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -519,6 +499,7 @@ contains the words for the line.</p>
 <div class="toctree-wrapper compound">
 </div>
 </section>
+
 
 
             <div class="footerlinks">
