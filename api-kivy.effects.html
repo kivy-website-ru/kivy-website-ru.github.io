@@ -386,43 +386,44 @@
 </ul>
 </div>
             
-  <section id="module-kivy.effects">
-<span id="effects"></span><h1>Effects<a class="headerlink" href="#module-kivy.effects" title="Permalink to this headline">¶</a></h1>
+<section id="module-kivy.effects">
+<span id="effects"></span><h1>Эффекты<a class="headerlink" href="#module-kivy.effects" title="Ссылка на данный раздел">¶</a></h1>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.7.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.7.0.</span></p>
 </div>
-<p>Everything starts with the <a class="reference internal" href="api-kivy.effects.kinetic.html#kivy.effects.kinetic.KineticEffect" title="kivy.effects.kinetic.KineticEffect"><code class="xref py py-class docutils literal notranslate"><span class="pre">KineticEffect</span></code></a>, the base class for
-computing velocity out of a movement.</p>
-<p>This base class is used to implement the <a class="reference internal" href="api-kivy.effects.scroll.html#kivy.effects.scroll.ScrollEffect" title="kivy.effects.scroll.ScrollEffect"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScrollEffect</span></code></a>, a base
-class used for our <a class="reference internal" href="api-kivy.uix.scrollview.html#kivy.uix.scrollview.ScrollView" title="kivy.uix.scrollview.ScrollView"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScrollView</span></code></a> widget effect.
-We have multiple implementations:</p>
+<p>Всё начинается с <a class="reference internal" href="api-kivy.effects.kinetic.html#kivy.effects.kinetic.KineticEffect" title="kivy.effects.kinetic.KineticEffect"><code class="xref py py-class docutils literal notranslate"><span class="pre">KineticEffect</span></code></a>, базового класса для
+расчета скорости на основе движения.</p>
+<p>Этот базовый класс используется для реализации <a class="reference internal" href="api-kivy.effects.scroll.html#kivy.effects.scroll.ScrollEffect" title="kivy.effects.scroll.ScrollEffect"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScrollEffect</span></code></a>, базового
+класса, используемого для эффектов нашего виджета <a class="reference internal" href="api-kivy.uix.scrollview.html#kivy.uix.scrollview.ScrollView" title="kivy.uix.scrollview.ScrollView"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScrollView</span></code></a>.
+У нас есть несколько реализаций:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="api-kivy.effects.scroll.html#kivy.effects.scroll.ScrollEffect" title="kivy.effects.scroll.ScrollEffect"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScrollEffect</span></code></a>: base class used for implementing
-an effect. It only calculates the scrolling and the overscroll.</p></li>
-<li><p><a class="reference internal" href="api-kivy.effects.dampedscroll.html#kivy.effects.dampedscroll.DampedScrollEffect" title="kivy.effects.dampedscroll.DampedScrollEffect"><code class="xref py py-class docutils literal notranslate"><span class="pre">DampedScrollEffect</span></code></a>: uses the overscroll
-information to allow the user to drag more than expected. Once the user stops
-the drag, the position is returned to one of the bounds.</p></li>
-<li><p><a class="reference internal" href="api-kivy.effects.opacityscroll.html#kivy.effects.opacityscroll.OpacityScrollEffect" title="kivy.effects.opacityscroll.OpacityScrollEffect"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpacityScrollEffect</span></code></a>: uses the overscroll
-information to reduce the opacity of the scrollview widget. When the user
-stops the drag, the opacity is set back to 1.</p></li>
+<li><p><a class="reference internal" href="api-kivy.effects.scroll.html#kivy.effects.scroll.ScrollEffect" title="kivy.effects.scroll.ScrollEffect"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScrollEffect</span></code></a>: базовый класс для реализации
+эффекта. Он только рассчитывает прокрутку и перепрокрутку.</p></li>
+<li><p><a class="reference internal" href="api-kivy.effects.dampedscroll.html#kivy.effects.dampedscroll.DampedScrollEffect" title="kivy.effects.dampedscroll.DampedScrollEffect"><code class="xref py py-class docutils literal notranslate"><span class="pre">DampedScrollEffect</span></code></a>: использует информацию о перепрокрутке,
+чтобы позволить пользователю перетаскивать больше, чем ожидалось. Как только пользователь останавливает
+перетаскивание, позиция возвращается к одной из границ.</p></li>
+<li><p><a class="reference internal" href="api-kivy.effects.opacityscroll.html#kivy.effects.opacityscroll.OpacityScrollEffect" title="kivy.effects.opacityscroll.OpacityScrollEffect"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpacityScrollEffect</span></code></a>: использует информацию о перепрокрутке,
+чтобы уменьшить непрозрачность виджета scrollview. Когда пользователь
+останавливает перетаскивание, непрозрачность возвращается к 1.</p></li>
 </ul>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="api-kivy.effects.dampedscroll.html">Damped scroll effect</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="api-kivy.effects.dampedscroll.html">Эффект затухающей прокрутки</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api-kivy.effects.kinetic.html">Kinetic effect</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="api-kivy.effects.kinetic.html">Кинетический эффект</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api-kivy.effects.opacityscroll.html">Opacity scroll effect</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="api-kivy.effects.opacityscroll.html">Эффект непрозрачной прокрутки</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api-kivy.effects.scroll.html">Scroll effect</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="api-kivy.effects.scroll.html">Эффект прокрутки</a><ul class="simple">
 </ul>
 </li>
 </ul>
 </div>
 </section>
+
 
 
             <div class="footerlinks">

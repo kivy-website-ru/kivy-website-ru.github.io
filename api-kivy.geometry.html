@@ -386,65 +386,67 @@
 </ul>
 </div>
             
-  <section id="module-kivy.geometry">
-<span id="geometry-utilities"></span><h1>Geometry utilities<a class="headerlink" href="#module-kivy.geometry" title="Permalink to this headline">¶</a></h1>
-<p>This module contains some helper functions for geometric calculations.</p>
+ <section id="module-kivy.geometry">
+<span id="geometry-utilities"></span>
+<h1>Утилиты геометрии<a class="headerlink" href="#module-kivy.geometry" title="Ссылка на данный заголовок">¶</a></h1>
+<p>Этот модуль содержит некоторые вспомогательные функции для геометрических вычислений.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="kivy.geometry.circumcircle">
-<span class="sig-prename descclassname"><span class="pre">kivy.geometry.</span></span><span class="sig-name descname"><span class="pre">circumcircle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/geometry.html#circumcircle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.geometry.circumcircle" title="Permalink to this definition">¶</a></dt>
-<dd><p>Computes the circumcircle of a triangle defined by a, b, c.
-See: <a class="reference external" href="http://en.wikipedia.org/wiki/Circumscribed_circle">http://en.wikipedia.org/wiki/Circumscribed_circle</a></p>
+<span class="sig-prename descclassname"><span class="pre">kivy.geometry.</span></span><span class="sig-name descname"><span class="pre">circumcircle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/geometry.html#circumcircle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.geometry.circumcircle" title="Ссылка на данное определение">¶</a></dt>
+<dd><p>Вычисляет описанную окружность треугольника, заданного точками a, b, c.
+См.: <a class="reference external" href="http://en.wikipedia.org/wiki/Circumscribed_circle">http://en.wikipedia.org/wiki/Circumscribed_circle</a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><cite>a</cite>: iterable containing at least 2 values (for x and y)</dt><dd><p>The 1st point of the triangle.</p>
+<dt><cite>a</cite>: итерируемый объект, содержащий по крайней мере 2 значения (для x и y)</dt><dd><p>Первая точка треугольника.</p>
 </dd>
-<dt><cite>b</cite>: iterable containing at least 2 values (for x and y)</dt><dd><p>The 2nd point of the triangle.</p>
+<dt><cite>b</cite>: итерируемый объект, содержащий по крайней мере 2 значения (для x и y)</dt><dd><p>Вторая точка треугольника.</p>
 </dd>
-<dt><cite>c</cite>: iterable containing at least 2 values (for x and y)</dt><dd><p>The 3rd point of the triangle.</p>
+<dt><cite>c</cite>: итерируемый объект, содержащий по крайней мере 2 значения (для x и y)</dt><dd><p>Третья точка треугольника.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Return</dt>
 <dd class="field-even"><dl class="simple">
-<dt>A tuple that defines the circle :</dt><dd><ul class="simple">
-<li><p>The first element in the returned tuple is the center as (x, y)</p></li>
-<li><p>The second is the radius (float)</p></li>
+<dt>Кортеж, определяющий окружность:</dt><dd><ul class="simple">
+<li><p>Первый элемент кортежа - центр окружности как (x, y)</p></li>
+<li><p>Второй - радиус (число с плавающей запятой)</p></li>
 </ul>
 </dd>
 </dl>
 </dd>
 </dl>
-</dd></dl>
+</dd>
+</dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="kivy.geometry.minimum_bounding_circle">
-<span class="sig-prename descclassname"><span class="pre">kivy.geometry.</span></span><span class="sig-name descname"><span class="pre">minimum_bounding_circle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/geometry.html#minimum_bounding_circle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.geometry.minimum_bounding_circle" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the minimum bounding circle for a set of points.</p>
-<p>For a description of the problem being solved, see the <a class="reference external" href="http://en.wikipedia.org/wiki/Smallest_circle_problem">Smallest Circle
-Problem</a>.</p>
-<p>The function uses Applet’s Algorithm, the runtime is <code class="docutils literal notranslate"><span class="pre">O(h^3,</span> <span class="pre">*n)</span></code>,
-where h is the number of points in the convex hull of the set of points.
-<strong>But</strong> it runs in linear time in almost all real world cases.
-See: <a class="reference external" href="http://tinyurl.com/6e4n5yb">http://tinyurl.com/6e4n5yb</a></p>
+<span class="sig-prename descclassname"><span class="pre">kivy.geometry.</span></span><span class="sig-name descname"><span class="pre">minimum_bounding_circle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/geometry.html#minimum_bounding_circle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.geometry.minimum_bounding_circle" title="Ссылка на данное определение">¶</a></dt>
+<dd><p>Возвращает минимальную описывающую окружность для заданного набора точек.</p>
+<p>Для описания решаемой проблемы см. <a class="reference external" href="http://en.wikipedia.org/wiki/Smallest_circle_problem">Задача о наименьшей окружности</a>.</p>
+<p>Функция использует алгоритм Applet, время выполнения <code class="docutils literal notranslate"><span class="pre">O(h^3,</span> <span class="pre">*n)</span></code>,
+где h - количество точек в выпуклой оболочке заданного набора точек.
+<strong>Но</strong> она выполняется за линейное время в большинстве случаев в реальном мире.
+См.: <a class="reference external" href="http://tinyurl.com/6e4n5yb">http://tinyurl.com/6e4n5yb</a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><cite>points</cite>: iterable</dt><dd><p>A list of points (2 tuple with x,y coordinates)</p>
+<dt><cite>points</cite>: итерируемый объект</dt><dd><p>Список точек (кортежи из 2 значений с координатами x и y)</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Return</dt>
 <dd class="field-even"><dl class="simple">
-<dt>A tuple that defines the circle:</dt><dd><ul class="simple">
-<li><p>The first element in the returned tuple is the center (x, y)</p></li>
-<li><p>The second the radius (float)</p></li>
+<dt>Кортеж, определяющий окружность:</dt><dd><ul class="simple">
+<li><p>Первый элемент кортежа - центр (x, y)</p></li>
+<li><p>Второй - радиус (число с плавающей запятой)</p></li>
 </ul>
 </dd>
 </dl>
 </dd>
 </dl>
-</dd></dl>
+</dd>
+</dl>
 
 <div class="toctree-wrapper compound">
 </div>

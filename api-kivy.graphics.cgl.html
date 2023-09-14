@@ -386,50 +386,51 @@
 </ul>
 </div>
             
-  <section id="module-kivy.graphics.cgl">
-<span id="cgl-standard-c-interface-for-opengl"></span><h1>CGL: standard C interface for OpenGL<a class="headerlink" href="#module-kivy.graphics.cgl" title="Permalink to this headline">¶</a></h1>
-<p>Kivy uses OpenGL and therefore requires a backend that provides it.
-The backend used is controlled through the <code class="docutils literal notranslate"><span class="pre">USE_OPENGL_MOCK</span></code> and <code class="docutils literal notranslate"><span class="pre">USE_SDL2</span></code>
-compile-time variables and through the <code class="docutils literal notranslate"><span class="pre">KIVY_GL_BACKEND</span></code> runtime
-environmental variable.</p>
-<p>Currently, OpenGL is used through direct linking (gl/glew), sdl2,
-or by mocking it. Setting <code class="docutils literal notranslate"><span class="pre">USE_OPENGL_MOCK</span></code> disables gl/glew.
-Similarly, setting <code class="docutils literal notranslate"><span class="pre">USE_SDL2</span></code> to <code class="docutils literal notranslate"><span class="pre">0</span></code> will disable sdl2. Mocking
-is always available.</p>
-<p>At runtime the following backends are available and can be set using
+<section id="module-kivy.graphics.cgl">
+<span id="cgl-standard-c-interface-for-opengl"></span><h1>CGL: стандартный C-интерфейс для OpenGL<a class="headerlink" href="#module-kivy.graphics.cgl" title="Ссылка на этот заголовок">¶</a></h1>
+<p>Kivy использует OpenGL и, следовательно, требует бэкенда, который его предоставляет.
+Используемый бэкенд управляется через переменные времени компиляции <code class="docutils literal notranslate"><span class="pre">USE_OPENGL_MOCK</span></code> и <code class="docutils literal notranslate"><span class="pre">USE_SDL2</span></code>
+и средой выполнения <code class="docutils literal notranslate"><span class="pre">KIVY_GL_BACKEND</span></code>.</p>
+<p>В настоящее время OpenGL используется через прямую связь (gl/glew), sdl2
+или путем имитации. Установка <code class="docutils literal notranslate"><span class="pre">USE_OPENGL_MOCK</span></code> отключает gl/glew.
+Аналогично, установка <code class="docutils literal notranslate"><span class="pre">USE_SDL2</span></code> на <code class="docutils literal notranslate"><span class="pre">0</span></code> отключит sdl2. Имитация
+всегда доступна.</p>
+<p>На этапе выполнения доступны следующие бэкенды и их можно установить с помощью
 <code class="docutils literal notranslate"><span class="pre">KIVY_GL_BACKEND</span></code>:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">gl</span></code> – Available on unix (the default backend). Unavailable when
-<code class="docutils literal notranslate"><span class="pre">USE_OPENGL_MOCK=0</span></code>. Requires gl be installed.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">glew</span></code> – Available on Windows (the default backend). Unavailable when
-<code class="docutils literal notranslate"><span class="pre">USE_OPENGL_MOCK=0</span></code>. Requires glew be installed.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">sdl2</span></code> – Available on Windows/unix (the default when gl/glew is disabled).
-Unavailable when <code class="docutils literal notranslate"><span class="pre">USE_SDL2=0</span></code>. Requires <code class="docutils literal notranslate"><span class="pre">kivy_deps.sdl2</span></code> be installed.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">angle_sdl2</span></code> – Available on Windows with Python 3.5+.
-Unavailable when <code class="docutils literal notranslate"><span class="pre">USE_SDL2=0</span></code>. Requires <code class="docutils literal notranslate"><span class="pre">kivy_deps.sdl2</span></code> and
-<code class="docutils literal notranslate"><span class="pre">kivy_deps.angle</span></code> be installed.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">mock</span></code> – Always available. Doesn’t actually do anything.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gl</span></code> – доступен на unix (бэкенд по умолчанию). Недоступен, когда
+<code class="docutils literal notranslate"><span class="pre">USE_OPENGL_MOCK=0</span></code>. Требуется установленный gl.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">glew</span></code> – доступен в Windows (бэкенд по умолчанию). Недоступен, когда
+<code class="docutils literal notranslate"><span class="pre">USE_OPENGL_MOCK=0</span></code>. Требуется установленный glew.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sdl2</span></code> – доступен в Windows/unix (бэкенд по умолчанию, когда gl/glew отключен).
+Недоступен, когда <code class="docutils literal notranslate"><span class="pre">USE_SDL2=0</span></code>. Требуется установленный <code class="docutils literal notranslate"><span class="pre">kivy_deps.sdl2</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">angle_sdl2</span></code> – доступен в Windows с Python 3.5+.
+Недоступен, когда <code class="docutils literal notranslate"><span class="pre">USE_SDL2=0</span></code>. Требуется установленный <code class="docutils literal notranslate"><span class="pre">kivy_deps.sdl2</span></code> и
+<code class="docutils literal notranslate"><span class="pre">kivy_deps.angle</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mock</span></code> – всегда доступен. Фактически ничего не делает.</p></li>
 </ul>
-<p>Additionally, the following environmental runtime variables control the graphics
-system:</p>
+<p>Кроме того, следующие средовые переменные времени выполнения управляют графической
+системой:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">KIVY_GL_DEBUG</span></code> – Logs al gl calls when <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">KIVY_GRAPHICS</span></code> – Forces OpenGL ES2 when it is <code class="docutils literal notranslate"><span class="pre">gles</span></code>. OpenGL ES2 is always
-used on the android, ios, rpi, and mali OSs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KIVY_GL_DEBUG</span></code> – Ведет журнал всех вызовов gl, когда <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">KIVY_GRAPHICS</span></code> – Принуждает использовать OpenGL ES2, когда установлен <code class="docutils literal notranslate"><span class="pre">
+
+gles</span></code>. OpenGL ES2 всегда
+используется на android, ios, rpi и mali OSs.</p></li>
 </ul>
 <dl class="py function">
 <dt class="sig sig-object py" id="kivy.graphics.cgl.cgl_get_backend_name">
-<span class="sig-prename descclassname"><span class="pre">kivy.graphics.cgl.</span></span><span class="sig-name descname"><span class="pre">cgl_get_backend_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">allowed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignored</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.cgl.cgl_get_backend_name" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">kivy.graphics.cgl.</span></span><span class="sig-name descname"><span class="pre">cgl_get_backend_name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">allowed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignored</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.cgl.cgl_get_backend_name" title="Ссылка на это определение">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="kivy.graphics.cgl.cgl_get_initialized_backend_name">
-<span class="sig-prename descclassname"><span class="pre">kivy.graphics.cgl.</span></span><span class="sig-name descname"><span class="pre">cgl_get_initialized_backend_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.cgl.cgl_get_initialized_backend_name" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">kivy.graphics.cgl.</span></span><span class="sig-name descname"><span class="pre">cgl_get_initialized_backend_name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.cgl.cgl_get_initialized_backend_name" title="Ссылка на это определение">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="kivy.graphics.cgl.cgl_init">
-<span class="sig-prename descclassname"><span class="pre">kivy.graphics.cgl.</span></span><span class="sig-name descname"><span class="pre">cgl_init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">allowed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignored</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.cgl.cgl_init" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">kivy.graphics.cgl.</span></span><span class="sig-name descname"><span class="pre">cgl_init</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">allowed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ignored</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.cgl.cgl_init" title="Ссылка на это определение">¶</a></dt>
 <dd></dd></dl>
 
 <div class="toctree-wrapper compound">

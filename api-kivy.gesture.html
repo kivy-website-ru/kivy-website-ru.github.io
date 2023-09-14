@@ -386,154 +386,151 @@
 </ul>
 </div>
             
-  <section id="module-kivy.gesture">
-<span id="gesture-recognition"></span><h1>Gesture recognition<a class="headerlink" href="#module-kivy.gesture" title="Permalink to this headline">¶</a></h1>
-<p>This class allows you to easily create new
-gestures and compare them:</p>
+<section id="module-kivy.gesture">
+<span id="gesture-recognition"></span>
+<h1>Распознавание жестов<a class="headerlink" href="#module-kivy.gesture" title="Ссылка на данный заголовок">¶</a></h1>
+<p>Этот класс позволяет легко создавать новые жесты и сравнивать их:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kivy.gesture</span> <span class="kn">import</span> <span class="n">Gesture</span><span class="p">,</span> <span class="n">GestureDatabase</span>
 
-<span class="c1"># Create a gesture</span>
+<span class="c1"># Создать жест</span>
 <span class="n">g</span> <span class="o">=</span> <span class="n">Gesture</span><span class="p">()</span>
 <span class="n">g</span><span class="o">.</span><span class="n">add_stroke</span><span class="p">(</span><span class="n">point_list</span><span class="o">=</span><span class="p">[(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)])</span>
 <span class="n">g</span><span class="o">.</span><span class="n">normalize</span><span class="p">()</span>
 
-<span class="c1"># Add it to the database</span>
+<span class="c1"># Добавить его в базу данных</span>
 <span class="n">gdb</span> <span class="o">=</span> <span class="n">GestureDatabase</span><span class="p">()</span>
 <span class="n">gdb</span><span class="o">.</span><span class="n">add_gesture</span><span class="p">(</span><span class="n">g</span><span class="p">)</span>
 
-<span class="c1"># And for the next gesture, try to find it!</span>
+<span class="c1"># И для следующего жеста попробуйте найти его!</span>
 <span class="n">g2</span> <span class="o">=</span> <span class="n">Gesture</span><span class="p">()</span>
 <span class="c1"># ...</span>
 <span class="n">gdb</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">g2</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>You don’t really want to do this: it’s more of an example of how
-to construct gestures dynamically. Typically, you would
-need a lot more points, so it’s better to record gestures in a file and
-reload them to compare later. Look in the examples/gestures directory for
-an example of how to do that.</p>
+<p class="admonition-title">Предупреждение</p>
+<p>Вам действительно не стоит этого делать: это больше пример того, как
+создавать жесты динамически. Обычно вам понадобится гораздо больше точек, поэтому лучше записывать жесты в файл и
+загружать их для последующего сравнения. Посмотрите в каталоге examples/gestures пример того, как это сделать.</p>
 </div>
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.gesture.Gesture">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.gesture.</span></span><span class="sig-name descname"><span class="pre">Gesture</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#Gesture"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.Gesture" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">builtins.object</span></code></p>
-<p>A python implementation of a gesture recognition algorithm by
-Oleg Dopertchouk: <a class="reference external" href="http://www.gamedev.net/reference/articles/article2039.asp">http://www.gamedev.net/reference/articles/article2039.asp</a></p>
-<p>Implemented by Jeiel Aranal (<a class="reference external" href="mailto:chemikhazi&#37;&#52;&#48;gmail&#46;com">chemikhazi<span>&#64;</span>gmail<span>&#46;</span>com</a>),
-released into the public domain.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.gesture.</span></span><span class="sig-name descname"><span class="pre">Gesture</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tolerance</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#Gesture"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.Gesture" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Основа: <code class="xref py py-class docutils literal notranslate"><span class="pre">builtins.object</span></code></p>
+<p>Реализация алгоритма распознавания жестов на Python, разработанного
+Олегом Доперчуком: <a class="reference external" href="http://www.gamedev.net/reference/articles/article2039.asp">http://www.gamedev.net/reference/articles/article2039.asp</a></p>
+<p>Реализовано Жейелом Ареналом (<a class="reference external" href="mailto:chemikhazi&#37;&#52;&#48;gmail&#46;com">chemikhazi<span>&#64;</span>gmail<span>&#46;</span>com</a>),
+выпущено в общественное достояние.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.gesture.Gesture.add_stroke">
-<span class="sig-name descname"><span class="pre">add_stroke</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#Gesture.add_stroke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.Gesture.add_stroke" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds a stroke to the gesture and returns the Stroke instance.
-Optional point_list argument is a list of the mouse points for
-the stroke.</p>
+<span class="sig-name descname"><span class="pre">add_stroke</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#Gesture.add_stroke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.Gesture.add_stroke" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Добавляет ход к жесту и возвращает экземпляр Stroke.
+Необязательный аргумент point_list - это список точек мыши для
+хода.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.gesture.Gesture.dot_product">
-<span class="sig-name descname"><span class="pre">dot_product</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comparison_gesture</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#Gesture.dot_product"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.Gesture.dot_product" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculates the dot product of the gesture with another gesture.</p>
+<span class="sig-name descname"><span class="pre">dot_product</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comparison_gesture</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#Gesture.dot_product"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.Gesture.dot_product" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Вычисляет скалярное произведение жеста с другим жестом.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.gesture.Gesture.get_rigid_rotation">
-<span class="sig-name descname"><span class="pre">get_rigid_rotation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dstpts</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#Gesture.get_rigid_rotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.Gesture.get_rigid_rotation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Extract the rotation to apply to a group of points to minimize the
-distance to a second group of points. The two groups of points are
-assumed to be centered. This is a simple version that just picks
-an angle based on the first point of the gesture.</p>
+<span class="sig-name descname"><span class="pre">get_rigid_rotation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dstpts</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#Gesture.get_rigid_rotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.Gesture.get_rigid_rotation" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Извлекает вращение для применения к группе точек для минимизации
+расстояния до второй группы точек. Предполагается, что две группы точек
+находятся в центре. Это простая версия, которая просто выбирает
+угол на основе первой точки жеста.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.gesture.Gesture.get_score">
-<span class="sig-name descname"><span class="pre">get_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comparison_gesture</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation_invariant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#Gesture.get_score"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.Gesture.get_score" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the matching score of the gesture against another gesture.</p>
+<span class="sig-name descname"><span class="pre">get_score</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">comparison_gesture</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation_invariant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#Gesture.get_score"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.Gesture.get_score" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает оценку соответствия жеста другому жесту.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.gesture.Gesture.normalize">
-<span class="sig-name descname"><span class="pre">normalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stroke_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">32</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#Gesture.normalize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.Gesture.normalize" title="Permalink to this definition">¶</a></dt>
-<dd><p>Runs the gesture normalization algorithm and calculates the dot
-product with self.</p>
+<span class="sig-name descname"><span class="pre">normalize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stroke_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">32</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#Gesture.normalize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.Gesture.normalize" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Запускает алгоритм нормализации жеста и вычисляет скалярное
+произведение с самим собой.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.gesture.GestureDatabase">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.gesture.</span></span><span class="sig-name descname"><span class="pre">GestureDatabase</span></span><a class="reference internal" href="_modules/kivy/gesture.html#GestureDatabase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.GestureDatabase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">builtins.object</span></code></p>
-<p>Class to handle a gesture database.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.gesture.</span></span><span class="sig-name descname"><span class="pre">GestureDatabase</span></span><a class="reference internal" href="_modules/kivy/gesture.html#GestureDatabase"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.GestureDatabase" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <code class="xref py py-class docutils literal notranslate"><span class="pre">builtins.object</span></code></p>
+<p>Класс для работы с базой данных жестов.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.gesture.GestureDatabase.add_gesture">
-<span class="sig-name descname"><span class="pre">add_gesture</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gesture</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#GestureDatabase.add_gesture"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.GestureDatabase.add_gesture" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a new gesture to the database.</p>
+<span class="sig-name descname"><span class="pre">add_gesture</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gesture</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#GestureDatabase.add_gesture"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.GestureDatabase.add_gesture" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Добавить новый жест в базу данных.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.gesture.GestureDatabase.find">
-<span class="sig-name descname"><span class="pre">find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gesture</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minscore</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation_invariant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#GestureDatabase.find"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.GestureDatabase.find" title="Permalink to this definition">¶</a></dt>
-<dd><p>Find a matching gesture in the database.</p>
+<span class="sig-name descname"><span class="pre">find</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gesture</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">minscore</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.9</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation_invariant</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#GestureDatabase.find"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.GestureDatabase.find" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Найти соответствующий жест в базе данных.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.gesture.GestureDatabase.gesture_to_str">
-<span class="sig-name descname"><span class="pre">gesture_to_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gesture</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#GestureDatabase.gesture_to_str"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.GestureDatabase.gesture_to_str" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a gesture into a unique string.</p>
+<span class="sig-name descname"><span class="pre">gesture_to_str</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">gesture</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#GestureDatabase.gesture_to_str"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.GestureDatabase.gesture_to_str" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Преобразует жест в уникальную строку.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.gesture.GestureDatabase.str_to_gesture">
-<span class="sig-name descname"><span class="pre">str_to_gesture</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#GestureDatabase.str_to_gesture"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.GestureDatabase.str_to_gesture" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert a unique string to a gesture.</p>
+<span class="sig-name descname"><span class="pre">str_to_gesture</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#GestureDatabase.str_to_gesture"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.GestureDatabase.str_to_gesture" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Преобразует уникальную строку в жест.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.gesture.GestureStroke">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.gesture.</span></span><span class="sig-name descname"><span class="pre">GestureStroke</span></span><a class="reference internal" href="_modules/kivy/gesture.html#GestureStroke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.GestureStroke" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">builtins.object</span></code></p>
-<p>Gestures can be made up of multiple strokes.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.gesture.</span></span><span class="sig-name descname"><span class="pre">GestureStroke</span></span><a class="reference internal" href="_modules/kivy/gesture.html#GestureStroke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.GestureStroke" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <code class="xref py py-class docutils literal notranslate"><span class="pre">builtins.object</span></code></p>
+<p>Жесты могут состоять из нескольких ходов.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.gesture.GestureStroke.add_point">
-<span class="sig-name descname"><span class="pre">add_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">x_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">y_pos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#GestureStroke.add_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.GestureStroke.add_point" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds a point to the stroke.</p>
+<span class="sig-name descname"><span class="pre">add_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">x_pos</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">y_pos</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#GestureStroke.add_point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.GestureStroke.add_point" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Добавляет точку к ходу.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.gesture.GestureStroke.center_stroke">
-<span class="sig-name descname"><span class="pre">center_stroke</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset_y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#GestureStroke.center_stroke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.GestureStroke.center_stroke" title="Permalink to this definition">¶</a></dt>
-<dd><p>Centers the stroke by offsetting the points.</p>
+<span class="sig-name descname"><span class="pre">center_stroke</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset_x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">offset_y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#GestureStroke.center_stroke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.GestureStroke.center_stroke" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Центрирует ход путем смещения точек.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.gesture.GestureStroke.normalize_stroke">
-<span class="sig-name descname"><span class="pre">normalize_stroke</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">32</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#GestureStroke.normalize_stroke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.GestureStroke.normalize_stroke" title="Permalink to this definition">¶</a></dt>
-<dd><p>Normalizes strokes so that every stroke has a standard number of
-points. Returns True if stroke is normalized, False if it can’t be
-normalized. sample_points controls the resolution of the stroke.</p>
+<span class="sig-name descname"><span class="pre">normalize_stroke</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sample_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">32</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#GestureStroke.normalize_stroke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.GestureStroke.normalize_stroke" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Нормализует ходы так, чтобы у каждого хода было стандартное количество
+точек. Возвращает True, если ход нормализован, False, если его нельзя
+нормализовать. sample_points управляет разрешением хода.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.gesture.GestureStroke.points_distance">
-<span class="sig-name descname"><span class="pre">points_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GesturePoint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GesturePoint</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#GestureStroke.points_distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.GestureStroke.points_distance" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the distance between two GesturePoints.</p>
+<span class="sig-name descname"><span class="pre">points_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point1</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GesturePoint</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">point2</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">GesturePoint</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#GestureStroke.points_distance"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.GestureStroke.points_distance" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает расстояние между двумя точками GesturePoint.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.gesture.GestureStroke.scale_stroke">
-<span class="sig-name descname"><span class="pre">scale_stroke</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#GestureStroke.scale_stroke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.GestureStroke.scale_stroke" title="Permalink to this definition">¶</a></dt>
-<dd><p>Scales the stroke down by scale_factor.</p>
+<span class="sig-name descname"><span class="pre">scale_stroke</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">scale_factor</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#GestureStroke.scale_stroke"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.GestureStroke.scale_stroke" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Уменьшает ход на scale_factor.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.gesture.GestureStroke.stroke_length">
-<span class="sig-name descname"><span class="pre">stroke_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#GestureStroke.stroke_length"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.GestureStroke.stroke_length" title="Permalink to this definition">¶</a></dt>
-<dd><p>Finds the length of the stroke. If a point list is given,
-finds the length of that list.</p>
+<span class="sig-name descname"><span class="pre">stroke_length</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">point_list</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/gesture.html#GestureStroke.stroke_length"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.gesture.GestureStroke.stroke_length" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Находит длину хода. Если задан список точек, то находит длину этого списка.</p>
 </dd></dl>
 
 </dd></dl>

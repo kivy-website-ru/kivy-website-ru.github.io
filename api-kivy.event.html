@@ -386,68 +386,61 @@
 </ul>
 </div>
             
-  <section id="module-kivy.event">
-<span id="event-dispatcher"></span><h1>Event dispatcher<a class="headerlink" href="#module-kivy.event" title="Permalink to this headline">¶</a></h1>
-<p>All objects that produce events in Kivy implement the <a class="reference internal" href="#kivy.event.EventDispatcher" title="kivy.event.EventDispatcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">EventDispatcher</span></code></a>
-which provides a consistent interface for registering and manipulating event
-handlers.</p>
+<section id="module-kivy.event">
+<span id="event-dispatcher"></span><h1>Диспетчер событий<a class="headerlink" href="#module-kivy.event" title="Ссылка на данный раздел">¶</a></h1>
+<p>Все объекты, которые генерируют события в Kivy, реализуют <a class="reference internal" href="#kivy.event.EventDispatcher" title="kivy.event.EventDispatcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">EventDispatcher</span></code></a>, который предоставляет согласованный интерфейс для регистрации и управления обработчиками событий.</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.0.9: </span>Property discovery and methods have been moved from the
-<a class="reference internal" href="api-kivy.uix.widget.html#kivy.uix.widget.Widget" title="kivy.uix.widget.Widget"><code class="xref py py-class docutils literal notranslate"><span class="pre">Widget</span></code></a> to the <a class="reference internal" href="#kivy.event.EventDispatcher" title="kivy.event.EventDispatcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">EventDispatcher</span></code></a>.</p>
+<p><span class="versionmodified changed">Изменено в версии 1.0.9: </span>Обнаружение свойств и методов были перенесены из
+<a class="reference internal" href="api-kivy.uix.widget.html#kivy.uix.widget.Widget" title="kivy.uix.widget.Widget"><code class="xref py py-class docutils literal notranslate"><span class="pre">Widget</span></code></a> в <a class="reference internal" href="#kivy.event.EventDispatcher" title="kivy.event.EventDispatcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">EventDispatcher</span></code></a>.</p>
 </div>
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.event.EventDispatcher">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.event.</span></span><span class="sig-name descname"><span class="pre">EventDispatcher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#kivy.event.ObjectWithUid" title="kivy.event.ObjectWithUid"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.event.ObjectWithUid</span></code></a></p>
-<p>See the module docstring for usage.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.event.</span></span><span class="sig-name descname"><span class="pre">EventDispatcher</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="#kivy.event.ObjectWithUid" title="kivy.event.ObjectWithUid"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.event.ObjectWithUid</span></code></a></p>
+<p>См. описание модуля для использования.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.event.EventDispatcher.apply_property">
-<span class="sig-name descname"><span class="pre">apply_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.apply_property" title="Permalink to this definition">¶</a></dt>
-<dd><p>Adds properties at runtime to the class. The function accepts
-keyword arguments of the form <cite>prop_name=prop</cite>, where <cite>prop</cite> is a
-<code class="xref py py-class docutils literal notranslate"><span class="pre">Property</span></code> instance and <cite>prop_name</cite> is the name of the attribute
-of the property.</p>
+<span class="sig-name descname"><span class="pre">apply_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.apply_property" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Добавляет свойства в класс во время выполнения. Функция принимает
+именованные аргументы в форме <cite>имя_свойства=свойство</cite>, где <cite>свойство</cite> является
+экземпляром <code class="xref py py-class docutils literal notranslate"><span class="pre">Property</span></code>, а <cite>имя_свойства</cite> - это имя атрибута
+свойства.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.9.1.</span></p>
+<p><span class="versionmodified added">Новое в версии 1.9.1.</span></p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This method is not recommended for common usage because you should
-declare the properties in your class instead of using this method.</p>
+<p class="admonition-title">Предупреждение</p>
+<p>Этот метод не рекомендуется для общего использования, потому что вам следует
+объявлять свойства в своем классе, а не использовать этот метод.</p>
 </div>
-<p>For example:</p>
+<p>Например:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">wid</span><span class="o">.</span><span class="n">property</span><span class="p">(</span><span class="s1">&#39;sticks&#39;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 <span class="go">None</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">wid</span><span class="o">.</span><span class="n">apply_property</span><span class="p">(</span><span class="n">sticks</span><span class="o">=</span><span class="n">ObjectProperty</span><span class="p">(</span><span class="mi">55</span><span class="p">,</span> <span class="nb">max</span><span class="o">=</span><span class="mi">10</span><span class="p">))</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">wid</span><span class="o">.</span><span class="n">property</span><span class="p">(</span><span class="s1">&#39;sticks&#39;</span><span class="p">,</span> <span class="n">quiet</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 <span class="go">&lt;kivy.properties.ObjectProperty object at 0x04303130&gt;</span>
-</pre></div>
-</div>
-</dd></dl>
+</pre></div></div></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.event.EventDispatcher.bind">
-<span class="sig-name descname"><span class="pre">bind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.bind" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bind an event type or a property to a callback.</p>
-<p>Usage:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># With properties</span>
+<span class="sig-name descname"><span class="pre">bind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.bind" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Привязать тип события или свойство к обратному вызову.</p>
+<p>Использование:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Со свойствами</span>
 <span class="k">def</span> <span class="nf">my_x_callback</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;on object&#39;</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;x changed to&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;на объекте&#39;</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;x изменилось на&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 <span class="k">def</span> <span class="nf">my_width_callback</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;on object&#39;</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;width changed to&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;на объекте&#39;</span><span class="p">,</span> <span class="n">obj</span><span class="p">,</span> <span class="s1">&#39;width изменилось на&#39;</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">my_x_callback</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">my_width_callback</span><span class="p">)</span>
 
-<span class="c1"># With event</span>
+<span class="c1"># С событием</span>
 <span class="k">def</span> <span class="nf">my_press_callback</span><span class="p">(</span><span class="n">obj</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;event on object&#39;</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;событие на объекте&#39;</span><span class="p">,</span> <span class="n">obj</span><span class="p">)</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">on_press</span><span class="o">=</span><span class="n">my_press_callback</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>In general, property callbacks are called with 2 arguments (the
-object and the property’s new value) and event callbacks with
-one argument (the object). The example above illustrates this.</p>
-<p>The following example demonstrates various ways of using the bind
-function in a complete application:</p>
+<p>В общем случае обратные вызовы для свойств вызываются с 2 аргументами (объектом и новым значением свойства), а обратные вызовы событий - с одним аргументом (объектом). Приведенный выше пример иллюстрирует это.</p>
+<p>Следующий пример демонстрирует различные способы использования функции bind в полноценном приложении:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kivy.uix.boxlayout</span> <span class="kn">import</span> <span class="n">BoxLayout</span>
 <span class="kn">from</span> <span class="nn">kivy.app</span> <span class="kn">import</span> <span class="n">App</span>
 <span class="kn">from</span> <span class="nn">kivy.uix.button</span> <span class="kn">import</span> <span class="n">Button</span>
@@ -516,64 +509,53 @@ function in a complete application:</p>
     <span class="n">DemoApp</span><span class="p">()</span><span class="o">.</span><span class="n">run</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>If a callback has already been bound to a given event or property,
-it won’t be added again.</p>
-<p>When binding a method to an event or property, a
-<a class="reference internal" href="api-kivy.weakmethod.html#kivy.weakmethod.WeakMethod" title="kivy.weakmethod.WeakMethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.weakmethod.WeakMethod</span></code></a> of the callback is saved. That is,
-rather than storing a regular reference, it stores both a weak
-reference to the instance (see Python’s <code class="xref py py-class docutils literal notranslate"><span class="pre">weakref</span></code>).</p>
-<p>This has two consequences.</p>
-<p>The first is that the binding will not prevent garbage collection of
-the method’s object. The client must maintain a reference to the instance for
-the desired lifetime. The callback reference is silently removed if it
-becomes invalid.</p>
-<p>The second is that when using a decorated method e.g.:</p>
+<p>Если обратный вызов уже был связан с определенным событием или свойством, он не будет добавлен повторно.</p>
+
+<p>При привязке метода к событию или свойству сохраняется <a class="reference internal" href="api-kivy.weakmethod.html#kivy.weakmethod.WeakMethod" title="kivy.weakmethod.WeakMethod"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.weakmethod.WeakMethod</span></code></a> обратного вызова. Вместо обычной ссылки сохраняется слабая ссылка на экземпляр (см. <code class="xref py py-class docutils literal notranslate"><span class="pre">weakref</span></code> в Python).</p>
+
+<p>Это имеет два последствия.</p>
+
+<p>Первое - привязка не помешает сборке мусора для объекта метода. Клиент должен сохранить ссылку на экземпляр для желаемого времени жизни. Ссылка на обратный вызов молча удаляется, если она становится недействительной.</p>
+
+<p>Второе - при использовании декорированного метода, например:</p>
+
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nd">@my_decorator</span>
 <span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
     <span class="k">pass</span>
 </pre></div>
 </div>
-<p>the decorator (<code class="docutils literal notranslate"><span class="pre">my_decorator</span></code> here) must use <a class="reference external" href="https://docs.python.org/3/library/functools.html#functools.wraps">wraps</a> internally.</p>
+<p>Декоратор (<code class="docutils literal notranslate"><span class="pre">my_decorator</span></code> здесь) должен использовать <a class="reference external" href="https://docs.python.org/3/library/functools.html#functools.wraps">wraps</a> внутри.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.event.EventDispatcher.create_property">
-<span class="sig-name descname"><span class="pre">create_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unicode</span> <span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_value=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*largs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.create_property" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a new property at runtime.</p>
+<span class="sig-name descname"><span class="pre">create_property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unicode</span> <span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_value=True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">*largs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">**kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.create_property" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>Создать новое свойство во время выполнения.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.0.9.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.0.9.</span></p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.8.0: </span><cite>value</cite> parameter added, can be used to set the default value of the
-property. Also, the type of the value is used to specialize the
-created property.</p>
+<p><span class="versionmodified changed">Изменено в версии 1.8.0: </span>добавлен параметр <cite>value</cite>, который можно использовать для установки значения по умолчанию для свойства. Кроме того, тип значения используется для создания специализированного свойства.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.9.0: </span>In the past, if <cite>value</cite> was of type <cite>bool</cite>, a <cite>NumericProperty</cite>
-would be created, now a <cite>BooleanProperty</cite> is created.</p>
-<p>Also, now and positional and keyword arguments are passed to the
-property when created.</p>
+<p><span class="versionmodified changed">Изменено в версии 1.9.0: </span>Ранее, если <cite>value</cite> было типа <cite>bool</cite>, создавалось <cite>NumericProperty</cite>, теперь создается <cite>BooleanProperty</cite>.</p>
+<p>Также, теперь при создании свойства передаются как позиционные, так и ключевые аргументы.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 2.0.0: </span>default_value has been added.</p>
+<p><span class="versionmodified changed">Изменено в версии 2.0.0: </span>добавлен параметр <cite>default_value</cite>.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This function is designed for the Kivy language, don’t use it in
-your code. You should declare the property in your class instead of
-using this method.</p>
+<p class="admonition-title">Предупреждение</p>
+<p>Эта функция предназначена для Kivy, не используйте ее в своем коде. Вы должны объявить свойство в своем классе, а не использовать этот метод.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><cite>name</cite>: string</dt><dd><p>Name of the property</p>
+<dt><cite>name</cite>: строка</dt><dd><p>Имя свойства</p>
 </dd>
-<dt><cite>value</cite>: object, optional</dt><dd><p>Default value of the property. Type is also used for creating
-more appropriate property types. Defaults to None.</p>
+<dt><cite>value</cite>: объект, необязательно</dt><dd><p>Значение по умолчанию для свойства. Тип также используется для создания более подходящих типов свойств. По умолчанию - None.</p>
 </dd>
-<dt><cite>default_value</cite>: bool, True by default</dt><dd><p>If True, <cite>value</cite> will be the default for the property. Otherwise,
-the property will be initialized with the the property type’s
-normal default value, and subsequently set to <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p>
+<dt><cite>default_value</cite>: логическое, True по умолчанию</dt><dd><p>Если True, <cite>value</cite> будет значением по умолчанию для свойства. В противном случае свойство будет инициализировано нормальным значением по умолчанию для типа свойства и затем установлено в <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p>
 </dd>
 </dl>
 </dd>
@@ -589,80 +571,63 @@ normal default value, and subsequently set to <code class="docutils literal notr
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.event.EventDispatcher.dispatch">
-<span class="sig-name descname"><span class="pre">dispatch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_type</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">largs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.dispatch" title="Permalink to this definition">¶</a></dt>
-<dd><p>Dispatch an event across all the handlers added in bind/fbind().
-As soon as a handler returns True, the dispatching stops.</p>
-<p>The function collects all the positional and keyword arguments and
-passes them on to the handlers.</p>
+<span class="sig-name descname"><span class="pre">dispatch</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_type</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">largs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.dispatch" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Рассылка события по всем обработчикам, добавленным с помощью методов bind/fbind().
+Как только один из обработчиков вернет True, рассылка прекращается.</p>
+<p>Функция собирает все позиционные и ключевые аргументы и передает их обработчикам.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The handlers are called in reverse order than they were registered
-with <a class="reference internal" href="#kivy.event.EventDispatcher.bind" title="kivy.event.EventDispatcher.bind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bind()</span></code></a>.</p>
+<p class="admonition-title">Примечание</p>
+<p>Обработчики вызываются в обратном порядке, чем они были зарегистрированы с помощью <a class="reference internal" href="#kivy.event.EventDispatcher.bind" title="kivy.event.EventDispatcher.bind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bind()</span></code></a>.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><cite>event_type</cite>: str</dt><dd><p>the event name to dispatch.</p>
+<dt><cite>event_type</cite>: строка</dt><dd><p>имя события для рассылки.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.9.0: </span>Keyword arguments collection and forwarding was added. Before, only
-positional arguments would be collected and forwarded.</p>
+<p><span class="versionmodified changed">Изменено в версии 1.9.0: </span>Добавлена возможность сбора и передачи ключевых аргументов. Ранее собирались и передавались только позиционные аргументы.</p>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.event.EventDispatcher.dispatch_children">
-<span class="sig-name descname"><span class="pre">dispatch_children</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_type</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">largs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.dispatch_children" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">dispatch_children</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_type</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">largs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.dispatch_children" title="Ссылка на это определение">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.event.EventDispatcher.dispatch_generic">
-<span class="sig-name descname"><span class="pre">dispatch_generic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_type</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">largs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.dispatch_generic" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">dispatch_generic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_type</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">largs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.dispatch_generic" title="Ссылка на это определение">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.event.EventDispatcher.events">
-<span class="sig-name descname"><span class="pre">events</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.events" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return all the events in the class. Can be used for introspection.</p>
+<span class="sig-name descname"><span class="pre">events</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.events" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>Возвращает все события в классе. Может использоваться для интроспекции.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.8.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.8.0.</span></p>
 </div>
 </dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.event.EventDispatcher.fbind">
-<span class="sig-name descname"><span class="pre">fbind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">largs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.fbind" title="Permalink to this definition">¶</a></dt>
-<dd><p>A method for advanced, and typically faster binding. This method is
-different than <a class="reference internal" href="#kivy.event.EventDispatcher.bind" title="kivy.event.EventDispatcher.bind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bind()</span></code></a> and is meant for more advanced users and
-internal usage. It can be used as long as the following points are heeded.</p>
+<span class="sig-name descname"><span class="pre">fbind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">largs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.fbind" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>Метод для продвинутой и, как правило, более быстрой привязки. Этот метод отличается от <a class="reference internal" href="#kivy.event.EventDispatcher.bind" title="kivy.event.EventDispatcher.bind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bind()</span></code></a> и предназначен для более опытных пользователей и внутреннего использования. Его можно использовать, если соблюдаются следующие условия:</p>
 <ol class="arabic simple">
-<li><p>As opposed to <a class="reference internal" href="#kivy.event.EventDispatcher.bind" title="kivy.event.EventDispatcher.bind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bind()</span></code></a>, it does not check that this function and
-largs/kwargs has not been bound before to this name. So binding
-the same callback multiple times will just keep adding it.</p></li>
-<li><p>Although <a class="reference internal" href="#kivy.event.EventDispatcher.bind" title="kivy.event.EventDispatcher.bind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bind()</span></code></a> creates a <code class="xref py py-class docutils literal notranslate"><span class="pre">WeakMethod</span></code> of the callback when
-binding to an event or property, this method stores the callback
-directly, unless a keyword argument <cite>ref</cite> with value True is provided
-and then a <code class="xref py py-class docutils literal notranslate"><span class="pre">WeakMethod</span></code> is saved.
-This is useful when there’s no risk of a memory leak by storing the
-callback directly.</p></li>
-<li><p>This method returns a unique positive number if <cite>name</cite> was found and
-bound, and <cite>0</cite>, otherwise. It does not raise an exception, like
-<a class="reference internal" href="#kivy.event.EventDispatcher.bind" title="kivy.event.EventDispatcher.bind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bind()</span></code></a> if the property <cite>name</cite> is not found. If not zero,
-the uid returned is unique to this <cite>name</cite> and callback and can be
-used with <a class="reference internal" href="#kivy.event.EventDispatcher.unbind_uid" title="kivy.event.EventDispatcher.unbind_uid"><code class="xref py py-meth docutils literal notranslate"><span class="pre">unbind_uid()</span></code></a> for unbinding.</p></li>
+<li><p>В отличие от <a class="reference internal" href="#kivy.event.EventDispatcher.bind" title="kivy.event.EventDispatcher.bind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bind()</span></code></a>, он не проверяет, не была ли эта функция и аргументы largs/kwargs уже привязаны к этому имени. Поэтому повторное привязывание того же обратного вызова многократно добавит его.</p></li>
+<li><p>В отличие от <a class="reference internal" href="#kivy.event.EventDispatcher.bind" title="kivy.event.EventDispatcher.bind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bind()</span></code></a>, которая создает <code class="xref py py-class docutils literal notranslate"><span class="pre">WeakMethod</span></code> обратного вызова при привязке к событию или свойству, этот метод сохраняет обратный вызов непосредственно, если не передан ключевой аргумент <cite>ref</cite> со значением True, и затем сохраняется <code class="xref py py-class docutils literal notranslate"><span class="pre">WeakMethod</span></code>. Это полезно, когда нет риска утечки памяти при сохранении обратного вызова напрямую.</p></li>
+<li><p>Этот метод возвращает уникальное положительное число, если <cite>name</cite> было найдено и привязано, и 0 в противном случае. В отличие от <a class="reference internal" href="#kivy.event.EventDispatcher.bind" title="kivy.event.EventDispatcher.bind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bind()</span></code></a>, если свойство <cite>name</cite> не найдено, он не вызывает исключение. Если значение отлично от нуля, возвращаемый uid уникален для этого имени и обратного вызова и может использоваться с <a class="reference internal" href="#kivy.event.EventDispatcher.unbind_uid" title="kivy.event.EventDispatcher.unbind_uid"><code class="xref py py-meth docutils literal notranslate"><span class="pre">unbind_uid()</span></code></a> для отвязки.</p></li>
 </ol>
-<p>When binding a callback with largs and/or kwargs, <a class="reference internal" href="#kivy.event.EventDispatcher.funbind" title="kivy.event.EventDispatcher.funbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">funbind()</span></code></a>
-must be used for unbinding. If no largs and kwargs are provided,
-<a class="reference internal" href="#kivy.event.EventDispatcher.unbind" title="kivy.event.EventDispatcher.unbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">unbind()</span></code></a> may be used as well. <a class="reference internal" href="#kivy.event.EventDispatcher.unbind_uid" title="kivy.event.EventDispatcher.unbind_uid"><code class="xref py py-meth docutils literal notranslate"><span class="pre">unbind_uid()</span></code></a> can be used in
-either case.</p>
-<p>This method passes on any caught positional and/or keyword arguments to
-the callback, removing the need to call partial. When calling the
-callback the expended largs are passed on followed by instance/value
-(just instance for kwargs) followed by expended kwargs.</p>
-<p>Following is an example of usage similar to the example in
+<p>При привязке обратного вызова с использованием largs и/или kwargs, <a class="reference internal" href="#kivy.event.EventDispatcher.funbind" title="kivy.event.EventDispatcher.funbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">funbind()</span></code></a>
+должен использоваться для отвязки. Если не предоставлены largs и kwargs,
+можно также использовать <a class="reference internal" href="#kivy.event.EventDispatcher.unbind" title="kivy.event.EventDispatcher.unbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">unbind()</span></code></a>. <a class="reference internal" href="#kivy.event.EventDispatcher.unbind_uid" title="kivy.event.EventDispatcher.unbind_uid"><code class="xref py py-meth docutils literal notranslate"><span class="pre">unbind_uid()</span></code></a> может использоваться в
+любом из этих случаев.</p>
+<p>Этот метод передает все захваченные позиционные и/или ключевые аргументы
+в обратный вызов, устраняя необходимость вызывать partial. При вызове
+обратного вызова сначала передаются расширенные largs, за которыми следует экземпляр/значение
+(только экземпляр для kwargs), а затем расширенные kwargs.</p>
+<p>Ниже приведен пример использования, аналогичный примеру в
 <a class="reference internal" href="#kivy.event.EventDispatcher.bind" title="kivy.event.EventDispatcher.bind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bind()</span></code></a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">DemoBox</span><span class="p">(</span><span class="n">BoxLayout</span><span class="p">):</span>
 
@@ -715,151 +680,237 @@ callback the expended largs are passed on followed by instance/value
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Since the kv lang uses this method to bind, one has to implement
-this method, instead of <a class="reference internal" href="#kivy.event.EventDispatcher.bind" title="kivy.event.EventDispatcher.bind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bind()</span></code></a> when creating a non
-<a class="reference internal" href="#kivy.event.EventDispatcher" title="kivy.event.EventDispatcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">EventDispatcher</span></code></a> based class used with the kv lang. See
-<a class="reference internal" href="#kivy.event.Observable" title="kivy.event.Observable"><code class="xref py py-class docutils literal notranslate"><span class="pre">Observable</span></code></a> for an example.</p>
+    <p class="admonition-title">Примечание</p>
+    <p>Поскольку kv-язык использует этот метод для привязки, его необходимо реализовать,
+        вместо <a class="reference internal" href="#kivy.event.EventDispatcher.bind"
+            title="kivy.event.EventDispatcher.bind"><code class="xref py py-meth docutils literal notranslate"><span
+                    class="pre">bind()</span></code></a>, при создании класса,
+        не основанного на <a class="reference internal" href="#kivy.event.EventDispatcher"
+            title="kivy.event.EventDispatcher"><code class="xref py py-class docutils literal notranslate"><span
+                    class="pre">EventDispatcher</span></code></a>, используемого с kv-языком. См.
+        <a class="reference internal" href="#kivy.event.Observable" title="kivy.event.Observable"><code
+                class="xref py py-class docutils literal notranslate"><span class="pre">Observable</span></code></a> в качестве примера.</p>
 </div>
+
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.9.0.</span></p>
+    <p><span class="versionmodified added">Новое в версии 1.9.0.</span></p>
 </div>
+
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.9.1: </span>The <cite>ref</cite> keyword argument has been added.</p>
+    <p><span class="versionmodified changed">Изменено в версии 1.9.1: </span>Добавлен ключевой аргумент <cite>ref</cite>.</p>
 </div>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="kivy.event.EventDispatcher.funbind">
-<span class="sig-name descname"><span class="pre">funbind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">largs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.funbind" title="Permalink to this definition">¶</a></dt>
-<dd><p>Similar to <a class="reference internal" href="#kivy.event.EventDispatcher.fbind" title="kivy.event.EventDispatcher.fbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fbind()</span></code></a>.</p>
-<p>When unbinding, <a class="reference internal" href="#kivy.event.EventDispatcher.unbind" title="kivy.event.EventDispatcher.unbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">unbind()</span></code></a> will unbind all callbacks that match the
-callback, while this method will only unbind the first.</p>
-<p>To unbind, the same positional and keyword arguments passed to
-<a class="reference internal" href="#kivy.event.EventDispatcher.fbind" title="kivy.event.EventDispatcher.fbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fbind()</span></code></a> must be passed on to funbind.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>It is safe to use <a class="reference internal" href="#kivy.event.EventDispatcher.funbind" title="kivy.event.EventDispatcher.funbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">funbind()</span></code></a> to unbind a function bound with
-<a class="reference internal" href="#kivy.event.EventDispatcher.bind" title="kivy.event.EventDispatcher.bind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bind()</span></code></a> as long as no keyword and positional arguments are
-provided to <a class="reference internal" href="#kivy.event.EventDispatcher.funbind" title="kivy.event.EventDispatcher.funbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">funbind()</span></code></a>.</p>
-</div>
-<div class="versionadded">
-<p><span class="versionmodified added">New in version 1.9.0.</span></p>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="kivy.event.EventDispatcher.get_property_observers">
-<span class="sig-name descname"><span class="pre">get_property_observers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.get_property_observers" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a list of methods that are bound to the property/event
-passed as the <em>name</em> argument:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">widget_instance</span><span class="o">.</span><span class="n">get_property_observers</span><span class="p">(</span><span class="s1">&#39;on_release&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-<dl class="field-list">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><dl>
-<dt><cite>name</cite>: str</dt><dd><p>The name of the event or property.</p>
-</dd>
-<dt><cite>args</cite>: bool</dt><dd><p>Whether to return the bound args. To keep compatibility,
-only the callback functions and not their provided args will
-be returned in the list when <cite>args</cite> is False.</p>
-<p>If True, each element in the list is a 5-tuple of
-<cite>(callback, largs, kwargs, is_ref, uid)</cite>, where <cite>is_ref</cite> indicates
-whether <cite>callback</cite> is a weakref, and <cite>uid</cite> is the uid given by
-<a class="reference internal" href="#kivy.event.EventDispatcher.fbind" title="kivy.event.EventDispatcher.fbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fbind()</span></code></a>, or None if <a class="reference internal" href="#kivy.event.EventDispatcher.bind" title="kivy.event.EventDispatcher.bind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bind()</span></code></a> was used. Defaults to <cite>False</cite>.</p>
 </dd>
 </dl>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>The list of bound callbacks. See <cite>args</cite> for details.</p>
-</dd>
+
+<dl class="py method">
+    <dt class="sig sig-object py" id="kivy.event.EventDispatcher.funbind">
+        <span class="sig-name descname"><span class="pre">funbind</span></span><span class="sig-paren">(</span><em
+                class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span
+                    class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="o"><span
+                        class="pre">*</span></span><span class="n"><span class="pre">largs</span></span></em>, <em class="sig-param"><span
+                    class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span
+                class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.funbind"
+            title="Ссылка на это определение">¶</a></dt>
+    <dd>
+        <p>Аналогично <a class="reference internal" href="#kivy.event.EventDispatcher.fbind"
+                title="kivy.event.EventDispatcher.fbind"><code class="xref py py-meth docutils literal notranslate"><span
+                        class="pre">fbind()</span></code></a>.</p>
+        <p>При отвязке <a class="reference internal" href="#kivy.event.EventDispatcher.unbind"
+                title="kivy.event.EventDispatcher.unbind"><code class="xref py py-meth docutils literal notranslate"><span
+                        class="pre">unbind()</span></code></a> будет отвязывать все обратные вызовы, которые
+            совпадают с
+            обратным вызовом, в то время как этот метод будет отвязывать только первый.</p>
+        <p>Для отвязывания необходимо передать те же позиционные и ключевые аргументы, что и при
+            использовании <a class="reference internal" href="#kivy.event.EventDispatcher.fbind"
+                title="kivy.event.EventDispatcher.fbind"><code class="xref py py-meth docutils literal notranslate"><span
+                        class="pre">fbind()</span></code></a>.</p>
+        <div class="admonition note">
+            <p class="admonition-title">Примечание</p>
+            <p>Безопасно использовать <a class="reference internal" href="#kivy.event.EventDispatcher.funbind"
+                    title="kivy.event.EventDispatcher.funbind"><code class="xref py py-meth docutils literal notranslate"><span
+                            class="pre">funbind()</span></code></a> для отвязки функции, привязанной с
+                помощью <a class="reference internal" href="#kivy.event.EventDispatcher.bind"
+                    title="kivy.event.EventDispatcher.bind"><code class="xref py py-meth docutils literal notranslate"><span
+                            class="pre">bind()</span></code></a>,
+                до тех пор, пока не предоставлены ключевые и позиционные аргументы
+                <a class="reference internal" href="#kivy.event.EventDispatcher.funbind"
+                    title="kivy.event.EventDispatcher.funbind"><code class="xref py py-meth docutils literal notranslate"><span
+                            class="pre">funbind()</span></code></a>.</p>
+        </div>
+        <div class="versionadded">
+            <p><span class="versionmodified added">Новое в версии 1.9.0.</span></p>
+        </div>
+    </dd>
 </dl>
-<div class="versionadded">
-<p><span class="versionmodified added">New in version 1.8.0.</span></p>
-</div>
-<div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.9.0: </span><cite>args</cite> has been added.</p>
-</div>
-</dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="kivy.event.EventDispatcher.getter">
-<span class="sig-name descname"><span class="pre">getter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.getter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the getter of a property.</p>
-<div class="versionadded">
-<p><span class="versionmodified added">New in version 1.0.9.</span></p>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="kivy.event.EventDispatcher.is_event_type">
-<span class="sig-name descname"><span class="pre">is_event_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.is_event_type" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return True if the event_type is already registered.</p>
-<div class="versionadded">
-<p><span class="versionmodified added">New in version 1.0.4.</span></p>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="kivy.event.EventDispatcher.properties">
-<span class="sig-name descname"><span class="pre">properties</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink" href="#kivy.event.EventDispatcher.properties" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return all the properties in the class in a dictionary of
-key/property class. Can be used for introspection.</p>
-<div class="versionadded">
-<p><span class="versionmodified added">New in version 1.0.9.</span></p>
-</div>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="kivy.event.EventDispatcher.property">
-<span class="sig-name descname"><span class="pre">property</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">quiet</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.property" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get a property instance from the property name. If quiet is True,
-None is returned instead of raising an exception when <cite>name</cite> is not a
-property. Defaults to <cite>False</cite>.</p>
-<div class="versionadded">
-<p><span class="versionmodified added">New in version 1.0.9.</span></p>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>A <a class="reference internal" href="api-kivy.properties.html#kivy.properties.Property" title="kivy.properties.Property"><code class="xref py py-class docutils literal notranslate"><span class="pre">Property</span></code></a> derived instance
-corresponding to the name.</p>
-</dd>
+    <dt class="sig sig-object py" id="kivy.event.EventDispatcher.get_property_observers">
+        <span class="sig-name descname"><span class="pre">get_property_observers</span></span><span
+            class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em
+                class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span
+                        class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span
+                class="sig-paren">)</span><a class="headerlink"
+            href="#kivy.event.EventDispatcher.get_property_observers"
+            title="Ссылка на это определение">¶</a></dt>
+    <dd>
+        <p>Возвращает список методов, привязанных к свойству/событию,
+            переданному в аргументе <em>name</em>:</p>
+        <div class="highlight-default notranslate">
+            <div class="highlight">
+                <pre><span></span><span class="n">widget_instance</span><span class="o">.</span><span
+                        class="n">get_property_observers</span><span class="p">(</span><span
+                        class="s1">&#39;on_release&#39;</span><span class="p">)</span>
+                </pre>
+            </div>
+        </div>
+        <dl class="field-list">
+            <dt class="field-odd">Parameters</dt>
+            <dd class="field-odd">
+                <dl>
+                    <dt><cite>name</cite>: str</dt>
+                    <dd>
+                        <p>Имя события или свойства.</p>
+                    </dd>
+                    <dt><cite>args</cite>: bool</dt>
+                    <dd>
+                        <p>Возвращать ли связанные аргументы. Для совместимости
+                            будут возвращаться только функции обратного вызова,
+                            а не предоставленные им аргументы, когда <cite>args</cite> равно False.</p>
+                        <p>Если True, каждый элемент в списке будет представлен
+                            в виде 5-кортежа
+                            <cite>(callback, largs, kwargs, is_ref, uid)</cite>, где <cite>is_ref</cite> указывает,
+                            является ли <cite>callback</cite> слабой ссылкой, а <cite>uid</cite> - это UID,
+                            предоставленный
+                            <a class="reference internal" href="#kivy.event.EventDispatcher.fbind"
+                                title="kivy.event.EventDispatcher.fbind"><code
+                                    class="xref py py-meth docutils literal notranslate"><span
+                                        class="pre">fbind()</span></code></a>, или None, если использовался
+                            <a class="reference internal" href="#kivy.event.EventDispatcher.bind"
+                                title="kivy.event.EventDispatcher.bind"><code
+                                    class="xref py py-meth docutils literal notranslate"><span
+                                        class="pre">bind()</span></code></a>. По умолчанию <cite>False</cite>.</p>
+                    </dd>
+                </dl>
+            </dd>
+            <dt class="field-even">Returns</dt>
+            <dd class="field-even">
+                <p>Список связанных функций обратного вызова. См. <cite>args</cite> для деталей.</p>
+            </dd>
+        </dl>
+        <div class="versionadded">
+            <p><span class="versionmodified added">Новое в версии 1.8.0.</span></p>
+        </div>
+    </dd>
 </dl>
-<div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.9.0: </span>quiet was added.</p>
-</div>
-</dd></dl>
+
+
+<dl class="py method">
+    <dt class="sig sig-object py" id="kivy.event.EventDispatcher.getter">
+        <span class="sig-name descname"><span class="pre">getter</span></span><span class="sig-paren">(</span><em
+                class="sig-param"><span class="n"><span class="pre">name</span></span></em><span
+                class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.getter"
+            title="Ссылка на это определение">¶</a></dt>
+    <dd>
+        <p>Возвращает геттер свойства.</p>
+        <div class="versionadded">
+            <p><span class="versionmodified added">Добавлено в версии 1.0.9.</span></p>
+        </div>
+    </dd>
+</dl>
+
+<dl class="py method">
+    <dt class="sig sig-object py" id="kivy.event.EventDispatcher.is_event_type">
+        <span class="sig-name descname"><span class="pre">is_event_type</span></span><span class="sig-paren">(</span><em
+                class="sig-param"><span class="n"><span class="pre">event_type</span></span></em><span
+                class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.is_event_type"
+            title="Ссылка на это определение">¶</a></dt>
+    <dd>
+        <p>Возвращает True, если event_type уже зарегистрировано.</p>
+        <div class="versionadded">
+            <p><span class="versionmodified added">Добавлено в версии 1.0.4.</span></p>
+        </div>
+    </dd>
+</dl>
+
+<dl class="py method">
+    <dt class="sig sig-object py" id="kivy.event.EventDispatcher.properties">
+        <span class="sig-name descname"><span class="pre">properties</span></span><span class="sig-paren">(</span><span
+                class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span
+                class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="headerlink"
+            href="#kivy.event.EventDispatcher.properties"
+            title="Ссылка на это определение">¶</a></dt>
+    <dd>
+        <p>Возвращает все свойства в классе в виде словаря
+            ключ/класс свойства. Может использоваться для интроспекции.</p>
+        <div class="versionadded">
+            <p><span class="versionmodified added">Добавлено в версии 1.0.9.</span></p>
+        </div>
+    </dd>
+</dl>
+
+<dl class="py method">
+    <dt class="sig sig-object py" id="kivy.event.EventDispatcher.property">
+        <span class="sig-name descname"><span class="pre">property</span></span><span class="sig-paren">(</span><em
+                class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em
+                class="sig-param"><span class="n"><span class="pre">quiet</span></span><span class="o"><span
+                        class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span
+                class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.property"
+            title="Ссылка на это определение">¶</a></dt>
+    <dd>
+        <p>Получает экземпляр свойства по имени свойства. Если quiet равно True,
+            вместо возникновения исключения при отсутствии свойства с именем <cite>name</cite> возвращается
+            None. По умолчанию <cite>False</cite>.</p>
+        <div class="versionadded">
+            <p><span class="versionmodified added">Добавлено в версии 1.0.9.</span></p>
+        </div>
+        <dl class="field-list simple">
+            <dt class="field-odd">Returns</dt>
+            <dd class="field-odd">
+                <p>Экземпляр, производный от <a class="reference internal"
+                        href="api-kivy.properties.html#kivy.properties.Property" title="kivy.properties.Property"><code
+                            class="xref py py-class docutils literal notranslate"><span class="pre">Property</span></code></a>,
+                    соответствующий имени.</p>
+            </dd>
+        </dl>
+        <div class="versionchanged">
+            <p><span class="versionmodified changed">Изменено в версии 1.9.0: </span>Добавлен параметр quiet.</p>
+        </div>
+    </dd>
+</dl>
+
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="kivy.event.EventDispatcher.proxy_ref">
-<span class="sig-name descname"><span class="pre">proxy_ref</span></span><a class="headerlink" href="#kivy.event.EventDispatcher.proxy_ref" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a <a class="reference internal" href="api-kivy.weakproxy.html#kivy.weakproxy.WeakProxy" title="kivy.weakproxy.WeakProxy"><code class="xref py py-class docutils literal notranslate"><span class="pre">WeakProxy</span></code></a> reference to the
-<a class="reference internal" href="#kivy.event.EventDispatcher" title="kivy.event.EventDispatcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">EventDispatcher</span></code></a>.</p>
-<div class="versionadded">
-<p><span class="versionmodified added">New in version 1.9.0.</span></p>
-</div>
-<div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 2.0.0: </span>Previously it just returned itself, now it actually returns a
-<a class="reference internal" href="api-kivy.weakproxy.html#kivy.weakproxy.WeakProxy" title="kivy.weakproxy.WeakProxy"><code class="xref py py-class docutils literal notranslate"><span class="pre">WeakProxy</span></code></a>.</p>
-</div>
-</dd></dl>
+    <dt class="sig sig-object py" id="kivy.event.EventDispatcher.proxy_ref">
+        <span class="sig-name descname"><span class="pre">proxy_ref</span></span><a class="headerlink" href="#kivy.event.EventDispatcher.proxy_ref" title="Ссылка на это определение">¶</a></dt>
+    <dd>
+        <p>Возвращает ссылку <a class="reference internal" href="api-kivy.weakproxy.html#kivy.weakproxy.WeakProxy" title="kivy.weakproxy.WeakProxy"><code class="xref py py-class docutils literal notranslate"><span class="pre">WeakProxy</span></code></a> на
+            <a class="reference internal" href="#kivy.event.EventDispatcher" title="kivy.event.EventDispatcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">EventDispatcher</span></code></a>.</p>
+        <div class="versionadded">
+            <p><span class="versionmodified added">Добавлено в версии 1.9.0.</span></p>
+        </div>
+        <div class="versionchanged">
+            <p><span class="versionmodified changed">Изменено в версии 2.0.0: </span>Ранее он просто возвращал сам себя, теперь он действительно возвращает
+                <a class="reference internal" href="api-kivy.weakproxy.html#kivy.weakproxy.WeakProxy" title="kivy.weakproxy.WeakProxy"><code class="xref py py-class docutils literal notranslate"><span class="pre">WeakProxy</span></code></a>.</p>
+        </div>
+    </dd>
+</dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="kivy.event.EventDispatcher.register_event_type">
-<span class="sig-name descname"><span class="pre">register_event_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.register_event_type" title="Permalink to this definition">¶</a></dt>
-<dd><p>Register an event type with the dispatcher.</p>
-<p>Registering event types allows the dispatcher to validate event handler
-names as they are attached and to search attached objects for suitable
-handlers. Each event type declaration must:</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li><p>start with the prefix <cite>on_</cite>.</p></li>
-<li><p>have a default handler in the class.</p></li>
-</ol>
-</div></blockquote>
-<p>Example of creating a custom event:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyWidget</span><span class="p">(</span><span class="n">Widget</span><span class="p">):</span>
+    <dt class="sig sig-object py" id="kivy.event.EventDispatcher.register_event_type">
+        <span class="sig-name descname"><span class="pre">register_event_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.register_event_type" title="Ссылка на это определение">¶</a></dt>
+    <dd>
+        <p>Регистрирует тип события в диспетчере.</p>
+        <p>Регистрация типов событий позволяет диспетчеру проверять имена обработчиков событий
+            при их присоединении и искать подходящие обработчики в подключенных объектах.
+            Каждое объявление типа события должно:</p>
+        <blockquote>
+            <div><ol class="arabic simple">
+                    <li><p>начинаться с префикса <cite>on_</cite>.</p></li>
+                    <li><p>иметь обработчик по умолчанию в классе.</p></li>
+                </ol></div>
+        </blockquote>
+        <p>Пример создания пользовательского события:</p>
+        <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyWidget</span><span class="p">(</span><span class="n">Widget</span><span class="p">):</span>
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">MyWidget</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">register_event_type</span><span class="p">(</span><span class="s1">&#39;on_swipe&#39;</span><span class="p">)</span>
@@ -868,160 +919,152 @@ handlers. Each event type declaration must:</p>
         <span class="k">pass</span>
 
 <span class="k">def</span> <span class="nf">on_swipe_callback</span><span class="p">(</span><span class="o">*</span><span class="n">largs</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;my swipe is called&#39;</span><span class="p">,</span> <span class="n">largs</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;мое событие swipe вызвано&#39;</span><span class="p">,</span> <span class="n">largs</span><span class="p">)</span>
 <span class="n">w</span> <span class="o">=</span> <span class="n">MyWidget</span><span class="p">()</span>
 <span class="n">w</span><span class="o">.</span><span class="n">dispatch</span><span class="p">(</span><span class="s1">&#39;on_swipe&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</dd></dl>
+</pre></div></div>
+    </dd>
+</dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="kivy.event.EventDispatcher.setter">
-<span class="sig-name descname"><span class="pre">setter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.setter" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the setter of a property. Use: instance.setter(‘name’).
-The setter is a convenient callback function useful if you want
-to directly bind one property to another.
-It returns a partial function that will accept
-(obj, value) args and results in the property ‘name’ of instance
-being set to value.</p>
-<div class="versionadded">
-<p><span class="versionmodified added">New in version 1.0.9.</span></p>
-</div>
-<p>For example, to bind number2 to number1 in python you would do:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExampleWidget</span><span class="p">(</span><span class="n">Widget</span><span class="p">):</span>
+    <dt class="sig sig-object py" id="kivy.event.EventDispatcher.setter">
+        <span class="sig-name descname"><span class="pre">setter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.setter" title="Ссылка на это определение">¶</a></dt>
+    <dd>
+        <p>Возвращает установщик свойства. Используйте: instance.setter(‘name’).
+            Установщик представляет собой удобную функцию обратного вызова, полезную, если вы хотите
+            прямо привязать одно свойство к другому.
+            Он возвращает частичную функцию, которая будет принимать
+            аргументы (obj, value) и приведет к установке свойства ‘name’ объекта
+            в значение value.</p>
+        <div class="versionadded">
+            <p><span class="versionmodified added">Добавлено в версии 1.0.9.</span></p>
+        </div>
+        <p>Например, чтобы привязать number2 к number1 в Python, вы можете сделать следующее:</p>
+        <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ExampleWidget</span><span class="p">(</span><span class="n">Widget</span><span class="p">):</span>
     <span class="n">number1</span> <span class="o">=</span> <span class="n">NumericProperty</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
     <span class="n">number2</span> <span class="o">=</span> <span class="n">NumericProperty</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">ExampleWidget</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">number1</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">setter</span><span class="p">(</span><span class="s1">&#39;number2&#39;</span><span class="p">))</span>
-</pre></div>
-</div>
-<p>This is equivalent to kv binding:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">ExampleWidget</span><span class="o">&gt;</span><span class="p">:</span>
+</pre></div></div>
+        <p>Это эквивалентно привязке в KV-файле:</p>
+        <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">ExampleWidget</span><span class="o">&gt;</span><span class="p">:</span>
     <span class="n">number2</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">number1</span>
-</pre></div>
-</div>
-</dd></dl>
+</pre></div></div>
+    </dd>
+</dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="kivy.event.EventDispatcher.unbind">
-<span class="sig-name descname"><span class="pre">unbind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.unbind" title="Permalink to this definition">¶</a></dt>
-<dd><p>Unbind properties from callback functions with similar usage as
-<a class="reference internal" href="#kivy.event.EventDispatcher.bind" title="kivy.event.EventDispatcher.bind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bind()</span></code></a>.</p>
-<p>If a callback has been bound to a given event or property multiple
-times, only the first occurrence will be unbound.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>It is safe to use <a class="reference internal" href="#kivy.event.EventDispatcher.unbind" title="kivy.event.EventDispatcher.unbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">unbind()</span></code></a> on a function bound with <a class="reference internal" href="#kivy.event.EventDispatcher.fbind" title="kivy.event.EventDispatcher.fbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fbind()</span></code></a>
-as long as that function was originally bound without any keyword and
-positional arguments. Otherwise, the function will fail to be unbound
-and you should use <a class="reference internal" href="#kivy.event.EventDispatcher.funbind" title="kivy.event.EventDispatcher.funbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">funbind()</span></code></a> instead.</p>
-</div>
-</dd></dl>
+    <dt class="sig sig-object py" id="kivy.event.EventDispatcher.unbind">
+        <span class="sig-name descname"><span class="pre">unbind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.unbind" title="Ссылка на это определение">¶</a></dt>
+    <dd>
+        <p>Отменяет привязку свойств от функций обратного вызова с аналогичным использованием
+            <a class="reference internal" href="#kivy.event.EventDispatcher.bind" title="kivy.event.EventDispatcher.bind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">bind()</span></code></a>.</p>
+        <p>Если функция обратного вызова была привязана к определенному событию или свойству несколько раз,
+            будет отменена только первая привязка.</p>
+        <div class="admonition note">
+            <p class="admonition-title">Примечание</p>
+            <p>Безопасно использовать <a class="reference internal" href="#kivy.event.EventDispatcher.unbind" title="kivy.event.EventDispatcher.unbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">unbind()</span></code></a> на функции, привязанной с использованием <a class="reference internal" href="#kivy.event.EventDispatcher.fbind" title="kivy.event.EventDispatcher.fbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fbind()</span></code></a>,
+                если эта функция изначально была привязана без ключевых и позиционных аргументов.
+                В противном случае отмена привязки функции завершится ошибкой,
+                и вам следует использовать вместо этого <a class="reference internal" href="#kivy.event.EventDispatcher.funbind" title="kivy.event.EventDispatcher.funbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">funbind()</span></code></a>.</p>
+        </div>
+    </dd>
+</dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="kivy.event.EventDispatcher.unbind_uid">
-<span class="sig-name descname"><span class="pre">unbind_uid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.unbind_uid" title="Permalink to this definition">¶</a></dt>
-<dd><p>Uses the uid returned by <a class="reference internal" href="#kivy.event.EventDispatcher.fbind" title="kivy.event.EventDispatcher.fbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fbind()</span></code></a> to unbind the callback.</p>
-<p>This method is much more efficient than <a class="reference internal" href="#kivy.event.EventDispatcher.funbind" title="kivy.event.EventDispatcher.funbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">funbind()</span></code></a>. If <cite>uid</cite>
-evaluates to False (e.g. 0) a <cite>ValueError</cite> is raised. Also, only
-callbacks bound with <a class="reference internal" href="#kivy.event.EventDispatcher.fbind" title="kivy.event.EventDispatcher.fbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fbind()</span></code></a> can be unbound with this method.</p>
-<p>Since each call to <a class="reference internal" href="#kivy.event.EventDispatcher.fbind" title="kivy.event.EventDispatcher.fbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fbind()</span></code></a> will generate a unique <cite>uid</cite>,
-only one callback will be removed. If <cite>uid</cite> is not found among the
-callbacks, no error is raised.</p>
-<p>E.g.:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">btn6</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;B: Using flexible functions with args. For hardcores.&quot;</span><span class="p">)</span>
+    <dt class="sig sig-object py" id="kivy.event.EventDispatcher.unbind_uid">
+        <span class="sig-name descname"><span class="pre">unbind_uid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.unbind_uid" title="Ссылка на это определение">¶</a></dt>
+    <dd>
+        <p>Использует uid, возвращенный <a class="reference internal" href="#kivy.event.EventDispatcher.fbind" title="kivy.event.EventDispatcher.fbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fbind()</span></code></a>, чтобы отменить привязку обратного вызова.</p>
+        <p>Этот метод гораздо более эффективен, чем <a class="reference internal" href="#kivy.event.EventDispatcher.funbind" title="kivy.event.EventDispatcher.funbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">funbind()</span></code></a>. Если
+            uid вычисляется как False (например, 0), вызывается <cite>ValueError</cite>. Кроме того,
+            этим методом можно отменить привязку только функций, привязанных с помощью <a class="reference internal" href="#kivy.event.EventDispatcher.fbind" title="kivy.event.EventDispatcher.fbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fbind()</span></code></a>.</p>
+        <p>Поскольку каждый вызов <a class="reference internal" href="#kivy.event.EventDispatcher.fbind" title="kivy.event.EventDispatcher.fbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fbind()</span></code></a> генерирует уникальный <cite>uid</cite>,
+            будет удалена только одна привязка. Если <cite>uid</cite> не найден среди
+            функций обратного вызова, не вызывается ошибок.</p>
+        <p>Например:</p>
+        <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">btn6</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">text</span><span class="o">=</span><span class="s2">&quot;B: Using flexible functions with args. For hardcores.&quot;</span><span class="p">)</span>
 <span class="n">uid</span> <span class="o">=</span> <span class="n">btn6</span><span class="o">.</span><span class="n">fbind</span><span class="p">(</span><span class="s1">&#39;on_press&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">on_anything</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;2&quot;</span><span class="p">,</span> <span class="n">monthy</span><span class="o">=</span><span class="s2">&quot;python&quot;</span><span class="p">)</span>
 <span class="k">if</span> <span class="ow">not</span> <span class="n">uid</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Binding failed&#39;</span><span class="p">)</span><span class="o">.</span>
+    <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;Привязка не удалась&#39;</span><span class="p">)</span><span class="o">.</span>
 <span class="o">...</span>
 <span class="n">btn6</span><span class="o">.</span><span class="n">unbind_uid</span><span class="p">(</span><span class="s1">&#39;on_press&#39;</span><span class="p">,</span> <span class="n">uid</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="versionadded">
-<p><span class="versionmodified added">New in version 1.9.0.</span></p>
-</div>
-</dd></dl>
+</pre></div></div>
+        <div class="versionadded">
+            <p><span class="versionmodified added">Добавлено в версии 1.9.0.</span></p>
+        </div>
+    </dd>
+</dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="kivy.event.EventDispatcher.unregister_event_type">
-<span class="sig-name descname"><span class="pre">unregister_event_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.unregister_event_type" title="Permalink to this definition">¶</a></dt>
-<dd><p>Unregister an event type in the dispatcher.</p>
-<div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 2.1.0: </span>Method renamed from <cite>unregister_event_types</cite> to
-<cite>unregister_event_type</cite>.</p>
-</div>
-</dd></dl>
+    <dt class="sig sig-object py" id="kivy.event.EventDispatcher.unregister_event_type">
+        <span class="sig-name descname"><span class="pre">unregister_event_type</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">event_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.unregister_event_type" title="Ссылка на это определение">¶</a></dt>
+    <dd>
+        <p>Удаляет тип события из диспетчера.</p>
+        <p>Если тип события не зарегистрирован, ничего не произойдет.</p>
+        <div class="versionadded">
+            <p><span class="versionmodified added">Добавлено в версии 1.9.0.</span></p>
+        </div>
+    </dd>
+</dl>
+
+Вот перевод текста с сохранением тегов:
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.event.EventDispatcher.unregister_event_types">
-<span class="sig-name descname"><span class="pre">unregister_event_types</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.unregister_event_types" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">unregister_event_types</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">event_type</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.EventDispatcher.unregister_event_types" title="Постоянная ссылка на это определение">¶</a></dt>
 <dd></dd></dl>
-
-</dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.event.ObjectWithUid">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.event.</span></span><span class="sig-name descname"><span class="pre">ObjectWithUid</span></span><a class="headerlink" href="#kivy.event.ObjectWithUid" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">builtins.object</span></code></p>
-<p>(internal) This class assists in providing unique identifiers for class
-instances. It is not intended for direct usage.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.event.</span></span><span class="sig-name descname"><span class="pre">ObjectWithUid</span></span><a class="headerlink" href="#kivy.event.ObjectWithUid" title="Постоянная ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <code class="xref py py-class docutils literal notranslate"><span class="pre">builtins.object</span></code></p>
+<p>(внутренний) Этот класс помогает предоставить уникальные идентификаторы для экземпляров классов. Не предназначен для прямого использования.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.event.Observable">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.event.</span></span><span class="sig-name descname"><span class="pre">Observable</span></span><a class="headerlink" href="#kivy.event.Observable" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#kivy.event.ObjectWithUid" title="kivy.event.ObjectWithUid"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.event.ObjectWithUid</span></code></a></p>
-<p><a class="reference internal" href="#kivy.event.Observable" title="kivy.event.Observable"><code class="xref py py-class docutils literal notranslate"><span class="pre">Observable</span></code></a> is a stub class defining the methods required
-for binding. <a class="reference internal" href="#kivy.event.EventDispatcher" title="kivy.event.EventDispatcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">EventDispatcher</span></code></a> is (the) one example of a class that
-implements the binding interface. See <a class="reference internal" href="#kivy.event.EventDispatcher" title="kivy.event.EventDispatcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">EventDispatcher</span></code></a> for details.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.event.</span></span><span class="sig-name descname"><span class="pre">Observable</span></span><a class="headerlink" href="#kivy.event.Observable" title="Постоянная ссылка на это определение">¶</a></dt>
+<dd><p>Базовый клас: <a class="reference internal" href="#kivy.event.ObjectWithUid" title="kivy.event.ObjectWithUid"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.event.ObjectWithUid</span></code></a></p>
+<p><a class="reference internal" href="#kivy.event.Observable" title="kivy.event.Observable"><code class="xref py py-class docutils literal notranslate"><span class="pre">Observable</span></code></a> - это заглушка, определяющая методы, необходимые для привязки. Примером класса, реализующего интерфейс привязки, является <a class="reference internal" href="#kivy.event.EventDispatcher" title="kivy.event.EventDispatcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">EventDispatcher</span></code></a>. См. <a class="reference internal" href="#kivy.event.EventDispatcher" title="kivy.event.EventDispatcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">EventDispatcher</span></code></a> для подробностей.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.9.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.9.0.</span></p>
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.event.Observable.bind">
-<span class="sig-name descname"><span class="pre">bind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.Observable.bind" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">bind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.Observable.bind" title="Постоянная ссылка на это определение">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.event.Observable.fbind">
-<span class="sig-name descname"><span class="pre">fbind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">largs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.Observable.fbind" title="Permalink to this definition">¶</a></dt>
-<dd><p>See <a class="reference internal" href="#kivy.event.EventDispatcher.fbind" title="kivy.event.EventDispatcher.fbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">EventDispatcher.fbind()</span></code></a>.</p>
+<span class="sig-name descname"><span class="pre">fbind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">largs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.Observable.fbind" title="Постоянная ссылка на это определение">¶</a></dt>
+<dd><p>См. <a class="reference internal" href="#kivy.event.EventDispatcher.fbind" title="kivy.event.EventDispatcher.fbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">EventDispatcher.fbind()</span></code></a>.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>To keep backward compatibility with derived classes which may have
-inherited from <a class="reference internal" href="#kivy.event.Observable" title="kivy.event.Observable"><code class="xref py py-class docutils literal notranslate"><span class="pre">Observable</span></code></a> before, the
-<a class="reference internal" href="#kivy.event.Observable.fbind" title="kivy.event.Observable.fbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fbind()</span></code></a> method was added. The default implementation
-of <a class="reference internal" href="#kivy.event.Observable.fbind" title="kivy.event.Observable.fbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fbind()</span></code></a> is to create a partial
-function that it passes to bind while saving the uid and largs/kwargs.
-However, <a class="reference internal" href="#kivy.event.Observable.funbind" title="kivy.event.Observable.funbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">funbind()</span></code></a> (and <a class="reference internal" href="#kivy.event.Observable.unbind_uid" title="kivy.event.Observable.unbind_uid"><code class="xref py py-meth docutils literal notranslate"><span class="pre">unbind_uid()</span></code></a>) are fairly
-inefficient since we have to first lookup this partial function
-using the largs/kwargs or uid and then call <a class="reference internal" href="#kivy.event.Observable.unbind" title="kivy.event.Observable.unbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">unbind()</span></code></a> on
-the returned function. It is recommended to overwrite
-these methods in derived classes to bind directly for
-better performance.</p>
-<p>Similarly to <a class="reference internal" href="#kivy.event.EventDispatcher.fbind" title="kivy.event.EventDispatcher.fbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">EventDispatcher.fbind()</span></code></a>, this method returns
-0 on failure and a positive unique uid on success. This uid can be
-used with <a class="reference internal" href="#kivy.event.Observable.unbind_uid" title="kivy.event.Observable.unbind_uid"><code class="xref py py-meth docutils literal notranslate"><span class="pre">unbind_uid()</span></code></a>.</p>
+<p class="admonition-title">Примечание</p>
+<p>Чтобы обеспечить обратную совместимость с производными классами, которые могли унаследоваться от <a class="reference internal" href="#kivy.event.Observable" title="kivy.event.Observable"><code class="xref py py-class docutils literal notranslate"><span class="pre">Observable</span></code></a> до этого, был добавлен метод <a class="reference internal" href="#kivy.event.Observable.fbind" title="kivy.event.Observable.fbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fbind()</span></code></a>. Реализация по умолчанию <a class="reference internal" href="#kivy.event.Observable.fbind" title="kivy.event.Observable.fbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fbind()</span></code></a
+
+> заключается в создании частичной функции, которую она передает в привязку, сохраняя uid и largs/kwargs. Однако <a class="reference internal" href="#kivy.event.Observable.funbind" title="kivy.event.Observable.funbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">funbind()</span></code></a> (и <a class="reference internal" href="#kivy.event.Observable.unbind_uid" title="kivy.event.Observable.unbind_uid"><code class="xref py py-meth docutils literal notranslate"><span class="pre">unbind_uid()</span></code></a>) довольно неэффективны, так как сначала нам нужно найти эту частичную функцию, используя largs/kwargs или uid, а затем вызвать <a class="reference internal" href="#kivy.event.Observable.unbind" title="kivy.event.Observable.unbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">unbind()</span></code></a> на возвращенной функции. Рекомендуется переопределить эти методы в производных классах для непосредственной привязки для повышения производительности.</p>
+<p>Аналогично <a class="reference internal" href="#kivy.event.EventDispatcher.fbind" title="kivy.event.EventDispatcher.fbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">EventDispatcher.fbind()</span></code></a>, этот метод возвращает 0 в случае неудачи и положительный уникальный uid в случае успеха. Этот uid можно использовать с <a class="reference internal" href="#kivy.event.Observable.unbind_uid" title="kivy.event.Observable.unbind_uid"><code class="xref py py-meth docutils literal notranslate"><span class="pre">unbind_uid()</span></code></a>.</p>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.event.Observable.funbind">
-<span class="sig-name descname"><span class="pre">funbind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">largs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.Observable.funbind" title="Permalink to this definition">¶</a></dt>
-<dd><p>See <a class="reference internal" href="#kivy.event.Observable.fbind" title="kivy.event.Observable.fbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fbind()</span></code></a> and <a class="reference internal" href="#kivy.event.EventDispatcher.funbind" title="kivy.event.EventDispatcher.funbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">EventDispatcher.funbind()</span></code></a>.</p>
+<span class="sig-name descname"><span class="pre">funbind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">largs</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.Observable.funbind" title="Постоянная ссылка на это определение">¶</a></dt>
+<dd><p>См. <a class="reference internal" href="#kivy.event.Observable.fbind" title="kivy.event.Observable.fbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fbind()</span></code></a> и <a class="reference internal" href="#kivy.event.EventDispatcher.funbind" title="kivy.event.EventDispatcher.funbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">EventDispatcher.funbind()</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.event.Observable.unbind">
-<span class="sig-name descname"><span class="pre">unbind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.Observable.unbind" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">unbind</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.Observable.unbind" title="Постоянная ссылка на это определение">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.event.Observable.unbind_uid">
-<span class="sig-name descname"><span class="pre">unbind_uid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.Observable.unbind_uid" title="Permalink to this definition">¶</a></dt>
-<dd><p>See <a class="reference internal" href="#kivy.event.Observable.fbind" title="kivy.event.Observable.fbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fbind()</span></code></a> and <a class="reference internal" href="#kivy.event.EventDispatcher.unbind_uid" title="kivy.event.EventDispatcher.unbind_uid"><code class="xref py py-meth docutils literal notranslate"><span class="pre">EventDispatcher.unbind_uid()</span></code></a>.</p>
+<span class="sig-name descname"><span class="pre">unbind_uid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">uid</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.event.Observable.unbind_uid" title="Постоянная ссылка на это определение">¶</a></dt>
+<dd><p>См. <a class="reference internal" href="#kivy.event.Observable.fbind" title="kivy.event.Observable.fbind"><code class="xref py py-meth docutils literal notranslate"><span class="pre">fbind()</span></code></a> и <a class="reference internal" href="#kivy.event.EventDispatcher.unbind_uid" title="kivy.event.EventDispatcher.unbind_uid"><code class="xref py py-meth docutils literal notranslate"><span class="pre">EventDispatcher.unbind_uid()</span></code></a>.</p>
 </dd></dl>
 
 </dd></dl>

@@ -392,62 +392,57 @@
 </ul>
 </div>
             
-  <section id="module-kivy.graphics.compiler">
-<span id="graphics-compiler"></span><h1>Graphics compiler<a class="headerlink" href="#module-kivy.graphics.compiler" title="Permalink to this headline">¶</a></h1>
-<p>Before rendering an <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.InstructionGroup" title="kivy.graphics.instructions.InstructionGroup"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstructionGroup</span></code></a>, we
-compile the group in order to reduce the number of instructions executed
-at rendering time.</p>
+<section id="module-kivy.graphics.compiler">
+<span id="graphics-compiler"></span><h1>Компилятор графики<a class="headerlink" href="#module-kivy.graphics.compiler" title="Ссылка на этот заголовок">¶</a></h1>
+<p>Перед визуализацией <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.InstructionGroup" title="kivy.graphics.instructions.InstructionGroup"><code class="xref py py-class docutils literal notranslate"><span class="pre">InstructionGroup</span></code></a> мы
+компилируем группу, чтобы уменьшить количество инструкций, выполняемых
+во время визуализации.</p>
 <section id="reducing-the-context-instructions">
-<h2>Reducing the context instructions<a class="headerlink" href="#reducing-the-context-instructions" title="Permalink to this headline">¶</a></h2>
-<p>Imagine that you have a scheme like this:</p>
+<h2>Уменьшение контекстных инструкций<a class="headerlink" href="#reducing-the-context-instructions" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Представьте, что у вас есть схема, подобная этой:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Color</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">Rectangle</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s1">&#39;button.png&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
 <span class="n">Color</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">Rectangle</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s1">&#39;button.png&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
 <span class="n">Color</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">Rectangle</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s1">&#39;button.png&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
-</pre></div>
-</div>
-<p>The real instructions seen by the graphics canvas would be:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Color: change &#39;color&#39; context to 1, 1, 1
-BindTexture: change &#39;texture0&#39; to `button.png texture`
-Rectangle: push vertices (x1, y1...) to vbo &amp; draw
-Color: change &#39;color&#39; context to 1, 1, 1
-BindTexture: change &#39;texture0&#39; to `button.png texture`
-Rectangle: push vertices (x1, y1...) to vbo &amp; draw
-Color: change &#39;color&#39; context to 1, 1, 1
-BindTexture: change &#39;texture0&#39; to `button.png texture`
-Rectangle: push vertices (x1, y1...) to vbo &amp; draw
-</pre></div>
-</div>
-<p>Only the first <a class="reference internal" href="api-kivy.graphics.context_instructions.html#kivy.graphics.context_instructions.Color" title="kivy.graphics.context_instructions.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a> and
-<a class="reference internal" href="api-kivy.graphics.context_instructions.html#kivy.graphics.context_instructions.BindTexture" title="kivy.graphics.context_instructions.BindTexture"><code class="xref py py-class docutils literal notranslate"><span class="pre">BindTexture</span></code></a> are useful and really
-change the context. We can reduce them to:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Color: change &#39;color&#39; context to 1, 1, 1
-BindTexture: change &#39;texture0&#39; to `button.png texture`
-Rectangle: push vertices (x1, y1...) to vbo &amp; draw
-Rectangle: push vertices (x1, y1...) to vbo &amp; draw
-Rectangle: push vertices (x1, y1...) to vbo &amp; draw
-</pre></div>
-</div>
-<p>This is what the compiler does in the first place, by flagging all the unused
-instruction with GI_IGNORE flag. As soon as a Color content changes, the whole
-InstructionGroup will be recompiled and a previously unused Color might be
-used for the next compilation.</p>
-<p>Note to any Kivy contributor / internal developer:</p>
+</pre></div></div>
+<p>Реальные инструкции, видимые холстом графики, будут следующими:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Color: изменить контекст &#39;color&#39; на 1, 1, 1
+BindTexture: изменить контекст &#39;texture0&#39; на `button.png texture`
+Rectangle: добавить вершины (x1, y1...) в vbo и нарисовать
+Color: изменить контекст &#39;color&#39; на 1, 1, 1
+BindTexture: изменить контекст &#39;texture0&#39; на `button.png texture`
+Rectangle: добавить вершины (x1, y1...) в vbo и нарисовать
+Color: изменить контекст &#39;color&#39; на 1, 1, 1
+BindTexture: изменить контекст &#39;texture0&#39; на `button.png texture`
+Rectangle: добавить вершины (x1, y1...) в vbo и нарисовать
+</pre></div></div>
+<p>Полезными и действительно изменяющими контекст являются только первая <a class="reference internal" href="api-kivy.graphics.context_instructions.html#kivy.graphics.context_instructions.Color" title="kivy.graphics.context_instructions.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a> и
+<a class="reference internal" href="api-kivy.graphics.context_instructions.html#kivy.graphics.context_instructions.BindTexture" title="kivy.graphics.context_instructions.BindTexture"><code class="xref py py-class docutils literal notranslate"><span class="pre">BindTexture</span></code></a>. Мы можем уменьшить их до:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Color: изменить контекст &#39;color&#39; на 1, 1,
+
+1
+BindTexture: изменить контекст &#39;texture0&#39; на `button.png texture`
+Rectangle: добавить вершины (x1, y1...) в vbo и нарисовать
+Rectangle: добавить вершины (x1, y1...) в vbo и нарисовать
+Rectangle: добавить вершины (x1, y1...) в vbo и нарисовать
+</pre></div></div>
+<p>Это то, что делает компилятор в первую очередь, помечая все неиспользуемые
+инструкции флагом GI_IGNORE. Как только изменяется содержимое Color, вся
+группа инструкций будет перекомпилирована, и ранее неиспользуемый Color может
+быть использован для следующей компиляции.</p>
+<p>Примечание для участника Kivy / внутреннего разработчика:</p>
 <ul class="simple">
-<li><p>All context instructions are checked to see if they change anything in the
-cache.</p></li>
-<li><p>We must ensure that a context instruction is needed for our current Canvas.</p></li>
-<li><p>We must ensure that we don’t depend of any other canvas.</p></li>
-<li><p>We must reset our cache if one of our children is another instruction group
-because we don’t know whether it might do weird things or not.</p></li>
+<li><p>Все контекстные инструкции проверяются на предмет изменений в кеше.</p></li>
+<li><p>Мы должны убедиться, что контекстная инструкция нужна для нашего текущего холста.</p></li>
+<li><p>Мы должны убедиться, что мы не зависим от другого холста.</p></li>
+<li><p>Мы должны сбрасывать наш кеш, если одним из наших детей является другая группа инструкций, потому что мы не знаем, может ли она делать что-то странное или нет.</p></li>
 </ul>
 </section>
 <div class="toctree-wrapper compound">
 </div>
 </section>
-
 
             <div class="footerlinks">
             <table>

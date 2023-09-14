@@ -386,16 +386,16 @@
 </ul>
 </div>
             
-  <section id="module-kivy.effects.kinetic">
-<span id="kinetic-effect"></span><h1>Kinetic effect<a class="headerlink" href="#module-kivy.effects.kinetic" title="Permalink to this headline">¶</a></h1>
+<section id="module-kivy.effects.kinetic">
+<span id="kinetic-effect"></span><h1>Кинетический эффект<a class="headerlink" href="#module-kivy.effects.kinetic" title="Ссылка на данный раздел">¶</a></h1>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.7.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.7.0.</span></p>
 </div>
-<p>The <a class="reference internal" href="#kivy.effects.kinetic.KineticEffect" title="kivy.effects.kinetic.KineticEffect"><code class="xref py py-class docutils literal notranslate"><span class="pre">KineticEffect</span></code></a> is the base class that is used to compute the
-velocity out of a movement. When the movement is finished, the effect will
-compute the position of the movement according to the velocity, and reduce the
-velocity with a friction. The movement stop until the velocity is 0.</p>
-<p>Conceptually, the usage could be:</p>
+<p><a class="reference internal" href="#kivy.effects.kinetic.KineticEffect" title="kivy.effects.kinetic.KineticEffect"><code class="xref py py-class docutils literal notranslate"><span class="pre">KineticEffect</span></code></a> - это базовый класс, который используется для вычисления
+скорости на основе движения. Когда движение завершается, эффект будет
+вычислять позицию движения в соответствии со скоростью и уменьшать
+скорость с помощью трения. Движение останавливается, когда скорость равна 0.</p>
+<p>Концептуально использование может выглядеть следующим образом:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">effect</span> <span class="o">=</span> <span class="n">KineticEffect</span><span class="p">()</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">effect</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">effect</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span>
@@ -403,17 +403,17 @@ velocity with a friction. The movement stop until the velocity is 0.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">effect</span><span class="o">.</span><span class="n">stop</span><span class="p">(</span><span class="mi">48</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Over the time, you will start a movement of a value, update it, and stop the
-movement. At this time, you’ll get the movement value into
-<a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.value" title="kivy.effects.kinetic.KineticEffect.value"><code class="xref py py-attr docutils literal notranslate"><span class="pre">KineticEffect.value</span></code></a>. On the example i’ve typed manually, the computed
-velocity will be:</p>
+<p>Со временем вы начнете движение с какого-то значения, обновите его и остановите
+движение. На этот момент вы получите значение движения в
+<a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.value" title="kivy.effects.kinetic.KineticEffect.value"><code class="xref py py-attr docutils literal notranslate"><span class="pre">KineticEffect.value</span></code></a>. В приведенном вручную примере вычисленная
+скорость будет:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">effect</span><span class="o">.</span><span class="n">velocity</span>
 <span class="go">3.1619100231163046</span>
 </pre></div>
 </div>
-<p>After multiple clock interaction, the velocity will decrease according to
-<a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.friction" title="kivy.effects.kinetic.KineticEffect.friction"><code class="xref py py-attr docutils literal notranslate"><span class="pre">KineticEffect.friction</span></code></a>. The computed value will be stored in
-<a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.value" title="kivy.effects.kinetic.KineticEffect.value"><code class="xref py py-attr docutils literal notranslate"><span class="pre">KineticEffect.value</span></code></a>. The output of this <cite>value</cite> could be:</p>
+<p>После нескольких взаимодействий с часами скорость будет уменьшаться в соответствии с
+<a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.friction" title="kivy.effects.kinetic.KineticEffect.friction"><code class="xref py py-attr docutils literal notranslate"><span class="pre">KineticEffect.friction</span></code></a>. Вычисленное значение будет сохранено в
+<a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.value" title="kivy.effects.kinetic.KineticEffect.value"><code class="xref py py-attr docutils literal notranslate"><span class="pre">KineticEffect.value</span></code></a>. Результатом этого <cite>value</cite> может быть:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">46.30038145219605</span>
 <span class="mf">54.58302451968686</span>
 <span class="mf">61.9229016256196</span>
@@ -422,75 +422,74 @@ velocity will be:</p>
 </div>
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.effects.kinetic.KineticEffect">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.effects.kinetic.</span></span><span class="sig-name descname"><span class="pre">KineticEffect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/effects/kinetic.html#KineticEffect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.event.html#kivy.event.EventDispatcher" title="kivy.event.EventDispatcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.event.EventDispatcher</span></code></a></p>
-<p>Kinetic effect class. See module documentation for more information.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.effects.kinetic.</span></span><span class="sig-name descname"><span class="pre">KineticEffect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/effects/kinetic.html#KineticEffect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс для кинетического эффекта. См. документацию модуля для получения дополнительной информации.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.effects.kinetic.KineticEffect.cancel">
-<span class="sig-name descname"><span class="pre">cancel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/effects/kinetic.html#KineticEffect.cancel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect.cancel" title="Permalink to this definition">¶</a></dt>
-<dd><p>Cancel a movement. This can be used in case <a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.stop" title="kivy.effects.kinetic.KineticEffect.stop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">stop()</span></code></a> cannot be
-called. It will reset <a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.is_manual" title="kivy.effects.kinetic.KineticEffect.is_manual"><code class="xref py py-attr docutils literal notranslate"><span class="pre">is_manual</span></code></a> to False, and compute the
-movement if the velocity is &gt; 0.</p>
+<span class="sig-name descname"><span class="pre">cancel</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/effects/kinetic.html#KineticEffect.cancel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect.cancel" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Отменить движение. Это может использоваться, если <a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.stop" title="kivy.effects.kinetic.KineticEffect.stop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">stop()</span></code></a> не может быть
+вызвано. Это сбросит значение <a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.is_manual" title="kivy.effects.kinetic.KineticEffect.is_manual"><code class="xref py py-attr docutils literal notranslate"><span class="pre">is_manual</span></code></a> на False и вычислит
+движение, если скорость > 0.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.effects.kinetic.KineticEffect.friction">
-<span class="sig-name descname"><span class="pre">friction</span></span><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect.friction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Friction to apply on the velocity</p>
-<p><a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.friction" title="kivy.effects.kinetic.KineticEffect.friction"><code class="xref py py-attr docutils literal notranslate"><span class="pre">friction</span></code></a> is a <a class="reference internal" href="api-kivy.properties.html#kivy.properties.NumericProperty" title="kivy.properties.NumericProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumericProperty</span></code></a> and
-defaults to 0.05.</p>
+<span class="sig-name descname"><span class="pre">friction</span></span><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect.friction" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Трение, применяемое к скорости</p>
+<p><a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.friction" title="kivy.effects.kinetic.KineticEffect.friction"><code class="xref py py-attr docutils literal notranslate"><span class="pre">friction</span></code></a> - это <a class="reference internal" href="api-kivy.properties.html#kivy.properties.NumericProperty" title="kivy.properties.NumericProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumericProperty</span></code></a> и
+по умолчанию равно 0.05.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.effects.kinetic.KineticEffect.is_manual">
-<span class="sig-name descname"><span class="pre">is_manual</span></span><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect.is_manual" title="Permalink to this definition">¶</a></dt>
-<dd><p>Indicate if a movement is in progress (True) or not (False).</p>
-<p><a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.is_manual" title="kivy.effects.kinetic.KineticEffect.is_manual"><code class="xref py py-attr docutils literal notranslate"><span class="pre">is_manual</span></code></a> is a <a class="reference internal" href="api-kivy.properties.html#kivy.properties.BooleanProperty" title="kivy.properties.BooleanProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">BooleanProperty</span></code></a> and
-defaults to False.</p>
+<span class="sig-name descname"><span class="pre">is_manual</span></span><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect.is_manual" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Указывает, выполняется ли движение (True) или нет (False).</p>
+<p><a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.is_manual" title="kivy.effects.kinetic.KineticEffect.is_manual"><code class="xref py py-attr docutils literal notranslate"><span class="pre">is_manual</span></code></a> - это <a class="reference internal" href="api-kivy.properties.html#kivy.properties.BooleanProperty" title="kivy.properties.BooleanProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">BooleanProperty</span></code></a> и
+по умолчанию равно False.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.effects.kinetic.KineticEffect.max_history">
-<span class="sig-name descname"><span class="pre">max_history</span></span><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect.max_history" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save up to <cite>max_history</cite> movement value into the history. This is used
-for correctly calculating the velocity according to the movement.</p>
-<p><a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.max_history" title="kivy.effects.kinetic.KineticEffect.max_history"><code class="xref py py-attr docutils literal notranslate"><span class="pre">max_history</span></code></a> is a <a class="reference internal" href="api-kivy.properties.html#kivy.properties.NumericProperty" title="kivy.properties.NumericProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumericProperty</span></code></a> and
-defaults to 5.</p>
+<span class="sig-name descname"><span class="pre">max_history</span></span><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect.max_history" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Сохранить до <cite>max_history</cite> значений движения в истории. Это используется
+для правильного вычисления скорости в соответствии с движением.</p>
+<p><a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.max_history" title="kivy.effects.kinetic.KineticEffect.max_history"><code class="xref py py-attr docutils literal notranslate"><span class="pre">max_history</span></code></a> - это <a class="reference internal" href="api-kivy.properties.html#kivy.properties.NumericProperty" title="kivy.properties.NumericProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumericProperty</span></code></a> и
+по умолчанию равно 5.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.effects.kinetic.KineticEffect.min_distance">
-<span class="sig-name descname"><span class="pre">min_distance</span></span><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect.min_distance" title="Permalink to this definition">¶</a></dt>
-<dd><p>The minimal distance for a movement to have nonzero velocity.</p>
+<span class="sig-name descname"><span class="pre">min_distance</span></span><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect.min_distance" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Минимальное расстояние для движения со скоростью, не равной нулю.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.8.0.</span></p>
+<p><span class="versionmodified added">Новое в версии 1.8.0.</span></p>
 </div>
-<p><a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.min_distance" title="kivy.effects.kinetic.KineticEffect.min_distance"><code class="xref py py-attr docutils literal notranslate"><span class="pre">min_distance</span></code></a> is <a class="reference internal" href="api-kivy.properties.html#kivy.properties.NumericProperty" title="kivy.properties.NumericProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumericProperty</span></code></a> and
-defaults to 0.1.</p>
+<p><a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.min_distance" title="kivy.effects.kinetic.KineticEffect.min_distance"><code class="xref py py-attr docutils literal notranslate"><span class="pre">min_distance</span></code></a> - это <a class="reference internal" href="api-kivy.properties.html#kivy.properties.NumericProperty" title="kivy.properties.NumericProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumericProperty</span></code></a> и
+по умолчанию равно 0.1.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.effects.kinetic.KineticEffect.min_velocity">
-<span class="sig-name descname"><span class="pre">min_velocity</span></span><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect.min_velocity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Velocity below this quantity is normalized to 0. In other words,
-any motion whose velocity falls below this number is stopped.</p>
+<span class="sig-name descname"><span class="pre">min_velocity</span></span><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect.min_velocity" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Скорость, ниже которой она нормализуется до 0. Иными словами,
+любое движение, скорость которого падает ниже этого числа, останавливается.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.8.0.</span></p>
+<p><span class="versionmodified added">Новое в версии 1.8.0.</span></p>
 </div>
-<p><a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.min_velocity" title="kivy.effects.kinetic.KineticEffect.min_velocity"><code class="xref py py-attr docutils literal notranslate"><span class="pre">min_velocity</span></code></a> is a <a class="reference internal" href="api-kivy.properties.html#kivy.properties.NumericProperty" title="kivy.properties.NumericProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumericProperty</span></code></a> and
-defaults to 0.5.</p>
+<p><a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.min_velocity" title="kivy.effects.kinetic.KineticEffect.min_velocity"><code class="xref py py-attr docutils literal notranslate"><span class="pre">min_velocity</span></code></a> - это <a class="reference internal" href="api-kivy.properties.html#kivy.properties.NumericProperty" title="kivy.properties.NumericProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumericProperty</span></code></a> и
+по умолчанию равно 0.5.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.effects.kinetic.KineticEffect.start">
-<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/effects/kinetic.html#KineticEffect.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect.start" title="Permalink to this definition">¶</a></dt>
-<dd><p>Start the movement.</p>
+<span class="sig-name descname"><span class="pre">start</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/effects/kinetic.html#KineticEffect.start"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect.start" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Начать движение.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Параметры</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><cite>val</cite>: float or int</dt><dd><p>Value of the movement</p>
+<dt><cite>val</cite>: float или int</dt><dd><p>Значение движения</p>
 </dd>
-<dt><cite>t</cite>: float, defaults to None</dt><dd><p>Time when the movement happen. If no time is set, it will use
+<dt><cite>t</cite>: float, по умолчанию None</dt><dd><p>Время, когда происходит движение. Если время не установлено, будет использовано
 time.time()</p>
 </dd>
 </dl>
@@ -500,54 +499,53 @@ time.time()</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.effects.kinetic.KineticEffect.std_dt">
-<span class="sig-name descname"><span class="pre">std_dt</span></span><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect.std_dt" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">std_dt</span></span><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect.std_dt" title="Ссылка на это определение">¶</a></dt>
 <dd><dl class="simple">
-<dt>std_dt</dt><dd><p>correction update_velocity if dt is not constant</p>
+<dt>std_dt</dt><dd><p>коррекция update_velocity, если dt не постоянное</p>
 </dd>
 </dl>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 2.0.0.</span></p>
+<p><span class="versionmodified added">Новое в версии 2.0.0.</span></p>
 </div>
-<p><a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.std_dt" title="kivy.effects.kinetic.KineticEffect.std_dt"><code class="xref py py-attr docutils literal notranslate"><span class="pre">std_dt</span></code></a> is a <a class="reference internal" href="api-kivy.properties.html#kivy.properties.NumericProperty" title="kivy.properties.NumericProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumericProperty</span></code></a> and
-defaults to 0.017.</p>
+<p><a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.std_dt" title="kivy.effects.kinetic.KineticEffect.std_dt"><code class="xref py py-attr docutils literal notranslate"><span class="pre">std_dt</span></code></a> - это <a class="reference internal" href="api-kivy.properties.html#kivy.properties.NumericProperty" title="kivy.properties.NumericProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumericProperty</span></code></a> и
+по умолчанию равно 0.017.</p>
 </dd></dl>
-
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.effects.kinetic.KineticEffect.stop">
-<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/effects/kinetic.html#KineticEffect.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect.stop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Stop the movement.</p>
-<p>See <a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.start" title="kivy.effects.kinetic.KineticEffect.start"><code class="xref py py-meth docutils literal notranslate"><span class="pre">start()</span></code></a> for the arguments.</p>
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/effects/kinetic.html#KineticEffect.stop"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect.stop" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Остановить движение.</p>
+<p>См. <a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.start" title="kivy.effects.kinetic.KineticEffect.start"><code class="xref py py-meth docutils literal notranslate"><span class="pre">start()</span></code></a> для аргументов.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.effects.kinetic.KineticEffect.update">
-<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/effects/kinetic.html#KineticEffect.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect.update" title="Permalink to this definition">¶</a></dt>
-<dd><p>Update the movement.</p>
-<p>See <a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.start" title="kivy.effects.kinetic.KineticEffect.start"><code class="xref py py-meth docutils literal notranslate"><span class="pre">start()</span></code></a> for the arguments.</p>
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">val</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/effects/kinetic.html#KineticEffect.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect.update" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Обновить движение.</p>
+<p>См. <a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.start" title="kivy.effects.kinetic.KineticEffect.start"><code class="xref py py-meth docutils literal notranslate"><span class="pre">start()</span></code></a> для аргументов.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.effects.kinetic.KineticEffect.update_velocity">
-<span class="sig-name descname"><span class="pre">update_velocity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/effects/kinetic.html#KineticEffect.update_velocity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect.update_velocity" title="Permalink to this definition">¶</a></dt>
-<dd><p>(internal) Update the velocity according to the frametime and
-friction.</p>
+<span class="sig-name descname"><span class="pre">update_velocity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dt</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/effects/kinetic.html#KineticEffect.update_velocity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect.update_velocity" title="Ссылка на это определение">¶</a></dt>
+<dd><p>(внутренний) Обновить скорость в соответствии с интервалом кадров и трением.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.effects.kinetic.KineticEffect.value">
-<span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect.value" title="Permalink to this definition">¶</a></dt>
-<dd><p>Value (during the movement and computed) of the effect.</p>
-<p><a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.value" title="kivy.effects.kinetic.KineticEffect.value"><code class="xref py py-attr docutils literal notranslate"><span class="pre">value</span></code></a> is a <a class="reference internal" href="api-kivy.properties.html#kivy.properties.NumericProperty" title="kivy.properties.NumericProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumericProperty</span></code></a> and
-defaults to 0.</p>
+<span class="sig-name descname"><span class="pre">value</span></span><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect.value" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Значение (во время движения и вычисленное) эффекта.</p>
+<p><a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.value" title="kivy.effects.kinetic.KineticEffect.value"><code class="xref py py-attr docutils literal notranslate"><span class="pre">value</span></code></a> - это <a class="reference internal" href="api-kivy.properties.html#kivy.properties.NumericProperty" title="kivy.properties.NumericProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumericProperty</span></code></a> и
+по умолчанию равно 0.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.effects.kinetic.KineticEffect.velocity">
-<span class="sig-name descname"><span class="pre">velocity</span></span><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect.velocity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Velocity of the movement.</p>
-<p><a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.velocity" title="kivy.effects.kinetic.KineticEffect.velocity"><code class="xref py py-attr docutils literal notranslate"><span class="pre">velocity</span></code></a> is a <a class="reference internal" href="api-kivy.properties.html#kivy.properties.NumericProperty" title="kivy.properties.NumericProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumericProperty</span></code></a> and
-defaults to 0.</p>
+<span class="sig-name descname"><span class="pre">velocity</span></span><a class="headerlink" href="#kivy.effects.kinetic.KineticEffect.velocity" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Скорость движения.</p>
+<p><a class="reference internal" href="#kivy.effects.kinetic.KineticEffect.velocity" title="kivy.effects.kinetic.KineticEffect.velocity"><code class="xref py py-attr docutils literal notranslate"><span class="pre">velocity</span></code></a> - это <a class="reference internal" href="api-kivy.properties.html#kivy.properties.NumericProperty" title="kivy.properties.NumericProperty"><code class="xref py py-class docutils literal notranslate"><span class="pre">NumericProperty</span></code></a> и
+по умолчанию равно 0.</p>
 </dd></dl>
+
 
 </dd></dl>
 
