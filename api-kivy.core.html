@@ -386,70 +386,71 @@
 </ul>
 </div>
             
-  <section id="module-kivy.core">
-<span id="core-abstraction"></span><h1>Core Abstraction<a class="headerlink" href="#module-kivy.core" title="Permalink to this headline">¶</a></h1>
-<p>This module defines the abstraction layers for our core providers and their
-implementations. For further information, please refer to
-<a class="reference internal" href="guide/architecture.html#architecture"><span class="std std-ref">Architectural Overview</span></a> and the <a class="reference internal" href="guide/architecture.html#providers"><span class="std std-ref">Core Providers and Input Providers</span></a> section of the documentation.</p>
-<p>In most cases, you shouldn’t directly use a library that’s already covered
-by the core abstraction. Always try to use our providers first.
-In case we are missing a feature or method, please let us know by
-opening a new Bug report instead of relying on your library.</p>
+<section id="module-kivy.core">
+<span id="core-abstraction"></span><h1>Абстракция ядра<a class="headerlink" href="#module-kivy.core" title="Ссылка на этот заголовок">¶</a></h1>
+<p>Этот модуль определяет абстрактные уровни для наших ядерных провайдеров и их
+реализаций. Дополнительную информацию можно найти в разделе
+<a class="reference internal" href="guide/architecture.html#architecture"><span class="std std-ref">Архитектурный обзор</span></a> и разделе <a class="reference internal" href="guide/architecture.html#providers"><span class="std std-ref">Ядровые провайдеры и провайдеры ввода</span></a> документации.</p>
+<p>В большинстве случаев вам не следует напрямую использовать библиотеку, которая уже
+покрыта абстракцией ядра. Всегда попробуйте использовать наши провайдеры первыми.
+В случае, если нам не хватает функции или метода, пожалуйста, сообщите нам,
+открыв новую ошибку вместо полагания на вашу библиотеку.</p>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>These are <strong>not</strong> widgets! These are just abstractions of the respective
-functionality. For example, you cannot add a core image to your window.
-You have to use the image <strong>widget</strong> class instead. If you’re really
-looking for widgets, please refer to <a class="reference internal" href="api-kivy.uix.html#module-kivy.uix" title="kivy.uix"><code class="xref py py-mod docutils literal notranslate"><span class="pre">kivy.uix</span></code></a> instead.</p>
+<p class="admonition-title">Внимание</p>
+<p>Это <strong>не</strong> виджеты! Это всего лишь абстракции соответствующей
+функциональности. Например, вы не можете добавить ядро изображения в ваше окно.
+Вам следует использовать класс <strong>виджета</strong> для этого. Если вы действительно
+ищете виджеты, обратитесь к <a class="reference internal" href="api-kivy.uix.html#module-kivy.uix" title="kivy.uix"><code class="xref py py-mod docutils literal notranslate"><span class="pre">kivy.uix</span></code></a>.</p>
 </div>
 <dl class="py exception">
 <dt class="sig sig-object py" id="kivy.core.CoreCriticalException">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.core.</span></span><span class="sig-name descname"><span class="pre">CoreCriticalException</span></span><a class="reference internal" href="_modules/kivy/core.html#CoreCriticalException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.CoreCriticalException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.core.</span></span><span class="sig-name descname"><span class="pre">CoreCriticalException</span></span><a class="reference internal" href="_modules/kivy/core.html#CoreCriticalException"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.CoreCriticalException" title="Ссылка на эту документацию">¶</a></dt>
+<dd><p>Базовый класс: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
 </dd></dl>
 
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="api-kivy.core.audio.html">Audio</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api-kivy.core.audio.html#event-dispatching-and-state-changes">Event dispatching and state changes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-kivy.core.audio.html">Аудио</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api-kivy.core.audio.html#event-dispatching-and-state-changes">Рассылка событий и изменение состояния</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api-kivy.core.camera.html">Camera</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="api-kivy.core.camera.html">Камера</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api-kivy.core.clipboard.html">Clipboard</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="api-kivy.core.clipboard.html">Буфер обмена</a><ul class="simple">
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api-kivy.core.gl.html">OpenGL</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api-kivy.core.image.html">Image</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api-kivy.core.image.html#in-memory-image-loading">In-memory image loading</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api-kivy.core.image.html#saving-an-image">Saving an image</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api-kivy.core.image.html">Изображение</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api-kivy.core.image.html#in-memory-image-loading">Загрузка изображения в память</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-kivy.core.image.html#saving-an-image">Сохранение изображения</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api-kivy.core.spelling.html">Spelling</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="api-kivy.core.spelling.html">Проверка орфографии</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api-kivy.core.text.html">Text</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="api-kivy.core.text.html#font-context-manager">Font Context Manager</a></li>
-<li class="toctree-l2"><a class="reference internal" href="api-kivy.core.text.text_layout.html">Text layout</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="api-kivy.core.text.html">Текст</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api-kivy.core.text.html#font-context-manager">Менеджер контекста шрифтов</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api-kivy.core.text.text_layout.html">Макет текста</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="api-kivy.core.text.markup.html">Text Markup</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="api-kivy.core.text.markup.html">Разметка текста</a><ul class="simple">
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api-kivy.core.video.html">Video</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="api-kivy.core.video.html">Видео</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="api-kivy.core.window.html">Window</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="api-kivy.core.window.html">Окно</a><ul class="simple">
 </ul>
 </li>
 </ul>
 </div>
 </section>
+
 
 
             <div class="footerlinks">

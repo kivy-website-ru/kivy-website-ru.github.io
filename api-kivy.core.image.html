@@ -393,38 +393,35 @@
 </li>
 </ul>
 </div>
-            
-  <section id="module-kivy.core.image">
-<span id="image"></span><h1>Image<a class="headerlink" href="#module-kivy.core.image" title="Permalink to this headline">¶</a></h1>
-<p>Core classes for loading images and converting them to a
-<a class="reference internal" href="api-kivy.graphics.texture.html#kivy.graphics.texture.Texture" title="kivy.graphics.texture.Texture"><code class="xref py py-class docutils literal notranslate"><span class="pre">Texture</span></code></a>. The raw image data can be keep in
-memory for further access.</p>
+<section id="module-kivy.core.image">
+<span id="image"></span><h1>Изображение<a class="headerlink" href="#module-kivy.core.image" title="Ссылка на данный раздел">¶</a></h1>
+<p>Основные классы для загрузки изображений и их преобразования в
+<a class="reference internal" href="api-kivy.graphics.texture.html#kivy.graphics.texture.Texture" title="kivy.graphics.texture.Texture"><code class="xref py py-class docutils literal notranslate"><span class="pre">Texture</span></code></a>. Сырые данные изображения можно хранить в памяти
+для последующего доступа.</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.11.0: </span>Add support for argb and abgr image data</p>
+<p><span class="versionmodified changed">Изменено в версии 1.11.0: </span>Добавлена поддержка изображений argb и abgr</p>
 </div>
 <section id="in-memory-image-loading">
-<h2>In-memory image loading<a class="headerlink" href="#in-memory-image-loading" title="Permalink to this headline">¶</a></h2>
+<h2>Загрузка изображений в память<a class="headerlink" href="#in-memory-image-loading" title="Ссылка на данный раздел">¶</a></h2>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.9.0: </span>Official support for in-memory loading. Not all the providers support it,
-but currently SDL2, pygame, pil and imageio work.</p>
+<p><span class="versionmodified added">Добавлено в версии 1.9.0: </span>Официальная поддержка загрузки в память. Не все провайдеры поддерживают это,
+но на данный момент работают SDL2, pygame, pil и imageio.</p>
 </div>
-<p>To load an image with a filename, you would usually do:</p>
+<p>Для загрузки изображения по имени файла обычно используется следующий код:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kivy.core.image</span> <span class="kn">import</span> <span class="n">Image</span> <span class="k">as</span> <span class="n">CoreImage</span>
 <span class="n">im</span> <span class="o">=</span> <span class="n">CoreImage</span><span class="p">(</span><span class="s2">&quot;image.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>You can also load the image data directly from a memory block. Instead of
-passing the filename, you’ll need to pass the data as a BytesIO object
-together with an “ext” parameter. Both are mandatory:</p>
+<p>Вы также можете загрузить данные изображения напрямую из блока памяти. Вместо
+передачи имени файла, вам нужно передать данные в виде объекта BytesIO
+вместе с параметром "ext". Оба параметра обязательны:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">io</span>
 <span class="kn">from</span> <span class="nn">kivy.core.image</span> <span class="kn">import</span> <span class="n">Image</span> <span class="k">as</span> <span class="n">CoreImage</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;image.png&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
 <span class="n">im</span> <span class="o">=</span> <span class="n">CoreImage</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">ext</span><span class="o">=</span><span class="s2">&quot;png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>By default, the image will not be cached as our internal cache requires a
-filename. If you want caching, add a filename that represents your file (it
-will be used only for caching):</p>
+<p>По умолчанию изображение не будет кэшироваться, так как наш внутренний кеш требует наличие имени файла. Если вы хотите кэшировать, добавьте имя файла, представляющее ваш файл (оно будет использоваться только для кэширования):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">io</span>
 <span class="kn">from</span> <span class="nn">kivy.core.image</span> <span class="kn">import</span> <span class="n">Image</span> <span class="k">as</span> <span class="n">CoreImage</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">io</span><span class="o">.</span><span class="n">BytesIO</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s2">&quot;image.png&quot;</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
@@ -433,14 +430,14 @@ will be used only for caching):</p>
 </div>
 </section>
 <section id="saving-an-image">
-<h2>Saving an image<a class="headerlink" href="#saving-an-image" title="Permalink to this headline">¶</a></h2>
-<p>A CoreImage can be saved to a file:</p>
+<h2>Сохранение изображения<a class="headerlink" href="#saving-an-image" title="Ссылка на данный раздел">¶</a></h2>
+<p>Объект CoreImage можно сохранить в файл:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kivy.core.image</span> <span class="kn">import</span> <span class="n">Image</span> <span class="k">as</span> <span class="n">CoreImage</span>
 <span class="n">image</span> <span class="o">=</span> <span class="n">CoreImage</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 <span class="n">image</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s2">&quot;/tmp/test.png&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Or you can get the bytes (new in <cite>1.11.0</cite>):</p>
+<p>Или вы можете получить байты (новое в <cite>1.11.0</cite>):</p>
 <blockquote>
 <div><p>import io
 from kivy.core.image import Image as CoreImage
@@ -451,127 +448,119 @@ png_bytes = data.read()</p>
 </div></blockquote>
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.core.image.Image">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.core.image.</span></span><span class="sig-name descname"><span class="pre">Image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/image.html#Image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.image.Image" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.event.html#kivy.event.EventDispatcher" title="kivy.event.EventDispatcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.event.EventDispatcher</span></code></a></p>
-<p>Load an image and store the size and texture.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.core.image.</span></span><span class="sig-name descname"><span class="pre">Image</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arg</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/image.html#Image"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.image.Image" title="Ссылка на эту документацию">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="api-kivy.event.html#kivy.event.EventDispatcher" title="kivy.event.EventDispatcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.event.EventDispatcher</span></code></a></p>
+<p>Загрузка изображения и сохранение его размера и текстуры.</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.0.7: </span><cite>mipmap</cite> attribute has been added. The <cite>texture_mipmap</cite> and
-<cite>texture_rectangle</cite> have been deleted.</p>
+<p><span class="versionmodified changed">Изменено в версии 1.0.7: </span>Добавлен атрибут <cite>mipmap</cite>. Удалены <cite>texture_mipmap</cite> и
+<cite>texture_rectangle</cite>.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.0.8: </span>An Image widget can change its texture. A new event ‘on_texture’ has
-been introduced. New methods for handling sequenced animation have been
-added.</p>
+<p><span class="versionmodified changed">Изменено в версии 1.0.8: </span>Виджет Image может изменить свою текстуру. Введено новое событие ‘on_texture’. Добавлены новые методы для обработки последовательной анимации.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><cite>arg</cite>: can be a string (str), Texture, BytesIO or Image object</dt><dd><p>A string path to the image file or data URI to be loaded; or a
-Texture object, which will be wrapped in an Image object; or a
-BytesIO object containing raw image data; or an already existing
-image object, in which case, a real copy of the given image object
-will be returned.</p>
+<dt><cite>arg</cite>: может быть строкой (str), Texture, BytesIO или объектом Image</dt><dd><p>Строка, содержащая путь к файлу изображения или URI данных для загрузки; или объект Texture, который будет обернут в объект Image; или объект BytesIO, содержащий сырые данные изображения; или уже существующий объект изображения, в этом случае будет возвращена реальная копия данного объекта изображения.</p>
 </dd>
-<dt><cite>keep_data</cite>: bool, defaults to False</dt><dd><p>Keep the image data when the texture is created.</p>
+<dt><cite>keep_data</cite>: bool, по умолчанию False</dt><dd><p>Сохранение данных изображения при создании текстуры.</p>
 </dd>
-<dt><cite>mipmap</cite>: bool, defaults to False</dt><dd><p>Create mipmap for the texture.</p>
+<dt><cite>mipmap</cite>: bool, по умолчанию False</dt><dd><p>Создание mipmap для текстуры.</p>
 </dd>
-<dt><cite>anim_delay</cite>: float, defaults to .25</dt><dd><p>Delay in seconds between each animation frame. Lower values means
-faster animation.</p>
+<dt><cite>anim_delay</cite>: float, по умолчанию .25</dt><dd><p>Задержка в секундах между каждым кадром анимации. Меньшие значения означают более быструю анимацию.</p>
 </dd>
-<dt><cite>ext</cite>: str, only with BytesIO <cite>arg</cite></dt><dd><p>File extension to use in determining how to load raw image data.</p>
+<dt><cite>ext</cite>: str, только с аргументом BytesIO <cite>arg</cite></dt><dd><p>Расширение файла для определения способа загрузки сырых данных изображения.</p>
 </dd>
-<dt><cite>filename</cite>: str, only with BytesIO <cite>arg</cite></dt><dd><p>Filename to use in the image cache for raw image data.</p>
+<dt><cite>filename</cite>: str, только с аргументом BytesIO <cite>arg</cite></dt><dd><p>Имя файла, используемое в кеше изображений для сырых данных изображения.</p>
 </dd>
 </dl>
 </dd>
 </dl>
+
 <dl class="py property">
 <dt class="sig sig-object py" id="kivy.core.image.Image.anim_available">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">anim_available</span></span><a class="headerlink" href="#kivy.core.image.Image.anim_available" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return True if this Image instance has animation available.</p>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">anim_available</span></span><a class="headerlink" href="#kivy.core.image.Image.anim_available" title="Ссылка на эту документацию">¶</a></dt>
+<dd><p>Возвращает True, если у этого экземпляра Image доступна анимация.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.0.8.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.0.8.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="kivy.core.image.Image.anim_delay">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">anim_delay</span></span><a class="headerlink" href="#kivy.core.image.Image.anim_delay" title="Permalink to this definition">¶</a></dt>
-<dd><p>Delay between each animation frame. A lower value means faster
-animation.</p>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">anim_delay</span></span><a class="headerlink" href="#kivy.core.image.Image.anim_delay" title="Ссылка на эту документацию">¶</a></dt>
+<dd><p>Задержка между каждым кадром анимации. Меньшее значение означает более быструю
+анимацию.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.0.8.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.0.8.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="kivy.core.image.Image.anim_index">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">anim_index</span></span><a class="headerlink" href="#kivy.core.image.Image.anim_index" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the index number of the image currently in the texture.</p>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">anim_index</span></span><a class="headerlink" href="#kivy.core.image.Image.anim_index" title="Ссылка на эту документацию">¶</a></dt>
+<dd><p>Возвращает номер индекса изображения, которое в данный момент находится в текстуре.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.0.8.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.0.8.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.core.image.Image.anim_reset">
-<span class="sig-name descname"><span class="pre">anim_reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">allow_anim</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/image.html#Image.anim_reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.image.Image.anim_reset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reset an animation if available.</p>
+<span class="sig-name descname"><span class="pre">anim_reset</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">allow_anim</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/image.html#Image.anim_reset"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.image.Image.anim_reset" title="Ссылка на эту документацию">¶</a></dt>
+<dd><p>Сбрасывает анимацию, если она доступна.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.0.8.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.0.8.</span></p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><cite>allow_anim</cite>: bool</dt><dd><p>Indicate whether the animation should restart playing or not.</p>
+<dt><cite>allow_anim</cite>: bool</dt><dd><p>Указывает, должна ли анимация начать воспроизведение заново или нет.</p>
 </dd>
 </dl>
 </dd>
 </dl>
-<p>Usage:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># start/reset animation</span>
+<p>Использование:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Начать/сбросить анимацию</span>
 <span class="n">image</span><span class="o">.</span><span class="n">anim_reset</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
 
-<span class="c1"># or stop the animation</span>
+<span class="c1"># Или остановить анимацию</span>
 <span class="n">image</span><span class="o">.</span><span class="n">anim_reset</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>You can change the animation speed whilst it is playing:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set to 20 FPS</span>
+</pre></div></div>
+<p>Вы можете изменить скорость анимации во время ее воспроизведения:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Установить 20 FPS</span>
 <span class="n">image</span><span class="o">.</span><span class="n">anim_delay</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="mf">20.</span>
-</pre></div>
-</div>
+</pre></div></div>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="kivy.core.image.Image.filename">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">filename</span></span><a class="headerlink" href="#kivy.core.image.Image.filename" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get/set the filename of image</p>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">filename</span></span><a class="headerlink" href="#kivy.core.image.Image.filename" title="Ссылка на эту документацию">¶</a></dt>
+<dd><p>Получить/установить имя файла изображения.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="kivy.core.image.Image.height">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">height</span></span><a class="headerlink" href="#kivy.core.image.Image.height" title="Permalink to this definition">¶</a></dt>
-<dd><p>Image height</p>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">height</span></span><a class="headerlink" href="#kivy.core.image.Image.height" title="Ссылка на эту документацию">¶</a></dt>
+<dd><p>Высота изображения.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="kivy.core.image.Image.image">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">image</span></span><a class="headerlink" href="#kivy.core.image.Image.image" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get/set the data image object</p>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">image</span></span><a class="headerlink" href="#kivy.core.image.Image.image" title="Ссылка на эту документацию">¶</a></dt>
+<dd><p>Получить/установить объект данных изображения.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.core.image.Image.load">
-<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/image.html#Image.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.image.Image.load" title="Permalink to this definition">¶</a></dt>
-<dd><p>Load an image</p>
+<em class="property"><span class="pre">static</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/image.html#Image.load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.image.Image.load" title="Ссылка на эту документацию">¶</a></dt>
+<dd><p>Загрузить изображение.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><cite>filename</cite>: str</dt><dd><p>Filename of the image.</p>
+<dt><cite>filename</cite>: str</dt><dd><p>Имя файла изображения.</p>
 </dd>
-<dt><cite>keep_data</cite>: bool, defaults to False</dt><dd><p>Keep the image data when the texture is created.</p>
+<dt><cite>keep_data</cite>: bool, по умолчанию False</dt><dd><p>Сохранить данные изображения при создании текстуры.</p>
 </dd>
 </dl>
 </dd>
@@ -580,41 +569,39 @@ animation.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.core.image.Image.load_memory">
-<span class="sig-name descname"><span class="pre">load_memory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ext</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'__inline__'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/image.html#Image.load_memory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.image.Image.load_memory" title="Permalink to this definition">¶</a></dt>
-<dd><p>(internal) Method to load an image from raw data.</p>
+<span class="sig-name descname"><span class="pre">load_memory</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ext</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filename</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'__inline__'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/image.html#Image.load_memory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.image.Image.load_memory" title="Ссылка на эту документацию">¶</a></dt>
+<dd><p>(внутренний) Метод для загрузки изображения из сырых данных.</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="kivy.core.image.Image.nocache">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">nocache</span></span><a class="headerlink" href="#kivy.core.image.Image.nocache" title="Permalink to this definition">¶</a></dt>
-<dd><p>Indicate whether the texture will not be stored in the cache or not.</p>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">nocache</span></span><a class="headerlink" href="#kivy.core.image.Image.nocache" title="Ссылка на эту документацию">¶</a></dt>
+<dd><p>Указывает, будет ли текстура сохранена в кеше или нет.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.6.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.6.0.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.core.image.Image.on_texture">
-<span class="sig-name descname"><span class="pre">on_texture</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">largs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/image.html#Image.on_texture"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.image.Image.on_texture" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">on_texture</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">largs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/image.html#Image.on_texture"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.image.Image.on_texture" title="Ссылка на эту документацию">¶</a></dt>
 <dd><dl class="simple">
-<dt>This event is fired when the texture reference or content has</dt><dd><p>changed. It is normally used for sequenced images.</p>
+<dt>Это событие срабатывает, когда изменяется ссылка или содержание текстуры.</dt><dd><p>Обычно используется для последовательных изображений.</p>
 </dd>
 </dl>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.0.8.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.0.8.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.core.image.Image.read_pixel">
-<span class="sig-name descname"><span class="pre">read_pixel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/image.html#Image.read_pixel"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.image.Image.read_pixel" title="Permalink to this definition">¶</a></dt>
-<dd><p>For a given local x/y position, return the pixel color at that
-position.</p>
+<span class="sig-name descname"><span class="pre">read_pixel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/image.html#Image.read_pixel"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="headerlink" href="#kivy.core.image.Image.read_pixel" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Для данной локальной позиции x/y возвращает цвет пикселя в этой позиции.</p>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This function can only be used with images loaded with the
-keep_data=True keyword. For example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;image.png&#39;</span><span class="p">,</span> <span class="n">keep_data</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<p class="admonition-title">Предупреждение</p>
+<p>Эта функция может использоваться только с изображениями, загруженными с ключевым словом keep_data=True. Например:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">m</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">'image.png'</span><span class="p">,</span> <span class="n">keep_data</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">color</span> <span class="o">=</span> <span class="n">m</span><span class="o">.</span><span class="n">read_pixel</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -622,9 +609,9 @@ keep_data=True keyword. For example:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><cite>x</cite>: int</dt><dd><p>Local x coordinate of the pixel in question.</p>
+<dt><cite>x</cite>: int</dt><dd><p>Локальная координата x пикселя в вопросе.</p>
 </dd>
-<dt><cite>y</cite>: int</dt><dd><p>Local y coordinate of the pixel in question.</p>
+<dt><cite>y</cite>: int</dt><dd><p>Локальная координата y пикселя в вопросе.</p>
 </dd>
 </dl>
 </dd>
@@ -633,170 +620,168 @@ keep_data=True keyword. For example:</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.core.image.Image.remove_from_cache">
-<span class="sig-name descname"><span class="pre">remove_from_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/image.html#Image.remove_from_cache"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.image.Image.remove_from_cache" title="Permalink to this definition">¶</a></dt>
-<dd><p>Remove the Image from cache. This facilitates re-loading of
-images from disk in case the image content has changed.</p>
+<span class="sig-name descname"><span class="pre">remove_from_cache</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/image.html#Image.remove_from_cache"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="headerlink" href="#kivy.core.image.Image.remove_from_cache" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Удалить изображение из кеша. Это облегчает повторную загрузку
+изображений с диска в случае изменения содержания изображения.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.3.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.3.0.</span></p>
 </div>
-<p>Usage:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">im</span> <span class="o">=</span> <span class="n">CoreImage</span><span class="p">(</span><span class="s1">&#39;1.jpg&#39;</span><span class="p">)</span>
-<span class="c1"># -- do something --</span>
+<p>Использование:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">im</span> <span class="o">=</span> <span class="n">CoreImage</span><span class="p">(</span><span class="s1">'1.jpg'</span><span class="p">)</span>
+<span class="c1"># -- что-то сделать --</span>
 <span class="n">im</span><span class="o">.</span><span class="n">remove_from_cache</span><span class="p">()</span>
-<span class="n">im</span> <span class="o">=</span> <span class="n">CoreImage</span><span class="p">(</span><span class="s1">&#39;1.jpg&#39;</span><span class="p">)</span>
-<span class="c1"># this time image will be re-loaded from disk</span>
+<span class="n">im</span> <span class="o">=</span> <span class="n">CoreImage</span><span class="p">(</span><span class="s1">'1.jpg'</span><span class="p">)</span>
+<span class="c1"># на этот раз изображение будет загружено с диска заново</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.core.image.Image.save">
-<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flipped</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/image.html#Image.save"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.image.Image.save" title="Permalink to this definition">¶</a></dt>
-<dd><p>Save image texture to file.</p>
-<p>The filename should have the ‘.png’ extension because the texture data
-read from the GPU is in the RGBA format. ‘.jpg’ might work but has not
-been heavily tested so some providers might break when using it.
-Any other extensions are not officially supported.</p>
-<p>The flipped parameter flips the saved image vertically, and
-defaults to False.</p>
-<p>Example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Save an core image object</span>
+<span class="sig-name descname"><span class="pre">save</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filename</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flipped</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/image.html#Image.save"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="headerlink" href="#kivy.core.image.Image.save" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Сохранить текстуру изображения в файл.</p>
+<p>Имя файла должно иметь расширение ‘.png’, потому что данные текстуры,
+считанные с GPU, имеют формат RGBA. ‘.jpg’ может сработать, но не был
+тщательно протестирован, поэтому некоторые поставщики могут не работать при его использовании.
+Любые другие расширения официально не поддерживаются.</p>
+<p>Параметр flipped переворачивает сохраненное изображение вертикально и по умолчанию равен False.</p>
+<p>Пример:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Сохранить объект изображения core</span>
 <span class="kn">from</span> <span class="nn">kivy.core.image</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="p">(</span><span class="s1">&#39;hello.png&#39;</span><span class="p">)</span>
-<span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;hello2.png&#39;</span><span class="p">)</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="p">(</span><span class="s1">'hello.png'</span><span class="p">)</span>
+<span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'hello2.png'</span><span class="p">)</span>
 
-<span class="c1"># Save a texture</span>
+<span class="c1"># Сохранить текстуру</span>
 <span class="n">texture</span> <span class="o">=</span> <span class="n">Texture</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
 <span class="n">img</span> <span class="o">=</span> <span class="n">Image</span><span class="p">(</span><span class="n">texture</span><span class="p">)</span>
-<span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">&#39;hello3.png&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
+<span class="n">img</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="s1">'hello3.png'</span><span class="p">)</span>
+</pre></div></div>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.7.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.7.0.</span></p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.8.0: </span>Parameter <cite>flipped</cite> added to flip the image before saving, default
-to False.</p>
+<p><span class="versionmodified changed">Изменено в версии 1.8.0: </span>Параметр <cite>flipped</cite> добавлен для переворачивания изображения перед сохранением, по умолчанию
+равен False.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.11.0: </span>Parameter <cite>fmt</cite> added to force the output format of the file
-Filename can now be a BytesIO object.</p>
+<p><span class="versionmodified changed">Изменено в версии 1.11.0: </span>Параметр <cite>fmt</cite> добавлен для принудительной установки формата вывода файла.
+Теперь имя файла может быть объектом BytesIO.</p>
 </div>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="kivy.core.image.Image.size">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">size</span></span><a class="headerlink" href="#kivy.core.image.Image.size" title="Permalink to this definition">¶</a></dt>
-<dd><p>Image size (width, height)</p>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">size</span></span><a class="headerlink" href="#kivy.core.image.Image.size" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Размер изображения (ширина, высота)</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="kivy.core.image.Image.texture">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">texture</span></span><a class="headerlink" href="#kivy.core.image.Image.texture" title="Permalink to this definition">¶</a></dt>
-<dd><p>Texture of the image</p>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">texture</span></span><a class="headerlink" href="#kivy.core.image.Image.texture" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Текстура изображения</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="kivy.core.image.Image.width">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">width</span></span><a class="headerlink" href="#kivy.core.image.Image.width" title="Permalink to this definition">¶</a></dt>
-<dd><p>Image width</p>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">width</span></span><a class="headerlink" href="#kivy.core.image.Image.width" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Ширина изображения</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.core.image.ImageData">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.core.image.</span></span><span class="sig-name descname"><span class="pre">ImageData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flip_vertical</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rowlength</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/image.html#ImageData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.image.ImageData" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">builtins.object</span></code></p>
-<p>Container for images and mipmap images.
-The container will always have at least the mipmap level 0.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.core.image.</span></span><span class="sig-name descname"><span class="pre">ImageData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fmt</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flip_vertical</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">source_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rowlength</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/image.html#ImageData"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="headerlink" href="#kivy.core.image.ImageData" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <code class="xref py py-class docutils literal notranslate"><span class="pre">builtins.object</span></code></p>
+<p>Контейнер для изображений и изображений с уровнем детализации (mipmap).
+Контейнер всегда будет содержать как минимум уровень детализации 0.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.core.image.ImageData.add_mipmap">
-<span class="sig-name descname"><span class="pre">add_mipmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rowlength</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/image.html#ImageData.add_mipmap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.image.ImageData.add_mipmap" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a image for a specific mipmap level.</p>
+<span class="sig-name descname"><span class="pre">add_mipmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rowlength</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/image.html#ImageData.add_mipmap"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="headerlink" href="#kivy.core.image.ImageData.add_mipmap" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Добавить изображение для определенного уровня детализации (mipmap).</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.0.7.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.0.7.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="kivy.core.image.ImageData.data">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data</span></span><a class="headerlink" href="#kivy.core.image.ImageData.data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Image data.
-(If the image is mipmapped, it will use the level 0)</p>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">data</span></span><a class="headerlink" href="#kivy.core.image.ImageData.data" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Данные изображения.
+(Если у изображения есть уровень детализации, будет использоваться уровень 0)</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.core.image.ImageData.flip_vertical">
-<span class="sig-name descname"><span class="pre">flip_vertical</span></span><a class="headerlink" href="#kivy.core.image.ImageData.flip_vertical" title="Permalink to this definition">¶</a></dt>
-<dd><p>Indicate if the texture will need to be vertically flipped</p>
+<span class="sig-name descname"><span class="pre">flip_vertical</span></span><a class="headerlink" href="#kivy.core.image.ImageData.flip_vertical" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Указывает, потребуется ли вертикальное отображение текстуры</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.core.image.ImageData.fmt">
-<span class="sig-name descname"><span class="pre">fmt</span></span><a class="headerlink" href="#kivy.core.image.ImageData.fmt" title="Permalink to this definition">¶</a></dt>
-<dd><p>Decoded image format, one of a available texture format</p>
+<span class="sig-name descname"><span class="pre">fmt</span></span><a class="headerlink" href="#kivy.core.image.ImageData.fmt" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Формат декодированного изображения, один из доступных форматов текстуры</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.core.image.ImageData.get_mipmap">
-<span class="sig-name descname"><span class="pre">get_mipmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/image.html#ImageData.get_mipmap"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.image.ImageData.get_mipmap" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the mipmap image at a specific level if it exists</p>
+<span class="sig-name descname"><span class="pre">get_mipmap</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/image.html#ImageData.get_mipmap"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="headerlink" href="#kivy.core.image.ImageData.get_mipmap" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получить изображение с уровнем детализации (mipmap) по указанному уровню, если оно существует</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.0.7.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.0.7.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="kivy.core.image.ImageData.height">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">height</span></span><a class="headerlink" href="#kivy.core.image.ImageData.height" title="Permalink to this definition">¶</a></dt>
-<dd><p>Image height in pixels.
-(If the image is mipmapped, it will use the level 0)</p>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">height</span></span><a class="headerlink" href="#kivy.core.image.ImageData.height" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Высота изображения в пикселях.
+(Если у изображения есть уровень детализации, будет использоваться уровень 0)</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.core.image.ImageData.iterate_mipmaps">
-<span class="sig-name descname"><span class="pre">iterate_mipmaps</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/image.html#ImageData.iterate_mipmaps"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#kivy.core.image.ImageData.iterate_mipmaps" title="Permalink to this definition">¶</a></dt>
-<dd><p>Iterate over all mipmap images available.</p>
+<span class="sig-name descname"><span class="pre">iterate_mipmaps</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/kivy/core/image.html#ImageData.iterate_mipmaps"><span class="viewcode-link"><span class="pre">[исходный код]</span></span></a><a class="headerlink" href="#kivy.core.image.ImageData.iterate_mipmaps" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Итерация по всем доступным уровням детализации (mipmap).</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.0.7.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.0.7.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.core.image.ImageData.mipmaps">
-<span class="sig-name descname"><span class="pre">mipmaps</span></span><a class="headerlink" href="#kivy.core.image.ImageData.mipmaps" title="Permalink to this definition">¶</a></dt>
-<dd><p>Data for each mipmap.</p>
+<span class="sig-name descname"><span class="pre">mipmaps</span></span><a class="headerlink" href="#kivy.core.image.ImageData.mipmaps" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Данные для каждого уровня детализации (mipmap).</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="kivy.core.image.ImageData.rowlength">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rowlength</span></span><a class="headerlink" href="#kivy.core.image.ImageData.rowlength" title="Permalink to this definition">¶</a></dt>
-<dd><p>Image rowlength.
-(If the image is mipmapped, it will use the level 0)</p>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">rowlength</span></span><a class="headerlink" href="#kivy.core.image.ImageData.rowlength" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Длина строки изображения.
+(Если у изображения есть уровень детализации, будет использоваться уровень 0)</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.9.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.9.0.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="kivy.core.image.ImageData.size">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">size</span></span><a class="headerlink" href="#kivy.core.image.ImageData.size" title="Permalink to this definition">¶</a></dt>
-<dd><p>Image (width, height) in pixels.
-(If the image is mipmapped, it will use the level 0)</p>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">size</span></span><a class="headerlink" href="#kivy.core.image.ImageData.size" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Размер изображения (ширина, высота) в пикселях.
+(Если у изображения есть уровень детализации, будет использоваться уровень 0)</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.core.image.ImageData.source">
-<span class="sig-name descname"><span class="pre">source</span></span><a class="headerlink" href="#kivy.core.image.ImageData.source" title="Permalink to this definition">¶</a></dt>
-<dd><p>Image source, if available</p>
+<span class="sig-name descname"><span class="pre">source</span></span><a class="headerlink" href="#kivy.core.image.ImageData.source" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Исходное изображение, если доступно</p>
 </dd></dl>
 
 <dl class="py property">
 <dt class="sig sig-object py" id="kivy.core.image.ImageData.width">
-<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">width</span></span><a class="headerlink" href="#kivy.core.image.ImageData.width" title="Permalink to this definition">¶</a></dt>
-<dd><p>Image width in pixels.
-(If the image is mipmapped, it will use the level 0)</p>
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">width</span></span><a class="headerlink" href="#kivy.core.image.ImageData.width" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Ширина изображения в пикселях.
+(Если у изображения есть уровень детализации, будет использоваться уровень 0)</p>
 </dd></dl>
 
 </dd></dl>

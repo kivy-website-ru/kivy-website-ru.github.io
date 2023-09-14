@@ -385,18 +385,16 @@
 <li><a class="reference internal" href="#">Clipboard</a></li>
 </ul>
 </div>
-            
-  <section id="module-kivy.core.clipboard">
-<span id="clipboard"></span><h1>Clipboard<a class="headerlink" href="#module-kivy.core.clipboard" title="Permalink to this headline">¶</a></h1>
-<p>Core class for accessing the Clipboard. If we are not able to access the
-system clipboard, a fake one will be used.</p>
-<p>Usage example:</p>
+<section id="module-kivy.core.clipboard">
+<span id="clipboard"></span><h1>Буфер обмена<a class="headerlink" href="#module-kivy.core.clipboard" title="Ссылка на этот заголовок">¶</a></h1>
+<p>Основной класс для доступа к буферу обмена. Если у нас нет доступа к системному буферу обмена, будет использоваться фиктивный.</p>
+<p>Пример использования:</p>
 <div class="highlight-kv notranslate"><div class="highlight"><pre><span></span><span class="cp">#:import Clipboard kivy.core.clipboard.Clipboard</span>
 
 <span class="nc">Button</span><span class="p">:</span>
     <span class="nc">on_release</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="n">Clipboard</span><span class="o">.</span><span class="n">paste</span><span class="p">()</span>
-        <span class="n">Clipboard</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s1">&#39;Data&#39;</span><span class="p">)</span>
+        <span class="n">Clipboard</span><span class="o">.</span><span class="n">copy</span><span class="p">(</span><span class="s1">&#39;Данные&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="toctree-wrapper compound">
