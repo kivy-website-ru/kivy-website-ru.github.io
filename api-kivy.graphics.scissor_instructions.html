@@ -386,83 +386,75 @@
 </ul>
 </div>
             
-  <section id="module-kivy.graphics.scissor_instructions">
-<span id="scissor-instructions"></span><h1>Scissor Instructions<a class="headerlink" href="#module-kivy.graphics.scissor_instructions" title="Permalink to this headline">¶</a></h1>
+<section id="module-kivy.graphics.scissor_instructions">
+<span id="scissor-instructions"></span><h1>Инструкции по обрезке (Scissor Instructions)<a class="headerlink" href="#module-kivy.graphics.scissor_instructions" title="Ссылка на данный раздел">¶</a></h1>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.9.1.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.9.1.</span></p>
 </div>
-<p>Scissor instructions clip your drawing area into a rectangular region.</p>
+<p>Инструкции по обрезке (Scissor instructions) позволяют ограничивать область рисования прямоугольной областью.</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#kivy.graphics.scissor_instructions.ScissorPush" title="kivy.graphics.scissor_instructions.ScissorPush"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScissorPush</span></code></a>: Begins clipping, sets the bounds of the clip space</p></li>
-<li><p><a class="reference internal" href="#kivy.graphics.scissor_instructions.ScissorPop" title="kivy.graphics.scissor_instructions.ScissorPop"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScissorPop</span></code></a>: Ends clipping</p></li>
+<li><p><a class="reference internal" href="#kivy.graphics.scissor_instructions.ScissorPush" title="kivy.graphics.scissor_instructions.ScissorPush"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScissorPush</span></code></a>: Начинает обрезку и устанавливает границы области обрезки.</p></li>
+<li><p><a class="reference internal" href="#kivy.graphics.scissor_instructions.ScissorPop" title="kivy.graphics.scissor_instructions.ScissorPop"><code class="xref py py-class docutils literal notranslate"><span class="pre">ScissorPop</span></code></a>: Завершает обрезку.</p></li>
 </ul>
-<p>The area provided to clip is in screenspace pixels and must be provided as
-integer values not floats.</p>
-<p>The following code will draw a circle on top of our widget while clipping
-the circle so it does not expand beyond the widget borders.</p>
+<p>Область, указанная для обрезки, задается в пикселях экранного пространства (screenspace) и должна быть указана как целые значения, а не числа с плавающей точкой.</p>
+<p>Следующий код нарисует круг поверх виджета, обрезая круг так, чтобы он не выходил за границы виджета.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">after</span><span class="p">:</span>
-    <span class="c1">#If our widget is inside another widget that modified the coordinates</span>
-    <span class="c1">#spacing (such as ScrollView) we will want to convert to Window coords</span>
+    <span class="c1"># Если наш виджет находится внутри другого виджета, который модифицировал координаты</span>
+    <span class="c1"># (например, ScrollView), нам нужно преобразовать их в координаты окна</span>
     <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_window</span><span class="p">(</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="p">)</span>
     <span class="n">width</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span>
-    <span class="c1">#We must convert from the possible float values provided by kivy</span>
-    <span class="c1">#widgets to an integer screenspace, in python3 round returns an int so</span>
-    <span class="c1">#the int cast will be unnecessary.</span>
+    <span class="c1"># Нам необходимо преобразовать возможные числа с плавающей точкой, предоставленные Kivy,</span>
+    <span class="c1"># в целые значения экранного пространства. В Python 3 функция round() возвращает целое число,</span>
+    <span class="c1"># поэтому преобразование в int будет излишним.</span>
     <span class="n">ScissorPush</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">x</span><span class="p">)),</span> <span class="n">y</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">y</span><span class="p">)),</span>
         <span class="n">width</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">width</span><span class="p">)),</span> <span class="n">height</span><span class="o">=</span><span class="nb">int</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">height</span><span class="p">)))</span>
     <span class="n">Color</span><span class="p">(</span><span class="n">rgba</span><span class="o">=</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">.5</span><span class="p">))</span>
     <span class="n">Ellipse</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="n">width</span><span class="o">*</span><span class="mf">2.</span><span class="p">,</span> <span class="n">height</span><span class="o">*</span><span class="mf">2.</span><span class="p">),</span>
         <span class="n">pos</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">center</span><span class="p">)</span>
     <span class="n">ScissorPop</span><span class="p">()</span>
-</pre></div>
-</div>
+</pre></div></div>
 <dl class="py class">
-<dt class="sig sig-object py" id="kivy.graphics.scissor_instructions.Rect">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.scissor_instructions.</span></span><span class="sig-name descname"><span class="pre">Rect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">height</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.scissor_instructions.Rect" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">builtins.object</span></code></p>
-<p>Rect class used internally by ScissorStack and ScissorPush to determine
-correct clipping area.</p>
+<dt class="sig sig-object py" id="k
+
+ivy.graphics.scissor_instructions.Rect">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.scissor_instructions.</span></span><span class="sig-name descname"><span class="pre">Rect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">y</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">width</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">height</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.scissor_instructions.Rect" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <code class="xref py py-class docutils literal notranslate"><span class="pre">builtins.object</span></code></p>
+<p>Класс Rect, используемый внутренне ScissorStack и ScissorPush для определения правильной области обрезки.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.scissor_instructions.Rect.intersect">
-<span class="sig-name descname"><span class="pre">intersect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Rect</span> <span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.scissor_instructions.Rect.intersect" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">intersect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Rect</span> <span class="pre">other</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.scissor_instructions.Rect.intersect" title="Ссылка на это определение">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.scissor_instructions.ScissorPop">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.scissor_instructions.</span></span><span class="sig-name descname"><span class="pre">ScissorPop</span></span><a class="headerlink" href="#kivy.graphics.scissor_instructions.ScissorPop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Instruction</span></code></a></p>
-<p>Pop the scissor stack. Call after ScissorPush, once you have completed
-the drawing you wish to be clipped.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.scissor_instructions.</span></span><span class="sig-name descname"><span class="pre">ScissorPop</span></span><a class="headerlink" href="#kivy.graphics.scissor_instructions.ScissorPop" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Instruction</span></code></a></p>
+<p>Отменяет текущую область обрезки. Вызывается после ScissorPush, после завершения рисования, которое нужно обрезать.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.scissor_instructions.ScissorPush">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.scissor_instructions.</span></span><span class="sig-name descname"><span class="pre">ScissorPush</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.scissor_instructions.ScissorPush" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Instruction</span></code></a></p>
-<p>to control the area and position of the scissoring region. Defaults to
-0, 0, 100, 100</p>
-<p>Scissor works by clipping all drawing outside of a rectangle starting at
-int x, int y position and having sides of int width by int height in Window
-space coordinates</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.scissor_instructions.</span></span><span class="sig-name descname"><span class="pre">ScissorPush</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.scissor_instructions.ScissorPush" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Instruction</span></code></a></p>
+<p>Управляет областью и позицией области обрезки. По умолчанию устанавливает значения 0, 0, 100, 100.</p>
+<p>Обрезка работает путем обрезания всего рисования за пределами прямоугольника, начиная с позиции int x, int y и имея стороны int width и int height в координатах окна (Window space).</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.scissor_instructions.ScissorStack">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.scissor_instructions.</span></span><span class="sig-name descname"><span class="pre">ScissorStack</span></span><a class="headerlink" href="#kivy.graphics.scissor_instructions.ScissorStack" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">builtins.object</span></code></p>
-<p>Class used internally to keep track of the current state of
-glScissors regions. Do not instantiate, prefer to inspect the module’s
-scissor_stack.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.scissor_instructions.</span></span><span class="sig-name descname"><span class="pre">ScissorStack</span></span><a class="headerlink" href="#kivy.graphics.scissor_instructions.ScissorStack" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <code class="xref py py-class docutils literal notranslate"><span class="pre">builtins.object</span></code></p>
+<p>Класс, используемый внутренне для отслеживания текущего состояния областей glScissors. Не создавайте экземпляры этого класса, лучше ознакомьтесь с scissor_stack модуля.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.scissor_instructions.ScissorStack.pop">
-<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.scissor_instructions.ScissorStack.pop" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.scissor_instructions.ScissorStack.pop" title="Ссылка на это определение">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.scissor_instructions.ScissorStack.push">
-<span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.scissor_instructions.ScissorStack.push" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.scissor_instructions.ScissorStack.push" title="Ссылка на это определение">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -470,7 +462,6 @@ scissor_stack.</p>
 <div class="toctree-wrapper compound">
 </div>
 </section>
-
 
             <div class="footerlinks">
             <table>

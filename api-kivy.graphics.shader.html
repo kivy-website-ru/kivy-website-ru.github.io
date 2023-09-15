@@ -394,24 +394,24 @@
 </ul>
 </div>
             
-  <section id="module-kivy.graphics.shader">
-<span id="shader"></span><h1>Shader<a class="headerlink" href="#module-kivy.graphics.shader" title="Permalink to this headline">¶</a></h1>
-<p>The <a class="reference internal" href="#kivy.graphics.shader.Shader" title="kivy.graphics.shader.Shader"><code class="xref py py-class docutils literal notranslate"><span class="pre">Shader</span></code></a> class handles the compilation of the vertex and fragment
-shader as well as the creation of the program in OpenGL.</p>
+ <section id="module-kivy.graphics.shader">
+<span id="shader"></span><h1>Shader<a class="headerlink" href="#module-kivy.graphics.shader" title="Ссылка на это заголовок">¶</a></h1>
+<p>Класс <a class="reference internal" href="#kivy.graphics.shader.Shader" title="kivy.graphics.shader.Shader"><code class="xref py py-class docutils literal notranslate"><span class="pre">Shader</span></code></a> обрабатывает компиляцию вершинного и фрагментного
+шейдера, а также создание программы в OpenGL.</p>
 <div class="admonition-todo admonition" id="id1">
-<p class="admonition-title">Todo</p>
-<p>Include more complete documentation about the shader.</p>
+<p class="admonition-title">Задача</p>
+<p>Добавить более полную документацию о шейдере.</p>
 </div>
 <section id="header-inclusion">
-<h2>Header inclusion<a class="headerlink" href="#header-inclusion" title="Permalink to this headline">¶</a></h2>
+<h2>Включение заголовка<a class="headerlink" href="#header-inclusion" title="Ссылка на это заголовок">¶</a></h2>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.0.7.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.0.7.</span></p>
 </div>
-<p>When you are creating a Shader, Kivy will always include default parameters. If
-you don’t want to rewrite this each time you want to customize / write a new
-shader, you can add the “$HEADER$” token and it will be replaced by the
-corresponding shader header.</p>
-<p>Here is the header for the fragment Shader:</p>
+<p>При создании Shader Kivy всегда будет включать параметры по умолчанию. Если
+вы не хотите переписывать это каждый раз, когда вам нужно настроить / написать новый
+шейдер, вы можете добавить токен “$HEADER$”, и его заменят на
+соответствующий заголовок шейдера.</p>
+<p>Вот заголовок для фрагментного шейдера:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#ifdef GL_ES</span>
     <span class="n">precision</span> <span class="n">highp</span> <span class="nb">float</span><span class="p">;</span>
 <span class="c1">#endif</span>
@@ -424,9 +424,8 @@ corresponding shader header.</p>
 <span class="n">uniform</span> <span class="n">sampler2D</span> <span class="n">texture0</span><span class="p">;</span>
 
 <span class="n">uniform</span> <span class="n">mat4</span> <span class="n">frag_modelview_mat</span><span class="p">;</span>
-</pre></div>
-</div>
-<p>And the header for vertex Shader:</p>
+</pre></div></div>
+<p>А вот заголовок для вершинного шейдера:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#ifdef GL_ES</span>
     <span class="n">precision</span> <span class="n">highp</span> <span class="nb">float</span><span class="p">;</span>
 <span class="c1">#endif</span>
@@ -444,81 +443,79 @@ corresponding shader header.</p>
 <span class="n">uniform</span> <span class="n">mat4</span>       <span class="n">projection_mat</span><span class="p">;</span>
 <span class="n">uniform</span> <span class="n">vec4</span>       <span class="n">color</span><span class="p">;</span>
 <span class="n">uniform</span> <span class="nb">float</span>      <span class="n">opacity</span><span class="p">;</span>
-</pre></div>
-</div>
+</pre></div></div>
 </section>
 <section id="single-file-glsl-shader-programs">
-<h2>Single file glsl shader programs<a class="headerlink" href="#single-file-glsl-shader-programs" title="Permalink to this headline">¶</a></h2>
+<h2>Программы шейдера glsl в одном файле<a class="headerlink" href="#single-file-glsl-shader-programs" title="Ссылка на это заголовок">¶</a></h2>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.6.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.6.0.</span></p>
 </div>
-<p>To simplify shader management, the vertex and fragment shaders can be loaded
-automatically from a single glsl source file (plain text). The file should
-contain sections identified by a line starting with ‘—vertex’ and
-‘—fragment’ respectively (case insensitive), e.g.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">anything</span> <span class="n">before</span> <span class="n">a</span> <span class="n">meaningful</span> <span class="n">section</span> <span class="n">such</span> <span class="k">as</span> <span class="n">this</span> <span class="n">comment</span> <span class="n">are</span> <span class="n">ignored</span>
+<p>Для упрощения управления шейдерами вершин и фрагментов их можно загружать
+автоматически из одного исходного файла glsl (обычного текста). Файл должен
+содержать разделы, идентифицируемые строкой, начинающейся с ‘—vertex’ и
+‘—fragment’ соответственно (регистр не имеет значения), например:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">все</span> <span class="n">содержимое</span> <span class="n">до</span> <span class="n">значимого</span> <span class="n">раздела</span> <span class="n">такого</span> <span class="n">как</span> <span class="n">этот</span> <span class="n">комментарий</span> <span class="n">игнорируется</span>
 
-<span class="o">---</span><span class="n">VERTEX</span> <span class="n">SHADER</span><span class="o">---</span> <span class="o">//</span> <span class="n">vertex</span> <span class="n">shader</span> <span class="n">starts</span> <span class="n">here</span>
+<span class="o">---</span><span class="n">VERTEX</span> <span class="n">SHADER</span><span class="o">---</span> <span class="o">//</span> <span class="n">вершинный</span> <span class="n">шейдер</span> <span class="n">начинается</span> <span class="n">здесь</span>
 <span class="n">void</span> <span class="n">main</span><span class="p">(){</span>
     <span class="o">...</span>
 <span class="p">}</span>
 
-<span class="o">---</span><span class="n">FRAGMENT</span> <span class="n">SHADER</span><span class="o">---</span> <span class="o">//</span> <span class="n">fragment</span> <span class="n">shader</span> <span class="n">starts</span> <span class="n">here</span>
+<span class="o">---</span><span class="n">FRAGMENT</span> <span class="n">SHADER</span><span class="o">---</span> <span class="o">//</span> <span class="n">фрагментный</span> <span class="n">шейдер</span> <span class="n">начинается</span> <span class="n">здесь</span>
 <span class="n">void</span> <span class="n">main</span><span class="p">(){</span>
     <span class="o">...</span>
 <span class="p">}</span>
-</pre></div>
-</div>
-<p>The source property of the Shader should be set to the filename of a glsl
-shader file (of the above format), e.g. <cite>phong.glsl</cite></p>
+</pre></div></div>
+<p>Свойство source шейдера должно быть установлено в имя файла glsl
+(в указанном выше формате), например, <cite>phong.glsl</cite></p>
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.shader.Shader">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.shader.</span></span><span class="sig-name descname"><span class="pre">Shader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unicode</span> <span class="pre">vs=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unicode</span> <span class="pre">fs=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unicode</span> <span class="pre">source=None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.shader.Shader" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">builtins.object</span></code></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.shader.</span></span><span class="sig-name descname"><span class="pre">Shader</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unicode</span> <span class="pre">vs=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unicode</span> <span class="pre">fs=None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unicode</span> <span class="pre">source=None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.shader.Shader" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <code class="xref py py-class docutils literal notranslate"><span class="pre">builtins.object</span></code></p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Параметры</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><cite>vs</cite>: string, defaults to None</dt><dd><p>Source code for vertex shader</p>
+<dt><cite>vs</cite>: строка, по умолчанию None</dt><dd><p>Исходный код вершинного шейдера</p>
 </dd>
-<dt><cite>fs</cite>: string, defaults to None</dt><dd><p>Source code for fragment shader</p>
+<dt><cite>fs</cite>: строка, по умолчанию None</dt><dd><p>Исходный код фрагментного шейдера</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.shader.Shader.fs">
-<span class="sig-name descname"><span class="pre">fs</span></span><a class="headerlink" href="#kivy.graphics.shader.Shader.fs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fragment shader source code.</p>
-<p>If you set a new fragment shader code source, it will be automatically
-compiled and will replace the current fragment shader.</p>
+<span class="sig-name descname"><span class="pre">fs</span></span><a class="headerlink" href="#kivy.graphics.shader.Shader.fs" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Исходный код фрагментного шейдера.</p>
+<p>Если вы установите новый исходный код фрагментного шейдера, он будет автоматически
+скомпилирован и заменит текущий фрагментный шейдер.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.shader.Shader.source">
-<span class="sig-name descname"><span class="pre">source</span></span><a class="headerlink" href="#kivy.graphics.shader.Shader.source" title="Permalink to this definition">¶</a></dt>
-<dd><p>glsl  source code.</p>
-<p>source should be the filename of a glsl shader that contains both the
-vertex and fragment shader sourcecode, each designated by a section
-header consisting of one line starting with either “–VERTEX” or
-“–FRAGMENT” (case insensitive).</p>
+<span class="sig-name descname"><span class="pre">source</span></span><a class="headerlink" href="#kivy.graphics.shader.Shader.source" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Исходный код glsl.</p>
+<p>source должен быть именем файла glsl, содержащего как вершинный, так и фрагментный
+исходный код шейдера, каждый из которых обозначен заголовком раздела
+состоящим из одной строки, начинающейся либо с “–VERTEX”, либо
+с “–FRAGMENT” (без учета регистра).</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.6.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.6.0.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.shader.Shader.success">
-<span class="sig-name descname"><span class="pre">success</span></span><a class="headerlink" href="#kivy.graphics.shader.Shader.success" title="Permalink to this definition">¶</a></dt>
-<dd><p>Indicate whether the shader loaded successfully and is ready for
-usage or not.</p>
+<span class="sig-name descname"><span class="pre">success</span></span><a class="headerlink" href="#kivy.graphics.shader.Shader.success" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Указывает, успешно ли загружен шейдер и готов ли он к
+использованию или нет.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.shader.Shader.vs">
-<span class="sig-name descname"><span class="pre">vs</span></span><a class="headerlink" href="#kivy.graphics.shader.Shader.vs" title="Permalink to this definition">¶</a></dt>
-<dd><p>Vertex shader source code.</p>
-<p>If you set a new vertex shader code source, it will be automatically
-compiled and will replace the current vertex shader.</p>
+<span class="sig-name descname"><span class="pre">vs</span></span><a class="headerlink" href="#kivy.graphics.shader.Shader.vs" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Исходный код вершинного шейдера.</p>
+<p>Если вы установите новый исходный код вершинного шейдера, он будет автоматически
+скомпилирован и заменит текущий вершинный шейдер.</p>
 </dd></dl>
 
 </dd></dl>
@@ -527,6 +524,7 @@ compiled and will replace the current vertex shader.</p>
 <div class="toctree-wrapper compound">
 </div>
 </section>
+
 
 
             <div class="footerlinks">

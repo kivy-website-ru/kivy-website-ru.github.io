@@ -393,14 +393,13 @@
 </div>
             
   <section id="module-kivy.graphics.gl_instructions">
-<span id="gl-instructions"></span><h1>GL instructions<a class="headerlink" href="#module-kivy.graphics.gl_instructions" title="Permalink to this headline">¶</a></h1>
+<span id="gl-instructions"></span><h1>GL инструкции<a class="headerlink" href="#module-kivy.graphics.gl_instructions" title="Ссылка на этот заголовок">¶</a></h1>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.3.0.</span></p>
+<p><span class="versionmodified added">Добавлено в  версии 1.3.0.</span></p>
 </div>
 <section id="clearing-an-fbo">
-<h2>Clearing an FBO<a class="headerlink" href="#clearing-an-fbo" title="Permalink to this headline">¶</a></h2>
-<p>To clear an FBO, you can use <a class="reference internal" href="#kivy.graphics.gl_instructions.ClearColor" title="kivy.graphics.gl_instructions.ClearColor"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClearColor</span></code></a> and <a class="reference internal" href="#kivy.graphics.gl_instructions.ClearBuffers" title="kivy.graphics.gl_instructions.ClearBuffers"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClearBuffers</span></code></a>
-instructions like this example:</p>
+<h2>Очистка FBO<a class="headerlink" href="#clearing-an-fbo" title="Ссылка на этот заголовок">¶</a></h2>
+<p>Для очистки FBO вы можете использовать инструкции <a class="reference internal" href="#kivy.graphics.gl_instructions.ClearColor" title="kivy.graphics.gl_instructions.ClearColor"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClearColor</span></code></a> и <a class="reference internal" href="#kivy.graphics.gl_instructions.ClearBuffers" title="kivy.graphics.gl_instructions.ClearBuffers"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClearBuffers</span></code></a> следующим образом:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">fbo</span> <span class="o">=</span> <span class="n">Fbo</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
 <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">fbo</span><span class="p">:</span>
     <span class="n">ClearColor</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
@@ -409,77 +408,76 @@ instructions like this example:</p>
 </div>
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.gl_instructions.ClearBuffers">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.gl_instructions.</span></span><span class="sig-name descname"><span class="pre">ClearBuffers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.gl_instructions.ClearBuffers" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Instruction</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.gl_instructions.</span></span><span class="sig-name descname"><span class="pre">ClearBuffers</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.gl_instructions.ClearBuffers" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Instruction</span></code></a></p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.3.0.</span></p>
+<p><span class="versionmodified added">Добавлено в  версии 1.3.0.</span></p>
 </div>
-<p>Clear the buffers specified by the instructions buffer mask property.
-By default, only the coloc buffer is cleared.</p>
+<p>Очистить буферы, указанные в свойстве маски буфера инструкций.
+По умолчанию очищается только буфер цвета.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.gl_instructions.ClearBuffers.clear_color">
-<span class="sig-name descname"><span class="pre">clear_color</span></span><a class="headerlink" href="#kivy.graphics.gl_instructions.ClearBuffers.clear_color" title="Permalink to this definition">¶</a></dt>
-<dd><p>If True, the color buffer will be cleared.</p>
+<span class="sig-name descname"><span class="pre">clear_color</span></span><a class="headerlink" href="#kivy.graphics.gl_instructions.ClearBuffers.clear_color" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>Если True, будет очищен буфер цвета.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.gl_instructions.ClearBuffers.clear_depth">
-<span class="sig-name descname"><span class="pre">clear_depth</span></span><a class="headerlink" href="#kivy.graphics.gl_instructions.ClearBuffers.clear_depth" title="Permalink to this definition">¶</a></dt>
-<dd><p>If True, the depth buffer will be cleared.</p>
+<span class="sig-name descname"><span class="pre">clear_depth</span></span><a class="headerlink" href="#kivy.graphics.gl_instructions.ClearBuffers.clear_depth" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>Если True, будет очищен буфер глубины.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.gl_instructions.ClearBuffers.clear_stencil">
-<span class="sig-name descname"><span class="pre">clear_stencil</span></span><a class="headerlink" href="#kivy.graphics.gl_instructions.ClearBuffers.clear_stencil" title="Permalink to this definition">¶</a></dt>
-<dd><p>If True, the stencil buffer will be cleared.</p>
+<span class="sig-name descname"><span class="pre">clear_stencil</span></span><a class="headerlink" href="#kivy.graphics.gl_instructions.ClearBuffers.clear_stencil" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>Если True, будет очищен буфер трафарета.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.gl_instructions.ClearColor">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.gl_instructions.</span></span><span class="sig-name descname"><span class="pre">ClearColor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.gl_instructions.ClearColor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Instruction</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.gl_instructions.</span></span><span class="sig-name descname"><span class="pre">ClearColor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">r</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">g</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.gl_instructions.ClearColor" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Instruction</span></code></a></p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.3.0.</span></p>
+<p><span class="versionmodified added">Добавлено в  версии 1.3.0.</span></p>
 </div>
-<p>Sets the clear color used to clear buffers with the glClear function or
-<a class="reference internal" href="#kivy.graphics.gl_instructions.ClearBuffers" title="kivy.graphics.gl_instructions.ClearBuffers"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClearBuffers</span></code></a> graphics instructions.</p>
+<p>Устанавливает цвет очистки, используемый для очистки буферов с помощью функции glClear или
+<a class="reference internal" href="#kivy.graphics.gl_instructions.ClearBuffers" title="kivy.graphics.gl_instructions.ClearBuffers"><code class="xref py py-class docutils literal notranslate"><span class="pre">ClearBuffers</span></code></a> графических инструкций.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.gl_instructions.ClearColor.a">
-<span class="sig-name descname"><span class="pre">a</span></span><a class="headerlink" href="#kivy.graphics.gl_instructions.ClearColor.a" title="Permalink to this definition">¶</a></dt>
-<dd><p>Alpha component, between 0 and 1.</p>
+<span class="sig-name descname"><span class="pre">a</span></span><a class="headerlink" href="#kivy.graphics.gl_instructions.ClearColor.a" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>Альфа-компонент, от 0 до 1.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.gl_instructions.ClearColor.b">
-<span class="sig-name descname"><span class="pre">b</span></span><a class="headerlink" href="#kivy.graphics.gl_instructions.ClearColor.b" title="Permalink to this definition">¶</a></dt>
-<dd><p>Blue component, between 0 and 1.</p>
+<span class="sig-name descname"><span class="pre">b</span></span><a class="headerlink" href="#kivy.graphics.gl_instructions.ClearColor.b" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>Синий компонент, от 0 до 1.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.gl_instructions.ClearColor.g">
-<span class="sig-name descname"><span class="pre">g</span></span><a class="headerlink" href="#kivy.graphics.gl_instructions.ClearColor.g" title="Permalink to this definition">¶</a></dt>
-<dd><p>Green component, between 0 and 1.</p>
+<span class="sig-name descname"><span class="pre">g</span></span><a class="headerlink" href="#kivy.graphics.gl_instructions.ClearColor.g" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>Зеленый компонент, от 0 до 1.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.gl_instructions.ClearColor.r">
-<span class="sig-name descname"><span class="pre">r</span></span><a class="headerlink" href="#kivy.graphics.gl_instructions.ClearColor.r" title="Permalink to this definition">¶</a></dt>
-<dd><p>Red component, between 0 and 1.</p>
+<span class="sig-name descname"><span class="pre">r</span></span><a class="headerlink" href="#kivy.graphics.gl_instructions.ClearColor.r" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>Красный компонент, от 0 до 1.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.gl_instructions.ClearColor.rgb">
-<span class="sig-name descname"><span class="pre">rgb</span></span><a class="headerlink" href="#kivy.graphics.gl_instructions.ClearColor.rgb" title="Permalink to this definition">¶</a></dt>
-<dd><p>RGB color, a list of 3 values in 0-1 range where alpha will be 1.</p>
+<span class="sig-name descname"><span class="pre">rgb</span></span><a class="headerlink" href="#kivy.graphics.gl_instructions.ClearColor.rgb" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>Цвет RGB, список из 3 значений в диапазоне от 0 до 1, где альфа будет равна 1.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.gl_instructions.ClearColor.rgba">
-<span class="sig-name descname"><span class="pre">rgba</span></span><a class="headerlink" href="#kivy.graphics.gl_instructions.ClearColor.rgba" title="Permalink to this definition">¶</a></dt>
-<dd><p>RGBA color used for the clear color, a list of 4 values in the 0-1
-range.</p>
+<span class="sig-name descname"><span class="pre">rgba</span></span><a class="headerlink" href="#kivy.graphics.gl_instructions.ClearColor.rgba" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>Цвет RGBA, используемый для цвета очистки, список из 4 значений в диапазоне от 0 до 1.</p>
 </dd></dl>
 
 </dd></dl>

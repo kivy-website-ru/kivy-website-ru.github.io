@@ -392,12 +392,11 @@
 </ul>
 </div>
             
-  <section id="module-kivy.graphics.fbo">
-<span id="framebuffer"></span><h1>Framebuffer<a class="headerlink" href="#module-kivy.graphics.fbo" title="Permalink to this headline">¶</a></h1>
-<p>The Fbo is like an offscreen window. You can activate the fbo for rendering into
-a texture and use your fbo as a texture for other drawing.</p>
-<p>The Fbo acts as a <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.Canvas" title="kivy.graphics.instructions.Canvas"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Canvas</span></code></a>.</p>
-<p>Here is an example of using an fbo for some colored rectangles:</p>
+<section id="module-kivy.graphics.fbo">
+<span id="framebuffer"></span><h1>Framebuffer<a class="headerlink" href="#module-kivy.graphics.fbo" title="Ссылка на этот раздел">¶</a></h1>
+<p>Fbo (Frame Buffer Object) представляет собой что-то вроде оффскрин-окна. Вы можете активировать fbo для рендеринга в текстуру и использовать ваше fbo как текстуру для другого рисования.</p>
+<p>Fbo действует как  <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.Canvas" title="kivy.graphics.instructions.Canvas"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Canvas</span></code></a>.</p>
+<p>Вот пример использования fbo для создания цветных прямоугольников:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kivy.graphics</span> <span class="kn">import</span> <span class="n">Fbo</span><span class="p">,</span> <span class="n">Color</span><span class="p">,</span> <span class="n">Rectangle</span>
 
 <span class="k">class</span> <span class="nc">FboTest</span><span class="p">(</span><span class="n">Widget</span><span class="p">):</span>
@@ -425,76 +424,69 @@ a texture and use your fbo as a texture for other drawing.</p>
             <span class="n">Rectangle</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">256</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>If you change anything in the <cite>self.fbo</cite> object, it will be automatically updated.
-The canvas where the fbo is put will be automatically updated as well.</p>
+<p>Если вы измените что-либо в объекте <cite>self.fbo</cite>, оно будет автоматически обновлено.
+Канвас, на котором находится fbo, также будет автоматически обновлен.</p>
 <section id="reloading-the-fbo-content">
-<h2>Reloading the FBO content<a class="headerlink" href="#reloading-the-fbo-content" title="Permalink to this headline">¶</a></h2>
+<h2>Обновление содержимого FBO<a class="headerlink" href="#reloading-the-fbo-content" title="Ссылка на этот раздел">¶</a></h2>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.2.0.</span></p>
+<p><span class="versionmodified added">Добавлено в  версии 1.2.0.</span></p>
 </div>
-<p>If the OpenGL context is lost, then the FBO is lost too. You need to reupload
-data on it yourself. Use the <a class="reference internal" href="#kivy.graphics.fbo.Fbo.add_reload_observer" title="kivy.graphics.fbo.Fbo.add_reload_observer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Fbo.add_reload_observer()</span></code></a> to add a reloading
-function that will be automatically called when needed:</p>
+<p>Если контекст OpenGL потерян, то FBO также потерян. Вам нужно будет самостоятельно перезагрузить данные. Используйте <a class="reference internal" href="#kivy.graphics.fbo.Fbo.add_reload_observer" title="kivy.graphics.fbo.Fbo.add_reload_observer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Fbo.add_reload_observer()</span></code></a>, чтобы добавить функцию перезагрузки, которая будет вызываться автоматически при необходимости:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="nb">super</span><span class="p">(</span><span class="o">...</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">fbo</span> <span class="o">=</span> <span class="n">Fbo</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">512</span><span class="p">))</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">fbo</span><span class="o">.</span><span class="n">add_reload_observer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">populate_fbo</span><span class="p">)</span>
 
-    <span class="c1"># and load the data now.</span>
+    <span class="c1"># и загрузите данные сейчас.</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">populate_fbo</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fbo</span><span class="p">)</span>
 
 
 <span class="k">def</span> <span class="nf">populate_fbo</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fbo</span><span class="p">):</span>
     <span class="k">with</span> <span class="n">fbo</span><span class="p">:</span>
-        <span class="c1"># .. put your Color / Rectangle / ... here</span>
-</pre></div>
-</div>
-<p>This way, you could use the same method for initialization and for reloading.
-But it’s up to you.</p>
+        <span class="c1"># .. поместите здесь ваши Color / Rectangle / ...</span>
+</pre></div></div>
+<p>Таким образом, вы можете использовать тот же метод как для инициализации, так и для перезагрузки. Но это зависит от вас.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.fbo.Fbo">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.fbo.</span></span><span class="sig-name descname"><span class="pre">Fbo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.fbo.Fbo" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.RenderContext" title="kivy.graphics.instructions.RenderContext"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.RenderContext</span></code></a></p>
-<p>“with” statement.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.fbo.</span></span><span class="sig-name descname"><span class="pre">Fbo</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.fbo.Fbo" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.RenderContext" title="kivy.graphics.instructions.RenderContext"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.RenderContext</span></code></a></p>
+<p>Инструкция "with".</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><cite>clear_color</cite>: tuple, defaults to (0, 0, 0, 0)</dt><dd><p>Define the default color for clearing the framebuffer</p>
+<dt><cite>clear_color</cite>: кортеж, значение по умолчанию (0, 0, 0, 0)</dt><dd><p>Определите цвет по умолчанию для очистки буфера кадра</p>
 </dd>
-<dt><cite>size</cite>: tuple, defaults to (1024, 1024)</dt><dd><p>Default size of the framebuffer</p>
+<dt><cite>size</cite>: кортеж, значение по умолчанию (1024, 1024)</dt><dd><p>Размер буфера кадра по умолчанию</p>
 </dd>
-<dt><cite>push_viewport</cite>: bool, defaults to True</dt><dd><p>If True, the OpenGL viewport will be set to the framebuffer size,
-and will be automatically restored when the framebuffer released.</p>
+<dt><cite>push_viewport</cite>: логическое значение, значение по умолчанию True</dt><dd><p>Если True, то размер видового окна OpenGL будет установлен в размер буфера кадра и будет автоматически восстановлен при освобождении буфера кадра.</p>
 </dd>
-<dt><cite>with_depthbuffer</cite>: bool, defaults to False</dt><dd><p>If True, the framebuffer will be allocated with a Z buffer.</p>
+<dt><cite>with_depthbuffer</cite>: логическое значение, значение по умолчанию False</dt><dd><p>Если True, то буфер кадра будет выделен с буфером глубины.</p>
 </dd>
-<dt><cite>with_stencilbuffer</cite>: bool, defaults to False</dt><dd><div class="versionadded">
-<p><span class="versionmodified added">New in version 1.9.0.</span></p>
+<dt><cite>with_stencilbuffer</cite>: логическое значение, значение по умолчанию False</dt><dd><div class="versionadded">
+<p><span class="versionmodified added">Добавлено в  версии 1.9.0.</span></p>
 </div>
-<p>If True, the framebuffer will be allocated with a stencil buffer.</p>
+<p>Если True, то буфер кадра будет выделен с буфером трафарета.</p>
 </dd>
-<dt><cite>texture</cite>: <a class="reference internal" href="api-kivy.graphics.texture.html#kivy.graphics.texture.Texture" title="kivy.graphics.texture.Texture"><code class="xref py py-class docutils literal notranslate"><span class="pre">Texture</span></code></a>, defaults to None</dt><dd><p>If None, a default texture will be created.</p>
+<dt><cite>texture</cite>: <a class="reference internal" href="api-kivy.graphics.texture.html#kivy.graphics.texture.Texture" title="kivy.graphics.texture.Texture"><code class="xref py py-class docutils literal notranslate"><span class="pre">Texture</span></code></a>, значение по умолчанию None</dt><dd><p>Если None, то будет создана текстура по умолчанию.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Using both of <code class="docutils literal notranslate"><span class="pre">with_stencilbuffer</span></code> and <code class="docutils literal notranslate"><span class="pre">with_depthbuffer</span></code> is not
-supported in kivy 1.9.0</p>
+<p class="admonition-title">Примечание</p>
+<p>Использование и <code class="docutils literal notranslate"><span class="pre">with_stencilbuffer</span></code> и <code class="docutils literal notranslate"><span class="pre">with_depthbuffer</span></code> одновременно не поддерживается в kivy 1.9.0</p>
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.fbo.Fbo.add_reload_observer">
-<span class="sig-name descname"><span class="pre">add_reload_observer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.fbo.Fbo.add_reload_observer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a callback to be called after the whole graphics context has
-been reloaded. This is where you can reupload your custom data in GPU.</p>
+<span class="sig-name descname"><span class="pre">add_reload_observer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.fbo.Fbo.add_reload_observer" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Добавьте обратный вызов, который будет вызываться после того, как весь графический контекст будет перезагружен. Здесь вы можете повторно загрузить свои пользовательские данные в GPU.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.2.0.</span></p>
+<p><span class="versionmodified added">Добавлено в  версии 1.2.0.</span></p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><cite>callback</cite>: func(context) -&gt; return None</dt><dd><p>The first parameter will be the context itself</p>
+<dt><cite>callback</cite>: функция (контекст) -> возврат None</dt><dd><p>Первый параметр будет самим контекстом</p>
 </dd>
 </dl>
 </dd>
@@ -503,31 +495,26 @@ been reloaded. This is where you can reupload your custom data in GPU.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.fbo.Fbo.bind">
-<span class="sig-name descname"><span class="pre">bind</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.fbo.Fbo.bind" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bind the FBO to the current opengl context.
-<cite>Bind</cite> mean that you enable the Framebuffer, and all the drawing
-operations will act inside the Framebuffer, until <a class="reference internal" href="#kivy.graphics.fbo.Fbo.release" title="kivy.graphics.fbo.Fbo.release"><code class="xref py py-meth docutils literal notranslate"><span class="pre">release()</span></code></a> is
-called.</p>
-<p>The bind/release operations are automatically called when you add
-graphics objects into it. If you want to manipulate a Framebuffer
-yourself, you can use it like this:</p>
+<span class="sig-name descname"><span class="pre">bind</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.fbo.Fbo.bind" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Привяжите FBO к текущему контексту OpenGL.
+Привязка означает, что вы активируете буфер кадра, и все операции рисования будут выполняться внутри буфера кадра до вызова <a class="reference internal" href="#kivy.graphics.fbo.Fbo.release" title="kivy.graphics.fbo.Fbo.release"><code class="xref py py-meth docutils literal notranslate"><span class="pre">release()</span></code></a>.
+Операции привязки/освобождения вызываются автоматически, когда вы добавляете графические объекты в него. Если вы хотите вручную управлять буфером кадра, вы можете использовать его так:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">fbo</span> <span class="o">=</span> <span class="n">FBO</span><span class="p">()</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">fbo</span><span class="o">.</span><span class="n">bind</span><span class="p">()</span>
-<span class="c1"># do any drawing command</span>
+<span class="c1"># выполните любую команду рисования</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">fbo</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
 
-<span class="c1"># then, your fbo texture is available at</span>
+<span class="c1"># затем ваша текстура fbo доступна по адресу</span>
 <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">fbo</span><span class="o">.</span><span class="n">texture</span><span class="p">)</span>
-</pre></div>
-</div>
+</pre></div></div>
 </dd></dl>
+
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.fbo.Fbo.clear_buffer">
-<span class="sig-name descname"><span class="pre">clear_buffer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.fbo.Fbo.clear_buffer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Clear the framebuffer with the <a class="reference internal" href="#kivy.graphics.fbo.Fbo.clear_color" title="kivy.graphics.fbo.Fbo.clear_color"><code class="xref py py-attr docutils literal notranslate"><span class="pre">clear_color</span></code></a>.</p>
-<p>You need to bind the framebuffer yourself before calling this
-method:</p>
+<span class="sig-name descname"><span class="pre">clear_buffer</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.fbo.Fbo.clear_buffer" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Очистите буфер кадра с помощью <a class="reference internal" href="#kivy.graphics.fbo.Fbo.clear_color" title="kivy.graphics.fbo.Fbo.clear_color"><code class="xref py py-attr docutils literal notranslate"><span class="pre">clear_color</span></code></a>.</p>
+<p>Вы должны связать буфер кадра самостоятельно перед вызовом этого метода:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fbo</span><span class="o">.</span><span class="n">bind</span><span class="p">()</span>
 <span class="n">fbo</span><span class="o">.</span><span class="n">clear_buffer</span><span class="p">()</span>
 <span class="n">fbo</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
@@ -537,59 +524,54 @@ method:</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.fbo.Fbo.clear_color">
-<span class="sig-name descname"><span class="pre">clear_color</span></span><a class="headerlink" href="#kivy.graphics.fbo.Fbo.clear_color" title="Permalink to this definition">¶</a></dt>
-<dd><p>Clear color in (red, green, blue, alpha) format.</p>
+<span class="sig-name descname"><span class="pre">clear_color</span></span><a class="headerlink" href="#kivy.graphics.fbo.Fbo.clear_color" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Цвет очистки в формате (красный, зеленый, синий, альфа).</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.fbo.Fbo.get_pixel_color">
-<span class="sig-name descname"><span class="pre">get_pixel_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">wx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">wy</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.fbo.Fbo.get_pixel_color" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the color of the pixel with specified window
-coordinates wx, wy. It returns result in RGBA format.</p>
+<span class="sig-name descname"><span class="pre">get_pixel_color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">wx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">wy</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.fbo.Fbo.get_pixel_color" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получите цвет пикселя с указанными координатами окна wx, wy. Возвращает результат в формате RGBA.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.8.0.</span></p>
+<p><span class="versionmodified added">Добавлено в  версии 1.8.0.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.fbo.Fbo.pixels">
-<span class="sig-name descname"><span class="pre">pixels</span></span><a class="headerlink" href="#kivy.graphics.fbo.Fbo.pixels" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the pixels texture, in RGBA format only, unsigned byte. The
-origin of the image is at bottom left.</p>
+<span class="sig-name descname"><span class="pre">pixels</span></span><a class="headerlink" href="#kivy.graphics.fbo.Fbo.pixels" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Получите текстуру пикселей в формате RGBA только с беззнаковыми байтами. Начало изображения находится в нижнем левом углу.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.7.0.</span></p>
+<p><span class="versionmodified added">Добавлено в  версии 1.7.0.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.fbo.Fbo.release">
-<span class="sig-name descname"><span class="pre">release</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.fbo.Fbo.release" title="Permalink to this definition">¶</a></dt>
-<dd><p>Release the Framebuffer (unbind).</p>
+<span class="sig-name descname"><span class="pre">release</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.fbo.Fbo.release" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Освободите буфер кадра (unbind).</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.fbo.Fbo.remove_reload_observer">
-<span class="sig-name descname"><span class="pre">remove_reload_observer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.fbo.Fbo.remove_reload_observer" title="Permalink to this definition">¶</a></dt>
-<dd><p>Remove a callback from the observer list, previously added by
-<a class="reference internal" href="#kivy.graphics.fbo.Fbo.add_reload_observer" title="kivy.graphics.fbo.Fbo.add_reload_observer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_reload_observer()</span></code></a>.</p>
+<span class="sig-name descname"><span class="pre">remove_reload_observer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.fbo.Fbo.remove_reload_observer" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Удалите обратный вызов из списка наблюдателей, ранее добавленный с помощью <a class="reference internal" href="#kivy.graphics.fbo.Fbo.add_reload_observer" title="kivy.graphics.fbo.Fbo.add_reload_observer"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_reload_observer()</span></code></a>.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.2.0.</span></p>
+<p><span class="versionmodified added">Добавлено в  версии 1.2.0.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.fbo.Fbo.size">
-<span class="sig-name descname"><span class="pre">size</span></span><a class="headerlink" href="#kivy.graphics.fbo.Fbo.size" title="Permalink to this definition">¶</a></dt>
-<dd><p>Size of the framebuffer, in (width, height) format.</p>
-<p>If you change the size, the framebuffer content will be lost.</p>
+<span class="sig-name descname"><span class="pre">size</span></span><a class="headerlink" href="#kivy.graphics.fbo.Fbo.size" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Размер буфера кадра в формате (ширина, высота).</p>
+<p>Если вы измените размер, содержимое буфера кадра будет потеряно.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.fbo.Fbo.texture">
-<span class="sig-name descname"><span class="pre">texture</span></span><a class="headerlink" href="#kivy.graphics.fbo.Fbo.texture" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the framebuffer texture</p>
-</dd></dl>
-
+<span class="sig-name descname"><span class="pre">texture</span></span><a class="headerlink" href="#kivy.graphics.fbo.Fbo.texture" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Верните текстуру буфера кадра</p>
 </dd></dl>
 
 </section>

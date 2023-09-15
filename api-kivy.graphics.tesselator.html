@@ -392,26 +392,22 @@
 </ul>
 </div>
             
-  <section id="module-kivy.graphics.tesselator">
-<span id="tesselator"></span><h1>Tesselator<a class="headerlink" href="#module-kivy.graphics.tesselator" title="Permalink to this headline">¶</a></h1>
+<section id="module-kivy.graphics.tesselator">
+<span id="tesselator"></span>
+<h1>Tesselator<a class="headerlink" href="#module-kivy.graphics.tesselator" title="Ссылка на данный заголовок">¶</a></h1>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.9.0.</span></p>
+<p><span class="versionmodified added">Новое в версии 1.9.0.</span></p>
 </div>
 <img alt="_images/tesselator-filled.png" class="align-right" src="_images/tesselator-filled.png" />
 <img alt="_images/tesselator-debug.png" class="align-right" src="_images/tesselator-debug.png" />
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This is experimental and subject to change as long as this warning notice
-is present. Only TYPE_POLYGONS is currently supported.</p>
+<p class="admonition-title">Предупреждение</p>
+<p>Это экспериментально и может измениться до тех пор, пока это предупреждение присутствует. В данный момент поддерживается только TYPE_POLYGONS.</p>
 </div>
-<p>Tesselator is a library for tesselating polygons, based on
-<a class="reference external" href="https://github.com/memononen/libtess2">libtess2</a>. It renders concave filled
-polygons by first tesselating them into convex polygons. It also supports holes.</p>
+<p>Tesselator - это библиотека для тесселирования многоугольников, основанная на <a class="reference external" href="https://github.com/memononen/libtess2">libtess2</a>. Он рендерит многоугольники с выпуклыми областями, сначала тесселируя их в выпуклые многоугольники. Он также поддерживает отверстия.</p>
 <section id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
-<p>First, you need to create a <a class="reference internal" href="#kivy.graphics.tesselator.Tesselator" title="kivy.graphics.tesselator.Tesselator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tesselator</span></code></a> object and add contours. The
-first one is the external contour of your shape and all of the following ones
-should be holes:</p>
+<h2>Использование<a class="headerlink" href="#usage" title="Ссылка на данный заголовок">¶</a></h2>
+<p>Сначала вам нужно создать объект <a class="reference internal" href="#kivy.graphics.tesselator.Tesselator" title="kivy.graphics.tesselator.Tesselator"><code class="xref py py-class docutils literal notranslate"><span class="pre">Tesselator</span></code></a> и добавить контуры. Первый контур - это внешний контур вашей фигуры, а все последующие - это отверстия:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kivy.graphics.tesselator</span> <span class="kn">import</span> <span class="n">Tesselator</span>
 
 <span class="n">tess</span> <span class="o">=</span> <span class="n">Tesselator</span><span class="p">()</span>
@@ -419,96 +415,85 @@ should be holes:</p>
 <span class="n">tess</span><span class="o">.</span><span class="n">add_contour</span><span class="p">([</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">150</span><span class="p">])</span>
 </pre></div>
 </div>
-<p>Second, call the <a class="reference internal" href="#kivy.graphics.tesselator.Tesselator.tesselate" title="kivy.graphics.tesselator.Tesselator.tesselate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tesselator.tesselate()</span></code></a> method to compute the points. It
-is possible that the tesselator won’t work. In that case, it can return
-False:</p>
+<p>Затем вызовите метод <a class="reference internal" href="#kivy.graphics.tesselator.Tesselator.tesselate" title="kivy.graphics.tesselator.Tesselator.tesselate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tesselator.tesselate()</span></code></a> для вычисления точек. Возможно, тесселятор не сможет работать. В этом случае он может вернуть False:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">tess</span><span class="o">.</span><span class="n">tesselate</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Tesselator didn&#39;t work :(&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Tesselator не работает :("</span><span class="p">)</span>
     <span class="k">return</span>
 </pre></div>
 </div>
-<p>After the tessellation, you have multiple ways to iterate over the result. The
-best approach is using <a class="reference internal" href="#kivy.graphics.tesselator.Tesselator.meshes" title="kivy.graphics.tesselator.Tesselator.meshes"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tesselator.meshes</span></code></a> to get a format directly usable
-for a <a class="reference internal" href="api-kivy.graphics.html#kivy.graphics.Mesh" title="kivy.graphics.Mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mesh</span></code></a>:</p>
+<p>После тесселяции у вас есть несколько способов итерации по результату. Лучший подход - использование <a class="reference internal" href="#kivy.graphics.tesselator.Tesselator.meshes" title="kivy.graphics.tesselator.Tesselator.meshes"><code class="xref py py-data docutils literal notranslate"><span class="pre">Tesselator.meshes</span></code></a> для получения формата, который можно легко использовать в объекте <a class="reference internal" href="api-kivy.graphics.html#kivy.graphics.Mesh" title="kivy.graphics.Mesh"><code class="xref py py-class docutils literal notranslate"><span class="pre">Mesh</span></code></a> Kivy:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">indices</span> <span class="ow">in</span> <span class="n">tess</span><span class="o">.</span><span class="n">meshes</span><span class="p">:</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Mesh</span><span class="p">(</span>
         <span class="n">vertices</span><span class="o">=</span><span class="n">vertices</span><span class="p">,</span>
         <span class="n">indices</span><span class="o">=</span><span class="n">indices</span><span class="p">,</span>
-        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;triangle_fan&quot;</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s2">"triangle_fan"</span>
     <span class="p">))</span>
 </pre></div>
 </div>
-<p>Or, you can get the “raw” result, with just polygons and x/y coordinates with
-<a class="reference internal" href="#kivy.graphics.tesselator.Tesselator.vertices" title="kivy.graphics.tesselator.Tesselator.vertices"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tesselator.vertices()</span></code></a>:</p>
+<p>Или вы можете получить "сырой" результат, содержащий только многоугольники и координаты x/y, с помощью <a class="reference internal" href="#kivy.graphics.tesselator.Tesselator.vertices" title="kivy.graphics.tesselator.Tesselator.vertices"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Tesselator.vertices()</span></code></a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">vertices</span> <span class="ow">in</span> <span class="n">tess</span><span class="o">.</span><span class="n">vertices</span><span class="p">:</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;got polygon&quot;</span><span class="p">,</span> <span class="n">vertices</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"получен многоугольник"</span><span class="p">,</span> <span class="n">vertices</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.tesselator.Tesselator">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.tesselator.</span></span><span class="sig-name descname"><span class="pre">Tesselator</span></span><a class="headerlink" href="#kivy.graphics.tesselator.Tesselator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">builtins.object</span></code></p>
-<p>Tesselator class. See module for more information about the usage.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.tesselator.</span></span><span class="sig-name descname"><span class="pre">Tesselator</span></span><a class="headerlink" href="#kivy.graphics.tesselator.Tesselator" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <code class="xref py py-class docutils literal notranslate"><span class="pre">builtins.object</span></code></p>
+<p>Класс Tesselator. См. модуль для получения дополнительной информации о использовании.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.tesselator.Tesselator.add_contour">
-<span class="sig-name descname"><span class="pre">add_contour</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.tesselator.Tesselator.add_contour" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a contour to the tesselator. It can be:</p>
+<span class="sig-name descname"><span class="pre">add_contour</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">points</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.tesselator.Tesselator.add_contour" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Добавить контур в тесселирователь. Это может быть:</p>
 <ul class="simple">
-<li><p>a list of <cite>[x, y, x2, y2, …]</cite> coordinates</p></li>
-<li><p>a float array: <cite>array(“f”, [x, y, x2, y2, …])</cite></p></li>
-<li><p>any buffer with floats in it.</p></li>
+<li><p>список координат <cite>[x, y, x2, y2, …]</cite></p></li>
+<li><p>массив с плавающей запятой: <cite>array("f", [x, y, x2, y2, …])</cite></p></li>
+<li><p>любой буфер с плавающей запятой.</p></li>
 </ul>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.tesselator.Tesselator.element_count">
-<span class="sig-name descname"><span class="pre">element_count</span></span><a class="headerlink" href="#kivy.graphics.tesselator.Tesselator.element_count" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the number of convex polygon.</p>
+<span class="sig-name descname"><span class="pre">element_count</span></span><a class="headerlink" href="#kivy.graphics.tesselator.Tesselator.element_count" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает количество выпуклых многоугольников.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.tesselator.Tesselator.meshes">
-<span class="sig-name descname"><span class="pre">meshes</span></span><a class="headerlink" href="#kivy.graphics.tesselator.Tesselator.meshes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Iterate through the result of the <a class="reference internal" href="#kivy.graphics.tesselator.Tesselator.tesselate" title="kivy.graphics.tesselator.Tesselator.tesselate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">tesselate()</span></code></a> to give a result
-that can be easily pushed into Kivy`s Mesh object.</p>
-<p>It’s a list of: <cite>[[vertices, indices], [vertices, indices], …]</cite>.
-The vertices in the format <cite>[x, y, u, v, x2, y2, u2, v2]</cite>.</p>
-<p>Careful, u/v coordinates are the same as x/y.
-You are responsible to change them for texture mapping if you need to.</p>
-<p>You can create Mesh objects like that:</p>
+<span class="sig-name descname"><span class="pre">meshes</span></span><a class="headerlink" href="#kivy.graphics.tesselator.Tesselator.meshes" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Итерация по результату <a class="reference internal" href="#kivy.graphics.tesselator.Tesselator.tesselate" title="kivy.graphics.tesselator.Tesselator.tesselate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">tesselate()</span></code></a> для предоставления результата, который можно легко передать в объект Mesh Kivy.</p>
+<p>Это список: <cite>[[vertices, indices], [vertices, indices], …]</cite>.
+Вершины в формате <cite>[x, y, u, v, x2, y2, u2, v2]</cite>.</p>
+<p>Будьте осторожны, координаты u/v такие же, как x/y.
+Вы должны изменить их для настройки текстурного сопоставления, если это необходимо.</p>
+<p>Вы можете создавать объекты Mesh следующим образом:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tess</span> <span class="o">=</span> <span class="n">Tesselator</span><span class="p">()</span>
-<span class="c1"># add contours here</span>
+<span class="c1"># добавьте контуры здесь</span>
 <span class="n">tess</span><span class="o">.</span><span class="n">tesselate</span><span class="p">()</span>
 <span class="k">for</span> <span class="n">vertices</span><span class="p">,</span> <span class="n">indices</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">meshes</span><span class="p">:</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Mesh</span><span class="p">(</span>
         <span class="n">vertices</span><span class="o">=</span><span class="n">vertices</span><span class="p">,</span>
         <span class="n">indices</span><span class="o">=</span><span class="n">indices</span><span class="p">,</span>
-        <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;triangle_fan&quot;</span><span class="p">))</span>
+        <span class="n">mode</span><span class="o">=</span><span class="s2">"triangle_fan"</span><span class="p">))</span>
 </pre></div>
 </div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.tesselator.Tesselator.tesselate">
-<span class="sig-name descname"><span class="pre">tesselate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">winding_rule=WINDING_ODD</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">element_type=TYPE_POLYGONS</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">polysize=65535</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#kivy.graphics.tesselator.Tesselator.tesselate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Compute all the contours added with <a class="reference internal" href="#kivy.graphics.tesselator.Tesselator.add_contour" title="kivy.graphics.tesselator.Tesselator.add_contour"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_contour()</span></code></a>, and generate
-polygons.</p>
+<span class="sig-name descname"><span class="pre">tesselate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">winding_rule=WINDING_ODD</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">element_type=TYPE_POLYGONS</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">polysize=65535</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#kivy.graphics.tesselator.Tesselator.tesselate" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Вычислить все контуры, добавленные с помощью <a class="reference internal" href="#kivy.graphics.tesselator.Tesselator.add_contour" title="kivy.graphics.tesselator.Tesselator.add_contour"><code class="xref py py-meth docutils literal notranslate"><span class="pre">add_contour()</span></code></a>, и сгенерировать
+многоугольники.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><cite>winding_rule</cite>: enum</dt><dd><p>The winding rule classifies a region as inside if its winding
-number belongs to the chosen category. Can be one of
-WINDING_ODD, WINDING_NONZERO, WINDING_POSITIVE,
-WINDING_NEGATIVE, WINDING_ABS_GEQ_TWO. Defaults to WINDING_ODD.</p>
+<dt><cite>winding_rule</cite>: enum</dt><dd><p>Правило намотки классифицирует область как внутреннюю, если ее число намоток принадлежит выбранной категории. Может быть одним из WINDING_ODD, WINDING_NONZERO, WINDING_POSITIVE, WINDING_NEGATIVE, WINDING_ABS_GEQ_TWO. По умолчанию WINDING_ODD.</p>
 </dd>
-<dt><cite>element_type</cite>: enum</dt><dd><p>The result type, you can generate the polygons with
-TYPE_POLYGONS, or the contours with TYPE_BOUNDARY_CONTOURS.
-Defaults to TYPE_POLYGONS.</p>
+<dt><cite>element_type</cite>: enum</dt><dd><p>Тип результата, можно генерировать многоугольники с помощью TYPE_POLYGONS или контуры с помощью TYPE_BOUNDARY_CONTOURS. По умолчанию TYPE_POLYGONS.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>1 if the tessellation happened, 0 otherwise.</p>
+<dd class="field-even"><p>1, если произошла тесселяция, 0 в противном случае.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
 <dd class="field-odd"><p>int</p>
@@ -518,18 +503,15 @@ Defaults to TYPE_POLYGONS.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.tesselator.Tesselator.vertex_count">
-<span class="sig-name descname"><span class="pre">vertex_count</span></span><a class="headerlink" href="#kivy.graphics.tesselator.Tesselator.vertex_count" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the number of vertex generated.</p>
-<p>This is the raw result, however, because the Tesselator format the
-result for you with <a class="reference internal" href="#kivy.graphics.tesselator.Tesselator.meshes" title="kivy.graphics.tesselator.Tesselator.meshes"><code class="xref py py-data docutils literal notranslate"><span class="pre">meshes</span></code></a> or <a class="reference internal" href="#kivy.graphics.tesselator.Tesselator.vertices" title="kivy.graphics.tesselator.Tesselator.vertices"><code class="xref py py-data docutils literal notranslate"><span class="pre">vertices</span></code></a> per polygon,
-you’ll have more vertices in the result</p>
+<span class="sig-name descname"><span class="pre">vertex_count</span></span><a class="headerlink" href="#kivy.graphics.tesselator.Tesselator.vertex_count" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает количество созданных вершин.</p>
+<p>Это сырой результат, однако, так как Tesselator форматирует результат для вас с помощью <a class="reference internal" href="#kivy.graphics.tesselator.Tesselator.meshes" title="kivy.graphics.tesselator.Tesselator.meshes"><code class="xref py py-data docutils literal notranslate"><span class="pre">meshes</span></code></a> или <a class="reference internal" href="#kivy.graphics.tesselator.Tesselator.vertices" title="kivy.graphics.tesselator.Tesselator.vertices"><code class="xref py py-data docutils literal notranslate"><span class="pre">vertices</span></code></a> для каждого многоугольника, в результате будет больше вершин.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.tesselator.Tesselator.vertices">
-<span class="sig-name descname"><span class="pre">vertices</span></span><a class="headerlink" href="#kivy.graphics.tesselator.Tesselator.vertices" title="Permalink to this definition">¶</a></dt>
-<dd><p>Iterate through the result of the <a class="reference internal" href="#kivy.graphics.tesselator.Tesselator.tesselate" title="kivy.graphics.tesselator.Tesselator.tesselate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">tesselate()</span></code></a> in order to give
-only a list of <cite>[x, y, x2, y2, …]</cite> polygons.</p>
+<span class="sig-name descname"><span class="pre">vertices</span></span><a class="headerlink" href="#kivy.graphics.tesselator.Tesselator.vertices" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Итерация по результату <a class="reference internal" href="#kivy.graphics.tesselator.Tesselator.tesselate" title="kivy.graphics.tesselator.Tesselator.tesselate"><code class="xref py py-meth docutils literal notranslate"><span class="pre">tesselate()</span></code></a> для получения только списка многоугольников в формате <cite>[x, y, x2, y2, …]</cite>.</p>
 </dd></dl>
 
 </dd></dl>

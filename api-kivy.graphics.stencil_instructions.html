@@ -394,77 +394,68 @@
 </ul>
 </div>
             
-  <section id="module-kivy.graphics.stencil_instructions">
-<span id="stencil-instructions"></span><h1>Stencil instructions<a class="headerlink" href="#module-kivy.graphics.stencil_instructions" title="Permalink to this headline">¶</a></h1>
+<section id="module-kivy.graphics.stencil_instructions">
+<span id="stencil-instructions"></span><h1>Инструкции трафарета<a class="headerlink" href="#module-kivy.graphics.stencil_instructions" title="Ссылка на данный раздел">¶</a></h1>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.0.4.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.0.4.</span></p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.3.0: </span>The stencil operation has been updated to resolve some issues that appeared
-when nested. You <strong>must</strong> now have a StencilUnUse and repeat the same
-operation as you did after StencilPush.</p>
+<p><span class="versionmodified changed">Изменено в версии 1.3.0: </span>Операция трафарета была обновлена для устранения некоторых проблем, возникших при вложенном использовании. Теперь вы <strong>обязаны</strong> использовать StencilUnUse и повторить ту же самую операцию, что и после StencilPush.</p>
 </div>
-<p>Stencil instructions permit you to draw and use the current drawing as a mask.
-They don’t give as much control as pure OpenGL, but you can still do fancy
-things!</p>
-<p>The stencil buffer can be controlled using these 3 instructions:</p>
+<p>Инструкции трафарета позволяют вам рисовать и использовать текущий рисунок в качестве маски. Они не обеспечивают такого контроля, как чистый OpenGL, но вы все равно можете выполнять интересные вещи!</p>
+<p>Буфер трафарета можно управлять с помощью следующих 3 инструкций:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><a class="reference internal" href="#kivy.graphics.stencil_instructions.StencilPush" title="kivy.graphics.stencil_instructions.StencilPush"><code class="xref py py-class docutils literal notranslate"><span class="pre">StencilPush</span></code></a>: push a new stencil layer.
-Any drawing that happens after this will be used as a mask.</p></li>
-<li><p><a class="reference internal" href="#kivy.graphics.stencil_instructions.StencilUse" title="kivy.graphics.stencil_instructions.StencilUse"><code class="xref py py-class docutils literal notranslate"><span class="pre">StencilUse</span></code></a> : now draw the next instructions and use the stencil
-for masking them.</p></li>
-<li><p><a class="reference internal" href="#kivy.graphics.stencil_instructions.StencilUnUse" title="kivy.graphics.stencil_instructions.StencilUnUse"><code class="xref py py-class docutils literal notranslate"><span class="pre">StencilUnUse</span></code></a> : stop using the stencil i.e. remove the mask and
-draw normally.</p></li>
-<li><p><a class="reference internal" href="#kivy.graphics.stencil_instructions.StencilPop" title="kivy.graphics.stencil_instructions.StencilPop"><code class="xref py py-class docutils literal notranslate"><span class="pre">StencilPop</span></code></a> : pop the current stencil layer.</p></li>
+<li><p><a class="reference internal" href="#kivy.graphics.stencil_instructions.StencilPush" title="kivy.graphics.stencil_instructions.StencilPush"><code class="xref py py-class docutils literal notranslate"><span class="pre">StencilPush</span></code></a>: вталкивание нового уровня трафарета. Любое рисование, которое происходит после этого, будет использоваться в качестве маски.</p></li>
+<li><p><a class="reference internal" href="#kivy.graphics.stencil_instructions.StencilUse" title="kivy.graphics.stencil_instructions.StencilUse"><code class="xref py py-class docutils literal notranslate"><span class="pre">StencilUse</span></code></a>: теперь рисуйте следующие инструкции и используйте трафарет для их маскирования.</p></li>
+<li><p><a class="reference internal" href="#kivy.graphics.stencil_instructions.StencilUnUse" title="kivy.graphics.stencil_instructions.StencilUnUse"><code class="xref py py-class docutils literal notranslate"><span class="pre">StencilUnUse</span></code></a>: прекратите использовать трафарет, то есть удалите маску и рисуйте обычным образом.</p></li>
+<li><p><a class="reference internal" href="#kivy.graphics.stencil_instructions.StencilPop" title="kivy.graphics.stencil_instructions.StencilPop"><code class="xref py py-class docutils literal notranslate"><span class="pre">StencilPop</span></code></a>: извлечение текущего уровня трафарета.</p></li>
 </ul>
 </div></blockquote>
-<p>You should always respect this scheme:</p>
+<p>Вы всегда должны соблюдать эту схему:</p>
 <div class="highlight-kv notranslate"><div class="highlight"><pre><span></span><span class="na">StencilPush</span>
 
-<span class="c1"># PHASE 1: put any drawing instructions to use as a mask here.</span>
+<span class="c1"># ФАЗА 1: поместите здесь любые инструкции для рисования в качестве маски.</span>
 
 <span class="na">StencilUse</span>
 
-<span class="c1"># PHASE 2: all the drawing here will be automatically clipped by the</span>
-<span class="c1"># mask created in PHASE 1.</span>
+<span class="c1"># ФАЗА 2: весь рисунок здесь будет автоматически обрезан маской, созданной в ФАЗЕ 1.</span>
 
 <span class="na">StencilUnUse</span>
 
-<span class="c1"># PHASE 3: put the same drawing instruction here as you did in PHASE 1</span>
+<span class="c1"># ФАЗА 3: поместите сюда ту же инструкцию для рисования, что и в ФАЗЕ 1</span>
 
 <span class="na">StencilPop</span>
 
-<span class="c1"># PHASE 4: the stencil is now removed from the stack and unloaded.</span>
+<span class="c1"># ФАЗА 4: теперь трафарет удален из стека и выгружен.</span>
 </pre></div>
 </div>
 <section id="limitations">
-<h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>
+<h2>Ограничения<a class="headerlink" href="#limitations" title="Ссылка на данный раздел">¶</a></h2>
 <ul class="simple">
-<li><p>Drawing in PHASE 1 and PHASE 3 must not collide or you
-will get unexpected results</p></li>
-<li><p>The stencil is activated as soon as you perform a StencilPush</p></li>
-<li><p>The stencil is deactivated as soon as you’ve correctly popped all the stencil
-layers</p></li>
-<li><p>You must not play with stencils yourself between a StencilPush / StencilPop</p></li>
-<li><p>You can push another stencil after a StencilUse / before the StencilPop</p></li>
-<li><p>You can push up to 128 layers of stencils (8 for kivy &lt; 1.3.0)</p></li>
+<li><p>Рисование в ФАЗЕ 1 и ФАЗЕ 3 не должно пересекаться, иначе вы получите неожиданные результаты.</p></li>
+<li><p>Трафарет активируется сразу после выполнения StencilPush.</p></li>
+<li><p>Трафарет деактивируется сразу после правильного извлечения всех уровней трафарета.</p></li>
+<li><p>Вы не должны сами манипулировать трафаретами между StencilPush / StencilPop.</p></li>
+<li><p>Вы можете добавить другой трафарет после StencilUse / перед StencilPop.</p></li>
+<li><p>Вы можете добавить до 128 уровней трафарета (8 для kivy &lt; 1.3.0).</p></li>
 </ul>
 </section>
 <section id="example-of-stencil-usage">
-<h2>Example of stencil usage<a class="headerlink" href="#example-of-stencil-usage" title="Permalink to this headline">¶</a></h2>
-<p>Here is an example, in kv style:</p>
+<h2>Пример использования трафарета<a class="headerlink" href="#example-of-stencil-usage" title="Ссылка на данный раздел">¶</a></h2>
+<p>Вот пример в стиле kv:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">StencilPush</span>
 
-<span class="c1"># create a rectangular mask with a pos of (100, 100) and a (100, 100) size.</span>
+<span class="c1"># Создайте прямоугольную маску с позицией (100, 100) и размером (100, 100).</span>
 <span class="n">Rectangle</span><span class="p">:</span>
     <span class="n">pos</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span>
-    <span class="n">size</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span>
+    <span class="n">size</span><span class
+
+="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span>
 
 <span class="n">StencilUse</span>
 
-<span class="c1"># we want to show a big green rectangle, however, the previous stencil</span>
-<span class="c1"># mask will crop us :)</span>
+<span class="c1"># Мы хотим показать большой зеленый прямоугольник, но предыдущая маска трафарета нас обрежет :)</span>
 <span class="n">Color</span><span class="p">:</span>
     <span class="n">rgb</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span>
 <span class="n">Rectangle</span><span class="p">:</span>
@@ -472,7 +463,7 @@ layers</p></li>
 
 <span class="n">StencilUnUse</span>
 
-<span class="c1"># you must redraw the stencil mask to remove it</span>
+<span class="c1"># Вы должны заново нарисовать маску трафарета, чтобы ее убрать.</span>
 <span class="n">Rectangle</span><span class="p">:</span>
     <span class="n">pos</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span>
     <span class="n">size</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span>
@@ -482,40 +473,41 @@ layers</p></li>
 </div>
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.stencil_instructions.StencilPop">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.stencil_instructions.</span></span><span class="sig-name descname"><span class="pre">StencilPop</span></span><a class="headerlink" href="#kivy.graphics.stencil_instructions.StencilPop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Instruction</span></code></a></p>
-<p>Pop the stencil stack. See the module documentation for more information.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.stencil_instructions.</span></span><span class="sig-name descname"><span class="pre">StencilPop</span></span><a class="headerlink" href="#kivy.graphics.stencil_instructions.StencilPop" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Instruction</span></code></a></p>
+<p>Извлекает трафарет из стека. Дополнительную информацию см. в документации модуля.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.stencil_instructions.StencilPush">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.stencil_instructions.</span></span><span class="sig-name descname"><span class="pre">StencilPush</span></span><a class="headerlink" href="#kivy.graphics.stencil_instructions.StencilPush" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Instruction</span></code></a></p>
-<p>Push the stencil stack. See the module documentation for more
-information.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.stencil_instructions.</span></span><span class="sig-name descname"><span class="pre">StencilPush</span></span><a class="headerlink" href="#kivy.graphics.stencil_instructions.StencilPush" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Instruction</span></code></a></p>
+<p>Помещает трафарет в стек. Дополнительную информацию см. в документации модуля.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.stencil_instructions.StencilUnUse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.stencil_instructions.</span></span><span class="sig-name descname"><span class="pre">StencilUnUse</span></span><a class="headerlink" href="#kivy.graphics.stencil_instructions.StencilUnUse" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Instruction</span></code></a></p>
-<p>Use current stencil buffer to unset the mask.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.stencil_instructions.</span></span><span class="sig-name descname"><span class="pre">StencilUnUse</span></span><a class="headerlink" href="#kivy.graphics.stencil_instructions.StencilUnUse" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Instruction</span></code></a></p>
+<p>Использует текущий буфер трафарета для отмены маскировки.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.stencil_instructions.StencilUse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.stencil_instructions.</span></span><span class="sig-name descname"><span class="pre">StencilUse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.stencil_instructions.StencilUse" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Instruction</span></code></a></p>
-<p>more information.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.stencil_instructions.</span></span><span class="sig-name descname"><span class="pre">StencilUse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.stencil_instructions.StencilUse" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Instruction</span></code></a></p>
+<p>Дополнительную информацию см. в документации модуля.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.stencil_instructions.StencilUse.func_op">
-<span class="sig-name descname"><span class="pre">func_op</span></span><a class="headerlink" href="#kivy.graphics.stencil_instructions.StencilUse.func_op" title="Permalink to this definition">¶</a></dt>
-<dd><p>Determine the stencil operation to use for glStencilFunc(). Can be
-one of ‘never’, ‘less’, ‘equal’, ‘lequal’, ‘greater’, ‘notequal’,
-‘gequal’ or ‘always’.</p>
-<p>By default, the operator is set to ‘equal’.</p>
+<span class="sig-name descname"><span class="pre">func_op</span></span><a class="headerlink
+
+" href="#kivy.graphics.stencil_instructions.StencilUse.func_op" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>Определяет операцию трафарета для использования glStencilFunc(). Может быть
+одним из 'never', 'less', 'equal', 'lequal', 'greater', 'notequal',
+'gequal' или 'always'.</p>
+<p>По умолчанию оператор установлен в 'equal'.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.5.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.5.0.</span></p>
 </div>
 </dd></dl>
 

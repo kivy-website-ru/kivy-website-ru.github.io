@@ -386,81 +386,75 @@
 </ul>
 </div>
             
-  <section id="module-kivy.graphics.context_instructions">
-<span id="context-instructions"></span><h1>Context instructions<a class="headerlink" href="#module-kivy.graphics.context_instructions" title="Permalink to this headline">¶</a></h1>
-<p>The context instructions represent non graphics elements such as:</p>
+<section id="module-kivy.graphics.context_instructions">
+<span id="context-instructions"></span><h1>Инструкции контекста<a class="headerlink" href="#module-kivy.graphics.context_instructions" title="Ссылка на этот заголовок">¶</a></h1>
+<p>Инструкции контекста представляют собой элементы, не являющиеся графическими, такие как:</p>
 <ul class="simple">
-<li><p>Matrix manipulations (PushMatrix, PopMatrix, Rotate, Translate, Scale,
+<li><p>Манипуляции матрицей (PushMatrix, PopMatrix, Rotate, Translate, Scale,
 MatrixInstruction)</p></li>
-<li><p>Color manipulations (Color)</p></li>
-<li><p>Texture bindings (BindTexture)</p></li>
+<li><p>Манипуляции цветом (Color)</p></li>
+<li><p>Привязки текстур (BindTexture)</p></li>
 </ul>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.0.8: </span>The LineWidth instruction has been removed. It wasn’t working before and we
-actually have no working implementation. We need to do more experimentation
-to get it right. Check the bug
-<a class="reference external" href="https://github.com/kivy/kivy/issues/207">#207</a> for more information.</p>
+<p><span class="versionmodified changed">Изменено в версии 1.0.8: </span>Инструкция LineWidth была удалена. Она не работала ранее, и у нас не было
+функционирующей реализации. Нам нужно провести больше экспериментов
+чтобы сделать это правильно. Проверьте ошибку
+<a class="reference external" href="https://github.com/kivy/kivy/issues/207">#207</a> для получения дополнительной информации.</p>
 </div>
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.BindTexture">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.context_instructions.</span></span><span class="sig-name descname"><span class="pre">BindTexture</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.context_instructions.BindTexture" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.ContextInstruction" title="kivy.graphics.instructions.ContextInstruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.ContextInstruction</span></code></a></p>
-<p>The BindTexture Instruction will bind a texture and enable
-GL_TEXTURE_2D for subsequent drawing.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.context_instructions.</span></span><span class="sig-name descname"><span class="pre">BindTexture</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.context_instructions.BindTexture" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.ContextInstruction" title="kivy.graphics.instructions.ContextInstruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.ContextInstruction</span></code></a></p>
+<p>Инструкция BindTexture связывает текстуру и включает
+GL_TEXTURE_2D для последующего рисования.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Параметры</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><cite>texture</cite>: Texture</dt><dd><p>Specifies the texture to bind to the given index.</p>
+<dt><cite>texture</cite>: Texture</dt><dd><p>Указывает текстуру, которую нужно привязать к заданному индексу.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.BindTexture.source">
-<span class="sig-name descname"><span class="pre">source</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.BindTexture.source" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set/get the source (filename) to load for the texture.</p>
+<span class="sig-name descname"><span class="pre">source</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.BindTexture.source" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Устанавливает/получает источник (имя файла) для загрузки текстуры.</p>
 </dd></dl>
-
 </dd></dl>
-
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Color">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.context_instructions.</span></span><span class="sig-name descname"><span class="pre">Color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.context_instructions.Color" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.ContextInstruction" title="kivy.graphics.instructions.ContextInstruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.ContextInstruction</span></code></a></p>
-<p>drawn after it.</p>
-<p>This represents a color between 0 and 1, but is applied as a
-<em>multiplier</em> to the texture of any vertex instructions following
-it in a canvas. If no texture is set, the vertex instruction
-takes the precise color of the Color instruction.</p>
-<p>For instance, if a Rectangle has a texture with uniform color
-<code class="docutils literal notranslate"><span class="pre">(0.5,</span> <span class="pre">0.5,</span> <span class="pre">0.5,</span> <span class="pre">1.0)</span></code> and the preceding Color has
-<code class="docutils literal notranslate"><span class="pre">rgba=(1,</span> <span class="pre">0.5,</span> <span class="pre">2,</span> <span class="pre">1)</span></code>, the actual visible color will be
-<code class="docutils literal notranslate"><span class="pre">(0.5,</span> <span class="pre">0.25,</span> <span class="pre">1.0,</span> <span class="pre">1.0)</span></code> since the Color instruction is applied as
-a multiplier to every rgba component. In this case, a Color
-component outside the 0-1 range gives a visible result as the
-intensity of the blue component is doubled.</p>
-<p>To declare a Color in Python, you can do:</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.context_instructions.</span></span><span class="sig-name descname"><span class="pre">Color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.context_instructions.Color" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.ContextInstruction" title="kivy.graphics.instructions.ContextInstruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.ContextInstruction</span></code></a></p>
+<p>рисуется после нее.</p>
+<p>Это представляет собой цвет в диапазоне от 0 до 1, но применяется как
+<em>множитель</em> к текстуре любых инструкций вершины, следующих
+за ней на холсте. Если текстура не установлена, инструкция вершины
+принимает точный цвет инструкции Color.</p>
+<p>Например, если у Прямоугольника есть текстура с однородным цветом
+<code class="docutils literal notranslate"><span class="pre">(0.5,</span> <span class="pre">0.5,</span> <span class="pre">0.5,</span> <span class="pre">1.0)</span></code>, и предшествующая инструкция Color имеет
+<code class="docutils literal notranslate"><span class="pre">rgba=(1,</span> <span class="pre">0.5,</span> <span class="pre">2,</span> <span class="pre">1)</span></code>, фактический вид цвета будет
+<code class="docutils literal notranslate"><span class="pre">(0.5,</span> <span class="pre">0.25,</span> <span class="pre">1.0,</span> <span class="pre">1.0)</span></code>, поскольку инструкция Color применяется как
+множитель к каждой компоненте rgba. В этом случае компонента Color
+вне диапазона 0-1 дает видимый результат, так как интенсивность
+синей компоненты удваивается.</p>
+<p>Чтобы объявить цвет в Python, вы можете сделать следующее:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kivy.graphics</span> <span class="kn">import</span> <span class="n">Color</span>
-
-<span class="c1"># create red v</span>
+<span class="c1"># создать красный цвет</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="c1"># create blue color</span>
+<span class="c1"># создать синий цвет</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-<span class="c1"># create blue color with 50% alpha</span>
+<span class="c1"># создать синий цвет с 50% прозрачностью</span>
 <span class="n">c</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">.5</span><span class="p">)</span>
 
-<span class="c1"># using hsv mode</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;hsv&#39;</span><span class="p">)</span>
-<span class="c1"># using hsv mode + alpha</span>
-<span class="n">c</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">.2</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;hsv&#39;</span><span class="p">)</span>
+<span class="c1"># используя режим hsv</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'hsv'</span><span class="p">)</span>
+<span class="c1"># используя режим hsv + альфа</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">.2</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'hsv'</span><span class="p">)</span>
 </pre></div>
+
 </div>
-<p>You can also set color components that are available as properties
-by passing them as keyword arguments:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">b</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>  <span class="c1"># sets the blue component only</span>
-</pre></div>
-</div>
-<p>In kv lang you can set the color properties directly:</p>
+<p><p>Вы также можете установить компоненты цвета, доступные как свойства,
+передав их как именованные аргументы:</p>
 <div class="highlight-kv notranslate"><div class="highlight"><pre><span></span><span class="nn">&lt;Rule&gt;</span><span class="p">:</span>
     <span class="nc">canvas</span><span class="p">:</span>
         <span class="c1"># red color</span>
@@ -484,85 +478,84 @@ by passing them as keyword arguments:</p>
 </div>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Color.a">
-<span class="sig-name descname"><span class="pre">a</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Color.a" title="Permalink to this definition">¶</a></dt>
-<dd><p>Alpha component, between 0 and 1.</p>
+<span class="sig-name descname"><span class="pre">a</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Color.a" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Альфа-компонент, в диапазоне от 0 до 1.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Color.b">
-<span class="sig-name descname"><span class="pre">b</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Color.b" title="Permalink to this definition">¶</a></dt>
-<dd><p>Blue component, between 0 and 1.</p>
+<span class="sig-name descname"><span class="pre">b</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Color.b" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Синий компонент, в диапазоне от 0 до 1.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Color.g">
-<span class="sig-name descname"><span class="pre">g</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Color.g" title="Permalink to this definition">¶</a></dt>
-<dd><p>Green component, between 0 and 1.</p>
+<span class="sig-name descname"><span class="pre">g</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Color.g" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Зеленый компонент, в диапазоне от 0 до 1.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Color.h">
-<span class="sig-name descname"><span class="pre">h</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Color.h" title="Permalink to this definition">¶</a></dt>
-<dd><p>Hue component, between 0 and 1.</p>
+<span class="sig-name descname"><span class="pre">h</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Color.h" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Компонент оттенка (Hue), в диапазоне от 0 до 1.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Color.hsv">
-<span class="sig-name descname"><span class="pre">hsv</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Color.hsv" title="Permalink to this definition">¶</a></dt>
-<dd><p>HSV color, list of 3 values in 0-1 range, alpha will be 1.</p>
+<span class="sig-name descname"><span class="pre">hsv</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Color.hsv" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Цвет в формате HSV, список из 3 значений в диапазоне от 0 до 1, альфа будет равна 1.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Color.r">
-<span class="sig-name descname"><span class="pre">r</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Color.r" title="Permalink to this definition">¶</a></dt>
-<dd><p>Red component, between 0 and 1.</p>
+<span class="sig-name descname"><span class="pre">r</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Color.r" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Красный компонент, в диапазоне от 0 до 1.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Color.rgb">
-<span class="sig-name descname"><span class="pre">rgb</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Color.rgb" title="Permalink to this definition">¶</a></dt>
-<dd><p>RGB color, list of 3 values in 0-1 range. The alpha will be 1.</p>
+<span class="sig-name descname"><span class="pre">rgb</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Color.rgb" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Цвет в формате RGB, список из 3 значений в диапазоне от 0 до 1. Альфа будет равна 1.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Color.rgba">
-<span class="sig-name descname"><span class="pre">rgba</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Color.rgba" title="Permalink to this definition">¶</a></dt>
-<dd><p>RGBA color, list of 4 values in 0-1 range.</p>
+<span class="sig-name descname"><span class="pre">rgba</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Color.rgba" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Цвет в формате RGBA, список из 4 значений в диапазоне от 0 до 1.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Color.s">
-<span class="sig-name descname"><span class="pre">s</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Color.s" title="Permalink to this definition">¶</a></dt>
-<dd><p>Saturation component, between 0 and 1.</p>
+<span class="sig-name descname"><span class="pre">s</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Color.s" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Компонент насыщенности (Saturation), в диапазоне от 0 до 1.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Color.v">
-<span class="sig-name descname"><span class="pre">v</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Color.v" title="Permalink to this definition">¶</a></dt>
-<dd><p>Value component, between 0 and 1.</p>
+<span class="sig-name descname"><span class="pre">v</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Color.v" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Компонент значения (Value), в диапазоне от 0 до 1.</p>
 </dd></dl>
 
 </dd></dl>
-
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.MatrixInstruction">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.context_instructions.</span></span><span class="sig-name descname"><span class="pre">MatrixInstruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.context_instructions.MatrixInstruction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.ContextInstruction" title="kivy.graphics.instructions.ContextInstruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.ContextInstruction</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.context_instructions.</span></span><span class="sig-name descname"><span class="pre">MatrixInstruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.context_instructions.MatrixInstruction" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.ContextInstruction" title="kivy.graphics.instructions.ContextInstruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.ContextInstruction</span></code></a></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.MatrixInstruction.matrix">
-<span class="sig-name descname"><span class="pre">matrix</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.MatrixInstruction.matrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Matrix property. Matrix from the transformation module.
-Setting the matrix using this property when a change is made
-is important because it will notify the context about the update.</p>
+<span class="sig-name descname"><span class="pre">matrix</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.MatrixInstruction.matrix" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство Matrix. Матрица из модуля преобразования.
+Установка матрицы с использованием этого свойства при внесении изменений
+важна, потому что она уведомляет контекст о внесенных изменениях.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.MatrixInstruction.stack">
-<span class="sig-name descname"><span class="pre">stack</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.MatrixInstruction.stack" title="Permalink to this definition">¶</a></dt>
-<dd><p>Name of the matrix stack to use. Can be ‘modelview_mat’,
-‘projection_mat’ or ‘frag_modelview_mat’.</p>
+<span class="sig-name descname"><span class="pre">stack</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.MatrixInstruction.stack" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Имя стека матрицы для использования. Может быть ‘modelview_mat’,
+‘projection_mat’ или ‘frag_modelview_mat’.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.6.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.6.0.</span></p>
 </div>
 </dd></dl>
 
@@ -570,15 +563,15 @@ is important because it will notify the context about the update.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.PopMatrix">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.context_instructions.</span></span><span class="sig-name descname"><span class="pre">PopMatrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.context_instructions.PopMatrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.ContextInstruction" title="kivy.graphics.instructions.ContextInstruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.ContextInstruction</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.context_instructions.</span></span><span class="sig-name descname"><span class="pre">PopMatrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.context_instructions.PopMatrix" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.ContextInstruction" title="kivy.graphics.instructions.ContextInstruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.ContextInstruction</span></code></a></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.PopMatrix.stack">
-<span class="sig-name descname"><span class="pre">stack</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.PopMatrix.stack" title="Permalink to this definition">¶</a></dt>
-<dd><p>Name of the matrix stack to use. Can be ‘modelview_mat’,
-‘projection_mat’ or ‘frag_modelview_mat’.</p>
+<span class="sig-name descname"><span class="pre">stack</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.PopMatrix.stack" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Имя стека матрицы для использования. Может быть ‘modelview_mat’,
+‘projection_mat’ или ‘frag_modelview_mat’.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.6.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.6.0.</span></p>
 </div>
 </dd></dl>
 
@@ -586,62 +579,63 @@ is important because it will notify the context about the update.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.PushMatrix">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.context_instructions.</span></span><span class="sig-name descname"><span class="pre">PushMatrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.context_instructions.PushMatrix" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.ContextInstruction" title="kivy.graphics.instructions.ContextInstruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.ContextInstruction</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.context_instructions.</span></span><span class="sig-name descname"><span class="pre">PushMatrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.context_instructions.PushMatrix" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.ContextInstruction" title="kivy.graphics.instructions.ContextInstruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.ContextInstruction</span></code></a></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.PushMatrix.stack">
-<span class="sig-name descname"><span class="pre">stack</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.PushMatrix.stack" title="Permalink to this definition">¶</a></dt>
-<dd><p>Name of the matrix stack to use. Can be ‘modelview_mat’,
-‘projection_mat’ or ‘frag_modelview_mat’.</p>
+<span class="sig-name descname"><span class="pre">stack</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.PushMatrix.stack" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Имя стека матрицы для использования. Может быть ‘modelview_mat’,
+‘projection_mat’ или ‘frag_modelview_mat’.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.6.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.6.0.</span></p>
 </div>
 </dd></dl>
 
 </dd></dl>
 
-<dl class="py class">
+
+<<dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Rotate">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.context_instructions.</span></span><span class="sig-name descname"><span class="pre">Rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.context_instructions.Rotate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.context_instructions.Transform</span></code></p>
-<p>on the modelview matrix. You can set the properties of the instructions
-afterwards with e.g.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.context_instructions.</span></span><span class="sig-name descname"><span class="pre">Rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.context_instructions.Rotate" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.context_instructions.Transform</span></code></p>
+<p>на матрицу моделирования. Вы можете установить свойства инструкции
+после этого, например,</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rot</span><span class="o">.</span><span class="n">angle</span> <span class="o">=</span> <span class="mi">90</span>
 <span class="n">rot</span><span class="o">.</span><span class="n">axis</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Rotate.angle">
-<span class="sig-name descname"><span class="pre">angle</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Rotate.angle" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/setting the angle of the rotation.</p>
+<span class="sig-name descname"><span class="pre">angle</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Rotate.angle" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки угла вращения.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Rotate.axis">
-<span class="sig-name descname"><span class="pre">axis</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Rotate.axis" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/setting the axis of the rotation.</p>
-<p>The format of the axis is (x, y, z).</p>
+<span class="sig-name descname"><span class="pre">axis</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Rotate.axis" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки оси вращения.</p>
+<p>Формат оси: (x, y, z).</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Rotate.origin">
-<span class="sig-name descname"><span class="pre">origin</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Rotate.origin" title="Permalink to this definition">¶</a></dt>
-<dd><p>Origin of the rotation.</p>
+<span class="sig-name descname"><span class="pre">origin</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Rotate.origin" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Центр вращения.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.7.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.7.0.</span></p>
 </div>
-<p>The format of the origin can be either (x, y) or (x, y, z).</p>
+<p>Формат центра может быть (x, y) или (x, y, z).</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Rotate.set">
-<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">ay</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">az</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.context_instructions.Rotate.set" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the angle and axis of rotation.</p>
+<span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">ax</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">ay</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">az</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.context_instructions.Rotate.set" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Установите угол и ось вращения.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotationobject</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.7.0: </span>The set() method doesn’t use the new <a class="reference internal" href="#kivy.graphics.context_instructions.Rotate.origin" title="kivy.graphics.context_instructions.Rotate.origin"><code class="xref py py-attr docutils literal notranslate"><span class="pre">origin</span></code></a> property.</p>
+<p><span class="versionmodified deprecated">Устарело начиная с версии 1.7.0: </span>Метод set() не использует новое свойство <a class="reference internal" href="#kivy.graphics.context_instructions.Rotate.origin" title="kivy.graphics.context_instructions.Rotate.origin"><code class="xref py py-attr docutils literal notranslate"><span class="pre">origin</span></code></a>.</p>
 </div>
 </dd></dl>
 
@@ -649,69 +643,69 @@ afterwards with e.g.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Scale">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.context_instructions.</span></span><span class="sig-name descname"><span class="pre">Scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.context_instructions.Scale" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.context_instructions.Transform</span></code></p>
-<p>Create using one or three arguments:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Scale</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>         <span class="c1"># scale all three axes the same</span>
-<span class="n">Scale</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>   <span class="c1"># scale the axes independently</span>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.context_instructions.</span></span><span class="sig-name descname"><span class="pre">Scale</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.context_instructions.Scale" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.context_instructions.Transform</span></code></p>
+<p>Создание с использованием одного или трех аргументов:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Scale</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>         <span class="c1"># масштабировать все три оси одинаково</span>
+<span class="n">Scale</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>   <span class="c1"># масштабировать оси независимо</span>
 </pre></div>
 </div>
 <div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.6.0: </span>Deprecated single scale property in favor of x, y, z, xyz axis
-independent scaled factors.</p>
+<p><span class="versionmodified deprecated">Устарело начиная с версии 1.6.0: </span>Устаревшее одиночное свойство масштаба в пользу x, y, z, xyz
+независимых масштабных коэффициентов.</p>
 </div>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Scale.origin">
-<span class="sig-name descname"><span class="pre">origin</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Scale.origin" title="Permalink to this definition">¶</a></dt>
-<dd><p>Origin of the scale.</p>
+<span class="sig-name descname"><span class="pre">origin</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Scale.origin" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Центр масштабирования.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.9.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.9.0.</span></p>
 </div>
-<p>The format of the origin can be either (x, y) or (x, y, z).</p>
+<p>Формат центра может быть (x, y) или (x, y, z).</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Scale.scale">
-<span class="sig-name descname"><span class="pre">scale</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Scale.scale" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/setting the scale.</p>
+<span class="sig-name descname"><span class="pre">scale</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Scale.scale" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки масштаба.</p>
 <div class="deprecated">
-<p><span class="versionmodified deprecated">Deprecated since version 1.6.0: </span>Deprecated in favor of per axis scale properties x,y,z, xyz, etc.</p>
+<p><span class="versionmodified deprecated">Устарело начиная с версии 1.6.0: </span>Устаревшее в пользу свойств масштаба по осям x, y, z, xyz и т. д.</p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Scale.x">
-<span class="sig-name descname"><span class="pre">x</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Scale.x" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/setting the scale on the X axis.</p>
+<span class="sig-name descname"><span class="pre">x</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Scale.x" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки масштаба по оси X.</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.6.0.</span></p>
+<p><span class="versionmodified changed">Изменено начиная с версии 1.6.0.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Scale.xyz">
-<span class="sig-name descname"><span class="pre">xyz</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Scale.xyz" title="Permalink to this definition">¶</a></dt>
-<dd><p>3 tuple scale vector in 3D in x, y, and z axis.</p>
+<span class="sig-name descname"><span class="pre">xyz</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Scale.xyz" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Вектор масштабирования в 3D в осях x, y и z.</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.6.0.</span></p>
+<p><span class="versionmodified changed">Изменено начиная с версии 1.6.0.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Scale.y">
-<span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Scale.y" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/setting the scale on the Y axis.</p>
+<span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Scale.y" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки масштаба по оси Y.</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.6.0.</span></p>
+<p><span class="versionmodified changed">Изменено начиная с версии 1.6.0.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Scale.z">
-<span class="sig-name descname"><span class="pre">z</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Scale.z" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/setting the scale on Z axis.</p>
+<span class="sig-name descname"><span class="pre">z</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Scale.z" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки масштаба по оси Z.</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.6.0.</span></p>
+<p><span class="versionmodified changed">Изменено начиная с версии 1.6.0.</span></p>
 </div>
 </dd></dl>
 
@@ -719,44 +713,45 @@ independent scaled factors.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Translate">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.context_instructions.</span></span><span class="sig-name descname"><span class="pre">Translate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.context_instructions.Translate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.context_instructions.Transform</span></code></p>
-<p>Construct by either:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Translate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>         <span class="c1"># translate in just the two axes</span>
-<span class="n">Translate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>      <span class="c1"># translate in all three axes</span>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.context_instructions.</span></span><span class="sig-name descname"><span class="pre">Translate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.context_instructions.Translate" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.context_instructions.Transform</span></code></p>
+<p>Создайте с помощью:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Translate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>         <span class="c1"># переместить только по двум осям</span>
+<span class="n">Translate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>      <span class="c1"># переместить по всем трём осям</span>
 </pre></div>
 </div>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Translate.x">
-<span class="sig-name descname"><span class="pre">x</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Translate.x" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/setting the translation on the X axis.</p>
+<span class="sig-name descname"><span class="pre">x</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Translate.x" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки перемещения по оси X.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Translate.xy">
-<span class="sig-name descname"><span class="pre">xy</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Translate.xy" title="Permalink to this definition">¶</a></dt>
-<dd><p>2 tuple with translation vector in 2D for x and y axis.</p>
+<span class="sig-name descname"><span class="pre">xy</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Translate.xy" title="Ссылка на это определение">¶</a></dt>
+<dd><p>2-й кортеж с вектором перемещения в 2D для осей x и y.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Translate.xyz">
-<span class="sig-name descname"><span class="pre">xyz</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Translate.xyz" title="Permalink to this definition">¶</a></dt>
-<dd><p>3 tuple translation vector in 3D in x, y, and z axis.</p>
+<span class="sig-name descname"><span class="pre">xyz</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Translate.xyz" title="Ссылка на это определение">¶</a></dt>
+<dd><p>3-й кортеж с вектором перемещения в 3D по осям x, y и z.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Translate.y">
-<span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Translate.y" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/setting the translation on the Y axis.</p>
+<span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Translate.y" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки перемещения по оси Y.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.Translate.z">
-<span class="sig-name descname"><span class="pre">z</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Translate.z" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/setting the translation on the Z axis.</p>
+<span class="sig-name descname"><span class="pre">z</span></span><a class="headerlink" href="#kivy.graphics.context_instructions.Translate.z" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки перемещения по оси Z.</p>
 </dd></dl>
 
 </dd></dl>
+
 
 <dl class="py function">
 <dt class="sig sig-object py" id="kivy.graphics.context_instructions.gl_init_resources">

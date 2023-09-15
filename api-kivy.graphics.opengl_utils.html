@@ -386,16 +386,16 @@
 </ul>
 </div>
             
-  <section id="module-kivy.graphics.opengl_utils">
-<span id="opengl-utilities"></span><h1>OpenGL utilities<a class="headerlink" href="#module-kivy.graphics.opengl_utils" title="Permalink to this headline">¶</a></h1>
+<section id="module-kivy.graphics.opengl_utils">
+<span id="opengl-utilities"></span><h1>Утилиты OpenGL<a class="headerlink" href="#module-kivy.graphics.opengl_utils" title="Ссылка на данный заголовок">¶</a></h1>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.0.7.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.0.7.</span></p>
 </div>
 <dl class="py function">
 <dt class="sig sig-object py" id="kivy.graphics.opengl_utils.gl_get_extensions">
-<span class="sig-prename descclassname"><span class="pre">kivy.graphics.opengl_utils.</span></span><span class="sig-name descname"><span class="pre">gl_get_extensions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span></span></span><a class="headerlink" href="#kivy.graphics.opengl_utils.gl_get_extensions" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a list of OpenGL extensions available. All the names in the list
-have the <cite>GL_</cite> stripped at the start (if it exists) and are in lowercase.</p>
+<span class="sig-prename descclassname"><span class="pre">kivy.graphics.opengl_utils.</span></span><span class="sig-name descname"><span class="pre">gl_get_extensions</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">список</span></span></span><a class="headerlink" href="#kivy.graphics.opengl_utils.gl_get_extensions" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает список доступных расширений OpenGL. Все имена в списке
+имеют префикс <cite>GL_</cite>, который убирается в начале (если он существует) и преобразуется в нижний регистр.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">gl_get_extensions</span><span class="p">())</span>
 <span class="go">[&#39;arb_blend_func_extended&#39;, &#39;arb_color_buffer_float&#39;, &#39;arb_compatibility&#39;,</span>
 <span class="go"> &#39;arb_copy_buffer&#39;... ]</span>
@@ -405,11 +405,11 @@ have the <cite>GL_</cite> stripped at the start (if it exists) and are in lowerc
 
 <dl class="py function">
 <dt class="sig sig-object py" id="kivy.graphics.opengl_utils.gl_get_texture_formats">
-<span class="sig-prename descclassname"><span class="pre">kivy.graphics.opengl_utils.</span></span><span class="sig-name descname"><span class="pre">gl_get_texture_formats</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#kivy.graphics.opengl_utils.gl_get_texture_formats" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a list of texture formats recognized by kivy.
-The texture list is informative but might not been supported by your
-hardware. If you want a list of supported textures, you must filter that
-list as follows:</p>
+<span class="sig-prename descclassname"><span class="pre">kivy.graphics.opengl_utils.</span></span><span class="sig-name descname"><span class="pre">gl_get_texture_formats</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">кортеж</span></span></span><a class="headerlink" href="#kivy.graphics.opengl_utils.gl_get_texture_formats" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает список форматов текстур, распознаваемых Kivy.
+Список текстур информативен, но может не поддерживаться вашим
+оборудованием. Если вам нужен список поддерживаемых текстур, вы должны отфильтровать этот
+список следующим образом:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">supported_fmts</span> <span class="o">=</span> <span class="p">[</span><span class="n">gl_has_texture_format</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">gl_get_texture_formats</span><span class="p">()]</span>
 </pre></div>
 </div>
@@ -417,53 +417,55 @@ list as follows:</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="kivy.graphics.opengl_utils.gl_get_version">
-<span class="sig-prename descclassname"><span class="pre">kivy.graphics.opengl_utils.</span></span><span class="sig-name descname"><span class="pre">gl_get_version</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span></span></span><a class="headerlink" href="#kivy.graphics.opengl_utils.gl_get_version" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the (major, minor) OpenGL version, parsed from the GL_VERSION.</p>
+<span class="sig-prename descclassname"><span class="pre">kivy.graphics.opengl_utils.</span></span><span class="sig-name descname"><span class="pre">gl_get_version</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">кортеж</span></span></span><a class="headerlink" href="#kivy.graphics.opengl_utils.gl_get_version" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает (major, minor) версию OpenGL, извлеченную из GL_VERSION.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.2.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.2.0.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="kivy.graphics.opengl_utils.gl_get_version_major">
-<span class="sig-prename descclassname"><span class="pre">kivy.graphics.opengl_utils.</span></span><span class="sig-name descname"><span class="pre">gl_get_version_major</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#kivy.graphics.opengl_utils.gl_get_version_major" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the major component of the OpenGL version.</p>
+<span class="sig-prename descclassname"><span class="pre">kivy.graphics.opengl_utils.</span></span><span class="sig-name descname"><span class="pre">gl_get_version_major</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">целое число</span></span></span><a class="headerlink" href="#kivy.graphics.opengl_utils.gl_get_version_major" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает главный компонент версии OpenGL.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.2.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.2.0.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="kivy.graphics.opengl_utils.gl_get_version_minor">
-<span class="sig-prename descclassname"><span class="pre">kivy.graphics.opengl_utils.</span></span><span class="sig-name descname"><span class="pre">gl_get_version_minor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#kivy.graphics.opengl_utils.gl_get_version_minor" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the minor component of the OpenGL version.</p>
+<span class="sig-prename descclassname"><span class="pre">kivy.graphics.opengl_utils.</span></span><span class="sig-name descname"><span class="pre">gl_get_version_minor</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">целое число</span></span></span><a class="header
+
+link" href="#kivy.graphics.opengl_utils.gl_get_version_minor" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает минорный компонент версии OpenGL.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.2.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.2.0.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="kivy.graphics.opengl_utils.gl_has_capability">
-<span class="sig-prename descclassname"><span class="pre">kivy.graphics.opengl_utils.</span></span><span class="sig-name descname"><span class="pre">gl_has_capability</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">cap</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#kivy.graphics.opengl_utils.gl_has_capability" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the status of a OpenGL Capability. This is a wrapper that
-auto-discovers all the capabilities that Kivy might need. The current
-capabilities tested are:</p>
+<span class="sig-prename descclassname"><span class="pre">kivy.graphics.opengl_utils.</span></span><span class="sig-name descname"><span class="pre">gl_has_capability</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">cap</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">целое число</span></span></span><a class="headerlink" href="#kivy.graphics.opengl_utils.gl_has_capability" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает состояние возможности OpenGL. Это обертка, которая
+автоматически определяет все возможности, которые может понадобиться Kivy. Текущие
+проверяемые возможности включают в себя:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>GLCAP_BGRA: Test the support of BGRA texture format</p></li>
-<li><p>GLCAP_NPOT: Test the support of Non Power of Two texture</p></li>
-<li><p>GLCAP_S3TC: Test the support of S3TC texture (DXT1, DXT3, DXT5)</p></li>
-<li><p>GLCAP_DXT1: Test the support of DXT texture (subset of S3TC)</p></li>
-<li><p>GLCAP_ETC1: Test the support of ETC1 texture</p></li>
+<li><p>GLCAP_BGRA: Проверка поддержки формата текстуры BGRA</p></li>
+<li><p>GLCAP_NPOT: Проверка поддержки текстуры с непропорциональными размерами</p></li>
+<li><p>GLCAP_S3TC: Проверка поддержки текстуры S3TC (DXT1, DXT3, DXT5)</p></li>
+<li><p>GLCAP_DXT1: Проверка поддержки текстуры DXT (подмножество S3TC)</p></li>
+<li><p>GLCAP_ETC1: Проверка поддержки текстуры ETC1</p></li>
 </ul>
 </div></blockquote>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="kivy.graphics.opengl_utils.gl_has_extension">
-<span class="sig-prename descclassname"><span class="pre">kivy.graphics.opengl_utils.</span></span><span class="sig-name descname"><span class="pre">gl_has_extension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#kivy.graphics.opengl_utils.gl_has_extension" title="Permalink to this definition">¶</a></dt>
-<dd><p>Check if an OpenGL extension is available. If the name starts with <cite>GL_</cite>,
-it will be stripped for the test and converted to lowercase.</p>
+<span class="sig-prename descclassname"><span class="pre">kivy.graphics.opengl_utils.</span></span><span class="sig-name descname"><span class="pre">gl_has_extension</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">целое число</span></span></span><a class="headerlink" href="#kivy.graphics.opengl_utils.gl_has_extension" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Проверяет доступность расширения OpenGL. Если имя начинается с <cite>GL_</cite>,
+оно удаляется для теста и преобразуется в нижний регистр.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gl_has_extension</span><span class="p">(</span><span class="s1">&#39;NV_get_tex_image&#39;</span><span class="p">)</span>
 <span class="go">False</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">gl_has_extension</span><span class="p">(</span><span class="s1">&#39;OES_texture_npot&#39;</span><span class="p">)</span>
@@ -474,29 +476,31 @@ it will be stripped for the test and converted to lowercase.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="kivy.graphics.opengl_utils.gl_has_texture_conversion">
-<span class="sig-prename descclassname"><span class="pre">kivy.graphics.opengl_utils.</span></span><span class="sig-name descname"><span class="pre">gl_has_texture_conversion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#kivy.graphics.opengl_utils.gl_has_texture_conversion" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return 1 if the texture can be converted to a native format.</p>
+<span class="sig-prename descclassname"><span class="pre">kivy.graphics.opengl_utils.</span></span><span class="sig-name descname"><span class="pre">gl_has_texture_conversion</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">целое число</span></span></span><a class="headerlink" href="#kivy.graphics.opengl_utils.gl_has_texture_conversion" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает 1, если текстуру можно преобразовать в собственный формат.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="kivy.graphics.opengl_utils.gl_has_texture_format">
-<span class="sig-prename descclassname"><span class="pre">kivy.graphics.opengl_utils.</span></span><span class="sig-name descname"><span class="pre">gl_has_texture_format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#kivy.graphics.opengl_utils.gl_has_texture_format" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return whether a texture format is supported by your system, natively or
-by conversion. For example, if your card doesn’t support ‘bgra’, we are able
-to convert to ‘rgba’ but only in software mode.</p>
+<span class="sig-prename descclassname"><span class="pre">kivy.graphics.opengl_utils.</span></span><span class="sig-name descname"><span class="pre">gl_has_texture_format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">целое число</span></span></span><a class="headerlink" href="#kivy.graphics.opengl_utils.gl_has_texture_format" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает, поддерживается ли формат текстуры вашей системой нативно или
+посредством конвертации. Например, если ваша карта не поддерживает 'bgra', мы можем
+преобразовать его в 'rgba', но только в программном режиме.</p>
 </dd></dl>
 
 <dl class="py function">
-<dt class="sig sig-object py" id="kivy.graphics.opengl_utils.gl_has_texture_native_format">
-<span class="sig-prename descclassname"><span class="pre">kivy.graphics.opengl_utils.</span></span><span class="sig-name descname"><span class="pre">gl_has_texture_native_format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#kivy.graphics.opengl_utils.gl_has_texture_native_format" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return 1 if the texture format is handled natively.</p>
+<dt class="sig sig-object py
+
+" id="kivy.graphics.opengl_utils.gl_has_texture_native_format">
+<span class="sig-prename descclassname"><span class="pre">kivy.graphics.opengl_utils.</span></span><span class="sig-name descname"><span class="pre">gl_has_texture_native_format</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fmt</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">целое число</span></span></span><a class="headerlink" href="#kivy.graphics.opengl_utils.gl_has_texture_native_format" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает 1, если формат текстуры обрабатывается нативно.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">gl_has_texture_format</span><span class="p">(</span><span class="s1">&#39;azdmok&#39;</span><span class="p">)</span>
 <span class="go">0</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">gl_has_texture_format</span><span class="p">(</span><span class="s1">&#39;rgba&#39;</span><span class="p">)</span>
 <span class="go">1</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">gl_has_texture_format</span><span class="p">(</span><span class="s1">&#39;s3tc_dxt1&#39;</span><span class="p">)</span>
-<span class="go">[INFO   ] [GL          ] S3TC texture support is available</span>
-<span class="go">[INFO   ] [GL          ] DXT1 texture support is available</span>
+<span class="go">[INFO   ] [GL          ] Поддержка текстуры S3TC доступна</span>
+<span class="go">[INFO   ] [GL          ] Поддержка текстуры DXT1 доступна</span>
 <span class="go">1</span>
 </pre></div>
 </div>
@@ -504,11 +508,11 @@ to convert to ‘rgba’ but only in software mode.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="kivy.graphics.opengl_utils.gl_register_get_size">
-<span class="sig-prename descclassname"><span class="pre">kivy.graphics.opengl_utils.</span></span><span class="sig-name descname"><span class="pre">gl_register_get_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">constid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.opengl_utils.gl_register_get_size" title="Permalink to this definition">¶</a></dt>
-<dd><p>Register an association between an OpenGL Const used in glGet* to a number
-of elements.</p>
-<p>By example, the GPU_MEMORY_INFO_DEDICATED_VIDMEM_NVX is a special pname that
-will return the integer 1 (nvidia only).</p>
+<span class="sig-prename descclassname"><span class="pre">kivy.graphics.opengl_utils.</span></span><span class="sig-name descname"><span class="pre">gl_register_get_size</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">constid</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">size</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.opengl_utils.gl_register_get_size" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Регистрирует ассоциацию между константой OpenGL, используемой в glGet*, и количеством
+элементов.</p>
+<p>Например, GPU_MEMORY_INFO_DEDICATED_VIDMEM_NVX - это специальное имя, которое
+вернет целое число 1 (только для Nvidia).</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">GPU_MEMORY_INFO_DEDICATED_VIDMEM_NVX</span> <span class="o">=</span> <span class="mh">0x9047</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">gl_register_get_size</span><span class="p">(</span><span class="n">GPU_MEMORY_INFO_DEDICATED_VIDMEM_NVX</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">glGetIntegerv</span><span class="p">(</span><span class="n">GPU_MEMORY_INFO_DEDICATED_VIDMEM_NVX</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>

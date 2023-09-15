@@ -386,104 +386,104 @@
 </ul>
 </div>
             
-  <section id="module-kivy.graphics.svg">
-<span id="svg"></span><h1>SVG<a class="headerlink" href="#module-kivy.graphics.svg" title="Permalink to this headline">¶</a></h1>
+<section id="module-kivy.graphics.svg">
+<span id="svg"></span><h1>SVG<a class="headerlink" href="#module-kivy.graphics.svg" title="Ссылка на эту определение">¶</a></h1>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.9.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.9.0.</span></p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This is highly experimental and subject to change. Don’t use it in
-production.</p>
+<p class="admonition-title">Предупреждение</p>
+<p>Это высокоэкспериментально и может быть изменено. Не используйте это в
+продакшене.</p>
 </div>
-<p>Load an SVG as a graphics instruction:</p>
+<p>Загрузка SVG как графической инструкции:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kivy.graphics.svg</span> <span class="kn">import</span> <span class="n">Svg</span>
 <span class="k">with</span> <span class="n">widget</span><span class="o">.</span><span class="n">canvas</span><span class="p">:</span>
     <span class="n">svg</span> <span class="o">=</span> <span class="n">Svg</span><span class="p">(</span><span class="s2">&quot;image.svg&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>There is no widget that can display Svg directly, you have to make your own for
-now. Check the <cite>examples/svg</cite> for more information.</p>
+<p>На данный момент нет виджета, который может отображать Svg напрямую, вам придется создать свой собственный.
+Проверьте <cite>примеры/svg</cite> для получения дополнительной информации.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.svg.Svg">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.svg.</span></span><span class="sig-name descname"><span class="pre">Svg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchor_x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchor_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bezier_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">circle_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.svg.Svg" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.RenderContext" title="kivy.graphics.instructions.RenderContext"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.RenderContext</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.svg.</span></span><span class="sig-name descname"><span class="pre">Svg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchor_x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">anchor_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">bezier_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">circle_points</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">64</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.svg.Svg" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.RenderContext" title="kivy.graphics.instructions.RenderContext"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.RenderContext</span></code></a></p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.svg.Svg.anchor_x">
-<span class="sig-name descname"><span class="pre">anchor_x</span></span><a class="headerlink" href="#kivy.graphics.svg.Svg.anchor_x" title="Permalink to this definition">¶</a></dt>
-<dd><p>Horizontal anchor position for scaling and rotations. Defaults to 0. The
-symbolic values ‘left’, ‘center’ and ‘right’ are also accepted.</p>
+<span class="sig-name descname"><span class="pre">anchor_x</span></span><a class="headerlink" href="#kivy.graphics.svg.Svg.anchor_x" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>Горизонтальная точка привязки для масштабирования и вращения. По умолчанию 0. Символьные значения ‘left’, ‘center’ и ‘right’ также принимаются.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.svg.Svg.anchor_y">
-<span class="sig-name descname"><span class="pre">anchor_y</span></span><a class="headerlink" href="#kivy.graphics.svg.Svg.anchor_y" title="Permalink to this definition">¶</a></dt>
-<dd><p>Vertical anchor position for scaling and rotations. Defaults to 0. The
-symbolic values ‘bottom’, ‘center’ and ‘top’ are also accepted.</p>
+<span class="sig-name descname"><span class="pre">anchor_y</span></span><a class="headerlink" href="#kivy.graphics.svg.Svg.anchor_y" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>Вертикальная точка привязки для масштабирования и вращения. По умолчанию 0. Символьные значения ‘bottom’, ‘center’ и ‘top’ также принимаются.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.svg.Svg.color">
-<span class="sig-name descname"><span class="pre">color</span></span><a class="headerlink" href="#kivy.graphics.svg.Svg.color" title="Permalink to this definition">¶</a></dt>
-<dd><p>The default color</p>
-<p>Used for SvgElements that specify “currentColor”</p>
+<span class="sig-name descname"><span class="pre">color</span></span><a class="headerlink" href="#kivy.graphics.svg.Svg.color" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>Цвет по умолчанию</p>
+<p>Используется для элементов Svg, которые указывают “currentColor”</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.10.3: </span>The color is gettable and settable</p>
+<p><span class="versionmodified changed">Изменено в версии 1.10.3: </span>Цвет теперь можно получать и устан
+
+авливать</p>
 </div>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.9.1.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.9.1.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.svg.Svg.current_color">
-<span class="sig-name descname"><span class="pre">current_color</span></span><a class="headerlink" href="#kivy.graphics.svg.Svg.current_color" title="Permalink to this definition">¶</a></dt>
-<dd><p>current_color: object</p>
+<span class="sig-name descname"><span class="pre">current_color</span></span><a class="headerlink" href="#kivy.graphics.svg.Svg.current_color" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>current_color: объект</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.svg.Svg.gradients">
-<span class="sig-name descname"><span class="pre">gradients</span></span><a class="headerlink" href="#kivy.graphics.svg.Svg.gradients" title="Permalink to this definition">¶</a></dt>
-<dd><p>gradients: object</p>
+<span class="sig-name descname"><span class="pre">gradients</span></span><a class="headerlink" href="#kivy.graphics.svg.Svg.gradients" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>градиенты: объект</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.svg.Svg.height">
-<span class="sig-name descname"><span class="pre">height</span></span><a class="headerlink" href="#kivy.graphics.svg.Svg.height" title="Permalink to this definition">¶</a></dt>
-<dd><p>height: ‘double’</p>
+<span class="sig-name descname"><span class="pre">height</span></span><a class="headerlink" href="#kivy.graphics.svg.Svg.height" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>высота: ‘double’</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.svg.Svg.set_tree">
-<span class="sig-name descname"><span class="pre">set_tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.svg.Svg.set_tree" title="Permalink to this definition">¶</a></dt>
-<dd><p>sets the tree used to render the Svg and triggers reloading.</p>
+<span class="sig-name descname"><span class="pre">set_tree</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tree</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.svg.Svg.set_tree" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>устанавливает дерево, используемое для рендеринга Svg и запускает повторную загрузку.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>tree</strong> (<em>xml.etree.cElementTree</em>) – the tree parsed from the SVG source</p>
+<dt class="field-odd">Параметры</dt>
+<dd class="field-odd"><p><strong>tree</strong> (<em>xml.etree.cElementTree</em>) – дерево, разобранное из исходного SVG</p>
 </dd>
 </dl>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 2.0.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 2.0.0.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.svg.Svg.source">
-<span class="sig-name descname"><span class="pre">source</span></span><a class="headerlink" href="#kivy.graphics.svg.Svg.source" title="Permalink to this definition">¶</a></dt>
-<dd><p>Filename / source to load.</p>
-<p>The parsing and rendering is done as soon as you set the source.</p>
+<span class="sig-name descname"><span class="pre">source</span></span><a class="headerlink" href="#kivy.graphics.svg.Svg.source" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>Имя файла / источник для загрузки.</p>
+<p>Разбор и рендеринг выполняются сразу после установки источника.</p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 2.0.0: </span>The property name is now <cite>source</cite> instead of <cite>filename</cite></p>
+<p><span class="versionmodified changed">Изменено в версии 2.0.0: </span>Теперь имя свойства <cite>source</cite> вместо <cite>filename</cite></p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.10.3: </span>You can get the used filename</p>
+<p><span class="versionmodified changed">Изменено в версии 1.10.3: </span>Теперь можно получить использованное имя файла</p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.svg.Svg.width">
-<span class="sig-name descname"><span class="pre">width</span></span><a class="headerlink" href="#kivy.graphics.svg.Svg.width" title="Permalink to this definition">¶</a></dt>
-<dd><p>width: ‘double’</p>
+<span class="sig-name descname"><span class="pre">width</span></span><a class="headerlink" href="#kivy.graphics.svg.Svg.width" title="Ссылка на эту определение">¶</a></dt>
+<dd><p>ширина: ‘double’</p>
 </dd></dl>
 
 </dd></dl>

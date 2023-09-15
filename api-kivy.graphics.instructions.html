@@ -385,230 +385,202 @@
 <li><a class="reference internal" href="#">Canvas</a></li>
 </ul>
 </div>
-            
-  <section id="module-kivy.graphics.instructions">
-<span id="canvas"></span><h1>Canvas<a class="headerlink" href="#module-kivy.graphics.instructions" title="Permalink to this headline">¶</a></h1>
-<p>The <a class="reference internal" href="#kivy.graphics.instructions.Canvas" title="kivy.graphics.instructions.Canvas"><code class="xref py py-class docutils literal notranslate"><span class="pre">Canvas</span></code></a> is the root object used for drawing by a
-<a class="reference internal" href="api-kivy.uix.widget.html#kivy.uix.widget.Widget" title="kivy.uix.widget.Widget"><code class="xref py py-class docutils literal notranslate"><span class="pre">Widget</span></code></a>. Check the class documentation for more
-information about the usage of Canvas.</p>
+ <section id="module-kivy.graphics.instructions">
+<span id="canvas"></span><h1>Холст<a class="headerlink" href="#module-kivy.graphics.instructions" title="Ссылка на этот заголовок">¶</a></h1>
+<p><a class="reference internal" href="#kivy.graphics.instructions.Canvas" title="kivy.graphics.instructions.Canvas"><code class="xref py py-class docutils literal notranslate"><span class="pre">Холст</span></code></a> - это корневой объект, используемый для рисования элементами
+<a class="reference internal" href="api-kivy.uix.widget.html#kivy.uix.widget.Widget" title="kivy.uix.widget.Widget"><code class="xref py py-class docutils literal notranslate"><span class="pre">Виджет</span></code></a>. Подробнее о его использовании смотрите в документации класса.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.Callback">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.instructions.</span></span><span class="sig-name descname"><span class="pre">Callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.Callback" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Instruction</span></code></a></p>
-<p>A Callback is an instruction that will be called when the drawing
-operation is performed. When adding instructions to a canvas, you can do
-this:</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.instructions.</span></span><span class="sig-name descname"><span class="pre">Callback</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">callback</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.Callback" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Instruction</span></code></a></p>
+<p>Callback - это инструкция, которая будет вызвана при выполнении операции рисования. При добавлении инструкций на холст, вы можете сделать так:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="p">:</span>
     <span class="n">Color</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">Rectangle</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
     <span class="n">Callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">my_callback</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>The definition of the callback must be:</p>
+</pre></div></div>
+<p>Определение колбэка должно быть следующим:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">my_callback</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instr</span><span class="p">):</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;I have been called!&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Меня вызвали!&#39;</span><span class="p">)</span>
+</pre></div></div>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Note that if you perform many and/or costly calls to callbacks, you
-might potentially slow down the rendering performance significantly.</p>
+<p class="admonition-title">Предупреждение</p>
+<p>Обратите внимание, что если вы выполняете много вызовов колбэков и/или они затратны, это может значительно замедлить производительность рендеринга.</p>
 </div>
-<p>The updating of your canvas does not occur until something new happens.
-From your callback, you can ask for an update:</p>
+<p>Обновление вашего холста не происходит до тех пор, пока не произойдет что-то новое. Из вашего колбэка вы можете запросить обновление:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="p">:</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">cb</span> <span class="o">=</span> <span class="n">Callback</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">my_callback</span><span class="p">)</span>
-<span class="c1"># then later in the code</span>
+<span class="c1"># затем позже в коде</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">cb</span><span class="o">.</span><span class="n">ask_update</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>If you use the Callback class to call rendering methods of another
-toolkit, you will have issues with the OpenGL context. The OpenGL state may
-have been manipulated by the other toolkit, and as soon as program flow
-returns to Kivy, it will just break. You can have glitches, crashes, black
-holes might occur, etc.
-To avoid that, you can activate the <a class="reference internal" href="#kivy.graphics.instructions.Callback.reset_context" title="kivy.graphics.instructions.Callback.reset_context"><code class="xref py py-attr docutils literal notranslate"><span class="pre">reset_context</span></code></a> option. It will
-reset the OpenGL context state to make Kivy’s rendering correct after the
-call to your callback.</p>
+</pre></div></div>
+<p>Если вы используете класс Callback для вызова методов рендеринга из другого набора инструментов, у вас могут возникнуть проблемы с контекстом OpenGL. Состояние OpenGL может быть изменено другим набором инструментов, и как только управление программой вернется в Kivy, это может вызвать сбой. Возможны глюки, сбои, возможно появление черных дыр и так далее.
+Для избежания этого вы можете активировать опцию <a class="reference internal" href="#kivy.graphics.instructions.Callback.reset_context" title="kivy.graphics.instructions.Callback.reset_context"><code class="xref py py-attr docutils literal notranslate"><span class="pre">reset_context</span></code></a>. Это сбросит состояние контекста OpenGL, чтобы после вызова вашего колбэка рендеринг Kivy был корректным.</p>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>The <a class="reference internal" href="#kivy.graphics.instructions.Callback.reset_context" title="kivy.graphics.instructions.Callback.reset_context"><code class="xref py py-attr docutils literal notranslate"><span class="pre">reset_context</span></code></a> is not a full OpenGL reset. If you have issues
-regarding that, please contact us.</p>
+<p class="admonition-title">Предупреждение</p>
+<p><a class="reference internal" href="#kivy.graphics.instructions.Callback.reset_context" title="kivy.graphics.instructions.Callback.reset_context"><code class="xref py py-attr docutils literal notranslate"><span class="pre">reset_context</span></code></a> - это не полный сброс OpenGL. Если у вас возникли проблемы, связанные с этим, пожалуйста, свяжитесь с нами.</p>
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.Callback.ask_update">
-<span class="sig-name descname"><span class="pre">ask_update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.Callback.ask_update" title="Permalink to this definition">¶</a></dt>
-<dd><p>Inform the parent canvas that we’d like it to update on the next
-frame. This is useful when you need to trigger a redraw due to some
-value having changed for example.</p>
+<span class="sig-name descname"><span class="pre">ask_update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.Callback.ask_update" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Сообщите родительскому холсту, что мы хотели бы, чтобы он обновился на следующем кадре. Это полезно, когда вам нужно вызвать перерисовку из-за изменения какого-либо значения, например.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.0.4.</span></p>
+<p><span class="versionmodified added">Новое в версии 1.0.4.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.Callback.callback">
-<span class="sig-name descname"><span class="pre">callback</span></span><a class="headerlink" href="#kivy.graphics.instructions.Callback.callback" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/setting func.</p>
+<span class="sig-name descname"><span class="pre">callback</span></span><a class="headerlink" href="#kivy.graphics.instructions.Callback.callback" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки функции.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.Callback.reset_context">
-<span class="sig-name descname"><span class="pre">reset_context</span></span><a class="headerlink" href="#kivy.graphics.instructions.Callback.reset_context" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set this to True if you want to reset the OpenGL context for Kivy
-after the callback has been called.</p>
+<span class="sig-name descname"><span class="pre">reset_context</span></span><a class="headerlink" href="#kivy.graphics.instructions.Callback.reset_context" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Установите это значение True, если вы хотите сбросить контекст OpenGL для Kivy после вызова колбэка.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.Canvas">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.instructions.</span></span><span class="sig-name descname"><span class="pre">Canvas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.Canvas" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#kivy.graphics.instructions.CanvasBase" title="kivy.graphics.instructions.CanvasBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.CanvasBase</span></code></a></p>
-<p>instructions that you want to be used for drawing.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.instructions.</span></span><span class="sig-name descname"><span class="pre">Canvas</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.Canvas" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="#kivy.graphics.instructions.CanvasBase" title="kivy.graphics.instructions.CanvasBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.CanvasBase</span></code></a></p>
+<p>Инструкции, которые вы хотите использовать для рисования.</p>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The Canvas supports Python’s <code class="docutils literal notranslate"><span class="pre">with</span></code> statement and its enter &amp; exit
-semantics.</p>
+<p class="admonition-title">Заметка</p>
+<p>class Canvas поддерживает оператор <code class="docutils literal notranslate"><span class="pre">with</span></code> в Python и его семантику входа и выхода.</p>
 </div>
-<p>Usage of a canvas without the <code class="docutils literal notranslate"><span class="pre">with</span></code> statement:</p>
+<p>Использование холста без оператора <code class="docutils literal notranslate"><span class="pre">with</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
 <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">Rectangle</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">)))</span>
-</pre></div>
-</div>
-<p>Usage of a canvas with Python’s <code class="docutils literal notranslate"><span class="pre">with</span></code> statement:</p>
+</pre></div></div>
+<p>Использование холста с оператором <code class="docutils literal notranslate"><span class="pre">with</span></code> в Python:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="p">:</span>
     <span class="n">Color</span><span class="p">(</span><span class="mf">1.</span><span class="p">,</span> <span class="mf">1.</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
     <span class="n">Rectangle</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
-</pre></div>
-</div>
+</pre></div></div>
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.Canvas.add">
-<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Instruction</span> <span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.Canvas.add" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Instruction</span> <span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.Canvas.add" title="Ссылка на это определение">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.Canvas.after">
-<span class="sig-name descname"><span class="pre">after</span></span><a class="headerlink" href="#kivy.graphics.instructions.Canvas.after" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting the ‘after’ group.</p>
+<span class="sig-name descname"><span class="pre">after</span></span><a class="headerlink" href="#kivy.graphics.instructions.Canvas.after" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения группы "after".</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.Canvas.ask_update">
-<span class="sig-name descname"><span class="pre">ask_update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.Canvas.ask_update" title="Permalink to this definition">¶</a></dt>
-<dd><p>Inform the canvas that we’d like it to update on the next frame.
-This is useful when you need to trigger a redraw due to some value
-having changed for example.</p>
+<span class="sig-name descname"><span class="pre">ask_update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.Canvas.ask_update" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Уведомляет холст, что мы хотели бы, чтобы он обновился на следующем кадре.
+Это полезно, когда вам нужно вызвать перерисовку из-за изменения какого-либо значения, например.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.Canvas.before">
-<span class="sig-name descname"><span class="pre">before</span></span><a class="headerlink" href="#kivy.graphics.instructions.Canvas.before" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting the ‘before’ group.</p>
+<span class="sig-name descname"><span class="pre">before</span></span><a class="headerlink" href="#kivy.graphics.instructions.Canvas.before" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения группы "before".</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.Canvas.clear">
-<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.Canvas.clear" title="Permalink to this definition">¶</a></dt>
-<dd><p>Clears every <a class="reference internal" href="#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instruction</span></code></a> in the canvas, leaving it clean.</p>
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.Canvas.clear" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Удаляет все <a class="reference internal" href="#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instruction</span></code></a> на холсте, оставляя его чистым.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.Canvas.draw">
-<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.Canvas.draw" title="Permalink to this definition">¶</a></dt>
-<dd><p>Apply the instruction to our window.</p>
+<span class="sig-name descname"><span class="pre">draw</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.Canvas.draw" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Применяет инструкции к нашему окну.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.Canvas.has_after">
-<span class="sig-name descname"><span class="pre">has_after</span></span><a class="headerlink" href="#kivy.graphics.instructions.Canvas.has_after" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property to see if the <a class="reference internal" href="#kivy.graphics.instructions.Canvas.after" title="kivy.graphics.instructions.Canvas.after"><code class="xref py py-attr docutils literal notranslate"><span class="pre">after</span></code></a> group has already been created.</p>
+<span class="sig-name descname"><span class="pre">has_after</span></span><a class="headerlink" href="#kivy.graphics.instructions.Canvas.has_after" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для проверки, была ли уже создана группа "after".</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.7.0.</span></p>
+<p><span class="versionmodified added">Новое в версии 1.7.0.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.Canvas.has_before">
-<span class="sig-name descname"><span class="pre">has_before</span></span><a class="headerlink" href="#kivy.graphics.instructions.Canvas.has_before" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property to see if the <a class="reference internal" href="#kivy.graphics.instructions.Canvas.before" title="kivy.graphics.instructions.Canvas.before"><code class="xref py py-attr docutils literal notranslate"><span class="pre">before</span></code></a> group has already been created.</p>
+<span class="sig-name descname"><span class="pre">has_before</span></span><a class="headerlink" href="#kivy.graphics.instructions.Canvas.has_before" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для проверки, была ли уже создана группа "before".</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.7.0.</span></p>
+<p><span class="versionmodified added">Новое в версии 1.7.0.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.Canvas.opacity">
-<span class="sig-name descname"><span class="pre">opacity</span></span><a class="headerlink" href="#kivy.graphics.instructions.Canvas.opacity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property to get/set the opacity value of the canvas.</p>
+<span class="sig-name descname"><span class="pre">opacity</span></span><a class="headerlink" href="#kivy.graphics.instructions.Canvas.opacity" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки значения непрозрачности холста.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.4.1.</span></p>
+<p><span class="versionmodified added">Новое в версии 1.4.1.</span></p>
 </div>
-<p>The opacity attribute controls the opacity of the canvas and its
-children.  Be careful, it’s a cumulative attribute: the value is
-multiplied to the current global opacity and the result is applied to
-the current context color.</p>
-<p>For example: if your parent has an opacity of 0.5 and a child has an
-opacity of 0.2, the real opacity of the child will be 0.5 * 0.2 = 0.1.</p>
-<p>Then, the opacity is applied on the shader as:</p>
+<p>Атрибут opacity контролирует непрозрачность холста и его
+детей. Будьте осторожны, это накопительный атрибут: значение
+умножается на текущую глобальную непрозрачность, и результат
+применяется к текущему цвету контекста.</p>
+<p>Например: если у вашего родителя непрозрачность 0,5, а у ребенка
+непрозрачность 0,2, реальная непрозрачность ребенка будет 0,5 * 0,2 = 0,1.</p>
+<p>Затем непрозрачность применяется к шейдеру следующим образом:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">frag_color</span> <span class="o">=</span> <span class="n">color</span> <span class="o">*</span> <span class="n">vec4</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">,</span> <span class="n">opacity</span><span class="p">);</span>
-</pre></div>
-</div>
+</pre></div></div>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.Canvas.remove">
-<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Instruction</span> <span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.Canvas.remove" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Instruction</span> <span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.Canvas.remove" title="Ссылка на это определение">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.CanvasBase">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.instructions.</span></span><span class="sig-name descname"><span class="pre">CanvasBase</span></span><a class="headerlink" href="#kivy.graphics.instructions.CanvasBase" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#kivy.graphics.instructions.InstructionGroup" title="kivy.graphics.instructions.InstructionGroup"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.InstructionGroup</span></code></a></p>
-<p>CanvasBase provides the context manager methods for the
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.instructions.</span></span><span class="sig-name descname"><span class="pre">CanvasBase</span></span><a class="headerlink" href="#kivy.graphics.instructions.CanvasBase" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="#kivy.graphics.instructions.InstructionGroup" title="kivy.graphics.instructions.InstructionGroup"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.InstructionGroup</span></code></a></p>
+<p>CanvasBase предоставляет методы контекстного менеджера для
 <a class="reference internal" href="#kivy.graphics.instructions.Canvas" title="kivy.graphics.instructions.Canvas"><code class="xref py py-class docutils literal notranslate"><span class="pre">Canvas</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.ContextInstruction">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.instructions.</span></span><span class="sig-name descname"><span class="pre">ContextInstruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.ContextInstruction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Instruction</span></code></a></p>
-<p>that don’t have a direct visual representation, but instead modify the
-current Canvas’ state, e.g. texture binding, setting color parameters,
-matrix manipulation and so on.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.instructions.</span></span><span class="sig-name descname"><span class="pre">ContextInstruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.ContextInstruction" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Instruction</span></code></a></p>
+<p>Инструкции, которые не имеют непосредственного визуального представления, а вместо этого модифицируют состояние текущего холста, например, привязку текстуры, установку параметров цвета, манипуляции с матрицей и так далее.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.Instruction">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.instructions.</span></span><span class="sig-name descname"><span class="pre">Instruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.Instruction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.event.html#kivy.event.ObjectWithUid" title="kivy.event.ObjectWithUid"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.event.ObjectWithUid</span></code></a></p>
-<p>usage only, don’t use it directly.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.instructions.</span></span><span class="sig-name descname"><span class="pre">Instruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.Instruction" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="api-kivy.event.html#kivy.event.ObjectWithUid" title="kivy.event.ObjectWithUid"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.event.ObjectWithUid</span></code></a></p>
+<p>Используется только для внутренних нужд, не используйте его напрямую.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.Instruction.flag_data_update">
-<span class="sig-name descname"><span class="pre">flag_data_update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.Instruction.flag_data_update" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">flag_data_update</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.Instruction.flag_data_update" title="Ссылка на это определение">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.Instruction.flag_update">
-<span class="sig-name descname"><span class="pre">flag_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">do_parent=1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.Instruction.flag_update" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">flag_update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">do_parent=1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.Instruction.flag_update" title="Ссылка на это определение">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.Instruction.group">
-<span class="sig-name descname"><span class="pre">group</span></span><a class="headerlink" href="#kivy.graphics.instructions.Instruction.group" title="Permalink to this definition">¶</a></dt>
-<dd><p>group: unicode</p>
+<span class="sig-name descname"><span class="pre">group</span></span><a class="headerlink" href="#kivy.graphics.instructions.Instruction.group" title="Ссылка на это определение">¶</a></dt>
+<dd><p>group: строка</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.Instruction.proxy_ref">
-<span class="sig-name descname"><span class="pre">proxy_ref</span></span><a class="headerlink" href="#kivy.graphics.instructions.Instruction.proxy_ref" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return a proxy reference to the Instruction i.e. without creating a
-reference of the widget. See <a class="reference external" href="http://docs.python.org/2/library/weakref.html?highlight=proxy#weakref.proxy">weakref.proxy</a>
-for more information.</p>
+<span class="sig-name descname"><span class="pre">proxy_ref</span></span><a class="headerlink" href="#kivy.graphics.instructions.Instruction.proxy_ref" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает ссылку на инструкцию без создания ссылки на виджет. См. <a class="reference external" href="http://docs.python.org/2/library/weakref.html?highlight=proxy#weakref.proxy">weakref.proxy</a> для получения дополнительной информации.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.7.2.</span></p>
+<p><span class="versionmodified added">Новое в версии 1.7.2.</span></p>
 </div>
 </dd></dl>
 
@@ -616,110 +588,108 @@ for more information.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.InstructionGroup">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.instructions.</span></span><span class="sig-name descname"><span class="pre">InstructionGroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.InstructionGroup" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Instruction</span></code></a></p>
-<p>of graphics instructions. It can be used directly as follows:</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.instructions.</span></span><span class="sig-name descname"><span class="pre">InstructionGroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.InstructionGroup" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Instruction</span></code></a></p>
+<p>графических инструкций. Может использоваться напрямую следующим образом:</p>
 <p>blue = InstructionGroup()
 blue.add(Color(0, 0, 1, 0.2))
 blue.add(Rectangle(pos=self.pos, size=(100, 100)))</p>
 <p>green = InstructionGroup()
 green.add(Color(0, 1, 0, 0.4))
 green.add(Rectangle(pos=(100, 100), size=(100, 100)))</p>
-<p># Here, self should be a Widget or subclass
+<p># Здесь self должен быть виджетом или его подклассом
 [self.canvas.add(group) for group in [blue, green]]</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.InstructionGroup.add">
-<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Instruction</span> <span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.InstructionGroup.add" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a new <a class="reference internal" href="#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instruction</span></code></a> to our list.</p>
+<span class="sig-name descname"><span class="pre">add</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Instruction</span> <span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.InstructionGroup.add" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Добавить новую инструкцию <a class="reference internal" href="#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instruction</span></code></a> в наш список.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.InstructionGroup.children">
-<span class="sig-name descname"><span class="pre">children</span></span><a class="headerlink" href="#kivy.graphics.instructions.InstructionGroup.children" title="Permalink to this definition">¶</a></dt>
-<dd><p>children: list</p>
+<span class="sig-name descname"><span class="pre">children</span></span><a class="headerlink" href="#kivy.graphics.instructions.InstructionGroup.children" title="Ссылка на это определение">¶</a></dt>
+<dd><p>children: список</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.InstructionGroup.clear">
-<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.InstructionGroup.clear" title="Permalink to this definition">¶</a></dt>
-<dd><p>Remove all the <a class="reference internal" href="#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instructions</span></code></a>.</p>
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.InstructionGroup.clear" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Удалить все инструкции <a class="reference internal" href="#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instructions</span></code></a>.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.InstructionGroup.get_group">
-<span class="sig-name descname"><span class="pre">get_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unicode</span> <span class="pre">groupname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.InstructionGroup.get_group" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return an iterable for all the <a class="reference internal" href="#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instructions</span></code></a>
-with a specific group name.</p>
+<span class="sig-name descname"><span class="pre">get_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">строка</span> <span class="pre">groupname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.InstructionGroup.get_group" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает итератор для всех инструкций <a class="reference internal" href="#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instructions</span></code></a> с определенным именем группы.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.InstructionGroup.indexof">
-<span class="sig-name descname"><span class="pre">indexof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Instruction</span> <span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.InstructionGroup.indexof" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">indexof</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Instruction</span> <span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.InstructionGroup.indexof" title="Ссылка на это определение">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.InstructionGroup.insert">
-<span class="sig-name descname"><span class="pre">insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Instruction</span> <span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.InstructionGroup.insert" title="Permalink to this definition">¶</a></dt>
-<dd><p>Insert a new <a class="reference internal" href="#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instruction</span></code></a> into our list at index.</p>
+<span class="sig-name descname"><span class="pre">insert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">int</span> <span class="pre">index</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">Instruction</span> <span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.InstructionGroup.insert" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Вставить новую инструкцию <a class="reference internal" href="#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instruction</span></code></a> в наш список по индексу.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.InstructionGroup.length">
-<span class="sig-name descname"><span class="pre">length</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.InstructionGroup.length" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">length</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.InstructionGroup.length" title="Ссылка на это определение">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.InstructionGroup.remove">
-<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Instruction</span> <span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.InstructionGroup.remove" title="Permalink to this definition">¶</a></dt>
-<dd><p>Remove an existing <a class="reference internal" href="#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instruction</span></code></a> from our list.</p>
+<span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">Instruction</span> <span class="pre">c</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.InstructionGroup.remove" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Удалить существующую инструкцию <a class="reference internal" href="#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instruction</span></code></a> из нашего списка.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.InstructionGroup.remove_group">
-<span class="sig-name descname"><span class="pre">remove_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">unicode</span> <span class="pre">groupname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.InstructionGroup.remove_group" title="Permalink to this definition">¶</a></dt>
-<dd><p>Remove all <a class="reference internal" href="#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instructions</span></code></a> with a specific group
-name.</p>
+<span class="sig-name descname"><span class="pre">remove_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">строка</span> <span class="pre">groupname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.InstructionGroup.remove_group" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Удалить все инструкции <a class="reference internal" href="#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">Instructions</span></code></a> с определенным именем группы.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.RenderContext">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.instructions.</span></span><span class="sig-name descname"><span class="pre">RenderContext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.RenderContext" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#kivy.graphics.instructions.Canvas" title="kivy.graphics.instructions.Canvas"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Canvas</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.instructions.</span></span><span class="sig-name descname"><span class="pre">RenderContext</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.RenderContext" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="#kivy.graphics.instructions.Canvas" title="kivy.graphics.instructions.Canvas"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Canvas</span></code></a></p>
 <ul class="simple">
-<li><p>The vertex shader</p></li>
-<li><p>The fragment shader</p></li>
-<li><p>The default texture</p></li>
-<li><p>The state stack (color, texture, matrix…)</p></li>
+<li><p>Вершинный шейдер</p></li>
+<li><p>Фрагментный шейдер</p></li>
+<li><p>Текстура по умолчанию</p></li>
+<li><p>Стек состояния (цвет, текстура, матрица…)</p></li>
 </ul>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.RenderContext.shader">
-<span class="sig-name descname"><span class="pre">shader</span></span><a class="headerlink" href="#kivy.graphics.instructions.RenderContext.shader" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the shader attached to the render context.</p>
+<span class="sig-name descname"><span class="pre">shader</span></span><a class="headerlink" href="#kivy.graphics.instructions.RenderContext.shader" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Возвращает шейдер, прикрепленный к контексту рендера.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.RenderContext.use_parent_frag_modelview">
-<span class="sig-name descname"><span class="pre">use_parent_frag_modelview</span></span><a class="headerlink" href="#kivy.graphics.instructions.RenderContext.use_parent_frag_modelview" title="Permalink to this definition">¶</a></dt>
-<dd><p>If True, the parent fragment modelview matrix will be used.</p>
+<span class="sig-name descname"><span class="pre">use_parent_frag_modelview</span></span><a class="headerlink" href="#kivy.graphics.instructions.RenderContext.use_parent_frag_modelview" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Если True, будет использоваться родительская матрица модели видимости фрагмента.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.10.1: </span>rc = RenderContext(use_parent_frag_modelview=True)</p>
+<p><span class="versionmodified added">Новое в версии 1.10.1: </span>rc = RenderContext(use_parent_frag_modelview=True)</p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.RenderContext.use_parent_modelview">
-<span class="sig-name descname"><span class="pre">use_parent_modelview</span></span><a class="headerlink" href="#kivy.graphics.instructions.RenderContext.use_parent_modelview" title="Permalink to this definition">¶</a></dt>
-<dd><p>If True, the parent modelview matrix will be used.</p>
+<span class="sig-name descname"><span class="pre">use_parent_modelview</span></span><a class="headerlink" href="#kivy.graphics.instructions.RenderContext.use_parent_modelview" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Если True, будет использоваться родительская матрица модели видимости.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.7.0.</span></p>
+<p><span class="versionmodified added">Новое в версии 1.7.0.</span></p>
 </div>
-<p>Before:</p>
+<p>До:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rc</span><span class="p">[</span><span class="s1">&#39;modelview_mat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Window</span><span class="o">.</span><span class="n">render_context</span><span class="p">[</span><span class="s1">&#39;modelview_mat&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>Now:</p>
+<p>Теперь:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rc</span> <span class="o">=</span> <span class="n">RenderContext</span><span class="p">(</span><span class="n">use_parent_modelview</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -727,39 +697,37 @@ name.</p>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.RenderContext.use_parent_projection">
-<span class="sig-name descname"><span class="pre">use_parent_projection</span></span><a class="headerlink" href="#kivy.graphics.instructions.RenderContext.use_parent_projection" title="Permalink to this definition">¶</a></dt>
-<dd><p>If True, the parent projection matrix will be used.</p>
+<span class="sig-name descname"><span class="pre">use_parent_projection</span></span><a class="headerlink" href="#kivy.graphics.instructions.RenderContext.use_parent_projection" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Если True, будет использоваться родительская матрица проекции.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.7.0.</span></p>
+<p><span class="versionmodified added">Новое в версии 1.7.0.</span></p>
 </div>
-<p>Before:</p>
+<p>До:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rc</span><span class="p">[</span><span class="s1">&#39;projection_mat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">Window</span><span class="o">.</span><span class="n">render_context</span><span class="p">[</span><span class="s1">&#39;projection_mat&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>Now:</p>
+<p>Теперь:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">rc</span> <span class="o">=</span> <span class="n">RenderContext</span><span class="p">(</span><span class="n">use_parent_projection</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
 </dd></dl>
 
 </dd></dl>
-
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.VertexInstruction">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.instructions.</span></span><span class="sig-name descname"><span class="pre">VertexInstruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.VertexInstruction" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Instruction</span></code></a></p>
-<p>that have a direct visual representation on the canvas, such as Rectangles,
-Triangles, Lines, Ellipse and so on.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.instructions.</span></span><span class="sig-name descname"><span class="pre">VertexInstruction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.instructions.VertexInstruction" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="#kivy.graphics.instructions.Instruction" title="kivy.graphics.instructions.Instruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.Instruction</span></code></a></p>
+<p>которые имеют прямое визуальное представление на холсте, такие как Прямоугольники, Треугольники, Линии, Эллипсы и так далее.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.VertexInstruction.source">
-<span class="sig-name descname"><span class="pre">source</span></span><a class="headerlink" href="#kivy.graphics.instructions.VertexInstruction.source" title="Permalink to this definition">¶</a></dt>
-<dd><p>This property represents the filename to load the texture from.
-If you want to use an image as source, do it like this:</p>
+<span class="sig-name descname"><span class="pre">source</span></span><a class="headerlink" href="#kivy.graphics.instructions.VertexInstruction.source" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Это свойство представляет имя файла для загрузки текстуры.
+Если вы хотите использовать изображение в качестве источника, сделайте это так:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="p">:</span>
     <span class="n">Rectangle</span><span class="p">(</span><span class="n">source</span><span class="o">=</span><span class="s1">&#39;mylogo.png&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Here’s the equivalent in Kivy language:</p>
+<p>Вот эквивалент на языке Kivy:</p>
 <div class="highlight-kv notranslate"><div class="highlight"><pre><span></span><span class="nn">&lt;MyWidget&gt;</span><span class="p">:</span>
     <span class="nc">canvas</span><span class="p">:</span>
         <span class="nc">Rectangle</span><span class="p">:</span>
@@ -769,49 +737,46 @@ If you want to use an image as source, do it like this:</p>
 </pre></div>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The filename will be searched for using the
-<a class="reference internal" href="api-kivy.resources.html#kivy.resources.resource_find" title="kivy.resources.resource_find"><code class="xref py py-func docutils literal notranslate"><span class="pre">kivy.resources.resource_find()</span></code></a> function.</p>
+<p class="admonition-title">Примечание</p>
+<p>Имя файла будет искаться с использованием функции <a class="reference internal" href="api-kivy.resources.html#kivy.resources.resource_find" title="kivy.resources.resource_find"><code class="xref py py-func docutils literal notranslate"><span class="pre">kivy.resources.resource_find()</span></code></a>.</p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.VertexInstruction.tex_coords">
-<span class="sig-name descname"><span class="pre">tex_coords</span></span><a class="headerlink" href="#kivy.graphics.instructions.VertexInstruction.tex_coords" title="Permalink to this definition">¶</a></dt>
-<dd><p>This property represents the texture coordinates used for drawing the
-vertex instruction. The value must be a list of 8 values.</p>
-<p>A texture coordinate has a position (u, v), and a size (w, h). The size
-can be negative, and would represent the ‘flipped’ texture. By default,
-the tex_coords are:</p>
+<span class="sig-name descname"><span class="pre">tex_coords</span></span><a class="headerlink" href="#kivy.graphics.instructions.VertexInstruction.tex_coords" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Это свойство представляет координаты текстуры, используемые для отрисовки
+вершинной инструкции. Значение должно быть списком из 8 значений.</p>
+<p>Координата текстуры имеет позицию (u, v) и размер (w, h). Размер
+может быть отрицательным и представлять 'перевернутую' текстуру. По умолчанию
+tex_coords выглядят так:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">u</span> <span class="o">+</span> <span class="n">w</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">u</span> <span class="o">+</span> <span class="n">w</span><span class="p">,</span> <span class="n">v</span> <span class="o">+</span> <span class="n">h</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="o">+</span> <span class="n">h</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>You can pass your own texture coordinates if you want to achieve fancy
-effects.</p>
+<p>Вы можете передать свои собственные координаты текстуры, если хотите добиться эффектов.</p>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>The default values just mentioned can be negative. Depending
-on the image and label providers, the coordinates are flipped
-vertically because of the order in which the image is internally
-stored. Instead of flipping the image data, we are just flipping
-the texture coordinates to be faster.</p>
+<p class="admonition-title">Предупреждение</p>
+<p>Упомянутые выше значения по умолчанию могут быть отрицательными. В зависимости
+от изображения и поставщиков меток, координаты перевернуты
+вертикально из-за порядка, в котором изображение хранится внутри.
+Вместо переворачивания данных изображения, мы просто переворачиваем
+координаты текстуры для увеличения производительности.</p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.instructions.VertexInstruction.texture">
-<span class="sig-name descname"><span class="pre">texture</span></span><a class="headerlink" href="#kivy.graphics.instructions.VertexInstruction.texture" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property that represents the texture used for drawing this
-Instruction. You can set a new texture like this:</p>
+<span class="sig-name descname"><span class="pre">texture</span></span><a class="headerlink" href="#kivy.graphics.instructions.VertexInstruction.texture" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство, представляющее текстуру, используемую для отрисовки этой
+Инструкции. Вы можете установить новую текстуру так:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">kivy.core.image</span> <span class="kn">import</span> <span class="n">Image</span>
 
 <span class="n">texture</span> <span class="o">=</span> <span class="n">Image</span><span class="p">(</span><span class="s1">&#39;logo.png&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">texture</span>
-<span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="p">:</span>
+<span class="k">с</span> <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="p">:</span>
     <span class="n">Rectangle</span><span class="p">(</span><span class="n">texture</span><span class="o">=</span><span class="n">texture</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">pos</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Usually, you will use the <a class="reference internal" href="#kivy.graphics.instructions.VertexInstruction.source" title="kivy.graphics.instructions.VertexInstruction.source"><code class="xref py py-attr docutils literal notranslate"><span class="pre">source</span></code></a> attribute instead of the
-texture.</p>
+</pre></div></div>
+<p>Обычно вы будете использовать атрибут <a class="reference internal" href="#kivy.graphics.instructions.VertexInstruction.source" title="kivy.graphics.instructions.VertexInstruction.source"><code class="xref py py-attr docutils literal notranslate"><span class="pre">source</span></code></a> вместо
+текстуры.</p>
 </dd></dl>
 
 </dd></dl>
