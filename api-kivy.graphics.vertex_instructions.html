@@ -391,18 +391,16 @@
 </li>
 </ul>
 </div>
-            
-  <section id="module-kivy.graphics.vertex_instructions">
-<span id="vertex-instructions"></span><h1>Vertex Instructions<a class="headerlink" href="#module-kivy.graphics.vertex_instructions" title="Permalink to this headline">¶</a></h1>
-<p>This module includes all the classes for drawing simple vertex objects.</p>
+            <section id="module-kivy.graphics.vertex_instructions">
+<span id="vertex-instructions"></span><h1>Инструкции вершин<a class="headerlink" href="#module-kivy.graphics.vertex_instructions" title="Ссылка на данный заголовок">¶</a></h1>
+<p>Этот модуль включает в себя все классы для отрисовки простых вершинных объектов.</p>
 <section id="updating-properties">
-<h2>Updating properties<a class="headerlink" href="#updating-properties" title="Permalink to this headline">¶</a></h2>
-<p>The list attributes of the graphics instruction classes (e.g.
-<a class="reference internal" href="#kivy.graphics.vertex_instructions.Triangle.points" title="kivy.graphics.vertex_instructions.Triangle.points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Triangle.points</span></code></a>, <a class="reference internal" href="#kivy.graphics.vertex_instructions.Mesh.indices" title="kivy.graphics.vertex_instructions.Mesh.indices"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Mesh.indices</span></code></a> etc.) are not Kivy
-properties but Python properties. As a consequence, the graphics will only
-be updated when the list object itself is changed and not when list values
-are modified.</p>
-<p>For example in python:</p>
+<h2>Обновление свойств<a class="headerlink" href="#updating-properties" title="Ссылка на данный заголовок">¶</a></h2>
+<p>Атрибуты списков классов инструкций графики (например,
+<a class="reference internal" href="#kivy.graphics.vertex_instructions.Triangle.points" title="kivy.graphics.vertex_instructions.Triangle.points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Triangle.points</span></code></a>, <a class="reference internal" href="#kivy.graphics.vertex_instructions.Mesh.indices" title="kivy.graphics.vertex_instructions.Mesh.indices"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Mesh.indices</span></code></a> и так далее) не являются
+свойствами Kivy, а являются свойствами Python. Следовательно, графика будет обновляться только
+тогда, когда сам объект списка изменяется, а не тогда, когда изменяются значения в списке.</p>
+<p>Например, на Python:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyWidget</span><span class="p">(</span><span class="n">Button</span><span class="p">):</span>
 
     <span class="n">triangle</span> <span class="o">=</span> <span class="n">ObjectProperty</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
@@ -412,807 +410,780 @@ are modified.</p>
             <span class="bp">self</span><span class="o">.</span><span class="n">triangle</span> <span class="o">=</span> <span class="n">Triangle</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
-<p>and in kv:</p>
+<p>и в KV:</p>
 <div class="highlight-kv notranslate"><div class="highlight"><pre><span></span><span class="nn">&lt;MyWidget&gt;</span><span class="p">:</span>
-    <span class="na">text</span><span class="p">:</span> <span class="s1">&#39;Update&#39;</span>
+    <span class="na">text</span><span class="p">:</span> <span class="s1">&#39;Обновить&#39;</span>
     <span class="nc">on_press</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">triangle</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">400</span>
 </pre></div>
 </div>
-<p>Although pressing the button will change the triangle coordinates,
-the graphics will not be updated because the list itself has not
-changed. Similarly, no updates will occur using any syntax that changes
-only elements of the list e.g. self.triangle.points[0:2] = [10,10] or
-self.triangle.points.insert(10) etc.
-To force an update after a change, the list variable itself must be
-changed, which in this case can be achieved with:</p>
+<p>Хотя нажатие кнопки изменит координаты треугольника,
+графика не будет обновляться, потому что сам список не
+изменился. Аналогично, обновления не будут происходить при использовании синтаксиса, который изменяет
+только элементы списка, например, self.triangle.points[0:2] = [10,10] или
+self.triangle.points.insert(10) и так далее.
+Для принудительного обновления после изменения, сама переменная списка должна быть изменена,
+что в данном случае можно достичь следующим образом:</p>
 <div class="highlight-kv notranslate"><div class="highlight"><pre><span></span><span class="nn">&lt;MyWidget&gt;</span><span class="p">:</span>
-    <span class="na">text</span><span class="p">:</span> <span class="s1">&#39;Update&#39;</span>
+    <span class="na">text</span><span class="p">:</span> <span class="s1">&#39;Обновить&#39;</span>
     <span class="nc">on_press</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">triangle</span><span class="o">.</span><span class="n">points</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">400</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">triangle</span><span class="o">.</span><span class="n">points</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">triangle</span><span class="o">.</span><span class="n">points</span>
-</pre></div>
-</div>
+</pre></div></div>
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Bezier">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.vertex_instructions.</span></span><span class="sig-name descname"><span class="pre">Bezier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Bezier" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.VertexInstruction" title="kivy.graphics.instructions.VertexInstruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.VertexInstruction</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.vertex_instructions.</span></span><span class="sig-name descname"><span class="pre">Bezier</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Bezier" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.VertexInstruction" title="kivy.graphics.instructions.VertexInstruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.VertexInstruction</span></code></a></p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.0.8.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.0.8.</span></p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><cite>points</cite>: list</dt><dd><p>List of points in the format (x1, y1, x2, y2…)</p>
+<dt><cite>points</cite>: list</dt><dd><p>Список точек в формате (x1, y1, x2, y2…)</p>
 </dd>
-<dt><cite>segments</cite>: int, defaults to 180</dt><dd><p>Define how many segments are needed for drawing the curve.
-The drawing will be smoother if you have many segments.</p>
+<dt><cite>segments</cite>: int, по умолчанию 180</dt><dd><p>Определяет, сколько сегментов нужно для отрисовки кривой.
+Отрисовка будет более плавной, если сегментов много.</p>
 </dd>
-<dt><cite>loop</cite>: bool, defaults to False</dt><dd><p>Set the bezier curve to join the last point to the first.</p>
+<dt><cite>loop</cite>: bool, по умолчанию False</dt><dd><p>Устанавливает кривой Безье так, чтобы последняя точка соединялась с первой.</p>
 </dd>
-<dt><cite>dash_length</cite>: int</dt><dd><p>Length of a segment (if dashed), defaults to 1.</p>
+<dt><cite>dash_length</cite>: int</dt><dd><p>Длина сегмента (если пунктирный), по умолчанию 1.</p>
 </dd>
-<dt><cite>dash_offset</cite>: int</dt><dd><p>Distance between the end of a segment and the start of the
-next one, defaults to 0. Changing this makes it dashed.</p>
+<dt><cite>dash_offset</cite>: int</dt><dd><p>Расстояние между концом сегмента и началом следующего,
+по умолчанию 0. Изменение этого значения делает линию пунктирной.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Bezier.dash_length">
-<span class="sig-name descname"><span class="pre">dash_length</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Bezier.dash_length" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/setting the length of the dashes in the curve.</p>
+<span class="sig-name descname"><span class="pre">dash_length</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Bezier.dash_length" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки длины пунктирных линий в кривой.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Bezier.dash_offset">
-<span class="sig-name descname"><span class="pre">dash_offset</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Bezier.dash_offset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/setting the offset between the dashes in the
-curve.</p>
+<span class="sig-name descname"><span class="pre">dash_offset</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Bezier.dash_offset" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки смещения между пунктирными линиями в кривой.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Bezier.points">
-<span class="sig-name descname"><span class="pre">points</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Bezier.points" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/settings the points of the triangle.</p>
+<span class="sig-name descname"><span class="pre">points</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Bezier.points" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки точек треугольника.</p>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This will always reconstruct the whole graphic from the new points
-list. It can be very CPU intensive.</p>
+<p class="admonition-title">Предупреждение</p>
+<p>Это всегда будет перестраивать всю графику с новыми точками
+списка. Это может быть очень нагружено процессором.</p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Bezier.segments">
-<span class="sig-name descname"><span class="pre">segments</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Bezier.segments" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/setting the number of segments of the curve.</p>
+<span class="sig-name descname"><span class="pre">segments</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Bezier.segments" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки количества сегментов кривой.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.BorderImage">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.vertex_instructions.</span></span><span class="sig-name descname"><span class="pre">BorderImage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.vertex_instructions.BorderImage" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#kivy.graphics.vertex_instructions.Rectangle" title="kivy.graphics.vertex_instructions.Rectangle"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.vertex_instructions.Rectangle</span></code></a></p>
-<p>concept of a CSS3 border-image.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.vertex_instructions.</span></span><span class="sig-name descname"><span class="pre">BorderImage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.vertex_instructions.BorderImage" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="#kivy.graphics.vertex_instructions.Rectangle" title="kivy.graphics.vertex_instructions.Rectangle"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.vertex_instructions.Rectangle</span></code></a></p>
+<p>концепция CSS3 граничного изображения.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><cite>border</cite>: list</dt><dd><p>Border information in the format (bottom, right, top, left).
-Each value is in pixels.</p>
+<dt><cite>border</cite>: list</dt><dd><p>Информация о границе в формате (снизу, справа, сверху, слева).
+Каждое значение в пикселях.</p>
 </dd>
 <dt><cite>auto_scale</cite>: string</dt><dd><div class="versionadded">
-<p><span class="versionmodified added">New in version 1.9.1.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.9.1.</span></p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.9.2: </span>This used to be a bool and has been changed to be a string
-state.</p>
+<p><span class="versionmodified changed">Изменено в версии 1.9.2: </span>Ранее это был тип bool и был изменен на строку
+состояния.</p>
 </div>
-<p>Can be one of ‘off’, ‘both’, ‘x_only’, ‘y_only’, ‘y_full_x_lower’,
-‘x_full_y_lower’, ‘both_lower’.</p>
-<p>Autoscale controls the behavior of the 9-slice.</p>
-<p>By default the border values are preserved exactly, meaning that
-if the total size of the object is smaller than the border values
-you will have some ‘rendering errors’ where your texture appears
-inside out. This also makes it impossible to achieve a rounded
-button that scales larger than the size of its source texture. The
-various options for auto_scale will let you achieve some mixes of
-the 2 types of rendering.</p>
-<p>‘off’: is the default and behaves as BorderImage did when auto_scale
-was False before.</p>
-<p>‘both’: Scales both x and y dimension borders according to the size
-of the BorderImage, this disables the BorderImage making it render
-the same as a regular Image.</p>
-<p>‘x_only’: The Y dimension functions as the default, and the X
-scales to the size of the BorderImage’s width.</p>
-<p>‘y_only’: The X dimension functions as the default, and the Y
-scales to the size of the BorderImage’s height.</p>
-<p>‘y_full_x_lower’: Y scales as in ‘y_only’, Y scales if the
-size of the scaled version would be smaller than the provided
-border only.</p>
-<p>‘x_full_y_lower’: X scales as in ‘x_only’, Y scales if the
-size of the scaled version would be smaller than the provided
-border only.</p>
-<p>‘both_lower’: This is what auto_scale did when it was True in 1.9.1
-Both X and Y dimensions will be scaled if the BorderImage is
-smaller than the source.</p>
-<p>If the BorderImage’s size is less than the sum of its
-borders, horizontally or vertically, and this property is
-set to True, the borders will be rescaled to accommodate for
-the smaller size.</p>
+<p>Может быть одним из следующих значений: 'off', 'both', 'x_only', 'y_only', 'y_full_x_lower',
+'x_full_y_lower', 'both_lower'.</p>
+<p>Автомасштабирование контролирует поведение 9-сегментного рисунка.</p>
+<p>По умолчанию значения границ сохраняются точно, что означает,
+что если общий размер объекта меньше, чем значения границ,
+у вас могут возникнуть "ошибки рендеринга", где текстура переворачивается
+наизнанку. Это также делает невозможным создание округлой
+кнопки, которая масштабируется больше, чем размер ее исходной текстуры.
+Различные варианты для auto_scale позволят вам добиться некоторых комбинаций
+2 типов рендеринга.</p>
+<p>'off': это значение по умолчанию и ведет себя так же, как BorderImage
+делал до того, как auto_scale был False.</p>
+<p>'both': масштабирует как горизонтальные, так и вертикальные границы в соответствии с размером
+BorderImage, это отключает BorderImage и делает его таким же, как обычное изображение.</p>
+<p>'x_only': вертикальная размерность работает как по умолчанию, а горизонтальная
+масштабируется до ширины BorderImage.</p>
+<p>'y_only': горизонтальная размерность работает как по умолчанию, а вертикальная
+масштабируется до высоты BorderImage.</p>
+<p>'y_full_x_lower': вертикальная размерность масштабируется как в 'y_only', вертикальная
+размерность масштабируется, если размер масштабированной версии будет меньше,
+чем заданный размер границы.</p>
+<p>'x_full_y_lower': горизонтальная размерность масштабируется как в 'x_only', вертикальная
+размерность масштабируется, если размер масштабированной версии будет меньше,
+чем заданный размер границы.</p>
+<p>'both_lower': это то, что делал auto_scale, когда он был True в версии 1.9.1
+Обе размерности X и Y будут масштабироваться, если BorderImage будет
+меньше исходника.</p>
+<p>Если размер BorderImage меньше суммы его
+границ, по горизонтали или вертикали, и это свойство установлено в True,
+границы будут масштабироваться, чтобы учесть
+меньший размер.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.BorderImage.auto_scale">
-<span class="sig-name descname"><span class="pre">auto_scale</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.BorderImage.auto_scale" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for setting if the corners are automatically scaled
-when the BorderImage is too small.</p>
+<span class="sig-name descname"><span class="pre">auto_scale</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.BorderImage.auto_scale" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для установки, автоматически масштабировать ли углы
+когда BorderImage слишком маленький.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.BorderImage.border">
-<span class="sig-name descname"><span class="pre">border</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.BorderImage.border" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/setting the border of the class.</p>
+<span class="sig-name descname"><span class="pre">border</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.BorderImage.border" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки границы класса.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.BorderImage.display_border">
-<span class="sig-name descname"><span class="pre">display_border</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.BorderImage.display_border" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/setting the border display size.</p>
+<span class="sig-name descname"><span class="pre">display_border</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.BorderImage.display_border" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки размера отображаемой границы.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Ellipse">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.vertex_instructions.</span></span><span class="sig-name descname"><span class="pre">Ellipse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Ellipse" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#kivy.graphics.vertex_instructions.Rectangle" title="kivy.graphics.vertex_instructions.Rectangle"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.vertex_instructions.Rectangle</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.vertex_instructions.</span></span><span class="sig-name descname"><span class="pre">Ellipse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Ellipse" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="#kivy.graphics.vertex_instructions.Rectangle" title="kivy.graphics.vertex_instructions.Rectangle"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.vertex_instructions.Rectangle</span></code></a></p>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.0.7: </span>Added angle_start and angle_end.</p>
+<p><span class="versionmodified changed">Изменено в версии 1.0.7: </span>Добавлены angle_start и angle_end.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><cite>segments</cite>: int, defaults to 180</dt><dd><p>Define how many segments are needed for drawing the ellipse.
-The drawing will be smoother if you have many segments.</p>
+<dt><cite>segments</cite>: int, по умолчанию 180</dt><dd><p>Задает количество сегментов, необходимых для рисования эллипса. Чем больше сегментов, тем более плавной будет отрисовка.</p>
 </dd>
-<dt><cite>angle_start</cite>: int, defaults to 0</dt><dd><p>Specifies the starting angle, in degrees, of the disk portion.</p>
+<dt><cite>angle_start</cite>: int, по умолчанию 0</dt><dd><p>Указывает начальный угол, в градусах, для части диска.</p>
 </dd>
-<dt><cite>angle_end</cite>: int, defaults to 360</dt><dd><p>Specifies the ending angle, in degrees, of the disk portion.</p>
+<dt><cite>angle_end</cite>: int, по умолчанию 360</dt><dd><p>Указывает конечный угол, в градусах, для части диска.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Ellipse.angle_end">
-<span class="sig-name descname"><span class="pre">angle_end</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Ellipse.angle_end" title="Permalink to this definition">¶</a></dt>
-<dd><p>End angle of the ellipse in degrees, defaults to 360.</p>
+<span class="sig-name descname"><span class="pre">angle_end</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Ellipse.angle_end" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Конечный угол эллипса в градусах, по умолчанию 360.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Ellipse.angle_start">
-<span class="sig-name descname"><span class="pre">angle_start</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Ellipse.angle_start" title="Permalink to this definition">¶</a></dt>
-<dd><p>Start angle of the ellipse in degrees, defaults to 0.</p>
+<span class="sig-name descname"><span class="pre">angle_start</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Ellipse.angle_start" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Начальный угол эллипса в градусах, по умолчанию 0.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Ellipse.segments">
-<span class="sig-name descname"><span class="pre">segments</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Ellipse.segments" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/setting the number of segments of the ellipse.</p>
+<span class="sig-name descname"><span class="pre">segments</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Ellipse.segments" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки количества сегментов эллипса.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py exception">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.GraphicException">
-<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.vertex_instructions.</span></span><span class="sig-name descname"><span class="pre">GraphicException</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.GraphicException" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
-<p>Exception raised when a graphics error is fired.</p>
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.vertex_instructions.</span></span><span class="sig-name descname"><span class="pre">GraphicException</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.GraphicException" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Исключение, возникающее при ошибке графики.</p>
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Line">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.vertex_instructions.</span></span><span class="sig-name descname"><span class="pre">Line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.VertexInstruction" title="kivy.graphics.instructions.VertexInstruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.VertexInstruction</span></code></a></p>
-<p>Drawing a line can be done easily:</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.vertex_instructions.</span></span><span class="sig-name descname"><span class="pre">Line</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.VertexInstruction" title="kivy.graphics.instructions.VertexInstruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.VertexInstruction</span></code></a></p>
+<p>Рисование линии можно выполнить легко:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">canvas</span><span class="p">:</span>
-    <span class="n">Line</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span
+
+ class="n">Line</span><span class="p">(</span><span class="n">points</span><span class="o">=</span><span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">],</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The line has 3 internal drawing modes that you should be aware of
-for optimal results:</p>
+<p>У линии есть 3 внутренних режима рисования, о которых вам следует знать для достижения оптимальных результатов:</p>
 <ol class="arabic simple">
-<li><p>If the <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.width" title="kivy.graphics.vertex_instructions.Line.width"><code class="xref py py-attr docutils literal notranslate"><span class="pre">width</span></code></a> is 1.0, then the standard GL_LINE drawing from
-OpenGL will be used. <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.dash_length" title="kivy.graphics.vertex_instructions.Line.dash_length"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dash_length</span></code></a>, <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.dash_offset" title="kivy.graphics.vertex_instructions.Line.dash_offset"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dash_offset</span></code></a>, and <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.dashes" title="kivy.graphics.vertex_instructions.Line.dashes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dashes</span></code></a> will
-work, while properties for cap and joint have no meaning here.</p></li>
-<li><p>If the <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.width" title="kivy.graphics.vertex_instructions.Line.width"><code class="xref py py-attr docutils literal notranslate"><span class="pre">width</span></code></a> is greater than 1.0, then a custom drawing method,
-based on triangulation, will be used. <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.dash_length" title="kivy.graphics.vertex_instructions.Line.dash_length"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dash_length</span></code></a>,
-<a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.dash_offset" title="kivy.graphics.vertex_instructions.Line.dash_offset"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dash_offset</span></code></a>, and <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.dashes" title="kivy.graphics.vertex_instructions.Line.dashes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dashes</span></code></a> do not work in this mode.
-Additionally, if the current color has an alpha less than 1.0, a
-stencil will be used internally to draw the line.</p></li>
+<li><p>Если <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.width" title="kivy.graphics.vertex_instructions.Line.width"><code class="xref py py-attr docutils literal notranslate"><span class="pre">width</span></code></a> равен 1.0, то будет использоваться стандартное рисование GL_LINE из OpenGL. <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.dash_length" title="kivy.graphics.vertex_instructions.Line.dash_length"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dash_length</span></code></a>, <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.dash_offset" title="kivy.graphics.vertex_instructions.Line.dash_offset"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dash_offset</span></code></a> и <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.dashes" title="kivy.graphics.vertex_instructions.Line.dashes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dashes</span></code></a> будут работать, а свойства для cap и joint здесь не имеют значения.</p></li>
+<li><p>Если <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.width" title="kivy.graphics.vertex_instructions.Line.width"><code class="xref py py-attr docutils literal notranslate"><span class="pre">width</span></code></a> больше 1.0, то будет использоваться специальный метод рисования на основе триангуляции. <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.dash_length" title="kivy.graphics.vertex_instructions.Line.dash_length"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dash_length</span></code></a>, <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.dash_offset" title="kivy.graphics.vertex_instructions.Line.dash_offset"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dash_offset</span></code></a> и <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.dashes" title="kivy.graphics.vertex_instructions.Line.dashes"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dashes</span></code></a> не работают в этом режиме. Кроме того, если текущий цвет имеет альфа-канал меньше 1.0, то будет внутренне использоваться трафарет для рисования линии.</p></li>
 </ol>
 <img alt="_images/line-instruction.png" class="align-center" src="_images/line-instruction.png" />
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><cite>points</cite>: list</dt><dd><p>List of points in the format (x1, y1, x2, y2…)</p>
+<dt><cite>points</cite>: list</dt><dd><p>Список точек в формате (x1, y1, x2, y2…)</p>
 </dd>
-<dt><cite>dash_length</cite>: int</dt><dd><p>Length of a segment (if dashed), defaults to 1.</p>
+<dt><cite>dash_length</cite>: int</dt><dd><p>Длина сегмента (если пунктирный), по умолчанию 1.</p>
 </dd>
-<dt><cite>dash_offset</cite>: int</dt><dd><p>Offset between the end of a segment and the beginning of the
-next one, defaults to 0. Changing this makes it dashed.</p>
+<dt><cite>dash_offset</cite>: int</dt><dd><p>Смещение между концом одного сегмента и началом следующего, по умолчанию 0. Изменение этого значения делает линию пунктирной.</p>
 </dd>
-<dt><cite>dashes</cite>: list of ints</dt><dd><p>List of [ON length, offset, ON length, offset, …]. E.g. <code class="docutils literal notranslate"><span class="pre">[2,4,1,6,8,2]</span></code>
-would create a line with the first dash length 2 then an offset of 4 then
-a dash length of 1 then an offset of 6 and so on. Defaults to <code class="docutils literal notranslate"><span class="pre">[]</span></code>.
-Changing this makes it dashed and overrides <cite>dash_length</cite> and <cite>dash_offset</cite>.</p>
+<dt><cite>dashes</cite>: list of ints</dt><dd><p>Список [длина ВКЛ, смещение, длина ВКЛ, смещение, …]. Например, <code class="docutils literal notranslate"><span class="pre">[2,4,1,6,8,2]</span></code> создаст линию с первой длиной ВКЛ 2, затем смещение 4, затем длиной ВКЛ 1, затем смещение 6 и так далее. По умолчанию <code class="docutils literal notranslate"><span class="pre">[]</span></code>. Изменение этого значения делает линию пунктирной и переопределяет <cite>dash_length</cite> и <cite>dash_offset</cite>.</p>
 </dd>
-<dt><cite>width</cite>: float</dt><dd><p>Width of the line, defaults to 1.0.</p>
+<dt><cite>width</cite>: float</dt><dd><p>Ширина линии, по умолчанию 1.0.</p>
 </dd>
-<dt><cite>cap</cite>: str, defaults to ‘round’</dt><dd><p>See <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.cap" title="kivy.graphics.vertex_instructions.Line.cap"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cap</span></code></a> for more information.</p>
+<dt><cite>cap</cite>: str, по умолчанию ‘round’</dt><dd><p>См. <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.cap" title="kivy.graphics.vertex_instructions.Line.cap"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cap</span></code></a> для получения дополнительной информации.</p>
 </dd>
-<dt><cite>joint</cite>: str, defaults to ‘round’</dt><dd><p>See <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.joint" title="kivy.graphics.vertex_instructions.Line.joint"><code class="xref py py-attr docutils literal notranslate"><span class="pre">joint</span></code></a> for more information.</p>
+<dt><cite>joint</cite>: str, по умолчанию ‘round’</dt><dd><p>См. <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line
+
+.joint" title="kivy.graphics.vertex_instructions.Line.joint"><code class="xref py py-attr docutils literal notranslate"><span class="pre">joint</span></code></a> для получения дополнительной информации.</p>
 </dd>
-<dt><cite>cap_precision</cite>: int, defaults to 10</dt><dd><p>See <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.cap_precision" title="kivy.graphics.vertex_instructions.Line.cap_precision"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cap_precision</span></code></a> for more information</p>
+<dt><cite>cap_precision</cite>: int, по умолчанию 10</dt><dd><p>См. <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.cap_precision" title="kivy.graphics.vertex_instructions.Line.cap_precision"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cap_precision</span></code></a> для получения дополнительной информации</p>
 </dd>
-<dt><cite>joint_precision</cite>: int, defaults to 10</dt><dd><p>See <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.joint_precision" title="kivy.graphics.vertex_instructions.Line.joint_precision"><code class="xref py py-attr docutils literal notranslate"><span class="pre">joint_precision</span></code></a> for more information
-See <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.cap_precision" title="kivy.graphics.vertex_instructions.Line.cap_precision"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cap_precision</span></code></a> for more information.</p>
+<dt><cite>joint_precision</cite>: int, по умолчанию 10</dt><dd><p>См. <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.joint_precision" title="kivy.graphics.vertex_instructions.Line.joint_precision"><code class="xref py py-attr docutils literal notranslate"><span class="pre">joint_precision</span></code></a> для получения дополнительной информации
+См. <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.cap_precision" title="kivy.graphics.vertex_instructions.Line.cap_precision"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cap_precision</span></code></a> для получения дополнительной информации.</p>
 </dd>
-<dt><cite>joint_precision</cite>: int, defaults to 10</dt><dd><p>See <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.joint_precision" title="kivy.graphics.vertex_instructions.Line.joint_precision"><code class="xref py py-attr docutils literal notranslate"><span class="pre">joint_precision</span></code></a> for more information.</p>
+<dt><cite>joint_precision</cite>: int, по умолчанию 10</dt><dd><p>См. <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.joint_precision" title="kivy.graphics.vertex_instructions.Line.joint_precision"><code class="xref py py-attr docutils literal notranslate"><span class="pre">joint_precision</span></code></a> для получения дополнительной информации.</p>
 </dd>
-<dt><cite>close</cite>: bool, defaults to False</dt><dd><p>If True, the line will be closed.</p>
+<dt><cite>close</cite>: bool, по умолчанию False</dt><dd><p>Если True, то линия будет замкнутой.</p>
 </dd>
-<dt><cite>circle</cite>: list</dt><dd><p>If set, the <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.points" title="kivy.graphics.vertex_instructions.Line.points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">points</span></code></a> will be set to build a circle. See
-<a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.circle" title="kivy.graphics.vertex_instructions.Line.circle"><code class="xref py py-attr docutils literal notranslate"><span class="pre">circle</span></code></a> for more information.</p>
+<dt><cite>circle</cite>: list</dt><dd><p>Если задан, то <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.points" title="kivy.graphics.vertex_instructions.Line.points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">points</span></code></a> будет установлен для построения круга. См. <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.circle" title="kivy.graphics.vertex_instructions.Line.circle"><code class="xref py py-attr docutils literal notranslate"><span class="pre">circle</span></code></a> для получения дополнительной информации.</p>
 </dd>
-<dt><cite>ellipse</cite>: list</dt><dd><p>If set, the <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.points" title="kivy.graphics.vertex_instructions.Line.points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">points</span></code></a> will be set to build an ellipse. See
-<a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.ellipse" title="kivy.graphics.vertex_instructions.Line.ellipse"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ellipse</span></code></a> for more information.</p>
+<dt><cite>ellipse</cite>: list</dt><dd><p>Если задан, то <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.points" title="kivy.graphics.vertex_instructions.Line.points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">points</span></code></a> будет установлен для построения эллипса. См. <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.ellipse" title="kivy.graphics.vertex_instructions.Line.ellipse"><code class="xref py py-attr docutils literal notranslate"><span class="pre">ellipse</span></code></a> для получения дополнительной информации.</p>
 </dd>
-<dt><cite>rectangle</cite>: list</dt><dd><p>If set, the <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.points" title="kivy.graphics.vertex_instructions.Line.points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">points</span></code></a> will be set to build a rectangle. See
-<a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.rectangle" title="kivy.graphics.vertex_instructions.Line.rectangle"><code class="xref py py-attr docutils literal notranslate"><span class="pre">rectangle</span></code></a> for more information.</p>
+<dt><cite>rectangle</cite>: list</dt><dd><p>Если задан, то <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.points" title="kivy.graphics.vertex_instructions.Line.points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">points</span></code></a> будет установлен для построения прямоугольника. См. <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.rectangle" title="kivy.graphics.vertex_instructions.Line.rectangle"><code class="xref py py-attr docutils literal notranslate"><span class="pre">rectangle</span></code></a> для получения дополнительной информации.</p>
 </dd>
-<dt><cite>bezier</cite>: list</dt><dd><p>If set, the <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.points" title="kivy.graphics.vertex_instructions.Line.points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">points</span></code></a> will be set to build a bezier line. See
-<a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.bezier" title="kivy.graphics.vertex_instructions.Line.bezier"><code class="xref py py-attr docutils literal notranslate"><span class="pre">bezier</span></code></a> for more information.</p>
+<dt><cite>bezier</cite>: list</dt><dd><p>Если задан, то <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.points" title="kivy.graphics.vertex_instructions.Line.points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">points</span></code></a> будет установлен для построения кривой Безье. См. <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.bezier" title="kivy.graphics.vertex_instructions.Line.bezier"><code class="xref py py-attr docutils literal notranslate"><span class="pre">bezier</span></code></a> для получения дополнительной информации.</p>
 </dd>
-<dt><cite>bezier_precision</cite>: int, defaults to 180</dt><dd><p>Precision of the Bezier drawing.</p>
+<dt><cite>bezier_precision</cite>: int, по умолчанию 180</dt><dd><p>Точность рисования кривой Безье.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.0.8: </span><cite>dash_offset</cite> and <cite>dash_length</cite> have been added.</p>
+<p><span class="versionmodified changed">Изменено в версии 1.0.8: </span><cite>dash_offset</cite> и <cite>dash_length</cite> были добавлены.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.4.1: </span><cite>width</cite>, <cite>cap</cite>, <cite>joint</cite>, <cite>cap_precision</cite>, <cite>joint_precision</cite>, <cite>close</cite>,
-<cite>ellipse</cite>, <cite>rectangle</cite> have been added.</p>
+<p><span class="versionmodified changed">Изменено в версии 1.4.1: </span><cite>width</cite>, <cite>cap</cite>, <cite>joint</cite>, <cite>cap_precision</cite>, <cite>joint_precision</cite>, <cite>close</cite>,
+<cite>ellipse</cite>, <cite>rectangle</cite> были добавлены.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.4.1: </span><cite>bezier</cite>, <cite>bezier_precision</cite> have been added.</p>
+<p><span class="versionmodified changed">Изменено в версии 1.4.1: </span><cite>bezier</cite>, <cite>bezier_precision</cite> были добавлены.</p>
 </div>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.11.0: </span><cite>dashes</cite> have been added</p>
+<p><span class="versionmodified changed">Изменено в версии 1.11.0: </span><cite>dashes</cite> были добавлены</p>
 </div>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Line.bezier">
-<span class="sig-name descname"><span class="pre">bezier</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.bezier" title="Permalink to this definition">¶</a></dt>
-<dd><p>Use this property to build a bezier line, without calculating the
-<a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.points" title="kivy.graphics.vertex_instructions.Line.points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">points</span></code></a>. You can only set this property, not get it.</p>
-<p>The argument must be a tuple of 2n elements, n being the number of points.</p>
-<p>Usage:</p>
+<span class="sig-name descname"><span class="pre">bezier</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.bezier" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Используйте этот атрибут для построения кривой Безье без вычисления
+<a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.points" title="kivy.graphics.vertex_instructions.Line.points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">points</span></code></a>. Вы можете только установить этот атрибут, а не получить его.</p>
+<p>Аргумент должен быть кортежем из 2n элементов, где n - количество точек.</p>
+<p>Использование:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Line</span><span class="p">(</span><span class="n">bezier</span><span class="o">=</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">x3</span><span class="p">,</span> <span class="n">y3</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.4.2.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.4.2.</span></p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Bezier lines calculations are inexpensive for a low number of
-points, but complexity is quadratic, so lines with a lot of points
-can be very expensive to build, use with care!</p>
+<p class="admonition-title">Примечание</p>
+<p>Вычисления для кривых Безье дешевы для небольшого количества точек, но сложность квадратична, поэтому линии с большим количеством точек
+могут быть очень дорогими в построении, используйте осторожно!</p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Line.bezier_precision">
-<span class="sig-name descname"><span class="pre">bezier_precision</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.bezier_precision" title="Permalink to this definition">¶</a></dt>
-<dd><p>Number of iteration for drawing the bezier between 2 segments,
-defaults to 180. The bezier_precision must be at least 1.</p>
+<span class="sig-name descname"><span class="pre">bezier_precision</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.bezier_precision" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Количество итераций для рисования кривой Безье между 2 сегментами,
+по умолчанию 180. bezier_precision должен быть не менее 1.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.4.2.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.4.2.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Line.cap">
-<span class="sig-name descname"><span class="pre">cap</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.cap" title="Permalink to this definition">¶</a></dt>
-<dd><p>Determine the cap of the line, defaults to ‘round’. Can be one of
-‘none’, ‘square’ or ‘round’</p>
+<span class="sig-name descname"><span class="pre">cap</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.cap" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Определяет форму конца линии, по умолчанию 'round'. Может быть 'none', 'square' или 'round'</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.4.1.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.4.1.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Line.cap_precision">
-<span class="sig-name descname"><span class="pre">cap_precision</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.cap_precision" title="Permalink to this definition">¶</a></dt>
-<dd><p>Number of iteration for drawing the “round” cap, defaults to 10.
-The cap_precision must be at least 1.</p>
+<span class="sig-name descname"><span class="pre">cap_precision</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.cap_precision" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Количество итераций для рисования "круглого" конца, по умолчанию 10.
+cap_precision должен быть не менее 1.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.4.1.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.4.1.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Line.circle">
-<span class="sig-name descname"><span class="pre">circle</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.circle" title="Permalink to this definition">¶</a></dt>
-<dd><p>Use this property to build a circle, without calculating the
-<a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.points" title="kivy.graphics.vertex_instructions.Line.points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">points</span></code></a>. You can only set this property, not get it.</p>
-<p>The argument must be a tuple of (center_x, center_y, radius, angle_start,
-angle_end, segments):</p>
+<span class="sig-name descname"><span class="pre">circle</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.circle" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Используйте этот атрибут для построения окружности без вычисления
+<a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.points" title="kivy.graphics.vertex_instructions.Line.points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">points</span></code></a>. Вы можете только установить этот атрибут, а не получить его.</p>
+<p>Аргумент должен быть кортежем из (центр_x, центр_y, радиус, угол_начала,
+угол_конца, сегменты):</p>
 <ul class="simple">
-<li><p>center_x and center_y represent the center of the circle</p></li>
-<li><p>radius represent the radius of the circle</p></li>
-<li><p>(optional) angle_start and angle_end are in degree. The default
-value is 0 and 360.</p></li>
-<li><p>(optional) segments is the precision of the ellipse. The default
-value is calculated from the range between angle.</p></li>
+<li><p>центр_x и центр_y представляют центр окружности</p></li>
+<li><p>радиус представляет радиус окружности</p></li>
+<li><p>(опционально) угол_начала и угол_конца в градусах. Значение по умолчанию - 0 и 360.</p></li>
+<li><p>(опционально) сегменты - точность эллипса. Значение по умолчанию рассчитывается из диапазона между углами.</p></li>
 </ul>
-<p>Note that it’s up to you to <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.close" title="kivy.graphics.vertex_instructions.Line.close"><code class="xref py py-attr docutils literal notranslate"><span class="pre">close</span></code></a> the circle or not.</p>
-<p>For example, for building a simple ellipse, in python:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># simple circle</span>
+<p>Обратите внимание, что это зависит от вас, чтобы <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.close" title="kivy.graphics.vertex_instructions.Line.close"><code class="xref py py-attr docutils literal notranslate"><span class="pre">close</span></code></a> окружность или нет.</p>
+<p>Например, для построения простого эллипса на Python:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># простая окружность</span>
 <span class="n">Line</span><span class="p">(</span><span class="n">circle</span><span class="o">=</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
 
-<span class="c1"># only from 90 to 180 degrees</span>
+<span class="c1"># только с 90 по 180 градусов</span>
 <span class="n">Line</span><span class="p">(</span><span class="n">circle</span><span class="o">=</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">180</span><span class="p">))</span>
 
-<span class="c1"># only from 90 to 180 degrees, with few segments</span>
+<span class="c1"># только с 90 по 180 градусов, с небольшим количеством сегментов</span>
 <span class="n">Line</span><span class="p">(</span><span class="n">circle</span><span class="o">=</span><span class="p">(</span><span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
-</pre></div>
-</div>
+</pre></div></div>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.4.1.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.4.1.</span></p>
 </div>
 </dd></dl>
-
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Line.close">
-<span class="sig-name descname"><span class="pre">close</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.close" title="Permalink to this definition">¶</a></dt>
-<dd><p>If True, the line will be closed.</p>
+<span class="sig-name descname"><span class="pre">close</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.close" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Если True, линия будет замкнута.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.4.1.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.4.1.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Line.dash_length">
-<span class="sig-name descname"><span class="pre">dash_length</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.dash_length" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/setting the length of the dashes in the curve</p>
+<span class="sig-name descname"><span class="pre">dash_length</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.dash_length" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки длины штрихов на кривой.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.0.8.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.0.8.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Line.dash_offset">
-<span class="sig-name descname"><span class="pre">dash_offset</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.dash_offset" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/setting the offset between the dashes in the curve</p>
+<span class="sig-name descname"><span class="pre">dash_offset</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.dash_offset" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки смещения между штрихами на кривой.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.0.8.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.0.8.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Line.dashes">
-<span class="sig-name descname"><span class="pre">dashes</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.dashes" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/setting <code class="docutils literal notranslate"><span class="pre">dashes</span></code>.</p>
-<p>List of [ON length, offset, ON length, offset, …]. E.g. <code class="docutils literal notranslate"><span class="pre">[2,4,1,6,8,2]</span></code>
-would create a line with the first dash length 2 then an offset of 4 then
-a dash length of 1 then an offset of 6 and so on.</p>
+<span class="sig-name descname"><span class="pre">dashes</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.dashes" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки <code class="docutils literal notranslate"><span class="pre">dashes</span></code>.</p>
+<p>Список [длина ВКЛ, смещение, длина ВКЛ, смещение, …]. Например, <code class="docutils literal notranslate"><span class="pre">[2,4,1,6,8,2]</span></code>
+создаст линию с первой длиной штриха 2, затем смещение 4, затем
+длина штриха 1, затем смещение 6 и так далее.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.11.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.11.0.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Line.ellipse">
-<span class="sig-name descname"><span class="pre">ellipse</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.ellipse" title="Permalink to this definition">¶</a></dt>
-<dd><p>Use this property to build an ellipse, without calculating the
-<a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.points" title="kivy.graphics.vertex_instructions.Line.points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">points</span></code></a>. You can only set this property, not get it.</p>
-<p>The argument must be a tuple of (x, y, width, height, angle_start,
-angle_end, segments):</p>
+<span class="sig-name descname"><span class="pre">ellipse</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.ellipse" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Используйте это свойство для построения эллипса, без вычисления
+<a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.points" title="kivy.graphics.vertex_instructions.Line.points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">points</span></code></a>. Вы можете только установить это свойство, но не получить его.</p>
+<p>Аргумент должен быть кортежем из (x, y, ширина, высота, угол_начала,
+угол_конца, сегменты):</p>
 <ul class="simple">
-<li><p>x and y represent the bottom left of the ellipse</p></li>
-<li><p>width and height represent the size of the ellipse</p></li>
-<li><p>(optional) angle_start and angle_end are in degree. The default
-value is 0 and 360.</p></li>
-<li><p>(optional) segments is the precision of the ellipse. The default
-value is calculated from the range between angle.</p></li>
+<li><p>x и y представляют нижний левый угол эллипса</p></li>
+<li><p>ширина и высота представляют размер эллипса</p></li>
+<li><p>(опционально) угол_начала и угол_конца заданы в градусах. Значение по умолчанию - 0 и 360.</p></li>
+<li><p>(опционально) сегменты - точность эллипса. Значение по умолчанию рассчитывается из диапазона углов.</p></li>
 </ul>
-<p>Note that it’s up to you to <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.close" title="kivy.graphics.vertex_instructions.Line.close"><code class="xref py py-attr docutils literal notranslate"><span class="pre">close</span></code></a> the ellipse or not.</p>
-<p>For example, for building a simple ellipse, in python:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># simple ellipse</span>
+<p>Обратите внимание, что зависит от вас <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.close" title="kivy.graphics.vertex_instructions.Line.close"><code class="xref py py-attr docutils literal notranslate"><span class="pre">закрыть</span></code></a> эллипс или нет.</p>
+<p>Например, для построения простого эллипса на Python:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># простой эллипс</span>
 <span class="n">Line</span><span class="p">(</span><span class="n">ellipse</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">))</span>
 
-<span class="c1"># only from 90 to 180 degrees</span>
+<span class="c1"># только с 90 по 180 градусов</span>
 <span class="n">Line</span><span class="p">(</span><span class="n">ellipse</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">180</span><span class="p">))</span>
 
-<span class="c1"># only from 90 to 180 degrees, with few segments</span>
+<span class="c1"># только с 90 по 180 градусов, с небольшим количеством сегментов</span>
 <span class="n">Line</span><span class="p">(</span><span class="n">ellipse</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">180</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
-</pre></div>
-</div>
+</pre></div></div>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.4.1.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.4.1.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Line.joint">
-<span class="sig-name descname"><span class="pre">joint</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.joint" title="Permalink to this definition">¶</a></dt>
-<dd><p>Determine the join of the line, defaults to ‘round’. Can be one of
+<span class="sig-name descname"><span class="pre">joint</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.joint" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Определяет соединение линии, по умолчанию - ‘round’. Может быть одним из
 ‘none’, ‘round’, ‘bevel’, ‘miter’.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.4.1.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.4.1.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Line.joint_precision">
-<span class="sig-name descname"><span class="pre">joint_precision</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.joint_precision" title="Permalink to this definition">¶</a></dt>
-<dd><p>Number of iteration for drawing the “round” joint, defaults to 10.
-The joint_precision must be at least 1.</p>
+<span class="sig-name descname"><span class="pre">joint_precision</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.joint_precision" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Количество итераций для рисования “round” соединения, по умолчанию 10.
+Точность соединения должна быть как минимум 1.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.4.1.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.4.1.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Line.points">
-<span class="sig-name descname"><span class="pre">points</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.points" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/settings points of the line</p>
+<span class="sig-name descname"><span class="pre">points</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.points" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки точек линии.</p>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This will always reconstruct the whole graphics from the new points
-list. It can be very CPU expensive.</p>
+<p class="admonition-title">Предупреждение</p>
+<p>Это всегда будет восстанавливать всю графику из нового списка точек. Это может быть очень ресурсоемким для процессора.</p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Line.rectangle">
-<span class="sig-name descname"><span class="pre">rectangle</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.rectangle" title="Permalink to this definition">¶</a></dt>
-<dd><p>Use this property to build a rectangle, without calculating the
-<a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.points" title="kivy.graphics.vertex_instructions.Line.points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">points</span></code></a>. You can only set this property, not get it.</p>
-<p>The argument must be a tuple of (x, y, width, height):</p>
+<span class="sig-name descname"><span class="pre">rectangle</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.rectangle" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Используйте это свойство для построения прямоугольника, без вычисления
+<a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.points" title="kivy.graphics.vertex_instructions.Line.points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">points</span></code></a>. Вы можете только установить это свойство, но не получить его.</p>
+<p>Аргумент должен быть кортежем из (x, y, ширина, высота):</p>
 <ul class="simple">
-<li><p>x and y represent the bottom-left position of the rectangle</p></li>
-<li><p>width and height represent the size</p></li>
+<li><p>x и y представляют позицию левого нижнего угла прямоугольника</p></li>
+<li><p>ширина и высота представляют размер</p></li>
 </ul>
-<p>The line is automatically closed.</p>
-<p>Usage:</p>
+<p>Линия автоматически будет замкнута.</p>
+<p>Использование:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Line</span><span class="p">(</span><span class="n">rectangle</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>
-</pre></div>
-</div>
+</pre></div></div>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.4.1.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.4.1.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Line.rounded_rectangle">
-<span class="sig-name descname"><span class="pre">rounded_rectangle</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.rounded_rectangle" title="Permalink to this definition">¶</a></dt>
-<dd><p>Use this property to build a rectangle, without calculating the
-<a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.points" title="kivy.graphics.vertex_instructions.Line.points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">points</span></code></a>. You can only set this property, not get it.</p>
-<p>The argument must be a tuple of one of the following forms:</p>
+<span class="sig-name descname"><span class="pre">rounded_rectangle</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.rounded_rectangle" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Используйте это свойство для построения закругленного прямоугольника, без вычисления
+<a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.points" title="kivy.graphics.vertex_instructions.Line.points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">points</span></code></a>. Вы можете только установить это свойство, но не получить его.</p>
+<p>Аргумент должен быть кортежем одной из следующих форм:</p>
 <ul class="simple">
-<li><p>(x, y, width, height, corner_radius)</p></li>
-<li><p>(x, y, width, height, corner_radius, resolution)</p></li>
-<li><p>(x, y, width, height, corner_radius1, corner_radius2, corner_radius3, corner_radius4)</p></li>
-<li><p>(x, y, width, height, corner_radius1, corner_radius2, corner_radius3, corner_radius4, resolution)</p></li>
-<li><p>x and y represent the bottom-left position of the rectangle</p></li>
-<li><p>width and height represent the size</p></li>
-<li><p>corner_radius is the number of pixels between two borders and the center of the circle arc joining them</p></li>
-<li><p>resolution is the number of line segment that will be used to draw the circle arc at each corner (defaults to 30)</p></li>
+<li><p>(x, y, ширина, высота, радиус_угла)</p></li>
+<li><p>(x, y, ширина, высота, радиус_угла, разрешение)</p></li>
+<li><p>(x, y, ширина, высота, радиус_угла1, радиус_угла2, радиус_угла3, радиус_угла4)</p></li>
+<li><p>(x, y, ширина, высота, радиус_угла1, радиус_угла2, радиус_угла3, радиус_угла4, разрешение)</p></li>
+<li><p>x и y представляют позицию левого нижнего угла прямоугольника</p></li>
+<li><p>ширина и высота представляют размер</p></li>
+<li><p>радиус_угла - количество пикселей между двумя границами и центром дуги круга, соединяющей их</p></li>
+<li><p>разрешение - количество сегментов линии, которые будут использоваться для рисования дуги круга на каждом углу (по умолчанию 30)</p></li>
 </ul>
-<p>The line is automatically closed.</p>
-<p>Usage:</p>
+<p>Линия автоматически будет замкнута.</p>
+<p>Использование:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Line</span><span class="p">(</span><span class="n">rounded_rectangle</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
-</pre></div>
-</div>
+</pre></div></div>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.9.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.9.0.</span></p>
 </div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Line.width">
-<span class="sig-name descname"><span class="pre">width</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.width" title="Permalink to this definition">¶</a></dt>
-<dd><p>Determine the width of the line, defaults to 1.0.</p>
+<span class="sig-name descname"><span class="pre">width</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Line.width" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Определяет ширину линии, по умолчанию 1.0.</p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.4.1.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.4.1.</span></p>
 </div>
 </dd></dl>
 
 </dd></dl>
-
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Mesh">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.vertex_instructions.</span></span><span class="sig-name descname"><span class="pre">Mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Mesh" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.VertexInstruction" title="kivy.graphics.instructions.VertexInstruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.VertexInstruction</span></code></a></p>
-<p>In OpenGL ES 2.0 and in our graphics implementation, you cannot have more
-than 65535 indices.</p>
-<p>A list of vertices is described as:</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.vertex_instructions.</span></span><span class="sig-name descname"><span class="pre">Mesh</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Mesh" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.VertexInstruction" title="kivy.graphics.instructions.VertexInstruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.VertexInstruction</span></code></a></p>
+<p>В OpenGL ES 2.0 и в нашей графической реализации нельзя иметь более
+65535 индексов.</p>
+<p>Список вершин описывается следующим образом:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vertices</span> <span class="o">=</span> <span class="p">[</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">u1</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">u2</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
             <span class="o">|</span>            <span class="o">|</span>  <span class="o">|</span>            <span class="o">|</span>
             <span class="o">+----</span> <span class="n">i1</span> <span class="o">----+</span>  <span class="o">+----</span> <span class="n">i2</span> <span class="o">----+</span>
-</pre></div>
-</div>
-<p>If you want to draw a triangle, add 3 vertices. You can then make an
-indices list as follows:</p>
+</pre></div></div>
+<p>Если вы хотите нарисовать треугольник, добавьте 3 вершины. Затем вы можете создать список индексов следующим образом:</p>
 <blockquote>
 <div><p>indices = [0, 1, 2]</p>
 </div></blockquote>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.1.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.1.0.</span></p>
 </div>
 <dl class="field-list">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl>
-<dt><cite>vertices</cite>: iterable</dt><dd><p>List of vertices in the format (x1, y1, u1, v1, x2, y2, u2, v2…).</p>
+<dt><cite>vertices</cite>: iterable</dt><dd><p>Список вершин в формате (x1, y1, u1, v1, x2, y2, u2, v2…).</p>
 </dd>
-<dt><cite>indices</cite>: iterable</dt><dd><p>List of indices in the format (i1, i2, i3…).</p>
+<dt><cite>indices</cite>: iterable</dt><dd><p>Список индексов в формате (i1, i2, i3…).</p>
 </dd>
-<dt><cite>mode</cite>: str</dt><dd><p>Mode of the vbo. Check <a class="reference internal" href="#kivy.graphics.vertex_instructions.Mesh.mode" title="kivy.graphics.vertex_instructions.Mesh.mode"><code class="xref py py-attr docutils literal notranslate"><span class="pre">mode</span></code></a> for more information. Defaults to
+<dt><cite>mode</cite>: str</dt><dd><p>Режим vbo. См. <a class="reference internal" href="#kivy.graphics.vertex_instructions.Mesh.mode" title="kivy.graphics.vertex_instructions.Mesh.mode"><code class="xref py py-attr docutils literal notranslate"><span class="pre">mode</span></code></a> для более подробной информации. По умолчанию
 ‘points’.</p>
 </dd>
-<dt><cite>fmt</cite>: list</dt><dd><p>The format for vertices, by default, each vertex is described by 2D
-coordinates (x, y) and 2D texture coordinate (u, v).
-Each element of the list should be a tuple or list, of the form</p>
+<dt><cite>fmt</cite>: list</dt><dd><p>Формат вершин, по умолчанию, каждая вершина описывается 2D
+координатами (x, y) и 2D текстурными координатами (u, v).
+Каждый элемент списка должен быть кортежем или списком следующего вида:</p>
 <blockquote>
-<div><p>(variable_name, size, type)</p>
+<div><p>(имя_переменной, размер, тип)</p>
 </div></blockquote>
-<p>which will allow mapping vertex data to the glsl instructions.</p>
+<p>что позволит отобразить данные вершины на инструкции glsl.</p>
 <blockquote>
 <div><p>[(b’v_pos’, 2, ‘float’), (b’v_tc’, 2, ‘float’),]</p>
 </div></blockquote>
-<p>will allow using</p>
+<p>позволит использовать</p>
 <blockquote>
 <div><p>attribute vec2 v_pos;
 attribute vec2 v_tc;</p>
 </div></blockquote>
-<p>in glsl’s vertex shader.</p>
+<p>в вершинном шейдере glsl.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <div class="versionchanged">
-<p><span class="versionmodified changed">Changed in version 1.8.1: </span>Before, <cite>vertices</cite> and <cite>indices</cite> would always be converted to a list,
-now, they are only converted to a list if they do not implement the
-buffer interface. So e.g. numpy arrays, python arrays etc. are used
-in place, without creating any additional copies. However, the
-buffers cannot be readonly (even though they are not changed, due to
-a cython limitation) and must be contiguous in memory.</p>
+<p><span class="versionmodified changed">Изменено в версии 1.8.1: </span>Ранее <cite>vertices</cite> и <cite>indices</cite> всегда преобразовывались в список,
+теперь они преобразовываются в список только в том случае, если они не реализуют
+буферный интерфейс. Таким образом, массивы numpy, массивы python и т. д. используются
+на месте, без создания дополнительных копий. Однако
+буферы не могут быть только для чтения (даже если они не изменяются, из-за
+ограничения cython) и должны быть непрерывными в памяти.</p>
 </div>
 <div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>When passing a memoryview or a instance that implements the buffer
-interface, <cite>vertices</cite> should be a buffer of floats (<cite>‘f’</cite> code in
-python array) and <cite>indices</cite> should be a buffer of unsigned short (<cite>‘H’</cite>
-code in python array). Arrays in other formats will still have to be
-converted internally, negating any potential gain.</p>
+<p class="admonition-title">Примечание</p>
+<p>При передаче объекта memoryview или экземпляра, реализующего буферный
+интерфейс, <cite>vertices</cite> должны быть буфером с плавающей точкой (код <cite>‘f’</cite> в
+массиве python) и <cite>indices</cite> должны быть буфером беззнаковых коротких целых (код <cite>‘H’</cite>
+в массиве python). Массивы в других форматах все равно придется
+преобразовывать внутренне, что аннулирует любой потенциальный выигрыш.</p>
 </div>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Mesh.indices">
-<span class="sig-name descname"><span class="pre">indices</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Mesh.indices" title="Permalink to this definition">¶</a></dt>
-<dd><p>Vertex indices used to specify the order when drawing the
-mesh.</p>
+<span class="sig-name descname"><span class="pre">indices</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Mesh.indices" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Индексы вершин, используемые для указания порядка при рисовании
+сетки.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Mesh.mode">
-<span class="sig-name descname"><span class="pre">mode</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Mesh.mode" title="Permalink to this definition">¶</a></dt>
-<dd><p>VBO Mode used for drawing vertices/indices. Can be one of ‘points’,
-‘line_strip’, ‘line_loop’, ‘lines’, ‘triangles’, ‘triangle_strip’ or
+<span class="sig-name descname"><span class="pre">mode</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Mesh.mode" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Режим VBO, используемый для рисования вершин/индексов. Может быть одним из ‘points’,
+‘line_strip’, ‘line_loop’, ‘lines’, ‘triangles’, ‘triangle_strip’ или
 ‘triangle_fan’.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Mesh.vertices">
-<span class="sig-name descname"><span class="pre">vertices</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Mesh.vertices" title="Permalink to this definition">¶</a></dt>
-<dd><p>List of x, y, u, v coordinates used to construct the Mesh. Right now,
-the Mesh instruction doesn’t allow you to change the format of the
-vertices, which means it’s only x, y + one texture coordinate.</p>
+<span class="sig-name descname"><span class="pre">vertices</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Mesh.vertices" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Список координат x, y, u, v, используемых для создания сетки. В данный момент
+инструкция Mesh не позволяет изменять формат
+вершин, что означает, что есть только x, y + одна текстурная координата.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Point">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.vertex_instructions.</span></span><span class="sig-name descname"><span class="pre">Point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Point" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.VertexInstruction" title="kivy.graphics.instructions.VertexInstruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.VertexInstruction</span></code></a></p>
-<p>width/height of 2 times the <a class="reference internal" href="#kivy.graphics.vertex_instructions.Point.pointsize" title="kivy.graphics.vertex_instructions.Point.pointsize"><code class="xref py py-attr docutils literal notranslate"><span class="pre">pointsize</span></code></a>.</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.vertex_instructions.</span></span><span class="sig-name descname"><span class="pre">Point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Point" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.VertexInstruction" title="kivy.graphics.instructions.VertexInstruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.VertexInstruction</span></code></a></p>
+<p>ширина/высота в 2 раза больше <a class="reference internal" href="#kivy.graphics.vertex_instructions.Point.pointsize" title="kivy.graphics.vertex_instructions.Point.pointsize"><code class="xref py py-attr docutils literal notranslate"><span class="pre">pointsize</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><cite>points</cite>: list</dt><dd><p>List of points in the format (x1, y1, x2, y2…), where each pair
-of coordinates specifies the center of a new point.</p>
+<dt><cite>points</cite>: list</dt><dd><p>Список точек в формате (x1, y1, x2, y2…), где каждая пара
+координат указывает центр новой точки.</p>
 </dd>
-<dt><cite>pointsize</cite>: float, defaults to 1.</dt><dd><p>The size of the point, measured from the center to the edge. A
-value of 1.0 therefore means the real size will be 2.0 x 2.0.</p>
+<dt><cite>pointsize</cite>: float, по умолчанию 1.</dt><dd><p>Размер точки, измеряется от центра до края. Значение 1.0 означает, что реальный размер будет 2.0 x 2.0.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Starting from version 1.0.7, vertex instruction have a limit of 65535
-vertices (indices of vertex to be accurate).
-2 entries in the list (x, y) will be converted to 4 vertices. So the
-limit inside Point() class is 2^15-2.</p>
+<p class="admonition-title">Предупреждение</p>
+<p>Начиная с версии 1.0.7, инструкция вершины имеет ограничение в 65535
+вершинах (точнее, в индексах вершин).
+2 записи в списке (x, y) будут преобразованы в 4 вершины. Поэтому
+ограничение внутри класса Point() составляет 2^15-2.</p>
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Point.add_point">
-<span class="sig-name descname"><span class="pre">add_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Point.add_point" title="Permalink to this definition">¶</a></dt>
-<dd><p>Add a point to the current <a class="reference internal" href="#kivy.graphics.vertex_instructions.Point.points" title="kivy.graphics.vertex_instructions.Point.points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">points</span></code></a> list.</p>
-<p>If you intend to add multiple points, prefer to use this method instead
-of reassigning a new <a class="reference internal" href="#kivy.graphics.vertex_instructions.Point.points" title="kivy.graphics.vertex_instructions.Point.points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">points</span></code></a> list. Assigning a new <a class="reference internal" href="#kivy.graphics.vertex_instructions.Point.points" title="kivy.graphics.vertex_instructions.Point.points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">points</span></code></a>
-list will recalculate and reupload the whole buffer into the GPU.
-If you use add_point, it will only upload the changes.</p>
+<span class="sig-name descname"><span class="pre">add_point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">float</span> <span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Point.add_point" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Добавить точку в текущий список <a class="reference internal" href="#kivy.graphics.vertex_instructions.Point.points" title="kivy.graphics.vertex_instructions.Point.points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">points</span></code></a>.</p>
+<p>Если вы намереваетесь добавить несколько точек, предпочтительнее использовать этот метод вместо
+переназначения нового списка <a class="reference internal" href="#kivy.graphics.vertex_instructions.Point.points" title="kivy.graphics.vertex_instructions.Point.points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">points</span></code></a>. Переназначение нового
+списка <a class="reference internal" href="#kivy.graphics.vertex_instructions.Point.points" title="kivy.graphics.vertex_instructions.Point.points"><code class="xref py py-attr docutils literal notranslate"><span class="pre">points</span></code></a>
+пересчитает и перезагрузит весь буфер в GPU.
+Если вы используете add_point, он загрузит только изменения.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Point.points">
-<span class="sig-name descname"><span class="pre">points</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Point.points" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/settings the center points in the points list.
-Each pair of coordinates specifies the center of a new point.</p>
+<span class="sig-name descname"><span class="pre">points</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Point.points" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки центральных точек в списке точек.
+Каждая пара координат указывает центр новой точки.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Point.pointsize">
-<span class="sig-name descname"><span class="pre">pointsize</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Point.pointsize" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/setting point size.
-The size is measured from the center to the edge, so a value of 1.0
-means the real size will be 2.0 x 2.0.</p>
+<span class="sig-name descname"><span class="pre">pointsize</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Point.pointsize" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки размера точки.
+Размер измеряется от центра до края, поэтому значение 1.0
+означает, что реальный размер будет 2.0 x 2.0.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Quad">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.vertex_instructions.</span></span><span class="sig-name descname"><span class="pre">Quad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Quad" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.VertexInstruction" title="kivy.graphics.instructions.VertexInstruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.VertexInstruction</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.vertex_instructions.</span></span><span class="sig-name descname"><span class="pre">Quad</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Quad" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.VertexInstruction" title="kivy.graphics.instructions.VertexInstruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.VertexInstruction</span></code></a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><cite>points</cite>: list</dt><dd><p>List of point in the format (x1, y1, x2, y2, x3, y3, x4, y4).</p>
+<dt><cite>points</cite>: list</dt><dd><p>Список точек в формате (x1, y1, x2, y2, x3, y3, x4, y4).</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Quad.points">
-<span class="sig-name descname"><span class="pre">points</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Quad.points" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/settings points of the quad.</p>
+<span class="sig-name descname"><span class="pre">points</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Quad.points" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки точек квадрата.</p>
 </dd></dl>
 
 </dd></dl>
+Вот перевод на русский текста с сохранением тегов:
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Rectangle">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.vertex_instructions.</span></span><span class="sig-name descname"><span class="pre">Rectangle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Rectangle" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.VertexInstruction" title="kivy.graphics.instructions.VertexInstruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.VertexInstruction</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.vertex_instructions.</span></span><span class="sig-name descname"><span class="pre">Rectangle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Rectangle" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.VertexInstruction" title="kivy.graphics.instructions.VertexInstruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.VertexInstruction</span></code></a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><cite>pos</cite>: list</dt><dd><p>Position of the rectangle, in the format (x, y).</p>
+<dt><cite>pos</cite>: list</dt><dd><p>Положение прямоугольника, в формате (x, y).</p>
 </dd>
-<dt><cite>size</cite>: list</dt><dd><p>Size of the rectangle, in the format (width, height).</p>
+<dt><cite>size</cite>: list</dt><dd><p>Размер прямоугольника, в формате (ширина, высота).</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Rectangle.pos">
-<span class="sig-name descname"><span class="pre">pos</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Rectangle.pos" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/settings the position of the rectangle.</p>
+<span class="sig-name descname"><span class="pre">pos</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Rectangle.pos" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки положения прямоугольника.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Rectangle.size">
-<span class="sig-name descname"><span class="pre">size</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Rectangle.size" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/settings the size of the rectangle.</p>
+<span class="sig-name descname"><span class="pre">size</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Rectangle.size" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки размера прямоугольника.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.RoundedRectangle">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.vertex_instructions.</span></span><span class="sig-name descname"><span class="pre">RoundedRectangle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.vertex_instructions.RoundedRectangle" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#kivy.graphics.vertex_instructions.Rectangle" title="kivy.graphics.vertex_instructions.Rectangle"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.vertex_instructions.Rectangle</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.vertex_instructions.</span></span><span class="sig-name descname"><span class="pre">RoundedRectangle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.vertex_instructions.RoundedRectangle" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="#kivy.graphics.vertex_instructions.Rectangle" title="kivy.graphics.vertex_instructions.Rectangle"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.vertex_instructions.Rectangle</span></code></a></p>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.9.1.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.9.1.</span></p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><cite>segments</cite>: int, defaults to 10</dt><dd><p>Define how many segments are needed for drawing the rounded corner.
-The drawing will be smoother if you have many segments.</p>
+<dt><cite>segments</cite>: int, по умолчанию 10</dt><dd><p>Определяет, сколько сегментов необходимо для рисования закругленных углов.
+Рисунок будет более плавным, если у вас много сегментов.</p>
 </dd>
-<dt><cite>radius</cite>: list, defaults to [(10.0, 10.0), (10.0, 10.0), (10.0, 10.0), (10.0, 10.0)]</dt><dd><p>Specifies the radii used for the rounded corners clockwise:
-top-left, top-right, bottom-right, bottom-left.
-Elements of the list can be numbers or tuples of two numbers to specify different x,y dimensions.
-One value will define all corner radii to be of this value.
-Four values will define each corner radius separately.
-Higher numbers of values will be truncated to four.
-The first value will be used for all corners if there are fewer than four values.</p>
+<dt><cite>radius</cite>: list, по умолчанию [(10.0, 10.0), (10.0, 10.0), (10.0, 10.0), (10.0, 10.0)]</dt><dd><p>Задает радиусы, используемые для закругленных углов по часовой стрелке:
+верхний левый, верхний правый, нижний правый, нижний левый.
+Элементы списка могут быть числами или кортежами из двух чисел для задания разных размеров x, y.
+Одно значение будет задавать все радиусы углов этим значением.
+Четыре значения будут задавать каждый радиус угла отдельно.
+Большие числа значений будут усечены до четырех.
+Первое значение будет использоваться для всех углов, если значений меньше четырех.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.RoundedRectangle.radius">
-<span class="sig-name descname"><span class="pre">radius</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.RoundedRectangle.radius" title="Permalink to this definition">¶</a></dt>
-<dd><p>Corner radii of the rounded rectangle, defaults to [10,].</p>
+<span class="sig-name descname"><span class="pre">radius</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.RoundedRectangle.radius" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Радиусы закругленных углов прямоугольника, по умолчанию [10,].</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.RoundedRectangle.segments">
-<span class="sig-name descname"><span class="pre">segments</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.RoundedRectangle.segments" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/setting the number of segments for each corner.</p>
+<span class="sig-name descname"><span class="pre">segments</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions
+
+.RoundedRectangle.segments" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки количества сегментов для каждого угла.</p>
 </dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.SmoothLine">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.vertex_instructions.</span></span><span class="sig-name descname"><span class="pre">SmoothLine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.vertex_instructions.SmoothLine" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line" title="kivy.graphics.vertex_instructions.Line"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.vertex_instructions.Line</span></code></a></p>
-<p>results. It has few drawbacks:</p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.vertex_instructions.</span></span><span class="sig-name descname"><span class="pre">SmoothLine</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.vertex_instructions.SmoothLine" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line" title="kivy.graphics.vertex_instructions.Line"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.vertex_instructions.Line</span></code></a></p>
+<p>имеет несколько недостатков:</p>
 <ul class="simple">
-<li><p>drawing a line with alpha will probably not have the intended result if
-the line crosses itself.</p></li>
-<li><p><a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.cap" title="kivy.graphics.vertex_instructions.Line.cap"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cap</span></code></a>, <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.joint" title="kivy.graphics.vertex_instructions.Line.joint"><code class="xref py py-attr docutils literal notranslate"><span class="pre">joint</span></code></a> and <code class="xref py py-attr docutils literal notranslate"><span class="pre">dash</span></code> properties
-are not supported.</p></li>
-<li><p>it uses a custom texture with a premultiplied alpha.</p></li>
-<li><p>lines under 1px in width are not supported: they will look the same.</p></li>
+<li><p>рисование линии с альфой, вероятно, не даст задуманный результат, если
+линия пересекает саму себя.</p></li>
+<li><p><a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.cap" title="kivy.graphics.vertex_instructions.Line.cap"><code class="xref py py-attr docutils literal notranslate"><span class="pre">cap</span></code></a>, <a class="reference internal" href="#kivy.graphics.vertex_instructions.Line.joint" title="kivy.graphics.vertex_instructions.Line.joint"><code class="xref py py-attr docutils literal notranslate"><span class="pre">joint</span></code></a> и <code class="xref py py-attr docutils literal notranslate"><span class="pre">dash</span></code> свойства
+не поддерживаются.</p></li>
+<li><p>используется специальная текстура с предварительным умножением альфы.</p></li>
+<li><p>линии менее 1px в ширину не поддерживаются: они будут выглядеть одинаково.</p></li>
 </ul>
 <div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>This is an unfinished work, experimental, and subject to crashes.</p>
+<p class="admonition-title">Предупреждение</p>
+<p>Это незавершенная работа, экспериментальная и может вызывать сбои.</p>
 </div>
 <div class="versionadded">
-<p><span class="versionmodified added">New in version 1.9.0.</span></p>
+<p><span class="versionmodified added">Добавлено в версии 1.9.0.</span></p>
 </div>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.SmoothLine.overdraw_width">
-<span class="sig-name descname"><span class="pre">overdraw_width</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.SmoothLine.overdraw_width" title="Permalink to this definition">¶</a></dt>
-<dd><p>Determine the overdraw width of the line, defaults to 1.2.</p>
+<span class="sig-name descname"><span class="pre">overdraw_width</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.SmoothLine.overdraw_width" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Определение ширины избыточного рисования линии, по умолчанию 1.2.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.SmoothLine.premultiplied_texture">
-<span class="sig-name descname"><span class="pre">premultiplied_texture</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.vertex_instructions.SmoothLine.premultiplied_texture" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">premultiplied_texture</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.vertex_instructions.SmoothLine.premultiplied_texture" title="Ссылка на это определение">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Triangle">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.vertex_instructions.</span></span><span class="sig-name descname"><span class="pre">Triangle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Triangle" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.VertexInstruction" title="kivy.graphics.instructions.VertexInstruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.VertexInstruction</span></code></a></p>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">kivy.graphics.vertex_instructions.</span></span><span class="sig-name descname"><span class="pre">Triangle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Triangle" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Базовый класс: <a class="reference internal" href="api-kivy.graphics.instructions.html#kivy.graphics.instructions.VertexInstruction" title="kivy.graphics.instructions.VertexInstruction"><code class="xref py py-class docutils literal notranslate"><span class="pre">kivy.graphics.instructions.VertexInstruction</span></code></a></p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><cite>points</cite>: list</dt><dd><p>List of points in the format (x1, y1, x2, y2, x3, y3).</p>
+<dt><cite>points</cite>: list</dt><dd><p>Список точек в формате (x1, y1, x2, y2, x3, y3).</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="kivy.graphics.vertex_instructions.Triangle.points">
-<span class="sig-name descname"><span class="pre">points</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Triangle.points" title="Permalink to this definition">¶</a></dt>
-<dd><p>Property for getting/settings points of the triangle.</p>
+<span class="sig-name descname"><span class="pre">points</span></span><a class="headerlink" href="#kivy.graphics.vertex_instructions.Triangle.points" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Свойство для получения/установки точек треугольника.</p>
 </dd></dl>
 
 </dd></dl>
